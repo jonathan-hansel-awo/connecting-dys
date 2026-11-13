@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { brand, connectionChapters, differences } from "@/content/site";
 import { DifferenceArtwork, PathArtwork } from "@/components/story-art";
 import { HomeStoryMotion } from "@/components/home-story-motion";
@@ -56,27 +56,25 @@ export default function HomePage() {
             <span />
             <span />
           </div>
-          <div className="hero-note note-top">
-            <Sparkles size={19} aria-hidden="true" />A little more understood.
-          </div>
+          <div className="hero-note note-top">A little more understood.</div>
           <div className="logo-stage">
             <Image
-              src={brand.logo}
-              alt="Connecting Dys: two embracing figures inside a heart. A home for every DYS mind."
-              width={1536}
+              src={brand.symbol}
+              alt="Two figures embracing inside a heart."
+              width={1024}
               height={1024}
               sizes="(max-width: 700px) 90vw, (max-width: 1100px) 65vw, 46vw"
               preload
             />
-            <span className="stage-line" aria-hidden="true" />
+            <div className="hero-lockup">
+              <span className="hero-wordmark">Connecting Dys</span>
+              <span className="hero-tagline">{brand.tagline}</span>
+            </div>
           </div>
           <div className="hero-note note-bottom">
             <span aria-hidden="true">↳</span> A place to begin. A space to be
             you.
           </div>
-          <span className="composition-star" aria-hidden="true">
-            ✳
-          </span>
         </div>
         <div className="hero-bottom">
           <a href="#recognition">
@@ -232,9 +230,6 @@ export default function HomePage() {
             <br />
             Just a few ways to move forward.
           </p>
-          <span className="support-spark" aria-hidden="true">
-            ✳
-          </span>
         </div>
         <div className="support-links">
           <Link href="/support">
@@ -271,15 +266,18 @@ export default function HomePage() {
         <div className="wrap about-layout">
           <div className="about-statement">
             <p className="eyebrow">05 / Meet Connecting Dys</p>
-            <p className="statement">
-              Built around
-              <br />
-              <span>people.</span>
-              <br />
-              Rooted in
-              <br />
-              <span>understanding.</span>
-            </p>
+            <figure className="approved-logo">
+              <Image
+                src={brand.logo}
+                alt="Connecting Dys — A home for every DYS mind. The original embracing-figures logo."
+                width={1536}
+                height={1024}
+                sizes="(max-width: 1000px) 90vw, 45vw"
+              />
+              <figcaption>
+                The embrace at the heart of Connecting Dys.
+              </figcaption>
+            </figure>
           </div>
           <div className="about-copy">
             <h2 id="about-title">

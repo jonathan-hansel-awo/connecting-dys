@@ -212,10 +212,10 @@ export default async function ReadingPage({
               <p className="lead">Make this space comfortable for you.</p>
               <h2>Choose how you read</h2>
               <p>
-                Open Reading settings in the header to choose Open Sans, Arial,
-                Verdana, Atkinson Hyperlegible or OpenDyslexic. You can change
-                text size, line spacing, letter spacing and the reading
-                background.
+                Open Reading settings just below the navigation to choose Open
+                Sans, Arial, Verdana, Atkinson Hyperlegible or OpenDyslexic. You
+                can change text size, line spacing, letter spacing and the
+                reading background.
               </p>
               <p>
                 Font preferences are personal. Specialist fonts are options, not

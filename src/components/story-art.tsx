@@ -70,11 +70,6 @@ export function PathArtwork({
         </g>
         <circle cx="76" cy="140" r="10" fill="#D98677" />
         <circle cx="550" cy="490" r="11" fill="#EAB85C" />
-        <path
-          d="M535 82v28m-14-14h28M300 495v28m-14-14h28"
-          stroke="#FCF7ED"
-          strokeWidth="3"
-        />
       </g>
     </svg>
   );

@@ -1,6 +1,6 @@
 # Connecting Dys CIC
 
-Next.js App Router + TypeScript website for Connecting Dys, a UK Community Interest Company. The approved embracing-figures logo is preserved byte-for-byte. The current tagline is **A home for every DYS mind.** No hosting project, deployment or Vercel configuration is created by this work.
+Next.js App Router + TypeScript website for Connecting Dys, a UK Community Interest Company. The original approved embracing-figures logo is preserved byte-for-byte. A background-free symbol adaptation is used in the header and hero following the owner’s 13 November feedback. The current tagline is **A home for every DYS mind.** No hosting project, deployment or Vercel configuration is created by this work.
 
 ## Run locally
 
@@ -31,7 +31,7 @@ npm start
 - `src/components/home-story-motion.tsx`: GSAP + ScrollTrigger with `useGSAP` cleanup and matchMedia. Desktop recognition paths trace in; the connection artwork pins briefly while its landscape travels laterally. All reading text stays still in ordinary DOM order.
 - `src/components/providers/SmoothScrollProvider.tsx`: one GSAP ticker drives Lenis. Dynamic Lenis import, no touch interpolation, native anchors/history/keyboard interruption, and complete lifecycle cleanup. No transformed scrolling container or body scroll lock.
 - `src/lib/preferences.ts`: shared validated preference application; its self-contained runtime also runs before paint. Storage failures cannot block rendering. Optional font faces are fetched only when selected. Preferences apply to headings, controls and reading surfaces; branded artwork stays unchanged.
-- `src/components/reading-settings.tsx`: native modal dialog with Escape, focus containment and focus return, plus a native scrollable panel.
+- `src/components/reading-settings.tsx`: a control below the navigation (not sticky), opening a native modal dialog with Escape, focus containment and focus return, plus a native scrollable panel.
 - `src/app/[slug]/page.tsx`: calm reading routes for the four DYS subjects, about, support, getting involved, contact and accessibility. Existing organisation policy information remains linked to the original website.
 - `src/app/globals.css`: central brand/reading tokens, fluid responsive layouts, enhanced large-spacing layouts, reduced-motion, print and forced-colour alternatives.
 
@@ -47,7 +47,8 @@ Contact opens the verified published email address or points to the existing con
 
 ## Assets and licences
 
-- Approved logo: original `public/brand/connecting_dys_logo.png`; source unchanged. Display uses Next Image with intrinsic dimensions and responsive sizing.
+- Original logo: `public/brand/connecting_dys_logo.png`, unchanged and displayed at a readable size in the organisation chapter.
+- Header/hero symbol: `public/brand/connecting-dys-embrace.png`, a transparent adaptation of the original heart/embrace, with a navy outline for contrast on light backgrounds. Created with image editing; no new identity or tagline introduced. Both use responsive Next Image sizing.
 - Illustrations: created directly in SVG for this implementation. No stock images, remote image dependencies or images represented as members.
 - Open Sans and Nunito Sans: self-hosted Latin WOFF2 through `next/font/local`; copied from Fontsource. OFL texts are in `src/fonts/`.
 - Atkinson Hyperlegible: self-hosted regular/bold Latin WOFF2, loaded on selection. OFL text in `public/fonts/`.

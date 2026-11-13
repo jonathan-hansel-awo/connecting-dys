@@ -22,7 +22,7 @@ export function SiteHeader() {
           className="brand-link"
           aria-label="Connecting Dys — home"
         >
-          <Image src={brand.logo} alt="" width={72} height={48} />
+          <Image src={brand.symbol} alt="" width={48} height={48} />
           <span>
             Connecting <b>Dys</b>
           </span>
@@ -35,10 +35,12 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="header-controls">
-          <ReadingSettings />
           <MobileNavigation links={links} />
         </div>
       </header>
+      <div className="reading-toolbar wrap" aria-label="Reading preferences">
+        <ReadingSettings />
+      </div>
     </>
   );
 }

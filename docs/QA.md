@@ -54,3 +54,9 @@ Next.js rejects `--host` (its option is `--hostname`) and does not use Vite’s 
 6. Test 320px, phone landscape, tablet and desktop, plus 200%/400% zoom. Check for clipped text, horizontal page overflow, obscured focus and unreachable controls.
 7. Disable JavaScript and reload. Read the entire homepage and follow its topic/support/contact links.
 8. Run full browser axe and Lighthouse; review with assistive technology and representative young visitors before wider release.
+
+## Follow-up visual refinement (13 November)
+
+The owner supplied the deployed URL, https://connecting-dys.vercel.app/, and mobile screenshots. Live desktop inspection confirmed the original header/hero issues. The Reading settings dialog opened, focused its close button and returned focus to the trigger after Escape. A read-only layout measurement also found that the rotated hero orbit extended beyond the viewport; the follow-up reduces its inset/rotation.
+
+Changes move Reading settings out of the sticky header into normal document flow below it; remove sparkle/starburst motifs; use a transparent symbol-only adaptation of the embracing-heart identity; and show the unchanged original full logo at a larger size in a matching dark organisation section. The tagline is unchanged. Local lint, typecheck, build and the eight regression groups pass for the refinement. Deployment is still managed by the owner; this work only updates GitHub source. Updated deployment browser results are recorded separately when available.

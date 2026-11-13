@@ -21,6 +21,6 @@
 
 Only decorative scene elements move or pin. No text is hidden awaiting animation. No transformed body/main, no artificial scroll height journey, no snapping, no mandatory carousel, no moving link targets. The desktop artwork pin has a relative distance derived from actual content/art height. Width/height/pointer/OS preference changes use GSAP matchMedia teardown. Font completion, body resize, image loads and page restoration refresh measurements. Reading-choice changes debounce the refresh/rebuild.
 
-The logo itself is an unchanged image and is not morphed or animated. Separate original artwork is decorative and hidden from assistive technology.
+The original logo file is unchanged and is not morphed or animated. A transparent symbol adaptation, authorised in the owner’s follow-up feedback, is used in the header and hero. Separate landscape artwork is decorative and hidden from assistive technology.
 
 Real browser lifecycle and interaction verification remains outstanding because the provided managed preview could not start Next.js (see QA report).

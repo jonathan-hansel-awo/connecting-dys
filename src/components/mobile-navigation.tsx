@@ -27,9 +27,7 @@ export function MobileNavigation({ links }: { links: string[][] }) {
         }
       }}
     >
-      <summary>
-        Menu <span aria-hidden="true">＋</span>
-      </summary>
+      <summary>Menu</summary>
       <nav aria-label="Mobile navigation">
         {links.map(([href, label]) => (
           <Link

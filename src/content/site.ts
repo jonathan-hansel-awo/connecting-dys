@@ -2,6 +2,7 @@ export const brand = {
   name: "Connecting Dys",
   tagline: "A home for every DYS mind.",
   logo: "/brand/connecting_dys_logo.png",
+  symbol: "/brand/connecting-dys-embrace.png",
   email: "hello@connectingdys.org",
 };
 export const differences = [

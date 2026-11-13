@@ -4,7 +4,7 @@ Reviewed 13 November 2026.
 
 ## Authoritative instructions
 
-All seven attached Markdown project sources were read before implementation, together with repository `AGENTS.md` and the original README. The current user request supersedes older source-pack instructions that proposed a new repository or called the logo provisional: use the existing `connecting-dys` repository; Marie has approved the existing logo and tagline. No new logo has been drawn or substituted.
+All seven attached Markdown project sources were read before implementation, together with repository `AGENTS.md` and the original README. The current user request supersedes older source-pack instructions that proposed a new repository or called the logo provisional: use the existing `connecting-dys` repository; Marie has approved the existing logo and tagline. The original source is unchanged. The owner’s subsequent feedback authorised a background-free symbol-only adaptation for the header/hero, with the original full lockup displayed later at a readable size.
 
 ## Existing website audit
 
