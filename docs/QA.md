@@ -74,3 +74,9 @@ Reproduced the reported bug on the live site at a 454 CSS-pixel viewport (300% C
 The recognition chapter now uses a contained 3:2 responsive photo frame, a caption in normal flow and an explicit positive grid gap before the copy. The duplicated SVG is removed from that chapter. The connection illustration is redrawn with proportioned figures and filled anatomical arm/hand shapes. Mobile/compact GSAP choreography pans the contained image and connection artwork and draws the linking path without pinning text or intercepting native touch scrolling. Reduced motion and spacious reading choices still disable these effects.
 
 Local lint, TypeScript, production build, all eight production regression groups and diff hygiene pass. Real-device touch, OS-level motion preference changes, screen readers and full browser performance audits remain separate checks. Narrow-viewport live results follow after publication by the existing GitHub integration.
+
+### Narrow-viewport live checks
+
+After the existing GitHub integration published the changes, live Chromium at a 340 CSS-pixel viewport (400% zoom) was tested with the soft-blue background and all five font choices. The recognition figure-to-label gap measured **36px for every font**, with no horizontal overflow and no pin spacers. The generated photo loaded successfully. At the maximum 26px size, 2× line height and 0.12em letter spacing with OpenDyslexic, the chapter still had **52px** of clear space; its decorative transforms were removed as intended.
+
+That maximum-settings check found separate intrinsic-width overflow in the footer wordmark and the reading-background fieldset. The follow-up resets fieldset/grid minimum widths, lets the footer wordmark wrap, uses one-column background choices in spacious mode and removes the decorative hero orbit in that mode. Narrow-width live verification of those adjustments is recorded in the final handoff.

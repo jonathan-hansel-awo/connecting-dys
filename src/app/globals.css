@@ -1869,3 +1869,41 @@ html[data-reading-custom="true"] .about-home :focus-visible {
     font-size: 0.65rem;
   }
 }
+
+/* Intrinsic fieldset/flex widths must not defeat the visitor's largest reading settings. */
+.dialog-inner fieldset {
+  min-inline-size: 0;
+  min-width: 0;
+}
+.dialog-inner legend {
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+}
+.background-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.background-options button {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.footer-top > * {
+  min-width: 0;
+}
+.footer-top a {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.footer-brand {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+html[data-spacious="true"] .background-options {
+  grid-template-columns: minmax(0, 1fr);
+}
+html[data-spacious="true"] .footer-top {
+  grid-template-columns: minmax(0, 1fr);
+}
+html[data-spacious="true"] .hero-orbit {
+  display: none;
+}
