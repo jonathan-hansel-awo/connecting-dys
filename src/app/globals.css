@@ -58,3 +58,11 @@ html[data-reduce-motion="true"] *::after {
   scroll-behavior: auto !important;
   transition-duration: 0.01ms !important;
 }
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("/fonts/OpenDyslexic-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
