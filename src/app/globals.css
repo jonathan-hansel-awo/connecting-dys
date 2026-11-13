@@ -473,11 +473,7 @@ html[data-js="true"] .js-only {
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;
-}
-.recognition-art .path-art {
-  margin-top: -1rem;
-  margin-bottom: -2rem;
+  overflow: hidden;
 }
 .recognition-copy h2 {
   margin: 1rem 0 1.6rem;
@@ -1261,10 +1257,6 @@ html[data-js="true"] .js-only {
     gap: 1.5rem;
     padding-block: 2.8rem 3rem;
   }
-  .recognition-art .path-art {
-    max-width: 420px;
-    margin: -1.4rem auto -2rem;
-  }
   .recognition-copy h2 {
     font-size: 2.15rem;
   }
@@ -1643,11 +1635,6 @@ html[data-reading-custom="true"] .recognition-copy h2 span,
 html[data-reading-custom="true"] .recognition-art > .eyebrow {
   color: var(--brand-teal);
 }
-html[data-reading-custom="true"] .recognition-art .path-art {
-  background: var(--brand-navy);
-  border-radius: 6px;
-  margin-top: 1rem;
-}
 html[data-reading-custom="true"] .footer-bottom {
   border-color: var(--rule);
 }
@@ -1818,5 +1805,67 @@ html[data-reading-custom="true"] .about-home :focus-visible {
 @media print {
   .reading-toolbar {
     display: none !important;
+  }
+}
+
+/* Recognition media is entirely contained; captions and copy own their layout space. */
+.recognition-art {
+  display: grid;
+  gap: 1.4rem;
+  align-content: start;
+}
+.recognition-figure {
+  margin: 0;
+  min-width: 0;
+}
+.recognition-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: clip;
+  isolation: isolate;
+  border-radius: 7px;
+  background: #d8ddd4;
+}
+.recognition-photo {
+  object-fit: cover;
+}
+.recognition-figure figcaption {
+  font-size: 0.64rem;
+  line-height: var(--reading-line-height);
+  margin-top: 0.8rem;
+  max-width: 55ch;
+}
+.recognition-copy {
+  position: relative;
+  min-width: 0;
+}
+.recognition .recognition-art > .eyebrow {
+  margin: 0;
+}
+.path-art {
+  overflow: hidden;
+}
+@media (max-width: 1000px) {
+  .recognition-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+  .recognition-figure {
+    max-width: 700px;
+  }
+  .recognition-copy p:not(.eyebrow) {
+    max-width: 60ch;
+  }
+}
+@media (max-width: 700px) {
+  .recognition-grid {
+    gap: 2rem;
+  }
+  .recognition-art {
+    gap: 1.2rem;
+  }
+  .recognition-figure figcaption {
+    font-size: 0.65rem;
   }
 }

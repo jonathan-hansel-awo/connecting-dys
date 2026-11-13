@@ -34,3 +34,7 @@ Medical advice, diagnostic checklists, prevalence figures and stereotyped lists 
 ## Font sources
 
 Self-hosted Latin fonts were copied from the installed `@fontsource/open-sans`, `@fontsource/nunito-sans` and `@fontsource/atkinson-hyperlegible` packages. Their licence texts are included alongside the assets. Existing OpenDyslexic OTF metadata confirms the 2019 OFL copyright and licence; matching standalone licence text was obtained from https://github.com/antijingoist/opendyslexic/blob/main/OFL.txt.
+
+## Recognition imagery refinement
+
+The owner requested a more human, lively image and authorised generated people. `public/images/shared-moment.webp` is a fictional editorial scene generated specifically for the site, featuring young adults in a relaxed conversation. It is not evidence of an event, service, membership or activity. A visible caption discloses that it is AI-created and not Connecting Dys members. Its alt text describes an illustrative scene. The separate connection chapter uses original decorative SVG people, with clothed bodies, filled arms, sleeves and hands rather than floating curved strokes.

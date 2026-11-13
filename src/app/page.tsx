@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { brand, connectionChapters, differences } from "@/content/site";
-import { DifferenceArtwork, PathArtwork } from "@/components/story-art";
+import { DifferenceArtwork, CommunityArtwork } from "@/components/story-art";
 import { HomeStoryMotion } from "@/components/home-story-motion";
 
 export default function HomePage() {
@@ -92,7 +92,20 @@ export default function HomePage() {
         <div className="wrap recognition-grid">
           <div className="recognition-art">
             <span className="eyebrow">01 / A shared starting point</span>
-            <PathArtwork />
+            <figure className="recognition-figure">
+              <div className="recognition-media">
+                <Image
+                  src="/images/shared-moment.webp"
+                  alt="An illustrative scene of four young adults talking together in a relaxed shared space."
+                  fill
+                  sizes="(max-width: 1000px) 90vw, 45vw"
+                  className="recognition-photo"
+                />
+              </div>
+              <figcaption>
+                AI-created illustrative scene. Not Connecting Dys members.
+              </figcaption>
+            </figure>
           </div>
           <div className="recognition-copy">
             <p className="eyebrow">You are more than a label</p>
@@ -184,7 +197,7 @@ export default function HomePage() {
               <div className="landscape-label">
                 Every path has a place here.
               </div>
-              <PathArtwork variant="connection" />
+              <CommunityArtwork />
               <div className="landscape-caption">
                 <span>Different perspectives.</span>
                 <span>Shared possibility.</span>
