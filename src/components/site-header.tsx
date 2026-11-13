@@ -13,12 +13,13 @@ const links = [
 export function SiteHeader() {
   return (
     <>
+      <div id="page-start" aria-hidden="true" />
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
       <header className="site-header">
         <Link
-          href="/"
+          href="/#page-start"
           className="brand-link"
           aria-label="Connecting Dys — home"
         >
