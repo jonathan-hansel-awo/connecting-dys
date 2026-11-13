@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Connecting Dys QA</title>
+    <style>
+      body {
+        margin: 0;
+        font: 14px Arial;
+        background: #eee;
+      }
+      #frame {
+        display: block;
+        border: 0;
+        background: white;
+      }
+      pre {
+        white-space: pre-wrap;
+        padding: 20px;
+        max-width: 1200px;
+        background: white;
+      }
+      label {
+        display: inline-block;
+        padding: 10px;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+        padding: 7px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <label>Width <input name="w" type="number" value="390" /></label
+      ><label>Height <input name="h" type="number" value="844" /></label
+      ><label>Path <input name="path" value="/" /></label
+      ><label>No JavaScript <input type="checkbox" name="nojs" /></label
+      ><button>Show viewport</button>
+    </form>
+    <pre id="results">Loading audit…</pre>
+    <iframe id="frame" title="Website under test"></iframe>
+    <script>
+      const q = new URLSearchParams(location.search),
+        frame = document.querySelector("iframe");
+      frame.width = q.get("w") || 390;
+      frame.height = q.get("h") || 844;
+      frame.src = q.get("path") || "/";
+      document.querySelector("[name=w]").value = frame.width;
+      document.querySelector("[name=h]").value = frame.height;
+      if (q.has("nojs")) frame.sandbox = "allow-same-origin";
+      frame.onload = () => {
+        const d = frame.contentDocument,
+          w = frame.contentWindow;
+        function metrics() {
+          return {
+            viewport: [w.innerWidth, w.innerHeight],
+            overflow: d.documentElement.scrollWidth > w.innerWidth,
+            h1: d.querySelectorAll("h1").length,
+            main: d.querySelectorAll("main").length,
+            images: [...d.images].map((i) => ({
+              loaded: i.complete && i.naturalWidth > 0,
+              src: i.getAttribute("src"),
+            })),
+            pin: d.querySelector(".connection-visual")?.dataset.pinned || false,
+            bodyFont: w.getComputedStyle(d.body).fontFamily,
+          };
+        }
+        if (q.has("nojs")) {
+          document.querySelector("pre").textContent = JSON.stringify(
+            { noJavaScript: true, ...metrics() },
+            null,
+            2,
+          );
+          return;
+        }
+        const script = d.createElement("script");
+        script.src = "/__qa-axe.js";
+        script.onload = async () => {
+          await d.fonts.ready;
+          setTimeout(async () => {
+            try {
+              const a = await w.axe.run(d, {
+                runOnly: {
+                  type: "tag",
+                  values: [
+                    "wcag2a",
+                    "wcag2aa",
+                    "wcag21a",
+                    "wcag21aa",
+                    "wcag22aa",
+                  ],
+                },
+              });
+              document.querySelector("pre").textContent = JSON.stringify(
+                {
+                  ...metrics(),
+                  violations: a.violations.map((v) => ({
+                    id: v.id,
+                    impact: v.impact,
+                    description: v.description,
+                    nodes: v.nodes.map((n) => ({
+                      target: n.target,
+                      summary: n.failureSummary,
+                    })),
+                  })),
+                  incomplete: a.incomplete.map((v) => ({
+                    id: v.id,
+                    nodes: v.nodes.map((n) => ({
+                      target: n.target,
+                      summary: n.failureSummary,
+                    })),
+                  })),
+                  passes: a.passes.length,
+                },
+                null,
+                2,
+              );
+            } catch (e) {
+              document.querySelector("pre").textContent = String(e);
+            }
+          }, 1000);
+        };
+        d.head.append(script);
+      };
+    </script>
+  </body>
+</html>
+<style>
+  #results {
+    display: none;
+  }
+  form {
+    height: 60px;
+  }
+  #frame {
+    border: 1px solid #ddd;
+  }
+</style>

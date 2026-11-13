@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Temporary local browser audit assets; build also removes these.
+/public/__qa.html
+/public/__qa-axe.js
+!.env.example

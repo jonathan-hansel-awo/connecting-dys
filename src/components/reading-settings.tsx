@@ -1,229 +1,191 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useEffect, useState } from "react";
-import { SlidersHorizontal } from "lucide-react";
+import { useRef, useSyncExternalStore } from "react";
+import { SlidersHorizontal, X } from "lucide-react";
+import {
+  applyPreferences,
+  backgrounds,
+  defaults,
+  fontNames,
+  normalisePreferences,
+  PREFERENCES_EVENT,
+  STORAGE_KEY,
+  type Preferences,
+} from "@/lib/preferences";
 
-const STORAGE_KEY = "connecting-dys-reading-settings";
-
-type Preferences = {
-  font: string;
-  size: number;
-  lineHeight: number;
-  letterSpacing: number;
-  background: string;
-  reduceMotion: boolean;
-};
-
-const defaults: Preferences = {
-  font: "Open Sans",
-  size: 18,
-  lineHeight: 1.65,
-  letterSpacing: 0.01,
-  background: "#FCF7ED",
-  reduceMotion: false,
-};
-
-const fonts: Record<string, string> = {
-  "Open Sans": "var(--font-open-sans), Arial, sans-serif",
-  Arial: "Arial, Helvetica, sans-serif",
-  Verdana: "Verdana, Geneva, sans-serif",
-  Georgia: "Georgia, serif",
-  OpenDyslexic: "OpenDyslexic, Arial, sans-serif",
-};
-
-const backgrounds = [
-  { label: "Cream", value: "#FCF7ED" },
-  { label: "White", value: "#FFFFFF" },
-  { label: "Soft blue", value: "#EBF4FA" },
-  { label: "Soft peach", value: "#FFF0E4" },
-];
-
-function applyPreferences(prefs: Preferences) {
-  const root = document.documentElement;
-
-  root.style.setProperty(
-    "--reading-font",
-    fonts[prefs.font] ?? fonts["Open Sans"],
-  );
-  root.style.setProperty("--reading-size", `${prefs.size}px`);
-  root.style.setProperty("--reading-line-height", String(prefs.lineHeight));
-  root.style.setProperty(
-    "--reading-letter-spacing",
-    `${prefs.letterSpacing}em`,
-  );
-  root.style.setProperty("--reading-background", prefs.background);
-
-  root.dataset.reduceMotion = String(prefs.reduceMotion);
-
-  window.dispatchEvent(new Event("connecting-dys:preferences"));
+let snapshot = defaults;
+function readPreferences() {
+  try {
+    return normalisePreferences(
+      JSON.parse(localStorage.getItem(STORAGE_KEY) || "null"),
+    );
+  } catch {
+    return defaults;
+  }
+}
+function subscribe(callback: () => void) {
+  const notify = () => {
+    snapshot = readPreferences();
+    applyPreferences(snapshot);
+    callback();
+    window.dispatchEvent(new Event(PREFERENCES_EVENT));
+  };
+  snapshot = readPreferences();
+  applyPreferences(snapshot);
+  callback();
+  const onChange = () => callback();
+  window.addEventListener("storage", notify);
+  window.addEventListener("connecting-dys:settings-change", onChange);
+  return () => {
+    window.removeEventListener("storage", notify);
+    window.removeEventListener("connecting-dys:settings-change", onChange);
+  };
+}
+function save(next: Preferences) {
+  snapshot = normalisePreferences(next);
+  applyPreferences(snapshot);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
+  } catch {
+    /* Settings still work for this visit. */
+  }
+  window.dispatchEvent(new Event("connecting-dys:settings-change"));
+  window.dispatchEvent(new Event(PREFERENCES_EVENT));
 }
 
 export function ReadingSettings() {
-  const [preferences, setPreferences] = useState<Preferences>(defaults);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        const restored: Preferences = {
-          font: fonts[parsed.font] ? parsed.font : defaults.font,
-          size: Math.min(24, Math.max(16, Number(parsed.size) || 18)),
-          lineHeight: [1.5, 1.65, 1.9].includes(parsed.lineHeight)
-            ? parsed.lineHeight
-            : defaults.lineHeight,
-          letterSpacing: [0, 0.01, 0.04, 0.08].includes(parsed.letterSpacing)
-            ? parsed.letterSpacing
-            : defaults.letterSpacing,
-          background: backgrounds.some((b) => b.value === parsed.background)
-            ? parsed.background
-            : defaults.background,
-          reduceMotion: parsed.reduceMotion === true,
-        };
-
-        setPreferences(restored);
-        applyPreferences(restored);
-      }
-    } catch {
-      localStorage.removeItem(STORAGE_KEY);
-    }
-  }, []);
-
-  function update(next: Preferences) {
-    setPreferences(next);
-    applyPreferences(next);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  const preferences = useSyncExternalStore(
+    subscribe,
+    () => snapshot,
+    () => defaults,
+  );
+  const details = useRef<HTMLDetailsElement>(null);
+  function close() {
+    if (!details.current) return;
+    details.current.open = false;
+    details.current.querySelector("summary")?.focus();
   }
-
+  function update(p: Partial<Preferences>) {
+    save({ ...preferences, ...p });
+  }
   return (
-    <details className="group relative">
-      <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border-2 border-[#146C78] px-4 py-2 font-semibold text-[#20354D]">
-        <SlidersHorizontal size={18} aria-hidden="true" />
-        Reading settings
+    <details
+      className="reading-settings"
+      ref={details}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") close();
+      }}
+    >
+      <summary className="settings-trigger">
+        <SlidersHorizontal size={17} aria-hidden="true" />
+        <span>Reading settings</span>
       </summary>
-
-      <div className="absolute right-0 z-50 mt-3 max-h-[75vh] w-[min(22rem,90vw)] space-y-5 overflow-y-auto rounded-2xl border border-[#20354D]/15 bg-white p-5 shadow-2xl">
-        <h2 className="text-lg font-bold">Make this space yours</h2>
-
-        <label className="block space-y-2">
-          <span className="font-semibold">Font family</span>
+      <div className="settings-panel" data-lenis-prevent>
+        <div className="settings-heading">
+          <h2>Make this space yours</h2>
+          <button
+            className="icon-button"
+            onClick={close}
+            aria-label="Close reading settings"
+          >
+            <X size={20} />
+          </button>
+        </div>
+        <p className="settings-note">Different minds. Different preferences.</p>
+        <noscript>
+          <p>
+            Enable JavaScript to save reading settings. Browser zoom is always
+            available.
+          </p>
+        </noscript>
+        <label>
+          Font family
           <select
             value={preferences.font}
-            onChange={(e) => update({ ...preferences, font: e.target.value })}
-            className="w-full rounded-lg border border-[#20354D] p-3"
+            onChange={(e) => update({ font: e.target.value })}
           >
-            {Object.keys(fonts).map((font) => (
-              <option key={font} value={font}>
-                {font}
-              </option>
+            {fontNames.map((font) => (
+              <option key={font}>{font}</option>
             ))}
           </select>
         </label>
-
-        <label className="block space-y-2">
-          <span className="font-semibold">Text size: {preferences.size}px</span>
+        <p className="font-note">
+          Choose what feels comfortable for you. No one font suits everyone.
+        </p>
+        <label>
+          Text size: {preferences.size}px
           <input
             type="range"
             min="16"
-            max="24"
-            step="1"
+            max="28"
             value={preferences.size}
-            onChange={(e) =>
-              update({
-                ...preferences,
-                size: Number(e.target.value),
-              })
-            }
-            className="w-full accent-[#146C78]"
+            onChange={(e) => update({ size: Number(e.target.value) })}
           />
         </label>
-
-        <label className="block space-y-2">
-          <span className="font-semibold">Line spacing</span>
-          <select
-            value={preferences.lineHeight}
-            onChange={(e) =>
-              update({
-                ...preferences,
-                lineHeight: Number(e.target.value),
-              })
-            }
-            className="w-full rounded-lg border border-[#20354D] p-3"
-          >
-            <option value={1.5}>Standard</option>
-            <option value={1.65}>Comfortable</option>
-            <option value={1.9}>Spacious</option>
-          </select>
-        </label>
-
-        <label className="block space-y-2">
-          <span className="font-semibold">Letter spacing</span>
-          <select
-            value={preferences.letterSpacing}
-            onChange={(e) =>
-              update({
-                ...preferences,
-                letterSpacing: Number(e.target.value),
-              })
-            }
-            className="w-full rounded-lg border border-[#20354D] p-3"
-          >
-            <option value={0}>Normal</option>
-            <option value={0.01}>Comfortable</option>
-            <option value={0.04}>Wide</option>
-            <option value={0.08}>Extra wide</option>
-          </select>
-        </label>
-
+        <div className="settings-pair">
+          <label>
+            Line spacing
+            <select
+              value={preferences.lineHeight}
+              onChange={(e) => update({ lineHeight: Number(e.target.value) })}
+            >
+              <option value="1.5">Standard</option>
+              <option value="1.65">Comfortable</option>
+              <option value="1.9">Spacious</option>
+              <option value="2">Extra spacious</option>
+            </select>
+          </label>
+          <label>
+            Letter spacing
+            <select
+              value={preferences.letterSpacing}
+              onChange={(e) =>
+                update({ letterSpacing: Number(e.target.value) })
+              }
+            >
+              <option value="0">Normal</option>
+              <option value="0.01">Comfortable</option>
+              <option value="0.04">Wide</option>
+              <option value="0.08">Extra wide</option>
+              <option value="0.12">Widest</option>
+            </select>
+          </label>
+        </div>
         <fieldset>
-          <legend className="mb-2 font-semibold">Reading background</legend>
-          <div className="flex gap-3">
-            {backgrounds.map((background) => (
+          <legend>Reading background</legend>
+          <div className="background-options">
+            {backgrounds.map((bg) => (
               <button
-                key={background.value}
-                type="button"
-                title={background.label}
-                aria-label={background.label}
-                aria-pressed={preferences.background === background.value}
-                onClick={() =>
-                  update({
-                    ...preferences,
-                    background: background.value,
-                  })
-                }
-                className="h-10 w-10 rounded-full border-2 border-[#20354D] aria-pressed:ring-4 aria-pressed:ring-[#146C78]"
-                style={{
-                  backgroundColor: background.value,
-                }}
-              />
+                key={bg.value}
+                style={{ background: bg.value }}
+                aria-pressed={preferences.background === bg.value}
+                onClick={() => update({ background: bg.value })}
+              >
+                {bg.label}
+              </button>
             ))}
           </div>
         </fieldset>
-
-        <label className="flex items-center gap-3">
+        <label className="checkbox-label">
           <input
             type="checkbox"
             checked={preferences.reduceMotion}
-            onChange={(e) =>
-              update({
-                ...preferences,
-                reduceMotion: e.target.checked,
-              })
-            }
-            className="h-5 w-5 accent-[#146C78]"
+            onChange={(e) => update({ reduceMotion: e.target.checked })}
           />
-          Reduce decorative motion
+          Reduce motion
         </label>
-
+        <p className="font-note">
+          Your device’s reduced-motion preference is always respected.
+        </p>
         <button
-          type="button"
-          onClick={() => update(defaults)}
-          className="w-full rounded-lg bg-[#20354D] px-5 py-3 font-semibold text-white"
+          className="button button-dark reset-settings"
+          onClick={() => save(defaults)}
         >
           Reset preferences
         </button>
+        <p className="font-note">
+          Saved on this device when local storage is available.
+        </p>
       </div>
     </details>
   );

@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Public content is statically generated. Avoid Activity/PPR state retention
+  // so back/forward navigation and hash restoration use ordinary route lifecycles.
+  poweredByHeader: false,
   turbopack: {
     rules: {
       "*.css": {

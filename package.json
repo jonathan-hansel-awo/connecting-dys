@@ -3,13 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/browser-qa.mjs --clean && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/preferences.test.mts",
+    "test:routes": "node --experimental-strip-types --test tests/routes.test.mts",
+    "qa:prepare": "node scripts/browser-qa.mjs",
+    "qa:clean": "node scripts/browser-qa.mjs --clean"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
+    "@fontsource-variable/nunito-sans": "^5.3.0",
+    "@fontsource-variable/open-sans": "^5.3.0",
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^7.0.6",
     "class-variance-authority": "^0.7.1",
@@ -23,7 +31,6 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-hook-form": "^7.92.0",
-    "shadcn": "^4.23.0",
     "tailwind-merge": "^3.7.0",
     "tw-animate-css": "^1.4.0",
     "zod": "^4.6.7"
@@ -38,6 +45,10 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "shadcn": "^4.23.0"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

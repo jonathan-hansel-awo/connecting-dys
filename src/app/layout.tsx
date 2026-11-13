@@ -1,30 +1,54 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { preferenceBootstrap } from "@/lib/preferences";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  display: "swap",
+const openSans = localFont({
+  src: "../../public/fonts/open-sans-latin-variable.woff2",
   variable: "--font-open-sans",
+  display: "swap",
+  weight: "300 800",
 });
-
+const nunito = localFont({
+  src: "../../public/fonts/nunito-sans-latin-variable.woff2",
+  variable: "--font-heading",
+  display: "swap",
+  weight: "200 900",
+});
 export const metadata: Metadata = {
-  title: "Connecting Dys | A home for every DYS mind",
+  icons: { icon: "/brand/connecting_dys_logo.png" },
+  title: {
+    default: "Connecting Dys | A home for every DYS mind.",
+    template: "%s | Connecting Dys",
+  },
   description:
-    "Connecting Dys CIC is a welcoming community for young people with dyslexia, dyspraxia, dyscalculia and dysgraphia.",
+    "A community for teenagers and young adults navigating dyslexia, dyspraxia, dyscalculia and dysgraphia. Connecting Dys CIC: a home for every DYS mind.",
 };
-
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={openSans.variable}>
+    <html
+      lang="en-GB"
+      className={`${openSans.variable} ${nunito.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          id="reading-preferences"
+          dangerouslySetInnerHTML={{ __html: preferenceBootstrap }}
+        />
+      </head>
       <body>
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
