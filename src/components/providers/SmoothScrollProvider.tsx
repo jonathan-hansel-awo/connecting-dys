@@ -84,12 +84,9 @@ export function SmoothScrollProvider({
           const link = (event.target as Element)?.closest?.("a[href]");
           if (!link) return;
           const url = new URL((link as HTMLAnchorElement).href, location.href);
-          if (
-            url.origin === location.origin &&
-            url.pathname === location.pathname &&
-            url.hash
-          )
-            interrupt();
+          // Include same-page links without a hash (the home logo): Next.js may
+          // reset scroll before a route-change cleanup would run.
+          if (url.origin === location.origin) interrupt();
         };
         document.addEventListener("keydown", onKey, true);
         document.addEventListener("click", onAnchor, true);
