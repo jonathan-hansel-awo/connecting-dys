@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect } from "react";
@@ -6,54 +5,69 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function SmoothScrollProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const motionPreference = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     let lenis: Lenis | null = null;
 
-    const update = (time: number) => {
+    const tick = (time: number) => {
       lenis?.raf(time * 1000);
     };
 
-    const initialise = () => {
-      // Clean up the previous instance.
-      gsap.ticker.remove(update);
-      lenis?.off("scroll", ScrollTrigger.update);
-      lenis?.destroy();
-      lenis = null;
+    const destroy = () => {
+      gsap.ticker.remove(tick);
 
-      // Fall back to native scrolling.
-      if (motionPreference.matches) return;
+      if (lenis) {
+        lenis.off("scroll", ScrollTrigger.update);
+        lenis.destroy();
+        lenis = null;
+      }
+    };
+
+    const initialise = () => {
+      destroy();
+
+      const userReducedMotion =
+        document.documentElement.dataset.reduceMotion === "true";
+
+      if (media.matches || userReducedMotion) {
+        ScrollTrigger.refresh();
+        return;
+      }
 
       lenis = new Lenis({
-        autoRaf: false,
         duration: 1.15,
         smoothWheel: true,
+        syncTouch: false,
         anchors: true,
+        autoRaf: false,
       });
 
       lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add(update);
+      gsap.ticker.add(tick);
+
+      ScrollTrigger.refresh();
     };
+
+    // Keep GSAP and Lenis on the same animation clock.
+    gsap.ticker.lagSmoothing(0);
 
     initialise();
 
-    motionPreference.addEventListener("change", initialise);
+    media.addEventListener("change", initialise);
+    window.addEventListener("connecting-dys:preferences", initialise);
 
     return () => {
-      motionPreference.removeEventListener("change", initialise);
-      gsap.ticker.remove(update);
-      lenis?.off("scroll", ScrollTrigger.update);
-      lenis?.destroy();
+      media.removeEventListener("change", initialise);
+      window.removeEventListener("connecting-dys:preferences", initialise);
+      destroy();
     };
   }, []);
 
