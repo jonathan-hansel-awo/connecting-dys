@@ -67,3 +67,7 @@ Open `/__qa.html?w=390&h=844`. The form accepts width, height, a local path and 
 - No authenticated membership backend, form submission, real member stories or clinical pathways were enabled.
 - The legacy policies page loads. Its policy copy includes an older Gmail contact link alongside the current domain email used by the Contact page; the organisation should reconcile that legacy content.
 - Owner review with Marie should confirm copy and the operational mailbox / policies before public launch. No Vercel action was taken.
+
+## Delivery branch
+
+This tested version is on `codex/homepage-storytelling-2026-11-13`. During implementation, `master` advanced from `3b5bca7` to a separate homepage implementation (`147608d`). That concurrent update was preserved. This delivery remains based on the inspected starting commit; it has not been merged into the concurrently changed `master` branch.

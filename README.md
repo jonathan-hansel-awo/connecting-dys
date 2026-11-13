@@ -73,8 +73,8 @@ Contact opens the verified `hello@connectingdys.org` email address. The policies
 
 No Vercel project has been created, linked, configured or deployed by this change. The repository itself is public, as it was when the task began.
 
-1. Review the `master` branch and the content/QA notes with Marie.
-2. In your Vercel account, import this existing repository; choose the Next.js preset and repository root.
+1. Review the delivered `codex/homepage-storytelling-2026-11-13` branch and the content/QA notes with Marie. `master` received a separate homepage commit during this session and was preserved.
+2. In your Vercel account, import this existing repository; choose the Next.js preset and repository root. Select the delivered branch for review; importing only `master` will show the concurrent version.
 3. Use `npm ci`, `npm run build`, and a supported Node runtime (22.18+ / 24). No application environment variables are required.
 4. Review the preview on actual phones and with keyboard / screen readers; check OS reduced motion and all reading settings.
 5. Confirm the retained external policy pages, contact mailbox and public wording before publishing.
