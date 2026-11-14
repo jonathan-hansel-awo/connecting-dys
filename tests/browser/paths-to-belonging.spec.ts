@@ -168,6 +168,17 @@ test("active game retains state across reading preferences and reflows at large 
   expect((await new AxeBuilder({ page }).withTags(tags).analyze()).violations).toEqual([]);
   await control(page, "Undo").click();
   await expect(page.locator("#paths-piece-willow-bend")).toHaveAttribute("aria-label", /opening north and east/);
+  for (let index = 1; index < chapters.length; index++) {
+    await control(page, "Skip chapter").click();
+    await control(page, "Continue").click();
+    await expect(page.getByRole("heading", { name: chapters[index].name, exact: true })).toBeFocused();
+    await noOverflow(page);
+    const sizes = await page.locator(".paths-board button").evaluateAll((pieces) => pieces.map((piece) => {
+      const { width, height } = piece.getBoundingClientRect();
+      return Math.min(width, height);
+    }));
+    expect(Math.min(...sizes)).toBeGreaterThanOrEqual(44);
+  }
   await control(page, "Exit game").click();
   await expect(launch(page)).toBeFocused();
 });

@@ -74,12 +74,15 @@ button.paths-piece.is-linked::before { border: 3px double currentColor; }
 .paths-piece[role="img"].is-linked::before { content: ""; position: absolute; inset: 17%; border: 3px double currentColor; border-radius: 50%; }
 .paths-piece.is-hint { outline: 3px dashed currentColor; outline-offset: -7px; }
 .paths-piece:focus-visible { z-index: 2; outline: 3px solid var(--reading-ink, var(--brand-navy)); outline-offset: 3px; }
-.paths-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+/* Clip only SVG paint at each shared tile edge. Native button focus outlines
+   stay outside the SVG, so large reading settings cannot crop keyboard focus. */
+.paths-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
 .paths-turn-mark { position: absolute; bottom: 7%; right: 7%; background: var(--reading-background); border-radius: 50%; }
 .paths-place-list h4 { margin-block: 1rem; }
 .paths-place-list ul { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
 .paths-place-list li { display: flex; gap: .7rem; align-items: start; }
-.paths-place-list li > svg { margin-top: .3em; }
+.paths-place-list li > svg { margin-top: .3em; flex-shrink: 0; }
+.paths-place-list li > span { min-width: 0; overflow-wrap: anywhere; }
 .paths-place-list strong { font-size: .85rem; font-weight: 600; }
 .paths-feedback { margin-top: 1.5rem; }
 .paths-feedback h4 { margin-top: .6rem; }
@@ -102,7 +105,7 @@ button.paths-piece.is-linked::before { border: 3px double currentColor; }
   content: "";
   position: absolute;
   z-index: -1;
-  inset: .4rem -.3rem -.4rem .3rem;
+  inset: .4rem .1rem -.4rem .3rem;
   border: 1px solid var(--rule);
   border-radius: inherit;
   background: var(--reading-background);

@@ -4,7 +4,9 @@ import { Component, useEffect, useRef, useState, useSyncExternalStore } from "re
 import type { ComponentType, ReactNode } from "react";
 
 type JourneyProps = { onExit: () => void };
+export type JourneyLoader = () => Promise<{ default: ComponentType<JourneyProps> }>;
 const subscribe = () => () => {};
+const importJourney: JourneyLoader = () => import("./journey.tsx");
 
 function Unavailable({ onExit }: JourneyProps) {
   const heading = useRef<HTMLHeadingElement>(null);
@@ -23,7 +25,7 @@ export class JourneyBoundary extends Component<JourneyProps & { children?: React
   render() { return this.state.failed ? <Unavailable onExit={this.props.onExit} /> : this.props.children; }
 }
 
-export function PathsToBelongingSection() {
+export function PathsToBelongingSection({ loadJourney = importJourney }: { loadJourney?: JourneyLoader }) {
   const ready = useSyncExternalStore(subscribe, () => true, () => false);
   const [mode, setMode] = useState<"idle" | "loading" | "playing" | "error">("idle");
   const [Journey, setJourney] = useState<ComponentType<JourneyProps> | null>(null);
@@ -46,8 +48,8 @@ export function PathsToBelongingSection() {
     const current = ++request.current;
     setMode("loading");
     try {
-      // Inside the opt-in handler: no game/engine preload or eager render.
-      const loadedJourney = await import("./journey.tsx");
+      // The loader runs only after opt-in: no game/engine preload or eager render.
+      const loadedJourney = await loadJourney();
       if (request.current !== current) return;
       setJourney(() => loadedJourney.default);
       setMode("playing");
