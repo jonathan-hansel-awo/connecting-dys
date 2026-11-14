@@ -1,0 +1,94 @@
+/* Functional, static game surfaces. Illustrated world/reveals follow in 7C. */
+.paths-section {
+  z-index: var(--sheet-order, 8);
+  padding-block: clamp(3rem, 7vw, 6rem);
+  border-top: 1px solid var(--rule);
+}
+.paths-intro { max-width: 46rem; }
+.paths-intro h2 { margin-block: .6rem 1.3rem; }
+.paths-actions, .paths-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .8rem 1rem;
+  margin-top: 1.5rem;
+}
+.paths-section [hidden] { display: none; }
+.paths-section :is(button, a, summary) { overflow-wrap: anywhere; }
+.paths-section :is(h2, h3, h4, p) { overflow-wrap: anywhere; }
+.paths-section :is(h3, h4, #site-footer) { scroll-margin-top: 7rem; }
+.paths-section h3:focus, .paths-section h4:focus {
+  outline: 3px solid var(--reading-accent, var(--brand-teal));
+  outline-offset: 6px;
+}
+.paths-game, .paths-message { margin-top: 2rem; }
+.paths-game { padding-top: 1.8rem; border-top: 1px solid var(--rule); }
+.paths-message > :is(p, a, button) { margin-top: 1rem; }
+.paths-control {
+  padding: .65rem .9rem;
+  min-height: 44px;
+  border: 1px solid currentColor;
+  border-radius: .5rem;
+  background: var(--reading-background);
+  box-shadow: var(--surface-raised);
+  font-size: .9rem;
+  line-height: var(--reading-line-height);
+}
+.paths-control:hover:not(:disabled) { text-decoration: underline; text-underline-offset: .2em; }
+.paths-section button:disabled { opacity: .6; box-shadow: none; }
+.paths-progress { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; padding: 0; list-style: none; font-size: .85rem; }
+.paths-progress [aria-current="step"] { font-weight: 600; text-decoration: underline; text-underline-offset: .3em; }
+.paths-chapter-heading { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: 1rem; margin-block: 1.5rem; }
+.paths-chapter-heading h3 { margin-top: .4rem; }
+.paths-game > p { margin-top: .8rem; }
+.paths-help { margin-block: 1.2rem; max-width: 65ch; }
+.paths-help summary { min-height: 44px; padding-block: .5rem; font-weight: 600; text-decoration: underline; text-underline-offset: .2em; }
+.paths-help p { margin-top: .8rem; }
+.paths-play-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(1rem, 5vw, 4rem); }
+.paths-board-region { min-width: 0; }
+.paths-board { display: grid; padding: .5rem; margin: 0; list-style: none; max-width: 28rem; }
+.paths-board > li { min-width: 0; aspect-ratio: 1; position: relative; }
+.paths-piece {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: .6rem;
+  color: var(--reading-ink, var(--brand-navy));
+  background: var(--reading-background);
+  border: 1px solid var(--rule);
+}
+button.paths-piece { cursor: pointer; }
+.paths-piece.is-linked { color: var(--reading-accent, var(--brand-teal)); border: 3px double currentColor; }
+.paths-piece.is-hint { outline: 3px dashed currentColor; outline-offset: -7px; }
+.paths-piece:focus-visible { z-index: 2; outline: 3px solid var(--reading-ink, var(--brand-navy)); outline-offset: 3px; }
+.paths-lines { position: absolute; inset: 0; width: 100%; height: 100%; stroke: currentColor; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 5 9; }
+.is-linked > .paths-lines { stroke-dasharray: none; }
+.paths-landmark-mark { position: absolute; inset: 23%; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; background: var(--reading-background); }
+.paths-landmark-mark svg { width: 65%; height: 65%; }
+.paths-turn-mark { position: absolute; bottom: 7%; right: 7%; background: var(--reading-background); border-radius: 50%; }
+.paths-place-list h4 { margin-block: 1rem; }
+.paths-place-list ul { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
+.paths-place-list li { display: flex; gap: .7rem; align-items: start; }
+.paths-place-list li > svg { margin-top: .3em; }
+.paths-place-list strong { font-size: .85rem; font-weight: 600; }
+.paths-feedback { margin-top: 1.5rem; }
+.paths-feedback h4 { margin-top: .6rem; }
+#paths-hint { min-height: 1.8em; }
+.paths-forward { margin-top: 1.2rem; }
+@media (max-width: 760px) {
+  .paths-play-layout { grid-template-columns: minmax(0, 1fr); }
+  .paths-place-list ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+}
+html[data-spacious="true"] .paths-play-layout { grid-template-columns: minmax(0, 1fr); }
+@media (forced-colors: active) {
+  .paths-piece, .paths-control { background: Canvas; color: CanvasText; border-color: CanvasText; box-shadow: none; }
+  .paths-piece.is-linked { border-style: double; }
+  .paths-piece.is-hint { outline-color: Highlight; }
+  .paths-piece:focus-visible { outline-color: Highlight; }
+  .paths-section :focus-visible, .paths-section h3:focus { outline-color: Highlight; }
+  .paths-section button:disabled { color: GrayText; opacity: 1; }
+  .paths-landmark-mark, .paths-turn-mark { background: Canvas; }
+}

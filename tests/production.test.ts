@@ -48,13 +48,29 @@ test("approved logo is byte-for-byte unchanged", () => {
   );
 });
 
+test("optional journey has a static explanation, inert pre-hydration launcher and footer escape", () => {
+  const dom = page();
+  const section = dom.window.document.querySelector("[data-paths-section]")!;
+  assert.ok(section.textContent?.includes("Three short chapters"));
+  assert.ok(section.querySelector("noscript")?.textContent?.includes("needs JavaScript"));
+  assert.equal(section.querySelector("button")?.disabled, true);
+  assert.equal(section.querySelector('[data-paths-game]'), null);
+  assert.equal(section.querySelector('a[href="#site-footer"]')?.textContent, "Continue to the footer");
+  assert.ok(dom.window.document.getElementById("site-footer"));
+  const chunks = fs.readdirSync(".next/static/chunks").filter((name) => name.endsWith(".js") && fs.readFileSync(path.join(".next/static/chunks", name), "utf8").includes("paths-piece-"));
+  assert.ok(chunks.length > 0, "the board is emitted in a separate chunk");
+  const html = fs.readFileSync(path.join(built, "index.html"), "utf8");
+  for (const chunk of chunks) assert.equal(html.includes(chunk), false, "the optional board chunk is not preloaded in initial HTML");
+  dom.window.close();
+});
+
 test("homepage scene contracts preserve order, decorative scope and direct navigation", () => {
   const dom = page();
   const doc = dom.window.document;
   const sections = [...doc.querySelectorAll("main > section")];
   assert.deepEqual(
     sections.map((section) => section.getAttribute("aria-labelledby")),
-    ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title"],
+    ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title", "paths-title"],
   );
   for (const selector of [".hero-orbit", ".recognition-media .recognition-photo", ".connection-visual .art-landscape", ".connection-chapters", ".connection-progress span"]) {
     assert.equal(doc.querySelectorAll(selector).length, 1, selector);

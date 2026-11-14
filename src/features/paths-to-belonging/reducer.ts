@@ -56,8 +56,8 @@ export function journeyReducer(state: JourneyState, action: JourneyAction): Jour
       return active || state.status === "skipped" ? enterChapter(chapter, state.arrangementIndex) : state;
     case "hint":
       // A hint only records a useful piece supplied by the hint selector; it never moves it.
-      return state.status === "playing" && chapter.tiles.some((tile) => tile.id === action.tileId && isMovable(tile)) && !state.hintsRevealed.includes(action.tileId)
-        ? { ...state, hintsRevealed: [...state.hintsRevealed, action.tileId] } : state;
+      return state.status === "playing" && chapter.tiles.some((tile) => tile.id === action.tileId && isMovable(tile)) && state.hintsRevealed.at(-1) !== action.tileId
+        ? { ...state, hintsRevealed: [...state.hintsRevealed.filter((id) => id !== action.tileId), action.tileId] } : state;
     case "skip":
       return state.status === "playing" ? { ...state, status: "skipped", endingId: null } : state;
     case "continue":

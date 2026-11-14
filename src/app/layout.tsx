@@ -13,6 +13,7 @@ import "../styles/connection.css";
 import "../styles/section-stacking.css";
 import "../styles/finish.css";
 import "../styles/theme.css";
+import "../styles/paths-to-belonging.css";
 
 const openSans = localFont({
   src: [

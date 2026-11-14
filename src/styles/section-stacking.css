@@ -16,7 +16,7 @@ main[data-home-story] > section {
   pointer-events: none;
 }
 @media (min-height: 650px) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
-  html:not([data-reduce-motion="true"]):not([data-spacious="true"]) main[data-section-stack="on"] > section {
+  html:not([data-reduce-motion="true"]):not([data-spacious="true"]) main[data-section-stack="on"] > section:not([data-paths-section]) {
     position: sticky;
     top: var(--sheet-top);
     z-index: var(--sheet-order);

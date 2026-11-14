@@ -7,12 +7,46 @@ import type { JourneyState } from "../src/features/paths-to-belonging/reducer.ts
 import { solveChapter } from "../src/features/paths-to-belonging/solver.ts";
 import type { Board, Chapter } from "../src/features/paths-to-belonging/types.ts";
 import { endingRoutes, gardenRoutes, neighbourhoodRoutes } from "./fixtures/paths-to-belonging.ts";
+import { chooseHint } from "../src/features/paths-to-belonging/hints.ts";
 
 function deepFreeze(value: object): void {
   Object.freeze(value);
   for (const item of Object.values(value)) if (item && typeof item === "object" && !Object.isFrozen(item)) deepFreeze(item);
 }
 deepFreeze(chapters);
+
+test("one-step hints guide every curated start to a solution without modifying choices", () => {
+  for (const chapter of chapters) {
+    for (const arrangement of chapter.arrangements) {
+      let board = arrangement.board;
+      const original = { ...board };
+      const revealed: string[] = [];
+      for (let moves = 0; !evaluateBoard(chapter, board).complete; moves++) {
+        assert.ok(moves < 24, "hints converge even after arbitrary clockwise turns");
+        const hint = chooseHint(chapter, board, revealed)!;
+        assert.ok(hint?.text.startsWith("Try turning"));
+        assert.equal(isMovable(chapter.tiles.find(({ id }) => id === hint.tileId)!), true);
+        assert.deepEqual(arrangement.board, original, "a hint never changes the seed");
+        revealed.push(hint.tileId);
+        board = rotateTile(chapter, board, hint.tileId);
+      }
+      assert.equal(chooseHint(chapter, board, revealed), null);
+    }
+  }
+});
+
+test("asking for another hint rotates its target and preserves board/history", () => {
+  let state = journeyReducer(createJourneyState(), { type: "start" });
+  const first = chooseHint(chapters[0], state.board, [])!;
+  state = journeyReducer(state, { type: "hint", tileId: first.tileId });
+  const next = chooseHint(chapters[0], state.board, state.hintsRevealed)!;
+  assert.notEqual(next.tileId, first.tileId);
+  state = journeyReducer(state, { type: "hint", tileId: next.tileId });
+  state = journeyReducer(state, { type: "hint", tileId: first.tileId });
+  assert.equal(state.hintsRevealed.at(-1), first.tileId);
+  assert.equal(state.history.length, 0);
+  assert.deepEqual(state.board, chapters[0].arrangements[0].board);
+});
 
 function turnTo(state: JourneyState, target: Board): JourneyState {
   for (const [tileId, orientation] of Object.entries(target)) {

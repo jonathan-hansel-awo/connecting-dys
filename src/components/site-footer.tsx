@@ -4,7 +4,7 @@ import { brand, differences, originalSite } from "@/content/site";
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer surface-scene">
+    <footer id="site-footer" tabIndex={-1} className="site-footer surface-scene">
       <div className="footer-top">
         <div>
           <Link href="/" className="footer-brand">
