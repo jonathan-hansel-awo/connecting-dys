@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     default: "Connecting Dys | A home for every DYS mind.",
     template: "%s | Connecting Dys",
   },
-  icons: { icon: "/brand/connecting_dys_logo.png" },
+  icons: { icon: "/brand/favicon.png" },
   description:
     "A home for every DYS mind. Connecting Dys CIC is building a community for teenagers and young adults navigating dyslexia, dyspraxia, dyscalculia and dysgraphia.",
 };

@@ -1,0 +1,50 @@
+{
+  "conditions": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "touch": false,
+      "cpu": 1,
+      "latency": 0,
+      "download": -1,
+      "upload": -1
+    },
+    {
+      "name": "mobile-throttled",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "cpu": 4,
+      "latency": 70,
+      "download": 200000,
+      "upload": 93750
+    }
+  ],
+  "browser": "156.0.8078.79",
+  "note": "Local Chromium lab samples, cold browser cache (warm production image optimiser). Mobile: 4x CPU, 70ms latency, 200000 bytes/s download, 93750 bytes/s upload. CLS is conservatively summed; LCP is the last buffered candidate before interaction. These are not field Core Web Vitals or INP measurements. These are the recorded profile medians from the completed six-sample run. Per-sample output was cleared by the subsequent functional runner.",
+  "samplesPerProfile": 3,
+  "medians": [
+    {
+      "profile": "desktop",
+      "lcp": 180,
+      "cls": 0,
+      "transferBytes": 425018,
+      "jsBytes": 199878,
+      "cssBytes": 18310
+    },
+    {
+      "profile": "mobile-throttled",
+      "lcp": 700,
+      "cls": 0,
+      "transferBytes": 334986,
+      "jsBytes": 194431,
+      "cssBytes": 18310
+    }
+  ],
+  "runResult": "\n> connecting-dys@0.1.0 test:performance\n> playwright test --config=playwright.performance.config.ts\n\n\nRunning 1 test using 1 worker\n\n  \u2713  1 [chromium-lab] \u203a tests/performance/homepage.spec.ts:4:1 \u203a isolated cold-load LCP, CLS and transfer measurements (20.7s)\n\n  1 passed (21.9s)\n"
+}

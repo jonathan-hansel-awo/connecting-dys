@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Moon, SlidersHorizontal, X } from "lucide-react";
+import { SlidersHorizontal, X } from "lucide-react";
 import {
   applyPreferences,
   backgrounds,
@@ -47,16 +47,6 @@ export function ReadingSettings() {
       >
         <SlidersHorizontal size={18} aria-hidden="true" />
         <span>Reading settings</span>
-      </button>
-      <button
-        type="button"
-        className="settings-trigger theme-trigger js-only"
-        aria-label="Dark mode"
-        aria-pressed={preferences.darkMode}
-        onClick={() => update({ ...preferences, darkMode: !preferences.darkMode })}
-      >
-        <Moon size={18} aria-hidden="true" />
-        <span>Dark mode</span>
       </button>
       <dialog
         ref={dialog}

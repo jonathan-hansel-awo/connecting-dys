@@ -1,12 +1,6 @@
 /* Explicit themes, not an inversion filter. The early preference runtime owns
    the selected reading background and colour-scheme before the first paint. */
 :root { color-scheme: only light; }
-.reading-toolbar { justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
-.reading-toolbar .theme-trigger { margin-inline-start: auto; }
-.theme-trigger[aria-pressed="true"] { border-color: var(--reading-accent); }
-@media (max-width: 370px) {
-  .reading-toolbar .settings-trigger { padding-inline: .55rem; font-size: .7rem; gap: .35rem; }
-}
 @media screen and (forced-colors: none) {
   html[data-theme="dark"] {
     --reading-ink: #f4f0e7;

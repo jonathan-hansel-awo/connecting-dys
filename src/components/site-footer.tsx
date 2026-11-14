@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="footer-top">
         <div>
           <Link href="/" className="footer-brand">
-            Connecting Dys<span aria-hidden="true">↗</span>
+            Connecting Dys<span aria-hidden="true"><ArrowUpRight size={28} /></span>
           </Link>
           <p>{brand.tagline}</p>
           <p className="small">A UK Community Interest Company.</p>

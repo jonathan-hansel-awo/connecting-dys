@@ -1,0 +1,382 @@
+{
+  "conditions": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "touch": false,
+      "cpu": 1,
+      "latency": 0,
+      "download": -1,
+      "upload": -1
+    },
+    {
+      "name": "mobile-throttled",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "cpu": 4,
+      "latency": 70,
+      "download": 200000,
+      "upload": 93750
+    }
+  ],
+  "browser": "156.0.8078.79",
+  "note": "Local Chromium lab samples, cold browser cache (warm production image optimiser). Mobile: 4x CPU, 70ms latency, 200000 bytes/s download, 93750 bytes/s upload. CLS is conservatively summed; LCP is the last buffered candidate before interaction. These are not field Core Web Vitals or INP measurements.",
+  "samples": [
+    {
+      "profile": "desktop",
+      "run": 1,
+      "lcp": 344,
+      "cls": 0,
+      "longTasks": [
+        82,
+        68
+      ],
+      "resources": 25,
+      "transferBytes": 1879047,
+      "jsBytes": 199878,
+      "cssBytes": 18310,
+      "largestResources": [
+        {
+          "path": "/brand/connecting_dys_logo.png",
+          "bytes": 1458921,
+          "initiator": "other"
+        },
+        {
+          "path": "/_next/image?url=%2Fbrand%2Fconnecting-dys-embrace.png&w=750&q=75",
+          "bytes": 89536,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/chunks/3iz8_hoapa1o_.js",
+          "bytes": 72002,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/3uv4d50hbtkk7.js",
+          "bytes": 50809,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/2fuxlcqleg9x-.js",
+          "bytes": 46912,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/image?url=%2Fimages%2Fshared-moment.webp&w=750&q=75",
+          "bytes": 46026,
+          "initiator": "img"
+        },
+        {
+          "path": "/_next/static/media/open_sans_regular-s.p.34xmh-n4wgyp6.woff2",
+          "bytes": 18940,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_semibold-s.p.34baavpivw_qg.woff2",
+          "bytes": 18920,
+          "initiator": "link"
+        }
+      ],
+      "lenis": true
+    },
+    {
+      "profile": "desktop",
+      "run": 2,
+      "lcp": 164,
+      "cls": 0,
+      "longTasks": [
+        67,
+        74
+      ],
+      "resources": 25,
+      "transferBytes": 1879047,
+      "jsBytes": 199878,
+      "cssBytes": 18310,
+      "largestResources": [
+        {
+          "path": "/brand/connecting_dys_logo.png",
+          "bytes": 1458921,
+          "initiator": "other"
+        },
+        {
+          "path": "/_next/image?url=%2Fbrand%2Fconnecting-dys-embrace.png&w=750&q=75",
+          "bytes": 89536,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/chunks/3iz8_hoapa1o_.js",
+          "bytes": 72002,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/3uv4d50hbtkk7.js",
+          "bytes": 50809,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/2fuxlcqleg9x-.js",
+          "bytes": 46912,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/image?url=%2Fimages%2Fshared-moment.webp&w=750&q=75",
+          "bytes": 46026,
+          "initiator": "img"
+        },
+        {
+          "path": "/_next/static/media/open_sans_regular-s.p.34xmh-n4wgyp6.woff2",
+          "bytes": 18940,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_semibold-s.p.34baavpivw_qg.woff2",
+          "bytes": 18920,
+          "initiator": "link"
+        }
+      ],
+      "lenis": true
+    },
+    {
+      "profile": "desktop",
+      "run": 3,
+      "lcp": 168,
+      "cls": 0,
+      "longTasks": [
+        56,
+        71
+      ],
+      "resources": 25,
+      "transferBytes": 1879047,
+      "jsBytes": 199878,
+      "cssBytes": 18310,
+      "largestResources": [
+        {
+          "path": "/brand/connecting_dys_logo.png",
+          "bytes": 1458921,
+          "initiator": "other"
+        },
+        {
+          "path": "/_next/image?url=%2Fbrand%2Fconnecting-dys-embrace.png&w=750&q=75",
+          "bytes": 89536,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/chunks/3iz8_hoapa1o_.js",
+          "bytes": 72002,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/3uv4d50hbtkk7.js",
+          "bytes": 50809,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/2fuxlcqleg9x-.js",
+          "bytes": 46912,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/image?url=%2Fimages%2Fshared-moment.webp&w=750&q=75",
+          "bytes": 46026,
+          "initiator": "img"
+        },
+        {
+          "path": "/_next/static/media/open_sans_regular-s.p.34xmh-n4wgyp6.woff2",
+          "bytes": 18940,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_semibold-s.p.34baavpivw_qg.woff2",
+          "bytes": 18920,
+          "initiator": "link"
+        }
+      ],
+      "lenis": true
+    },
+    {
+      "profile": "mobile-throttled",
+      "run": 1,
+      "lcp": 700,
+      "cls": 0,
+      "longTasks": [
+        194,
+        448,
+        194,
+        102
+      ],
+      "resources": 22,
+      "transferBytes": 1789015,
+      "jsBytes": 194431,
+      "cssBytes": 18310,
+      "largestResources": [
+        {
+          "path": "/brand/connecting_dys_logo.png",
+          "bytes": 1458921,
+          "initiator": "other"
+        },
+        {
+          "path": "/_next/static/chunks/3iz8_hoapa1o_.js",
+          "bytes": 72002,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/3uv4d50hbtkk7.js",
+          "bytes": 50809,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/2fuxlcqleg9x-.js",
+          "bytes": 46912,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/image?url=%2Fbrand%2Fconnecting-dys-embrace.png&w=384&q=75",
+          "bytes": 33790,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_regular-s.p.34xmh-n4wgyp6.woff2",
+          "bytes": 18940,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_semibold-s.p.34baavpivw_qg.woff2",
+          "bytes": 18920,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/chunks/0vhq0luzi18_x.css",
+          "bytes": 18610,
+          "initiator": "link"
+        }
+      ],
+      "lenis": false
+    },
+    {
+      "profile": "mobile-throttled",
+      "run": 2,
+      "lcp": 700,
+      "cls": 0,
+      "longTasks": [
+        195,
+        71,
+        657,
+        223,
+        137
+      ],
+      "resources": 22,
+      "transferBytes": 1789015,
+      "jsBytes": 194431,
+      "cssBytes": 18310,
+      "largestResources": [
+        {
+          "path": "/brand/connecting_dys_logo.png",
+          "bytes": 1458921,
+          "initiator": "other"
+        },
+        {
+          "path": "/_next/static/chunks/3iz8_hoapa1o_.js",
+          "bytes": 72002,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/3uv4d50hbtkk7.js",
+          "bytes": 50809,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/2fuxlcqleg9x-.js",
+          "bytes": 46912,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/image?url=%2Fbrand%2Fconnecting-dys-embrace.png&w=384&q=75",
+          "bytes": 33790,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_regular-s.p.34xmh-n4wgyp6.woff2",
+          "bytes": 18940,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_semibold-s.p.34baavpivw_qg.woff2",
+          "bytes": 18920,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/chunks/0vhq0luzi18_x.css",
+          "bytes": 18610,
+          "initiator": "link"
+        }
+      ],
+      "lenis": false
+    },
+    {
+      "profile": "mobile-throttled",
+      "run": 3,
+      "lcp": 768,
+      "cls": 0,
+      "longTasks": [
+        205,
+        69,
+        523,
+        242,
+        117
+      ],
+      "resources": 22,
+      "transferBytes": 1789015,
+      "jsBytes": 194431,
+      "cssBytes": 18310,
+      "largestResources": [
+        {
+          "path": "/brand/connecting_dys_logo.png",
+          "bytes": 1458921,
+          "initiator": "other"
+        },
+        {
+          "path": "/_next/static/chunks/3iz8_hoapa1o_.js",
+          "bytes": 72002,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/3uv4d50hbtkk7.js",
+          "bytes": 50809,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/static/chunks/2fuxlcqleg9x-.js",
+          "bytes": 46912,
+          "initiator": "script"
+        },
+        {
+          "path": "/_next/image?url=%2Fbrand%2Fconnecting-dys-embrace.png&w=384&q=75",
+          "bytes": 33790,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_regular-s.p.34xmh-n4wgyp6.woff2",
+          "bytes": 18940,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/media/open_sans_semibold-s.p.34baavpivw_qg.woff2",
+          "bytes": 18920,
+          "initiator": "link"
+        },
+        {
+          "path": "/_next/static/chunks/0vhq0luzi18_x.css",
+          "bytes": 18610,
+          "initiator": "link"
+        }
+      ],
+      "lenis": false
+    }
+  ]
+}

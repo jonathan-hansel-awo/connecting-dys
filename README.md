@@ -2,6 +2,14 @@
 
 Next.js App Router + TypeScript website for Connecting Dys, a UK Community Interest Company. The original approved embracing-figures logo is preserved byte-for-byte. A background-free symbol adaptation is used in the header and hero following the owner’s 13 November feedback. The current tagline is **A home for every DYS mind.** No hosting project, deployment or Vercel configuration is created by this work.
 
+## Current experience — Phase 06
+
+The homepage now includes the complete support/about/invitation finish and native **full-section stacking**. A long section scrolls fully before its last screen holds behind the next opaque panel; no spacers or artificial scroll runway are added. Keyboard navigation, browser Find and programmatic focus release stacking until pointer scrolling resumes. The community keeps its separate bounded artwork pin. Touch uses native momentum; Lenis stays on fine pointers with one GSAP clock.
+
+Reading settings contains the only **Dark mode** control. The existing `connecting-dys-reading-settings` object restores the theme, five fonts, four reading backgrounds and Paper/Linen/Plaster/Off before paint. Light colours are retained while dark counterparts are selected. Reduced motion, spacious reading, forced colours, short viewports and no-JS have readable alternatives; the approved logo files are unchanged. Phase 07's optional game is not included.
+
+Phase 06 also replaces the oversized tab icon with a small derivative of the existing symbol and uses an SVG footer arrow across reading fonts. See [the current QA results and limits](docs/QA.md). Historical phase notes below retain their original handoff results. Browser regressions run with `npm run test:browser`; isolated cold-load lab measurements run separately with `npm run test:performance` after a production build. Do not run performance samples alongside the parallel browser suite. Both commands use local production servers and never deploy.
+
 ## Phase 01 materials
 
 The existing homepage now uses a static fine-paper surface system with shallow raised/inset edges and consistent directional light. **Background texture** in Reading settings toggles the grain and optional depth together; it defaults to On and uses the existing preference key and pre-paint bootstrap. Saved older settings remain compatible. All four reading backgrounds govern light reading surfaces; fonts/spacing and the approved identity are preserved. Forced colours/print remove the material effects, and forced colours also selects native/static motion. Without JavaScript the page is flat and complete.
@@ -26,7 +34,7 @@ The retained three-part community story now has converging decorative nodes and 
 
 Reading settings now offers **Paper, Linen and Plaster**, with the existing Background texture On/Off switch, colour choices and saved reading preferences retained. Older saved settings migrate to Paper; Off retains your chosen style; Reset restores defaults. The same allowlisted runtime restores before paint and after hydration.
 
-See [implementation, contracts and file list](docs/PHASE_04_CONNECTION_JOURNEY.md) and [screenshots/browser evidence](docs/baselines/phase-04/README.md). Build/lint/typecheck and 12 production regression groups pass. Full Chromium matrix: **91 passed, 11 intentional skips, zero failures/flaky tests**; actual UI 200%/400% zoom reflow also passes. Phase 05 is next.
+See [implementation, contracts and file list](docs/PHASE_04_CONNECTION_JOURNEY.md) and [screenshots/browser evidence](docs/baselines/phase-04/README.md). Build/lint/typecheck and 12 production regression groups pass. Full Chromium matrix: **91 passed, 11 intentional skips, zero failures/flaky tests**; actual UI 200%/400% zoom reflow also passes. Phase 05 is complete; current integration results are recorded above.
 
 ## Run locally
 

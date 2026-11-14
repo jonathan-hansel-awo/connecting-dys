@@ -73,7 +73,8 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Not Connecting Dys members"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
   assert.equal(doc.querySelectorAll('.reading-toolbar .settings-trigger[aria-haspopup="dialog"]').length, 1);
-  assert.equal(doc.querySelectorAll('.reading-toolbar .theme-trigger[aria-label="Dark mode"]').length, 1);
+  assert.equal(doc.querySelectorAll('.reading-toolbar .theme-trigger').length, 0);
+  assert.equal(doc.querySelectorAll('dialog input[type="checkbox"]').length, 3);
   const welcomePath = doc.querySelector('[data-welcome-scene] svg[aria-hidden="true"] [data-hero-path]');
   assert.ok(welcomePath, "welcome path is a separate decorative SVG, not the logo");
   assert.equal(welcomePath.getAttribute("pathLength"), "1");
