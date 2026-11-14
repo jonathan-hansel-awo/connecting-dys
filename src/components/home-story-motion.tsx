@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { createConnectionMotion } from "@/lib/connection-motion";
+import { createSectionStacking } from "@/lib/section-stacking";
 import { PREFERENCES_EVENT } from "@/lib/preferences";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -12,6 +13,7 @@ export function HomeStoryMotion() {
   useGSAP(() => {
     let media: gsap.MatchMedia | undefined;
     let timer = 0;
+    const stackingInteraction = { reading: false };
     const rebuild = () => {
       media?.revert();
       media = undefined;
@@ -28,6 +30,7 @@ export function HomeStoryMotion() {
           motion: "(prefers-reduced-motion: no-preference)",
           forcedColours: "(forced-colors: active)",
           tall: "(min-height: 520px)",
+          stacking: "(min-height: 650px)",
           portraitOverlap: "(max-width: 699px) and (min-height: 650px)",
         },
         (context) => {
@@ -143,6 +146,7 @@ export function HomeStoryMotion() {
             });
           }
           createConnectionMotion(Boolean(desktop), Boolean(context.conditions.portraitOverlap), Boolean(context.conditions.tall));
+          if (context.conditions.stacking) return createSectionStacking(stackingInteraction);
         },
       );
       ScrollTrigger.refresh();

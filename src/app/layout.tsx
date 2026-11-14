@@ -10,6 +10,7 @@ import "../styles/surfaces.css";
 import "../styles/hero-transition.css";
 import "../styles/discovery.css";
 import "../styles/connection.css";
+import "../styles/section-stacking.css";
 
 const openSans = localFont({
   src: [

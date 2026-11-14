@@ -10,13 +10,14 @@ import { HeroTransitionArt } from "@/components/hero-transition-art";
 
 export default function HomePage() {
   return (
-    <main id="main-content" tabIndex={-1}>
+    <main id="main-content" tabIndex={-1} data-home-story>
       <HomeStoryMotion />
       <section
         className="hero wrap surface-paper"
         aria-labelledby="hero-title"
         data-welcome-scene
       >
+        <div className="section-backdrop" aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow">
             <span className="status-dot" />
@@ -146,6 +147,7 @@ export default function HomePage() {
         className="discovery wrap surface-quiet"
         aria-labelledby="explore-title"
       >
+        <div className="section-backdrop" aria-hidden="true" />
         <div className="discovery-heading">
           <div>
             <p className="eyebrow">02 / Make sense of your experience</p>
@@ -251,6 +253,7 @@ export default function HomePage() {
         className="support wrap surface-quiet"
         aria-labelledby="support-title"
       >
+        <div className="section-backdrop" aria-hidden="true" />
         <div className="support-heading">
           <p className="eyebrow">04 / A useful next step</p>
           <h2 id="support-title">
@@ -343,6 +346,7 @@ export default function HomePage() {
         className="invitation wrap surface-paper"
         aria-labelledby="invitation-title"
       >
+        <div className="section-backdrop" aria-hidden="true" />
         <div className="invitation-decoration" aria-hidden="true">
           <span />
           <span />

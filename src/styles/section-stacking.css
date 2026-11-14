@@ -1,0 +1,37 @@
+/* Full section stacking, distinct from the community's art-only pin. The
+   bottom of each long sheet is read before the incoming sheet covers it. */
+main[data-home-story] > section {
+  position: relative;
+  isolation: isolate;
+}
+.section-backdrop {
+  position: absolute;
+  z-index: -10;
+  inset-block: 0;
+  left: calc((100% - var(--sheet-width, 100%)) / 2);
+  width: var(--sheet-width, 100%);
+  background-color: var(--reading-background);
+  background-image: var(--surface-grain-image);
+  background-size: var(--surface-grain-size);
+  pointer-events: none;
+}
+@media (min-height: 650px) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  html:not([data-reduce-motion="true"]):not([data-spacious="true"]) main[data-section-stack="on"] > section {
+    position: sticky;
+    top: var(--sheet-top);
+    z-index: var(--sheet-order);
+  }
+  main[data-section-stack="on"] .section-backdrop {
+    border-radius: var(--surface-radius) var(--surface-radius) 0 0;
+    box-shadow: var(--surface-panel);
+  }
+  main[data-section-stack="on"] .hero .section-backdrop {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+/* Sticky sheets are never part of printing, no-JS or simplified reading. */
+@media print {
+  main[data-home-story] > section { position: relative !important; }
+  .section-backdrop { display: none; }
+}
