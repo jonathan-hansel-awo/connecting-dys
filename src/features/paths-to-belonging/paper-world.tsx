@@ -98,7 +98,10 @@ export function TileArtwork({ tile, board }: { tile: Tile; board: Board }) {
       <path d={path} className="paths-path-paper" />
       <path d={path} className="paths-path-ink" />
     </g>
-    {tile.kind === "landmark" && <LandmarkCutout motif={tile.motif} />}
+    {tile.kind === "landmark" && <g className="paths-landmark">
+      <ellipse className="paths-landmark-halo" cx="50" cy="53" rx="33" ry="30" />
+      <LandmarkCutout motif={tile.motif} />
+    </g>}
   </>;
 }
 
@@ -124,7 +127,7 @@ export function EndingComposition({ chapter, board, endingId }: { chapter: Chapt
       <path d={frame.path} className="paths-ending-frame" pathLength="1" />
       <g transform={`translate(${frame.x} ${frame.y}) scale(${frame.scale}) translate(0 100)`}>
         <LandscapeLayers expanded complete />
-        {chapter.tiles.map((tile) => <g key={tile.id} transform={`translate(${tile.x * 100} ${tile.y * 100})`} className={result.reachable.includes(tile.id) ? "is-linked" : ""} data-ending-piece={tile.id}>
+        {chapter.tiles.map((tile) => <g key={tile.id} transform={`translate(${tile.x * 100} ${tile.y * 100})`} className={`${result.reachable.includes(tile.id) ? "is-linked" : ""} ${result.pairedLandmarks.includes(tile.id) ? "is-joined" : ""}`} data-ending-piece={tile.id}>
           <TileArtwork tile={tile} board={board} />
         </g>)}
       </g>

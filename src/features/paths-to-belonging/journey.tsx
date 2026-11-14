@@ -50,7 +50,8 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
     </div>
   </div>;
 
-  const status = skipped ? "Chapter skipped. Continue whenever you're ready, or restart this chapter." : result.complete ? chapter.completion : `${result.connectedLandmarks.length} of ${chapter.requiredLandmarks.length} places linked to the little home.`;
+  const joinedNames = chapter.tiles.filter(({ id }) => result.pairedLandmarks.includes(id)).map(({ name }) => name).join(", ");
+  const status = skipped ? "Chapter skipped. Continue whenever you're ready, or restart this chapter." : result.complete ? chapter.completion : `${result.connectedLandmarks.length} of ${chapter.requiredLandmarks.length} places linked to the little home.${joinedNames ? ` Joined places: ${joinedNames}.` : ""}`;
   return <div className="paths-game" data-paths-game>
     <ol className="paths-progress" aria-label="Journey chapters">
       {chapters.map(({ id, name }) => <li key={id} aria-current={id === state.chapterId ? "step" : undefined}>{name}</li>)}
@@ -67,6 +68,7 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
     <details className="paths-help">
       <summary>How to play</summary>
       <p>Join the openings on neighbouring pieces. Lines must meet edge to edge. A solid line and double outline mark the network linked to the little home; other paths are dashed. The place list below describes the connections in words.</p>
+      <p>When a path joins two places, both glow amber. Breaking that connection removes the glow.</p>
       <p>Unused branches are fine. Hint points to one useful piece without moving it. You can undo any turn, restart, skip or leave. Each chapter waits for you to choose Continue.</p>
     </details>
     <div className="paths-play-layout">
@@ -77,10 +79,11 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
             <ul className="paths-board" role="list" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
           {chapter.tiles.map((tile) => {
             const connected = result.reachable.includes(tile.id);
+            const paired = result.pairedLandmarks.includes(tile.id);
             const ports = tilePorts(tile, state.board).join(" and ");
             const movable = isMovable(tile);
-            const label = `${tile.name}, opening ${ports}. ${connected ? "Linked to the little home." : "Not yet linked to the little home."}${movable ? " Activate to turn clockwise." : " Fixed place or bridge."}`;
-            const classes = `paths-piece ${connected ? "is-linked" : ""} ${hint?.tileId === tile.id ? "is-hint" : ""}`;
+            const label = `${tile.name}, opening ${ports}. ${connected ? "Linked to the little home." : "Not yet linked to the little home."}${paired ? " Connected to another place." : ""}${movable ? " Activate to turn clockwise." : " Fixed place or bridge."}`;
+            const classes = `paths-piece ${connected ? "is-linked" : ""} ${paired ? "is-joined" : ""} ${hint?.tileId === tile.id ? "is-hint" : ""}`;
             const position: CSSProperties = { gridColumn: tile.x - minX + 1, gridRow: tile.y - minY + 1 };
             return <li key={tile.id} style={position}>
               {movable
@@ -100,7 +103,11 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
             const tile = chapter.tiles.find((tile) => tile.id === id)!;
             if (tile.kind !== "landmark") return null;
             const Icon = motifIcons[tile.motif];
-            return <li key={id}><Icon aria-hidden="true" size={22} /><span>{tile.name}<br /><strong>{id === "home" ? "Starting place" : result.connectedLandmarks.includes(id) ? "Connected" : "Not yet connected"}</strong></span></li>;
+            const paired = result.pairedLandmarks.includes(id);
+            let connection = "Not yet connected";
+            if (paired) connection = result.connectedLandmarks.includes(id) ? "Connected" : "Connected to another place";
+            if (id === "home") connection = paired ? "Starting place · Connected" : "Starting place";
+            return <li key={id}><Icon aria-hidden="true" size={22} /><span>{tile.name}<br /><strong>{connection}</strong></span></li>;
           })}
         </ul>
       </div>

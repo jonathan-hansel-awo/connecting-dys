@@ -105,6 +105,40 @@ test("paper effects respond live to OS/site motion, texture and forced-colour pr
   await noOverflow(page);
 });
 
+test("both joined places glow steadily and clear on a broken path, undo or restart", async ({ page }, info) => {
+  await play(page);
+  await expect(page.locator(".paths-piece.is-joined")).toHaveCount(0);
+  await solve(page, 0, gardenRoutes.upper);
+  const joined = page.locator('.paths-piece[role="img"].is-joined');
+  await expect(joined).toHaveCount(2);
+  for (const place of await joined.all()) {
+    await expect(place).toHaveAccessibleName(/Connected to another place/);
+    await expect(place.locator(".paths-landmark-halo")).toHaveCSS("opacity", "0.5");
+    await expect(place.locator(".paths-landmark")).not.toHaveCSS("filter", "none");
+  }
+  await noOverflow(page);
+  await page.locator(".paths-world").screenshot({ path: info.outputPath("connected-places-light.png") });
+  await control(page, "Reading settings").click();
+  await page.getByRole("checkbox", { name: "Dark mode", exact: true }).check();
+  await page.keyboard.press("Escape");
+  await expect(joined).toHaveCount(2);
+  await page.locator(".paths-world").screenshot({ path: info.outputPath("connected-places-dark.png") });
+  expect((await new AxeBuilder({ page }).withTags(tags).analyze()).violations).toEqual([]);
+  await page.locator("#paths-piece-willow-bend").click();
+  await expect(joined).toHaveCount(0);
+  await control(page, "Undo").click();
+  await expect(joined).toHaveCount(2);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(joined.first().locator(".paths-landmark-halo")).toHaveCSS("animation-name", "none");
+  await expect(joined.first().locator(".paths-landmark-halo")).toHaveCSS("opacity", "0.5");
+  await page.emulateMedia({ forcedColors: "active" });
+  await expect(joined.first().locator(".paths-landmark-halo")).toHaveCSS("display", "none");
+  await expect(joined.first().locator(".paths-landmark")).toHaveCSS("filter", "none");
+  await expect(joined.first()).toHaveAccessibleName(/Connected to another place/);
+  await control(page, "Restart chapter").click();
+  await expect(joined).toHaveCount(0);
+});
+
 test("hints, undo, restart, skip and exit preserve clear feedback and focus", async ({ page }) => {
   await play(page);
   const piece = page.locator("#paths-piece-willow-bend");
