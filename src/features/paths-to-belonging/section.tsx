@@ -66,7 +66,6 @@ export function PathsToBelongingSection({ loadJourney = importJourney }: { loadJ
         <p>You can skip a chapter or leave whenever you like.</p>
         <div className="paths-actions">
           <button ref={launch} type="button" className="button" disabled={!ready} hidden={mode !== "idle"} onClick={play}>Play the little journey</button>
-          <a className="text-link" href="#site-footer">Continue to the footer</a>
         </div>
         <noscript><p>The optional little journey needs JavaScript. Everything else on this page, including contact and support links, is still available.</p></noscript>
       </div>

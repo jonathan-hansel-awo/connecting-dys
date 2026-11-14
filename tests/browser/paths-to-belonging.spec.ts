@@ -134,8 +134,7 @@ test("hints, undo, restart, skip and exit preserve clear feedback and focus", as
   await expect(page.getByRole("heading", { name: "Thank you for exploring.", exact: true })).toBeFocused();
   await control(page, "Return to page").click();
   await expect(launch(page)).toBeFocused();
-  await page.getByRole("link", { name: "Continue to the footer", exact: true }).click();
-  await expect(page.locator("#site-footer")).toBeFocused();
+  await page.locator("#site-footer").scrollIntoViewIfNeeded();
   await expect(page.getByRole("navigation", { name: "Footer navigation", exact: true })).toBeVisible();
 });
 
@@ -207,7 +206,7 @@ test("no JavaScript leaves explanation, footer and contact routes available", as
     await expect(page.getByRole("heading", { name: "Paths to Belonging", exact: true })).toBeVisible();
     await expect(page.getByText(/The optional little journey needs JavaScript/)).toBeVisible();
     await expect(launch(page)).toBeDisabled();
-    await page.getByRole("link", { name: "Continue to the footer", exact: true }).click();
+    await page.locator("#site-footer").scrollIntoViewIfNeeded();
     await page.getByRole("navigation", { name: "Footer navigation", exact: true }).getByRole("link", { name: "Contact", exact: true }).click();
     await expect(page.locator("main h1")).toBeVisible();
     await expect(page).toHaveURL(/\/contact$/);
