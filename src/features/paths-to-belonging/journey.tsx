@@ -5,31 +5,14 @@ import type { CSSProperties } from "react";
 import { Heart, House, Sprout, UsersRound, RotateCw } from "lucide-react";
 import { chapters } from "./chapters.ts";
 import { evaluateBoard, isMovable, tilePorts } from "./engine.ts";
+import { EndingComposition, PaperLandscape, PaperPiece, worldBounds } from "./paper-world.tsx";
 import { chooseHint } from "./hints.ts";
 import type { Hint } from "./hints.ts";
 import { createJourneyState, journeyReducer } from "./reducer.ts";
 import type { JourneyAction } from "./reducer.ts";
-import type { Board, Direction, Tile } from "./types.ts";
-
-const portEnds: Record<Direction, string> = { north: "50 0", east: "100 50", south: "50 100", west: "0 50" };
 const chapterProgress = ["First", "Second", "Third"];
 const motifIcons = { home: House, garden: Sprout, meeting: UsersRound, heart: Heart };
-
-function PathSymbol({ tile, board }: { tile: Tile; board: Board }) {
-  const ports = tilePorts(tile, board);
-  return <>
-    <svg className="paths-lines" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false">
-      {tile.kind === "path" && tile.shape === "curve"
-        ? <path d="M50 0 Q50 50 100 50" transform={`rotate(${board[tile.id] * 90} 50 50)`} />
-        : ports.map((port) => <path key={port} d={`M50 50 L${portEnds[port]}`} />)}
-    </svg>
-    {tile.kind === "landmark" && (() => {
-      const Icon = motifIcons[tile.motif];
-      return <span className="paths-landmark-mark"><Icon aria-hidden="true" /></span>;
-    })()}
-    {isMovable(tile) && <RotateCw className="paths-turn-mark" size={14} aria-hidden="true" />}
-  </>;
-}
+const worldCaptions = ["A small home. A welcoming garden.", "The same paths, a wider neighbourhood.", "Your neighbourhood, with room to create."];
 
 export default function PathsJourney({ onExit }: { onExit: () => void }) {
   const [state, dispatch] = useReducer(journeyReducer, undefined, () => journeyReducer(createJourneyState(), { type: "start" }));
@@ -41,9 +24,7 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
   const result = evaluateBoard(chapter, state.board);
   const finished = state.status === "finished";
   const skipped = state.status === "skipped";
-  const minX = Math.min(...chapter.tiles.map(({ x }) => x));
-  const minY = Math.min(...chapter.tiles.map(({ y }) => y));
-  const columns = Math.max(...chapter.tiles.map(({ x }) => x)) - minX + 1;
+  const { minX, minY, columns } = worldBounds(chapter);
   useEffect(() => { heading.current?.focus(); }, [state.chapterId, state.arrangementIndex, finished, focusVersion]);
 
   function act(action: JourneyAction, focus = false) {
@@ -62,6 +43,7 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
     <p className="eyebrow">At your pace</p>
     <h3 ref={heading} tabIndex={-1}>{state.endingId ? "There's more than one way to belong." : "Thank you for exploring."}</h3>
     <p role="status">{state.endingId ? `Your connected composition: ${chapter.endings.find(({ id }) => id === state.endingId)!.name}.` : "You can try another arrangement or return to the page whenever you like."}</p>
+    {state.endingId && <EndingComposition chapter={chapter} board={state.board} endingId={state.endingId} />}
     <div className="paths-actions">
       <button type="button" className="button" onClick={() => act({ type: "replay" }, true)}>Replay journey</button>
       <button type="button" className="paths-control" onClick={onExit}>Return to page</button>
@@ -89,7 +71,10 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
     </details>
     <div className="paths-play-layout">
       <div className="paths-board-region" role="group" aria-label={`${chapter.name} path board`} aria-describedby="paths-objective paths-instructions">
-        <ul className="paths-board" role="list" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
+        <div className="paths-world surface-inset" data-chapter={chapter.id} data-complete={result.complete && !skipped}>
+          <div className="paths-canvas">
+            <PaperLandscape key={chapter.id} chapter={chapter} complete={result.complete && !skipped} />
+            <ul className="paths-board" role="list" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
           {chapter.tiles.map((tile) => {
             const connected = result.reachable.includes(tile.id);
             const ports = tilePorts(tile, state.board).join(" and ");
@@ -99,11 +84,14 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
             const position: CSSProperties = { gridColumn: tile.x - minX + 1, gridRow: tile.y - minY + 1 };
             return <li key={tile.id} style={position}>
               {movable
-                ? <button id={`paths-piece-${tile.id}`} type="button" className={classes} aria-label={label} disabled={skipped} onClick={() => act({ type: "rotate", tileId: tile.id })}><PathSymbol tile={tile} board={state.board} /></button>
-                : <span className={classes} role="img" aria-label={label}><PathSymbol tile={tile} board={state.board} /></span>}
+                ? <button id={`paths-piece-${tile.id}`} type="button" className={classes} aria-label={label} disabled={skipped} onClick={() => act({ type: "rotate", tileId: tile.id })}><PaperPiece tile={tile} board={state.board} /><RotateCw className="paths-turn-mark" size={14} aria-hidden="true" /></button>
+                : <span className={classes} role="img" aria-label={label}><PaperPiece tile={tile} board={state.board} /></span>}
             </li>;
           })}
-        </ul>
+            </ul>
+          </div>
+        </div>
+        <p className="paths-world-caption">{worldCaptions[chapterIndex]}</p>
       </div>
       <div className="paths-place-list">
         <h4>Places in this chapter</h4>
