@@ -1,0 +1,162 @@
+[
+  {
+    "background": "#FCF7ED",
+    "dialogOverflow": false,
+    "font": "Open Sans",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFFFFF",
+    "dialogOverflow": false,
+    "font": "Open Sans",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#EBF4FA",
+    "dialogOverflow": false,
+    "font": "Open Sans",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFF0E4",
+    "dialogOverflow": false,
+    "font": "Open Sans",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FCF7ED",
+    "dialogOverflow": false,
+    "font": "Arial",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFFFFF",
+    "dialogOverflow": false,
+    "font": "Arial",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#EBF4FA",
+    "dialogOverflow": false,
+    "font": "Arial",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFF0E4",
+    "dialogOverflow": false,
+    "font": "Arial",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FCF7ED",
+    "dialogOverflow": false,
+    "font": "Verdana",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFFFFF",
+    "dialogOverflow": false,
+    "font": "Verdana",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#EBF4FA",
+    "dialogOverflow": false,
+    "font": "Verdana",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFF0E4",
+    "dialogOverflow": false,
+    "font": "Verdana",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FCF7ED",
+    "dialogOverflow": false,
+    "font": "Atkinson Hyperlegible",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFFFFF",
+    "dialogOverflow": false,
+    "font": "Atkinson Hyperlegible",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#EBF4FA",
+    "dialogOverflow": false,
+    "font": "Atkinson Hyperlegible",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FFF0E4",
+    "dialogOverflow": false,
+    "font": "Atkinson Hyperlegible",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "false"
+  },
+  {
+    "background": "#FCF7ED",
+    "dialogOverflow": false,
+    "font": "OpenDyslexic",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "true"
+  },
+  {
+    "background": "#FFFFFF",
+    "dialogOverflow": false,
+    "font": "OpenDyslexic",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "true"
+  },
+  {
+    "background": "#EBF4FA",
+    "dialogOverflow": false,
+    "font": "OpenDyslexic",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "true"
+  },
+  {
+    "background": "#FFF0E4",
+    "dialogOverflow": false,
+    "font": "OpenDyslexic",
+    "gap": 36,
+    "overflow": false,
+    "spacious": "true"
+  }
+]

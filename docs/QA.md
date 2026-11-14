@@ -1,5 +1,17 @@
 # Verification report
 
+## Latest: Phase 00 homepage baseline — 14 November 2026
+
+See [PHASE_00_BASELINE.md](PHASE_00_BASELINE.md) for the current audit, exact source SHA, command results, findings and coverage limits; [SCENE_CONTRACTS.md](SCENE_CONTRACTS.md) for chapter/lifecycle rules; and [captured evidence](baselines/phase-00/README.md) for screenshots and measured data. The sections below retain the previous implementation history.
+
+- Clean `npm ci`, typecheck, lint and production build pass. Original regression baseline: 8 groups; updated suite: **9 groups pass**, adding scene contracts and the symbol asset hash.
+- Ten existing production routes and nine external Base44 HTTP destinations return 200. Unknown-slug HTTP status is separately flagged for review.
+- Live cloud Chromium captures cover 1363px desktop, 779px tablet-width, 454px wide and 340px narrow reflow via browser zoom, including dialogs. They are not physical-device or exact 360/430px portrait tests. The full-page capture path cropped zoomed layouts; 189 sequential viewport screenshots now cover the four journeys through the footer.
+- All 20 font/background combinations at narrow default spacing show no page/dialog overflow and a 36px recognition gap. Maximum OpenDyslexic settings retain a 52px gap/contained dialog but show **6px document overflow** at 400% zoom; follow-up is recorded, not silently fixed in this audit.
+- Site reduced motion and maximum settings persist after reload; no Lenis class, pin spacer or photo transform in reduced mode. Escape restores dialog-trigger focus. OS reduced motion, forced-colours and full keyboard/history tests remain outstanding in the live browser.
+- New browser smoke tooling typechecks/lints and discovers 30 entries across six viewport projects. Attempted execution failed before the test body: browser executable unavailable; download invalid/truncated; system Chromium separately fails due to a denied AF_UNIX socket. **Full browser axe/Lighthouse and the automated interaction matrix are not passed.**
+- No application source, design, logo, content or motion implementation changes in Phase 00. No Vercel command/configuration/deployment API invoked; existing GitHub automation remains owner-controlled.
+
 13 November 2026. This report distinguishes production-source checks from real-browser verification. WCAG 2.2 AA is the target, not a certification claim.
 
 ## Executed checks

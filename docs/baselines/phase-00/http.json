@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-14",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "h1": "A home forevery DYS mind."
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "h1": "Our story"
+    },
+    {
+      "route": "/support",
+      "status": 200,
+      "h1": "Information & support"
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "h1": "A hello is a good place to start."
+    },
+    {
+      "route": "/get-involved",
+      "status": 200,
+      "h1": "Help shape what comes next"
+    },
+    {
+      "route": "/accessibility",
+      "status": 200,
+      "h1": "Your reading experience"
+    },
+    {
+      "route": "/dyslexia",
+      "status": 200,
+      "h1": "Dyslexia"
+    },
+    {
+      "route": "/dyspraxia",
+      "status": 200,
+      "h1": "Dyspraxia"
+    },
+    {
+      "route": "/dyscalculia",
+      "status": 200,
+      "h1": "Dyscalculia"
+    },
+    {
+      "route": "/dysgraphia",
+      "status": 200,
+      "h1": "Dysgraphia"
+    }
+  ],
+  "unknownRoute": 200,
+  "externalLinks": [
+    {
+      "url": "https://dys-connect-hub.base44.app/OurPolicies",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/OurPolicies",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/Support",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/Support",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/Contact",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/Contact",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/GetInvolved",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/GetInvolved",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/Partner",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/Partner",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/Dyslexia",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/Dyslexia",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/Dyspraxia",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/Dyspraxia",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/Dyscalculia",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/Dyscalculia",
+      "note": "HTTP success only; client-side page content/form not verified"
+    },
+    {
+      "url": "https://dys-connect-hub.base44.app/Dysgraphia",
+      "status": 200,
+      "finalURL": "https://dys-connect-hub.base44.app/Dysgraphia",
+      "note": "HTTP success only; client-side page content/form not verified"
+    }
+  ]
+}

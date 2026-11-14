@@ -1,5 +1,7 @@
 # Foundation audit
 
+Historical implementation audit. The 14 November Phase 00 audit and real-browser fallback evidence are in [PHASE_00_BASELINE.md](PHASE_00_BASELINE.md), with precise chapter contracts in [SCENE_CONTRACTS.md](SCENE_CONTRACTS.md). Use those for the current enhancement baseline and known limitations.
+
 ## Problems found and changes
 
 | Starting issue                                                                   | Resolution                                                                                                                                               |

@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-14",
+  "url": "https://connecting-dys.vercel.app/",
+  "method": "Cloud Chromium browser, native browser zoom; fine pointer at all widths; not real mobile hardware",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1363,
+      "height": 936,
+      "zoom": 1
+    },
+    {
+      "name": "tablet",
+      "width": 779,
+      "height": 535,
+      "zoom": 1.75
+    },
+    {
+      "name": "mobile-wide",
+      "width": 454,
+      "height": 312,
+      "zoom": 3
+    },
+    {
+      "name": "mobile-narrow",
+      "width": 340,
+      "height": 234,
+      "zoom": 4
+    }
+  ],
+  "findings": {
+    "recognitionGapDefault": 36,
+    "recognitionGapMaximum": 52,
+    "maximumReading": {
+      "clientWidth": 337,
+      "scrollWidth": 343,
+      "dialogOverflow": false
+    },
+    "console": "No entries matching connecting-dys.vercel.app; browser extension metadata errors present",
+    "localBrowser": "Not available: Chromium AF_UNIX socket denied; Playwright downloaded invalid zip"
+  },
+  "limitations": [
+    "No exact 360/430 device viewport emulation",
+    "No physical touch, Android or iOS",
+    "No full rendered axe/Lighthouse",
+    "No OS reduced motion or no-JS browser session"
+  ],
+  "captureNotes": "Full-page capture at zoom clipped the layout; discarded. Sequential viewport captures replace it, covering every journey through the footer. Frame measurements and JPGs are in each journey directory."
+}

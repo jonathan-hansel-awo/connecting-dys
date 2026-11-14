@@ -23,6 +23,20 @@ npm start
 
 `npm test` inspects the last production build, so run `npm run build` after changes. The tests run Node.js + jsdom + axe, not a real browser. Their visual/accessibility limits are described in [docs/QA.md](docs/QA.md).
 
+## Homepage enhancement baseline (Phase 00)
+
+The existing homepage is unchanged in this audit phase. Read the [current baseline/results](docs/PHASE_00_BASELINE.md), [chapter scene contracts](docs/SCENE_CONTRACTS.md), [screenshots/evidence](docs/baselines/phase-00/README.md) and [phased roadmap](docs/HOMEPAGE_ENHANCEMENT_ACTION_PLAN.md) before later enhancements. Phase 01 has not started. The baseline records a small maximum-reading/400% overflow and a forced-colours motion-policy gap for follow-up.
+
+Reusable browser smoke checks use the already-installed Playwright/axe development dependencies:
+
+```bash
+npm run build
+npx playwright install chromium
+npm run test:browser
+```
+
+The runner owns a local production server on port 3100. It covers six viewports, chapter screenshots, rendered axe, reading preferences, anchors/menu/history, reduced motion and no-JS navigation. Reports/screenshots/traces go to ignored `test-results/` and `playwright-report/`; committed Phase 00 images are never overwritten. For an installed Chromium, optionally set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its absolute executable path. Browser launch was blocked in the Phase 00 executor; test discovery/typechecking pass, but the browser suite is **not reported as passed**. Live cloud Chromium zoom references are documented separately and do not replace real mobile/assistive-technology QA.
+
 ## Experience and architecture
 
 - `src/app/page.tsx`: server-rendered editorial homepage, following welcome → recognition → discovery → connection → practical support → organisation → invitation. The voices chapter is deliberately omitted until real, permissioned stories exist.

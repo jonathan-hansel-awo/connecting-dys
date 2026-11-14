@@ -39,6 +39,39 @@ test("approved logo is byte-for-byte unchanged", () => {
     hash,
     "bb68edef8faee420c861661d3b1f19e06db8c12dc17060d01a3deb4caba1112b",
   );
+  assert.equal(
+    createHash("sha256")
+      .update(fs.readFileSync("public/brand/connecting-dys-embrace.png"))
+      .digest("hex"),
+    "a0126d9aa517efc994eb72af77d2eea45d580e1ba85fb2d8d0fdcc7d64875e6f",
+    "approved header/hero symbol adaptation is unchanged",
+  );
+});
+
+test("homepage scene contracts preserve order, decorative scope and direct navigation", () => {
+  const dom = page();
+  const doc = dom.window.document;
+  const sections = [...doc.querySelectorAll("main > section")];
+  assert.deepEqual(
+    sections.map((section) => section.getAttribute("aria-labelledby")),
+    ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title"],
+  );
+  for (const selector of [".hero-orbit", ".recognition-media .recognition-photo", ".connection-visual .art-landscape", ".connection-chapters", ".connection-progress span"]) {
+    assert.equal(doc.querySelectorAll(selector).length, 1, selector);
+  }
+  const artwork = doc.querySelector('.connection-visual[aria-hidden="true"]');
+  assert.ok(artwork, "only decorative artwork may pin");
+  assert.equal(artwork.querySelectorAll("a,button,input,select,[tabindex]").length, 0);
+  assert.equal(artwork.querySelector(".journey-path")?.getAttribute("pathLength"), "1");
+  assert.equal(doc.querySelectorAll(".connection-chapters > article").length, 3);
+  assert.deepEqual(
+    [...doc.querySelectorAll(".difference-row")].map((a) => a.getAttribute("href")),
+    ["/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"],
+  );
+  assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Not Connecting Dys members"));
+  assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
+  assert.equal(doc.querySelectorAll(".reading-toolbar .settings-trigger").length, 1);
+  dom.window.close();
 });
 
 test("production routes have complete semantic content without JavaScript", () => {
