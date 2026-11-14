@@ -8,10 +8,10 @@ export const fonts = {
   OpenDyslexic: "OpenDyslexic, Arial, sans-serif",
 };
 export const backgrounds = [
-  { label: "Cream", value: "#FCF7ED" },
-  { label: "White", value: "#FFFFFF" },
-  { label: "Soft blue", value: "#EBF4FA" },
-  { label: "Soft peach", value: "#FFF0E4" },
+  { label: "Cream", value: "#FCF7ED", darkLabel: "Warm navy", darkValue: "#162938" },
+  { label: "White", value: "#FFFFFF", darkLabel: "Deep navy", darkValue: "#122330" },
+  { label: "Soft blue", value: "#EBF4FA", darkLabel: "Slate blue", darkValue: "#1B3044" },
+  { label: "Soft peach", value: "#FFF0E4", darkLabel: "Warm charcoal", darkValue: "#2B292B" },
 ];
 export const textures = [
   { value: "paper", label: "Paper" },
@@ -27,6 +27,7 @@ export type Preferences = {
   reduceMotion: boolean;
   texture: boolean;
   textureStyle: (typeof textures)[number]["value"];
+  darkMode: boolean;
 };
 export const defaults: Preferences = {
   font: "Open Sans",
@@ -37,6 +38,7 @@ export const defaults: Preferences = {
   reduceMotion: false,
   texture: true,
   textureStyle: "paper",
+  darkMode: false,
 };
 // This self-contained function also runs before paint. Keep dependencies in config.
 function preferenceRuntime(
@@ -73,6 +75,7 @@ function preferenceRuntime(
     textureStyle: config.textures.some((t) => t.value === p.textureStyle)
       ? (p.textureStyle as Preferences["textureStyle"])
       : config.defaults.textureStyle,
+    darkMode: p.darkMode === true,
   };
   const root = document.documentElement;
   root.style.setProperty("--reading-font", config.fonts[prefs.font]);
@@ -88,7 +91,15 @@ function preferenceRuntime(
     "--reading-letter-spacing",
     prefs.letterSpacing + "em",
   );
-  root.style.setProperty("--reading-background", prefs.background);
+  const background = config.backgrounds.find((b) => b.value === prefs.background)!;
+  root.style.setProperty("--reading-background", prefs.darkMode ? background.darkValue : background.value);
+  root.dataset.theme = prefs.darkMode ? "dark" : "light";
+  // `only` opts out of automatic recolouring in browsers that honour it.
+  // High-contrast/forced-colours remains browser-controlled.
+  const scheme = prefs.darkMode ? "only dark" : "only light";
+  root.style.colorScheme = scheme;
+  // Leave the server's initial hint stable: mutating React-managed metadata
+  // before hydration would make React insert a duplicate. CSS owns live changes.
   root.dataset.reduceMotion = String(prefs.reduceMotion);
   root.dataset.texture = prefs.texture ? "on" : "off";
   root.dataset.textureStyle = prefs.textureStyle;

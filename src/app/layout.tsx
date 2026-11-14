@@ -12,6 +12,7 @@ import "../styles/discovery.css";
 import "../styles/connection.css";
 import "../styles/section-stacking.css";
 import "../styles/finish.css";
+import "../styles/theme.css";
 
 const openSans = localFont({
   src: [
@@ -48,6 +49,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta name="color-scheme" content="only light" />
         <script dangerouslySetInnerHTML={{ __html: preferenceBootstrap }} />
       </head>
       <body className="surface-paper">

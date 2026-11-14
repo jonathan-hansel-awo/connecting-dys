@@ -72,7 +72,8 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   );
   assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Not Connecting Dys members"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
-  assert.equal(doc.querySelectorAll(".reading-toolbar .settings-trigger").length, 1);
+  assert.equal(doc.querySelectorAll('.reading-toolbar .settings-trigger[aria-haspopup="dialog"]').length, 1);
+  assert.equal(doc.querySelectorAll('.reading-toolbar .theme-trigger[aria-label="Dark mode"]').length, 1);
   const welcomePath = doc.querySelector('[data-welcome-scene] svg[aria-hidden="true"] [data-hero-path]');
   assert.ok(welcomePath, "welcome path is a separate decorative SVG, not the logo");
   assert.equal(welcomePath.getAttribute("pathLength"), "1");
@@ -380,4 +381,25 @@ test("optional fonts are real local assets and are not eagerly preloaded", () =>
     );
   }
   dom.window.close();
+});
+
+test("dark mode restores before paint, validates old storage and preserves the light reading choice", () => {
+  for (const darkMode of [true, false, undefined, "true", null]) {
+    for (const [background, dark] of [["#FCF7ED", "#162938"], ["#FFFFFF", "#122330"], ["#EBF4FA", "#1B3044"], ["#FFF0E4", "#2B292B"]]) {
+      const dom = page();
+      const saved = { darkMode, background, texture: false, font: "Verdana", size: 26, lineHeight: 2, letterSpacing: .12 };
+      dom.window.localStorage.setItem("connecting-dys-reading-settings", JSON.stringify(saved));
+      const bootstrap = [...dom.window.document.scripts].find((s) => s.textContent?.startsWith("try{"))!;
+      vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
+      const html = dom.window.document.documentElement;
+      assert.equal(html.dataset.theme, darkMode === true ? "dark" : "light");
+      assert.equal(html.style.colorScheme, darkMode === true ? "dark only" : "light only");
+      assert.equal(dom.window.document.querySelector('meta[name="color-scheme"]')?.getAttribute("content"), "only light", "SSR hint stays stable through hydration; live scheme is CSS-owned");
+      assert.equal(html.style.getPropertyValue("--reading-background"), darkMode === true ? dark : background);
+      assert.equal(html.dataset.texture, "off");
+      assert.equal(html.dataset.spacious, "true");
+      assert.deepEqual(JSON.parse(dom.window.localStorage.getItem("connecting-dys-reading-settings")!), JSON.parse(JSON.stringify(saved)), "pre-paint restore never rewrites saved choices");
+      dom.window.close();
+    }
+  }
 });

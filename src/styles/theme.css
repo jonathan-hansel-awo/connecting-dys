@@ -1,0 +1,64 @@
+/* Explicit themes, not an inversion filter. The early preference runtime owns
+   the selected reading background and colour-scheme before the first paint. */
+:root { color-scheme: only light; }
+.reading-toolbar { justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
+.reading-toolbar .theme-trigger { margin-inline-start: auto; }
+.theme-trigger[aria-pressed="true"] { border-color: var(--reading-accent); }
+@media (max-width: 370px) {
+  .reading-toolbar .settings-trigger { padding-inline: .55rem; font-size: .7rem; gap: .35rem; }
+}
+@media screen and (forced-colors: none) {
+  html[data-theme="dark"] {
+    --reading-ink: #f4f0e7;
+    --reading-accent: #80d1ce;
+    --reading-muted: #c0cfd4;
+    --rule: rgb(224 235 238 / .3);
+    --surface-highlight: rgb(217 240 244 / .07);
+    --surface-shadow: rgb(0 0 0 / .4);
+  }
+  html[data-theme="dark"][data-texture="on"] {
+    --surface-raised: -2px -2px 7px var(--surface-highlight), 4px 6px 13px var(--surface-shadow), inset 0 1px 0 rgb(230 245 248 / .09);
+    --surface-inset: inset 3px 4px 10px rgb(0 0 0 / .45), inset -1px -1px 3px rgb(217 240 244 / .08);
+    --surface-edge: inset 1px 1px 0 rgb(230 245 248 / .1), inset -1px -1px 0 rgb(0 0 0 / .4);
+    --surface-panel: 0 -1px 0 rgb(230 245 248 / .12), 0 -7px 20px rgb(0 0 0 / .3);
+    --surface-path: inset 1px 1px 2px rgb(230 245 248 / .1), 2px 3px 3px rgb(0 0 0 / .35);
+    --surface-path-filter: drop-shadow(-1px -1px 0 rgb(230 245 248 / .1)) drop-shadow(1px 2px 1px rgb(0 0 0 / .4));
+    --surface-sheen: linear-gradient(135deg, rgb(255 255 255 / .03), transparent 46%, rgb(0 0 0 / .08));
+  }
+  html[data-theme="dark"] .hero-bottom > span { color: var(--reading-muted); }
+  html[data-theme="dark"] .text-link { text-decoration-color: var(--reading-accent); }
+  html[data-theme="dark"] .status-dot,
+  html[data-theme="dark"] .discovery-node { background-color: var(--reading-accent); }
+  html[data-theme="dark"] .button { border-color: var(--reading-accent); }
+  html[data-theme="dark"] .button-dark { background-color: var(--brand-teal); }
+  html[data-theme="dark"] .settings-trigger:hover,
+  html[data-theme="dark"] .article-note { background-color: rgb(128 209 206 / .07); }
+  html[data-theme="dark"] .skip-link { background: var(--reading-background); }
+  html[data-theme="dark"] .note-top { background-color: #ead29f; color: var(--brand-navy); }
+  /* The approved bitmap files are never inverted/recoloured. Their original
+     navy strokes retain contrast on a small, softly framed cream mount. */
+  html[data-theme="dark"] .brand-link img { background-color: var(--brand-cream); border-radius: 50%; padding: 4px; }
+  html[data-theme="dark"] .logo-stage > img { background-color: var(--brand-cream); border-radius: 2rem; padding: .7rem; box-shadow: var(--surface-raised); }
+  html[data-theme="dark"] .hero-orbit { border-color: var(--rule); }
+  html[data-theme="dark"] .hero-path-guide,
+  html[data-theme="dark"] .discovery-guide,
+  html[data-theme="dark"] .chapter-path-bed,
+  html[data-theme="dark"] .finale-path-bed { stroke: var(--reading-ink); }
+  html[data-theme="dark"] .hero-connecting-path,
+  html[data-theme="dark"] .discovery-path,
+  html[data-theme="dark"] .chapter-path,
+  html[data-theme="dark"] .finale-path { stroke: var(--reading-accent); }
+  html[data-theme="dark"] .chapter-node,
+  html[data-theme="dark"] .finale-meeting { border-color: var(--reading-accent); }
+  html[data-theme="dark"] .finale-meeting > span { background-color: var(--reading-accent); }
+  html[data-theme="dark"] .difference-row:hover { background-color: rgb(128 209 206 / .07); }
+  html[data-theme="dark"] .difference-row:hover .round-arrow { background-color: var(--brand-teal); }
+  html[data-theme="dark"] .dialog-inner select,
+  html[data-theme="dark"] .background-options span { border-color: #9eafb9; }
+  html[data-theme="dark"] .check-label input,
+  html[data-theme="dark"] input[type="range"] { accent-color: var(--reading-accent); }
+  html[data-theme="dark"] .reading-dialog::backdrop { background: rgb(3 12 20 / .75); }
+}
+@media print {
+  html { --reading-background: white !important; color-scheme: only light !important; }
+}

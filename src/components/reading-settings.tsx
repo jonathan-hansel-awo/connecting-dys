@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SlidersHorizontal, X } from "lucide-react";
+import { Moon, SlidersHorizontal, X } from "lucide-react";
 import {
   applyPreferences,
   backgrounds,
@@ -48,6 +48,16 @@ export function ReadingSettings() {
         <SlidersHorizontal size={18} aria-hidden="true" />
         <span>Reading settings</span>
       </button>
+      <button
+        type="button"
+        className="settings-trigger theme-trigger js-only"
+        aria-label="Dark mode"
+        aria-pressed={preferences.darkMode}
+        onClick={() => update({ ...preferences, darkMode: !preferences.darkMode })}
+      >
+        <Moon size={18} aria-hidden="true" />
+        <span>Dark mode</span>
+      </button>
       <dialog
         ref={dialog}
         className="reading-dialog"
@@ -74,6 +84,14 @@ export function ReadingSettings() {
           <p className="small">
             Choose what feels comfortable. There is no single right way to read.
           </p>
+          <label className="check-label">
+            <input
+              type="checkbox"
+              checked={preferences.darkMode}
+              onChange={(e) => update({ ...preferences, darkMode: e.target.checked })}
+            />
+            Dark mode
+          </label>
           <label>
             Font family
             <select
@@ -143,8 +161,8 @@ export function ReadingSettings() {
                     update({ ...preferences, background: b.value })
                   }
                 >
-                  <span style={{ backgroundColor: b.value }} />
-                  {b.label}
+                  <span style={{ backgroundColor: preferences.darkMode ? b.darkValue : b.value }} />
+                  {preferences.darkMode ? b.darkLabel : b.label}
                 </button>
               ))}
             </div>

@@ -26,7 +26,7 @@ html {
 body {
   margin: 0;
   background: var(--reading-background);
-  color: var(--brand-navy);
+  color: var(--reading-ink, var(--brand-navy));
   font-family: var(--reading-font);
   font-size: 1rem;
   line-height: var(--reading-line-height);
@@ -101,7 +101,7 @@ button:focus-visible,
 summary:focus-visible,
 input:focus-visible,
 select:focus-visible {
-  outline: 3px solid var(--brand-teal);
+  outline: 3px solid var(--reading-accent, var(--brand-teal));
   outline-offset: 5px;
 }
 a:focus-visible {
@@ -131,7 +131,7 @@ a:focus-visible {
   line-height: var(--reading-line-height);
 }
 .text-teal {
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
 }
 .status-dot {
   display: inline-block;
@@ -236,7 +236,7 @@ html[data-js="true"] .js-only {
   white-space: nowrap;
 }
 .brand-link b {
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
 }
 .desktop-nav {
   display: flex;
@@ -249,7 +249,7 @@ html[data-js="true"] .js-only {
   padding: 0.5rem 0;
 }
 .desktop-nav a:hover {
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
   text-decoration: underline;
   text-underline-offset: 6px;
 }
@@ -329,7 +329,7 @@ html[data-js="true"] .js-only {
 .dys-word {
   position: relative;
   display: inline-block;
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
   isolation: isolate;
 }
 .dys-word svg {
@@ -399,7 +399,7 @@ html[data-js="true"] .js-only {
 }
 .note-bottom > span {
   font-size: 1.8rem;
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
 }
 .hero-orbit {
   position: absolute;
@@ -638,7 +638,7 @@ html[data-js="true"] .js-only {
 }
 .chapter-number {
   font-size: 0.7rem;
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
   font-weight: 600;
 }
 .connection-chapter h3 {
@@ -710,7 +710,7 @@ html[data-js="true"] .js-only {
   text-underline-offset: 4px;
 }
 .support-links > a > svg {
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
 }
 .about-home {
   background: #063f51;
@@ -849,7 +849,7 @@ html[data-js="true"] .js-only {
   border-radius: 8px;
   padding: 0;
   background: var(--reading-background);
-  color: var(--brand-navy);
+  color: var(--reading-ink, var(--brand-navy));
   box-shadow: 0 20px 100px #20354d44;
   overflow: auto;
   overscroll-behavior: contain;
@@ -902,7 +902,7 @@ html[data-js="true"] .js-only {
   display: block;
   width: 100%;
   min-height: 36px;
-  accent-color: var(--brand-teal);
+  accent-color: var(--reading-accent, var(--brand-teal));
 }
 .dialog-inner fieldset {
   border: 0;
@@ -931,7 +931,7 @@ html[data-js="true"] .js-only {
   border-radius: 3px;
 }
 .background-options button[aria-pressed="true"] {
-  outline: 2px solid var(--brand-teal);
+  outline: 2px solid var(--reading-accent, var(--brand-teal));
   outline-offset: 1px;
 }
 .background-options span {
@@ -950,7 +950,7 @@ html[data-js="true"] .js-only {
 .check-label input {
   width: 23px;
   height: 23px;
-  accent-color: var(--brand-teal);
+  accent-color: var(--reading-accent, var(--brand-teal));
   flex-shrink: 0;
 }
 .dialog-inner .button {
@@ -992,7 +992,7 @@ html[data-js="true"] .js-only {
   font-size: 1rem;
 }
 .article-body a:not(.button) {
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -1605,25 +1605,25 @@ html[data-reading-custom="true"] .connection,
 html[data-reading-custom="true"] .about-home,
 html[data-reading-custom="true"] .site-footer {
   background-color: var(--reading-background);
-  color: var(--brand-navy);
+  color: var(--reading-ink, var(--brand-navy));
   border-top: 1px solid var(--rule);
 }
 html[data-reading-custom="true"] .recognition-copy h2 span,
 html[data-reading-custom="true"] .recognition-art > .eyebrow {
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
 }
 html[data-reading-custom="true"] .footer-bottom {
   border-color: var(--rule);
 }
 html[data-reading-custom="true"] .footer-brand span {
-  color: var(--brand-teal);
+  color: var(--reading-accent, var(--brand-teal));
 }
 html[data-reading-custom="true"] .light-link {
-  text-decoration-color: var(--brand-teal);
+  text-decoration-color: var(--reading-accent, var(--brand-teal));
 }
 html[data-reading-custom="true"] .recognition :focus-visible,
 html[data-reading-custom="true"] .site-footer :focus-visible {
-  outline-color: var(--brand-teal);
+  outline-color: var(--reading-accent, var(--brand-teal));
 }
 html[data-spacious="true"] h1,
 html[data-spacious="true"] h2,
@@ -1727,16 +1727,16 @@ html[data-reading-custom="true"] .approved-logo img {
   border-radius: 4px;
 }
 html[data-reading-custom="true"] .approved-logo figcaption {
-  color: var(--brand-navy);
+  color: var(--reading-ink, var(--brand-navy));
 }
 html[data-reading-custom="true"] .about-home .about-caption {
   border-color: var(--rule);
 }
 html[data-reading-custom="true"] .about-home .text-link {
-  text-decoration-color: var(--brand-teal);
+  text-decoration-color: var(--reading-accent, var(--brand-teal));
 }
 html[data-reading-custom="true"] .about-home :focus-visible {
-  outline-color: var(--brand-teal);
+  outline-color: var(--reading-accent, var(--brand-teal));
 }
 @media (max-width: 700px) {
   .site-header {
