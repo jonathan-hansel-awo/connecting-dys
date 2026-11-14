@@ -17,7 +17,7 @@ export function SiteHeader() {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
-      <header className="site-header">
+      <header className="site-header surface-paper">
         <Link
           href="/#page-start"
           className="brand-link"

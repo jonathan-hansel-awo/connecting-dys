@@ -151,6 +151,25 @@ export function ReadingSettings() {
           <label className="check-label">
             <input
               type="checkbox"
+              checked={preferences.texture}
+              aria-describedby="texture-hint"
+              onChange={(e) =>
+                update({ ...preferences, texture: e.target.checked })
+              }
+            />
+            <span>
+              Background texture
+              <span className="texture-state" aria-hidden="true">
+                {preferences.texture ? "On" : "Off"}
+              </span>
+            </span>
+          </label>
+          <p className="small" id="texture-hint">
+            Subtle paper grain and surface depth. Choose what feels comfortable.
+          </p>
+          <label className="check-label">
+            <input
+              type="checkbox"
               checked={preferences.reduceMotion}
               onChange={(e) =>
                 update({ ...preferences, reduceMotion: e.target.checked })

@@ -25,9 +25,11 @@ export function HomeStoryMotion() {
           desktop:
             "(min-width: 1100px) and (min-height: 700px) and (pointer: fine)",
           motion: "(prefers-reduced-motion: no-preference)",
+          forcedColours: "(forced-colors: active)",
         },
         (context) => {
-          if (!context.conditions?.motion) return;
+          if (!context.conditions?.motion || context.conditions.forcedColours)
+            return;
           const desktop = context.conditions.desktop;
           // Both modes keep native document order. Compact/touch mode never pins.
           gsap.to(".hero-orbit", {

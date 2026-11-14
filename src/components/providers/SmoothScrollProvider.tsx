@@ -17,6 +17,7 @@ export function SmoothScrollProvider({
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(pointer: fine)");
+    const forcedColours = window.matchMedia("(forced-colors: active)");
     let disposeLenis: (() => void) | undefined;
     let active = true;
     let generation = 0;
@@ -32,6 +33,7 @@ export function SmoothScrollProvider({
     const configure = async () => {
       const shouldEnable =
         !media.matches &&
+        !forcedColours.matches &&
         finePointer.matches &&
         document.documentElement.dataset.reduceMotion !== "true";
       if (enabled === shouldEnable) {
@@ -122,6 +124,7 @@ export function SmoothScrollProvider({
     document.addEventListener("load", refresh, true);
     media.addEventListener("change", changed);
     finePointer.addEventListener("change", changed);
+    forcedColours.addEventListener("change", changed);
     window.addEventListener(PREFERENCES_EVENT, changed);
     window.addEventListener("pageshow", refresh);
     return () => {
@@ -135,6 +138,7 @@ export function SmoothScrollProvider({
       document.removeEventListener("load", refresh, true);
       media.removeEventListener("change", changed);
       finePointer.removeEventListener("change", changed);
+      forcedColours.removeEventListener("change", changed);
       window.removeEventListener(PREFERENCES_EVENT, changed);
       window.removeEventListener("pageshow", refresh);
     };

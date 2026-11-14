@@ -2,6 +2,12 @@
 
 Next.js App Router + TypeScript website for Connecting Dys, a UK Community Interest Company. The original approved embracing-figures logo is preserved byte-for-byte. A background-free symbol adaptation is used in the header and hero following the owner’s 13 November feedback. The current tagline is **A home for every DYS mind.** No hosting project, deployment or Vercel configuration is created by this work.
 
+## Phase 01 materials
+
+The existing homepage now uses a static fine-paper surface system with shallow raised/inset edges and consistent directional light. **Background texture** in Reading settings toggles the grain and optional depth together; it defaults to On and uses the existing preference key and pre-paint bootstrap. Saved older settings remain compatible. All four reading backgrounds govern light reading surfaces; fonts/spacing and the approved identity are preserved. Forced colours/print remove the material effects, and forced colours also selects native/static motion. Without JavaScript the page is flat and complete.
+
+See [Phase 01 implementation and verification](docs/PHASE_01_MATERIAL_SYSTEM.md). Build/lint/typecheck and **11 production regression groups pass**. Browser rendering was blocked, so **new screenshots, device/zoom quality and visual acceptance remain outstanding**. Phase 02 has not started. The material engine is in `src/styles/surfaces.css`; its original procedural SVG tile is in `public/textures/fine-paper.svg`. No new motion dependency or scroll choreography is added in this phase.
+
 ## Run locally
 
 Use Node.js 22.18+ (or Node.js 24 LTS) and npm.
@@ -25,7 +31,7 @@ npm start
 
 ## Homepage enhancement baseline (Phase 00)
 
-The existing homepage is unchanged in this audit phase. Read the [current baseline/results](docs/PHASE_00_BASELINE.md), [chapter scene contracts](docs/SCENE_CONTRACTS.md), [screenshots/evidence](docs/baselines/phase-00/README.md) and [phased roadmap](docs/HOMEPAGE_ENHANCEMENT_ACTION_PLAN.md) before later enhancements. Phase 01 has not started. The baseline records a small maximum-reading/400% overflow and a forced-colours motion-policy gap for follow-up.
+The existing homepage is unchanged in this audit phase. Read the [current baseline/results](docs/PHASE_00_BASELINE.md), [chapter scene contracts](docs/SCENE_CONTRACTS.md), [screenshots/evidence](docs/baselines/phase-00/README.md) and [phased roadmap](docs/HOMEPAGE_ENHANCEMENT_ACTION_PLAN.md) before later enhancements. Phase 01 implementation status is documented above. The baseline records a small maximum-reading/400% overflow and a forced-colours motion-policy gap for follow-up.
 
 Reusable browser smoke checks use the already-installed Playwright/axe development dependencies:
 

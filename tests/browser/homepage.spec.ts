@@ -156,3 +156,66 @@ test("all public routes return content and pass rendered axe", async ({ page }, 
     expect(audit.violations, route).toEqual([]);
   }
 });
+
+test("texture toggles every surface, persists with reading choices and resets", async ({ page }, info) => {
+  await page.goto("/");
+  const trigger = page.getByRole("button", { name: "Reading settings", exact: true });
+  await trigger.click();
+  const texture = page.getByRole("checkbox", { name: "Background texture", exact: true });
+  await expect(texture).toBeChecked();
+  const surfaces = "body,.hero,#recognition,#explore,#community,.support,.about-home,.invitation,.site-footer,.reading-dialog,.connection-visual";
+  for (const enabled of [true, false]) {
+    await texture.setChecked(enabled);
+    await settled(page);
+    for (const font of fonts) {
+      await page.getByRole("combobox", { name: "Font family", exact: true }).selectOption(font);
+      for (const background of backgrounds) {
+        await page.getByRole("button", { name: background, exact: true }).click();
+        await settled(page);
+        const state = await page.evaluate((selector) => ({
+          backgrounds: [...document.querySelectorAll(selector)].map((el) => getComputedStyle(el).backgroundImage),
+          body: getComputedStyle(document.body).backgroundColor,
+          connection: getComputedStyle(document.querySelector("#community")!).backgroundColor,
+          textShadow: getComputedStyle(document.querySelector("h1")!).textShadow,
+        }), surfaces);
+        for (const image of state.backgrounds) expect(image.includes("fine-paper.svg")).toBe(enabled);
+        expect(state.connection).toBe(state.body);
+        expect(state.textShadow).toBe("none");
+      }
+    }
+    await page.screenshot({ path: info.outputPath(`texture-${enabled ? "on" : "off"}-settings.png`) });
+  }
+  await page.keyboard.press("Escape");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-texture", "off");
+  await trigger.click();
+  await expect(texture).not.toBeChecked();
+  await expect(page.getByRole("combobox", { name: "Font family", exact: true })).toHaveValue("OpenDyslexic");
+  await page.getByRole("button", { name: "Reset preferences" }).click();
+  await expect(texture).toBeChecked();
+  await expect(page.locator("html")).toHaveAttribute("data-texture", "on");
+  await page.keyboard.press("Escape");
+  await expect(trigger).toBeFocused();
+});
+
+test("forced colours flattens texture/relief and tears down motion; no-JS stays flat", async ({ page, browser }, info) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Reading settings", exact: true }).click();
+  await page.keyboard.press("Escape");
+  await page.emulateMedia({ forcedColors: "active" });
+  await settled(page);
+  await staticArtwork(page);
+  await expect(page.locator("body")).toHaveCSS("background-image", "none");
+  await expect(page.locator(".hero-orbit")).toHaveCSS("box-shadow", "none");
+  await expect(page.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
+  await page.emulateMedia({ forcedColors: "none" });
+  await expect(page.locator("body")).toHaveCSS("background-image", /fine-paper\.svg/);
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport });
+  try {
+    const native = await context.newPage();
+    await native.goto("http://127.0.0.1:3100/");
+    await expect(native.locator("body")).toHaveCSS("background-image", "none");
+    await expect(native.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
+    await expect(native.locator("h1")).toBeVisible();
+  } finally { await context.close(); }
+});

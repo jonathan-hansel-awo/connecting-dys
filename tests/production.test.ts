@@ -228,7 +228,31 @@ test("malformed, hostile and unavailable storage cannot break first paint", () =
     vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext()),
   );
   assert.equal(dom.window.document.documentElement.dataset.js, "true");
+  assert.equal(dom.window.document.documentElement.dataset.texture, "on");
   dom.window.close();
+});
+
+test("texture migrates safely and restores before paint without changing reading choices", () => {
+  for (const texture of [undefined, true, false, "off", null, 0]) {
+    for (const font of ["Open Sans", "Arial", "Verdana", "Atkinson Hyperlegible", "OpenDyslexic"]) {
+      for (const background of ["#FCF7ED", "#FFFFFF", "#EBF4FA", "#FFF0E4"]) {
+        const dom = page();
+        dom.window.localStorage.setItem("connecting-dys-reading-settings", JSON.stringify({
+          font, background, texture, size: 26, lineHeight: 2, letterSpacing: 0.12, reduceMotion: true,
+        }));
+        const bootstrap = [...dom.window.document.scripts].find((s) => s.textContent?.startsWith("try{"))!;
+        vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
+        const html = dom.window.document.documentElement;
+        assert.equal(html.dataset.texture, texture === false ? "off" : "on");
+        assert.equal(html.dataset.reduceMotion, "true");
+        assert.equal(html.dataset.spacious, "true");
+        assert.equal(html.style.getPropertyValue("--reading-background"), background);
+        assert.equal(html.style.getPropertyValue("--reading-size"), "26px");
+        assert.ok(html.style.getPropertyValue("--reading-font").includes(font === "Open Sans" ? "--font-open-sans" : font));
+        dom.window.close();
+      }
+    }
+  }
 });
 
 test("axe finds no detectable WCAG A/AA structural violations in rendered routes", async () => {
@@ -288,6 +312,24 @@ test("brand reading text combinations meet AA contrast on every background prese
   }
   assert.ok(ratio("#FFFFFF", token("teal")) >= 4.5);
   assert.ok(ratio(token("amber"), token("navy")) >= 4.5);
+});
+
+test("material grain and button highlight retain conservative AA text contrast", () => {
+  const rgb = (hex: string) => hex.replace("#", "").match(/../g)!.map((v) => parseInt(v, 16) / 255);
+  const mix = (base: number[], overlay: number[], alpha: number) => base.map((v, i) => v * (1 - alpha) + overlay[i] * alpha);
+  const luminance = (c: number[]) => c.map((v) => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
+  const ratio = (a: number[], b: number[]) => (Math.max(luminance(a), luminance(b)) + 0.05) / (Math.min(luminance(a), luminance(b)) + 0.05);
+  // Bound the SVG's 0.08 alpha at entirely black/white, stronger than its real
+  // fine fibres. Button sheen adds at most 0.04 white. No layout/axe claim.
+  const darkest = (c: number[]) => mix(c, [0, 0, 0], 0.08);
+  const lightest = (c: number[]) => mix(c, [1, 1, 1], 0.08);
+  for (const paper of ["#FCF7ED", "#FFFFFF", "#EBF4FA", "#FFF0E4"]) {
+    for (const ink of ["#20354D", "#146C78", "#4E5E6E"])
+      assert.ok(ratio(rgb(ink), darkest(rgb(paper))) >= 4.5, `${ink} on textured ${paper}`);
+  }
+  assert.ok(ratio(rgb("#FFFFFF"), lightest(mix(rgb("#146C78"), [1, 1, 1], 0.04))) >= 4.5);
+  for (const scene of ["#20354D", "#063F51", "#146C78"])
+    assert.ok(ratio(rgb("#FCF7ED"), lightest(rgb(scene))) >= 4.5, `cream on textured ${scene}`);
 });
 
 test("optional fonts are real local assets and are not eagerly preloaded", () => {

@@ -1,7 +1,7 @@
 # Connecting Dys — Homepage Experience Enhancement Action Plan
 
 **Version:** 1.0 — 14 November 2026  
-**Status:** Phase 00 audit completed 14 November 2026 with browser coverage limits; see [baseline report](PHASE_00_BASELINE.md). Phases 01–07 not implemented.  
+**Status:** Phase 00 audit completed. Phase 01 material implementation delivered 14 November 2026; [visual/browser acceptance remains pending](PHASE_01_MATERIAL_SYSTEM.md). Phases 02–07 not implemented.
 **Repository:** [`jonathan-hansel-awo/connecting-dys`](https://github.com/jonathan-hansel-awo/connecting-dys) (current default branch: `master`)  
 **Current site:** https://connecting-dys.vercel.app/  
 **Primary focus:** mobile-first scroll choreography, an original tactile visual system, and compatibility with the existing reading settings  
@@ -130,14 +130,16 @@ Actions:
 
 Actions:
 
-- [ ] Define CSS design tokens for continuous background grain, material colour, shadow/highlight, raised/inset planes and rounded panel edges.
-- [ ] Implement a **continuous fine paper texture** across the actual existing homepage; adapt it to cream, teal/dark and softly tinted surfaces. Keep the effect deliberately more subtle than the original Relevo reference.
-- [ ] Give selected decorative elements gentle emboss/deboss; avoid thick carved headline letters, dark extrusions and shadows behind long copy.
-- [ ] Apply raised/recessed visual treatment to selected surfaces/buttons/photo frames while preserving visible borders, clear focus states and hover/touch affordances.
-- [ ] Integrate **Background texture On/Off** into the current Reading settings dialog and persistent early bootstrap; handle existing saved preference objects without breaking them.
-- [ ] Ensure **all four reading-background options** apply coherently across the newly textured/coloured light reading surfaces. Confirm typography preferences still govern headings and section copy.
-- [ ] Verify texture remains crisp but quiet at standard density, large type, maximum zoom, high-DPI screens; disable in forced-colours mode.
-- [ ] Document performance impact and texture asset licensing/origin if an asset is added.
+- [x] Define CSS design tokens for continuous background grain, material colour, shadow/highlight, raised/inset planes and rounded panel edges.
+- [x] Implement a **continuous fine paper texture** across the actual existing homepage; adapt it to cream, teal/dark and softly tinted surfaces. Keep the effect deliberately more subtle than the original Relevo reference.
+- [x] Give selected decorative elements gentle emboss/deboss; avoid thick carved headline letters, dark extrusions and shadows behind long copy.
+- [x] Apply raised/recessed visual treatment to selected surfaces/buttons/photo frames while preserving visible borders, clear focus states and hover/touch affordances.
+- [x] Integrate **Background texture On/Off** into the current Reading settings dialog and persistent early bootstrap; handle existing saved preference objects without breaking them.
+- [x] Ensure **all four reading-background options** apply coherently across the newly textured/coloured light reading surfaces. Confirm typography preferences still govern headings and section copy.
+- [ ] Verify texture remains crisp but quiet at standard density, large type, maximum zoom, high-DPI screens; disable in forced-colours mode. **Forced-colours suppression is implemented; rendered verification is blocked. See Phase 01 report.**
+- [x] Document performance impact and texture asset licensing/origin if an asset is added.
+
+**Implementation status:** Static materials, preference schema/bootstrap/UI and regression checks are implemented. Screenshots and browser visual acceptance remain pending; do not treat that gate as passed.
 
 **Exit criteria:** Same layout and brand, but continuous tactile ambience is visible; all reading options still work, including the new texture toggle. No new animation dependencies. Screenshots accepted before moving on.
 
@@ -278,7 +280,7 @@ Actions:
 ## 7. Deliverables checklist (across the roadmap)
 
 - [x] Documented current baseline and motion/reading-preference contracts (Phase 00; browser limits recorded)
-- [ ] Site-wide fine tactile background and preference-aware visual surface system (Phase 01)
+- [x] Site-wide fine tactile background and preference-aware visual surface system (Phase 01 implementation; visual acceptance pending)
 - [ ] Noticeable mobile hero→recognition transition (Phase 02)
 - [ ] Curated, accessible DYS discovery progression (Phase 03)
 - [ ] Signature connection story, mobile and desktop (Phase 04)

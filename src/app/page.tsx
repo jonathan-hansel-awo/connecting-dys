@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <main id="main-content" tabIndex={-1}>
       <HomeStoryMotion />
-      <section className="hero wrap" aria-labelledby="hero-title">
+      <section className="hero wrap surface-paper" aria-labelledby="hero-title">
         <div className="hero-copy">
           <p className="eyebrow">
             <span className="status-dot" />
@@ -56,7 +56,9 @@ export default function HomePage() {
             <span />
             <span />
           </div>
-          <div className="hero-note note-top">A little more understood.</div>
+          <div className="hero-note note-top surface-raised">
+            A little more understood.
+          </div>
           <div className="logo-stage">
             <Image
               src={brand.symbol}
@@ -86,14 +88,14 @@ export default function HomePage() {
 
       <section
         id="recognition"
-        className="recognition"
+        className="recognition surface-scene surface-panel"
         aria-labelledby="recognition-title"
       >
         <div className="wrap recognition-grid">
           <div className="recognition-art">
             <span className="eyebrow">01 / A shared starting point</span>
             <figure className="recognition-figure">
-              <div className="recognition-media">
+              <div className="recognition-media surface-inset">
                 <Image
                   src="/images/shared-moment.webp"
                   alt="An illustrative scene of four young adults talking together in a relaxed shared space."
@@ -132,7 +134,7 @@ export default function HomePage() {
 
       <section
         id="explore"
-        className="discovery wrap"
+        className="discovery wrap surface-quiet"
         aria-labelledby="explore-title"
       >
         <div className="discovery-heading">
@@ -179,7 +181,7 @@ export default function HomePage() {
 
       <section
         id="community"
-        className="connection"
+        className="connection surface-soft surface-panel"
         aria-labelledby="community-title"
       >
         <div className="wrap">
@@ -193,7 +195,10 @@ export default function HomePage() {
             <p>What we’re working towards, together.</p>
           </div>
           <div className="connection-layout">
-            <div className="connection-visual" aria-hidden="true">
+            <div
+              className="connection-visual surface-scene surface-inset"
+              aria-hidden="true"
+            >
               <div className="landscape-label">
                 Every path has a place here.
               </div>
@@ -230,7 +235,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="support wrap" aria-labelledby="support-title">
+      <section
+        className="support wrap surface-quiet"
+        aria-labelledby="support-title"
+      >
         <div className="support-heading">
           <p className="eyebrow">04 / A useful next step</p>
           <h2 id="support-title">
@@ -275,7 +283,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="about-home" aria-labelledby="about-title">
+      <section
+        className="about-home surface-scene surface-panel"
+        aria-labelledby="about-title"
+      >
         <div className="wrap about-layout">
           <div className="about-statement">
             <p className="eyebrow">05 / Meet Connecting Dys</p>
@@ -316,7 +327,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="invitation wrap" aria-labelledby="invitation-title">
+      <section
+        className="invitation wrap surface-paper"
+        aria-labelledby="invitation-title"
+      >
         <div className="invitation-decoration" aria-hidden="true">
           <span />
           <span />

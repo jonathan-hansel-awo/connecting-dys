@@ -1,5 +1,11 @@
 # Verification report
 
+## Latest: Phase 01 materials — 14 November 2026
+
+See [PHASE_01_MATERIAL_SYSTEM.md](PHASE_01_MATERIAL_SYSTEM.md) for the current implementation, source/HTTP evidence and acceptance limits. Texture/grain, raised/inset surfaces, preference persistence and the forced-colours motion guard are implemented. **Clean install, lint, typecheck, production build and 11/11 production regression groups pass.** Ten route main contents/links/images match a fresh Phase 00 build; both approved asset hashes are unchanged. Conservative numeric text contrast bounds pass with the grain/button sheen.
+
+The browser suite now discovers 42 project/scenario entries, including texture On/Off, forced-colours and no-JS checks; attempted execution failed before the test body due to Chromium's denied AF_UNIX socket. Cloud local-preview access also failed; the error-tab observation was blocked by URL policy and was not bypassed. **No new rendered screenshots or browser/device visual pass is claimed.** The complete matrix, Phase 00's maximum-reading overflow reproduction, screen-reader/keyboard review and performance metrics remain outstanding. Phase 02 has not started; no Vercel deployment or build-status check was invoked.
+
 ## Latest: Phase 00 homepage baseline — 14 November 2026
 
 See [PHASE_00_BASELINE.md](PHASE_00_BASELINE.md) for the current audit, exact source SHA, command results, findings and coverage limits; [SCENE_CONTRACTS.md](SCENE_CONTRACTS.md) for chapter/lifecycle rules; and [captured evidence](baselines/phase-00/README.md) for screenshots and measured data. The sections below retain the previous implementation history.

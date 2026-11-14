@@ -1,5 +1,7 @@
 # Homepage scene contracts — Phase 00
 
+**Phase 01 addendum (14 November 2026):** [the material system](PHASE_01_MATERIAL_SYSTEM.md) adds static surface classes, rounded panel lips, recessed/raised decorative treatments and `data-texture="on|off"`. DOM order, reading copy, anchors, scene distances and approved images stay fixed. Forced colours now tears down both GSAP scenes and Lenis and suppresses grain/relief; the historical forced-colours gap below is superseded. No new pin, overlap timeline or lateral transition is introduced. Browser visual acceptance is still pending.
+
 Audited 14 November 2026 against `master` at `d45aeff2c9b0148c9b3cb6db72613f35ebf595fb`. This describes the **existing implementation** and the boundaries for later work. No chapter is redesigned in Phase 00. See [baseline report](PHASE_00_BASELINE.md) and [roadmap](HOMEPAGE_ENHANCEMENT_ACTION_PLAN.md).
 
 ## Shared document and motion policy

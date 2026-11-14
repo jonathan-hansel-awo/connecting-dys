@@ -20,6 +20,7 @@ export type Preferences = {
   letterSpacing: number;
   background: string;
   reduceMotion: boolean;
+  texture: boolean;
 };
 export const defaults: Preferences = {
   font: "Open Sans",
@@ -28,6 +29,7 @@ export const defaults: Preferences = {
   letterSpacing: 0.01,
   background: "#FCF7ED",
   reduceMotion: false,
+  texture: true,
 };
 // This self-contained function also runs before paint. Keep dependencies in config.
 function preferenceRuntime(
@@ -58,6 +60,8 @@ function preferenceRuntime(
       ? (p.background as string)
       : config.defaults.background,
     reduceMotion: p.reduceMotion === true,
+    // Older saved objects have no texture field. Only a real boolean opts out.
+    texture: typeof p.texture === "boolean" ? p.texture : config.defaults.texture,
   };
   const root = document.documentElement;
   root.style.setProperty("--reading-font", config.fonts[prefs.font]);
@@ -75,6 +79,7 @@ function preferenceRuntime(
   );
   root.style.setProperty("--reading-background", prefs.background);
   root.dataset.reduceMotion = String(prefs.reduceMotion);
+  root.dataset.texture = prefs.texture ? "on" : "off";
   root.dataset.readingCustom = String(
     prefs.background !== config.defaults.background,
   );
@@ -103,4 +108,4 @@ export function restorePreferences() {
   }
 }
 // Static, non-user-controlled source; can be allowed by a CSP hash when a CSP is added.
-export const preferenceBootstrap = `try{(${preferenceRuntime.toString()})(${JSON.stringify(config)},JSON.parse(localStorage.getItem(${JSON.stringify(STORAGE_KEY)})||'null'))}catch{document.documentElement.dataset.js='true'}`;
+export const preferenceBootstrap = `try{(${preferenceRuntime.toString()})(${JSON.stringify(config)},(()=>{try{return JSON.parse(localStorage.getItem(${JSON.stringify(STORAGE_KEY)})||'null')}catch{return null}})())}catch{document.documentElement.dataset.js='true'}`;

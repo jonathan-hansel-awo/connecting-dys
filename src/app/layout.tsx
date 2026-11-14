@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { preferenceBootstrap } from "@/lib/preferences";
 import "lenis/dist/lenis.css";
 import "./globals.css";
+import "../styles/surfaces.css";
 
 const openSans = localFont({
   src: [
@@ -44,7 +45,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: preferenceBootstrap }} />
       </head>
-      <body>
+      <body className="surface-paper">
         <SmoothScrollProvider>
           <SiteHeader />
           {children}
