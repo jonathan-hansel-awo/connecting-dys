@@ -1,0 +1,503 @@
+{
+  "environment": "Real local Chromium against production build",
+  "startTime": 1794641907110,
+  "durationMs": 292403.373,
+  "stats": {
+    "total": 60,
+    "expected": 54,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 6,
+    "ok": true
+  },
+  "projects": [
+    "mobile-narrow",
+    "mobile-wide",
+    "tablet",
+    "desktop",
+    "phone-landscape",
+    "reflow-320"
+  ],
+  "cases": [
+    {
+      "project": "mobile-narrow",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "results": [
+        "skipped"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "results": [
+        "skipped"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "results": [
+        "skipped"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "results": [
+        "skipped"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "results": [
+        "skipped"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-narrow",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "mobile-wide",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "tablet",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "desktop",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "skipped",
+      "results": [
+        "skipped"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "phone-landscape",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "project": "reflow-320",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "results": [
+        "passed"
+      ]
+    }
+  ]
+}

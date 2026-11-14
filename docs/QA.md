@@ -1,3 +1,11 @@
+# Phase 02 verification update — 14 November 2026
+
+See [Phase 02 implementation/contract](PHASE_02_WELCOME_TRANSITION.md) and [actual screenshots/run output](baselines/phase-02/README.md). Local production build, lint, typecheck and 11 production regression groups pass. The complete real Chromium suite passes **54 tests with 6 intentional skips, zero failures and zero flaky tests**. Five shared ten-route audits are run once at desktop; one short-landscape animation skip has an explicit static-fallback assertion. Rendered axe detects no tagged WCAG A/AA violations across the ten routes. Compatibility checks also exposed and corrected alternate-background grain removal and native-fragment Back restoration through Next.js; Back/Forward is tested in the updated suite. Six viewport tiers cover path/edge progression, stationary text/caption/controls, anchor clearance, five fonts/four backgrounds, maximum spacing, texture off, OS/site reduced motion, forced colours and no-JS. Ten-route source/HTTP comparison confirms unchanged content, links, image semantics and both logo hashes.
+
+The native desktop runner now launches Chromium successfully; earlier executor/browser limitations below are historical. Physical Android/iOS, screen readers, actual browser UI 200%/400% zoom, high-DPI visual review and Core Web Vitals remain outstanding. Emulated 320px reflow is covered. No deployment or Vercel build monitoring is performed.
+
+---
+
 # Verification report
 
 ## Latest: Phase 01 materials — 14 November 2026

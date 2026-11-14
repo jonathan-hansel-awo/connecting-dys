@@ -71,6 +71,13 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Not Connecting Dys members"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
   assert.equal(doc.querySelectorAll(".reading-toolbar .settings-trigger").length, 1);
+  const welcomePath = doc.querySelector('[data-welcome-scene] svg[aria-hidden="true"] [data-hero-path]');
+  assert.ok(welcomePath, "welcome path is a separate decorative SVG, not the logo");
+  assert.equal(welcomePath.getAttribute("pathLength"), "1");
+  const sheet = doc.querySelector('#recognition > [data-recognition-sheet][aria-hidden="true"]');
+  assert.ok(sheet, "paint lip belongs to the real recognition anchor");
+  assert.equal(sheet.querySelectorAll("a,button,input,[tabindex],img").length, 0);
+  assert.equal(doc.querySelectorAll("[data-welcome-scene] .logo-stage img").length, 1);
   dom.window.close();
 });
 

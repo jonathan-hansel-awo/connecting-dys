@@ -1,7 +1,7 @@
 # Connecting Dys — Homepage Experience Enhancement Action Plan
 
 **Version:** 1.0 — 14 November 2026  
-**Status:** Phase 00 audit completed. Phase 01 material implementation delivered 14 November 2026; [visual/browser acceptance remains pending](PHASE_01_MATERIAL_SYSTEM.md). Phases 02–07 not implemented.
+**Status:** Phases 00–02 implemented. Phase 02 adds the first signature transition and real browser evidence; see [implementation/limits](PHASE_02_WELCOME_TRANSITION.md). Phases 03–07 not implemented. The owner accepted Phase 01 direction by requesting Phase 02; physical-device release checks remain outstanding.
 **Repository:** [`jonathan-hansel-awo/connecting-dys`](https://github.com/jonathan-hansel-awo/connecting-dys) (current default branch: `master`)  
 **Current site:** https://connecting-dys.vercel.app/  
 **Primary focus:** mobile-first scroll choreography, an original tactile visual system, and compatibility with the existing reading settings  
@@ -136,10 +136,10 @@ Actions:
 - [x] Apply raised/recessed visual treatment to selected surfaces/buttons/photo frames while preserving visible borders, clear focus states and hover/touch affordances.
 - [x] Integrate **Background texture On/Off** into the current Reading settings dialog and persistent early bootstrap; handle existing saved preference objects without breaking them.
 - [x] Ensure **all four reading-background options** apply coherently across the newly textured/coloured light reading surfaces. Confirm typography preferences still govern headings and section copy.
-- [ ] Verify texture remains crisp but quiet at standard density, large type, maximum zoom, high-DPI screens; disable in forced-colours mode. **Forced-colours suppression is implemented; rendered verification is blocked. See Phase 01 report.**
+- [ ] Verify texture remains crisp but quiet at standard density, large type, maximum zoom, high-DPI screens; disable in forced-colours mode. **Forced-colours suppression is verified in Phase 02; physical high-DPI and browser UI zoom review remain outstanding.**
 - [x] Document performance impact and texture asset licensing/origin if an asset is added.
 
-**Implementation status:** Static materials, preference schema/bootstrap/UI and regression checks are implemented. Screenshots and browser visual acceptance remain pending; do not treat that gate as passed.
+**Implementation status:** Static materials, preference schema/bootstrap/UI and regression checks are implemented. Browser verification was blocked at the Phase 01 handoff. The owner approved proceeding to Phase 02, which now supplies real Chromium evidence and fixes alternate-background grain removal. Physical high-DPI and actual browser UI zoom checks remain outstanding.
 
 **Exit criteria:** Same layout and brand, but continuous tactile ambience is visible; all reading options still work, including the new texture toggle. No new animation dependencies. Screenshots accepted before moving on.
 
@@ -149,13 +149,13 @@ Actions:
 
 Actions:
 
-- [ ] Preserve exact current hero heading, copy, CTAs, approved symbol and wordmark/tagline.
-- [ ] Give hero decorative curves, path nodes and non-text surfaces subtle depth; visually separate the moving layers from stationary, readable text and tap targets.
-- [ ] Add mobile ScrollTrigger choreography that **visibly** changes the composition as scrolling begins: an embossed path extends, decorative layers shift in depth, and the next panel rises to overlap the hero.
-- [ ] Use a restrained desktop variation with optional parallax/lateral movement; do not simply scale the desktop offsets to mobile.
-- [ ] Preserve the existing recognition photograph, caption and overflow fix. The frame may appear to lift or settle into a recessed surface while the copy stays in flow.
-- [ ] Ensure anchor target `#recognition` lands correctly even when a panel overlaps visually; don't intercept touch scroll or move actionable links.
-- [ ] Add an always-readable reduced-motion/static overlap appearance and responsive fallback for spacious settings.
+- [x] Preserve exact current hero heading, copy, CTAs, approved symbol and wordmark/tagline.
+- [x] Give hero decorative curves, path nodes and non-text surfaces subtle depth; visually separate the moving layers from stationary, readable text and tap targets.
+- [x] Add mobile ScrollTrigger choreography that **visibly** changes the composition as scrolling begins: an embossed path extends, decorative layers shift in depth, and the next panel rises to overlap the hero.
+- [x] Use a restrained desktop variation with optional parallax/lateral movement; do not simply scale the desktop offsets to mobile.
+- [x] Preserve the existing recognition photograph, caption and overflow fix. The frame may appear to lift or settle into a recessed surface while the copy stays in flow.
+- [x] Ensure anchor target `#recognition` lands correctly even when a panel overlaps visually; don't intercept touch scroll or move actionable links.
+- [x] Add an always-readable reduced-motion/static overlap appearance and responsive fallback for spacious settings.
 
 **Exit criteria:** A mobile visitor can **see one meaningful visual scene change** on first downward scroll; no content shifts under text, no clipped heading, no focus/anchor regression, native scrolling still works.
 
@@ -280,8 +280,8 @@ Actions:
 ## 7. Deliverables checklist (across the roadmap)
 
 - [x] Documented current baseline and motion/reading-preference contracts (Phase 00; browser limits recorded)
-- [x] Site-wide fine tactile background and preference-aware visual surface system (Phase 01 implementation; visual acceptance pending)
-- [ ] Noticeable mobile hero→recognition transition (Phase 02)
+- [x] Site-wide fine tactile background and preference-aware visual surface system (Phase 01; subsequent browser evidence in Phase 02)
+- [x] Noticeable mobile hero→recognition transition (Phase 02; browser evidence recorded)
 - [ ] Curated, accessible DYS discovery progression (Phase 03)
 - [ ] Signature connection story, mobile and desktop (Phase 04)
 - [ ] Calm, complete support/about/invitation journey (Phase 05)

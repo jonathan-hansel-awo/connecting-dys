@@ -6,7 +6,13 @@ Next.js App Router + TypeScript website for Connecting Dys, a UK Community Inter
 
 The existing homepage now uses a static fine-paper surface system with shallow raised/inset edges and consistent directional light. **Background texture** in Reading settings toggles the grain and optional depth together; it defaults to On and uses the existing preference key and pre-paint bootstrap. Saved older settings remain compatible. All four reading backgrounds govern light reading surfaces; fonts/spacing and the approved identity are preserved. Forced colours/print remove the material effects, and forced colours also selects native/static motion. Without JavaScript the page is flat and complete.
 
-See [Phase 01 implementation and verification](docs/PHASE_01_MATERIAL_SYSTEM.md). Build/lint/typecheck and **11 production regression groups pass**. Browser rendering was blocked, so **new screenshots, device/zoom quality and visual acceptance remain outstanding**. Phase 02 has not started. The material engine is in `src/styles/surfaces.css`; its original procedural SVG tile is in `public/textures/fine-paper.svg`. No new motion dependency or scroll choreography is added in this phase.
+See [Phase 01 implementation and verification](docs/PHASE_01_MATERIAL_SYSTEM.md). Build/lint/typecheck and **11 production regression groups pass**. Browser rendering was blocked at the Phase 01 handoff; Phase 02 now supplies real Chromium screenshots and interaction evidence below. Physical-device/zoom quality checks remain outstanding. The material engine is in `src/styles/surfaces.css`; its original procedural SVG tile is in `public/textures/fine-paper.svg`. No new motion dependency or scroll choreography was added in Phase 01.
+
+## Phase 02 welcome transition
+
+The first scroll extends an embossed path, shifts decorative depth and raises Recognition’s rounded paper edge into reserved hero space. Mobile uses native scrolling and larger vertical art movement; desktop stays restrained. All reading text, controls, approved identity and the recognition caption remain in flow. Reduced motion, short screens, spacious reading, forced colours and no-JS retain complete static alternatives.
+
+See [implementation, exact scene contract and limits](docs/PHASE_02_WELCOME_TRANSITION.md) and [actual screenshots/browser evidence](docs/baselines/phase-02/README.md). The full Chromium suite passes **54 tests with 6 intentional skips**, including rendered axe, preferences, anchors and Back/Forward across six viewports. Shared route audits run once at desktop; short screens test a static fallback. Phase 03 remains next.
 
 ## Run locally
 
@@ -41,7 +47,7 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-The runner owns a local production server on port 3100. It covers six viewports, chapter screenshots, rendered axe, reading preferences, anchors/menu/history, reduced motion and no-JS navigation. Reports/screenshots/traces go to ignored `test-results/` and `playwright-report/`; committed Phase 00 images are never overwritten. For an installed Chromium, optionally set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its absolute executable path. Browser launch was blocked in the Phase 00 executor; test discovery/typechecking pass, but the browser suite is **not reported as passed**. Live cloud Chromium zoom references are documented separately and do not replace real mobile/assistive-technology QA.
+The runner owns a local production server on port 3100 (override with validated `PLAYWRIGHT_PORT`). It covers six viewports, chapter screenshots, rendered axe, reading preferences, anchors/menu/history, reduced motion and no-JS navigation. Reports/screenshots/traces go to ignored `test-results/` and `playwright-report/`; committed Phase 00 images are never overwritten. For an installed Chromium, optionally set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its absolute executable path. Browser launch was blocked in the Phase 00 executor. Phase 02 uses native local Chromium successfully; current results and any remaining failures are recorded in its evidence report. Live cloud Chromium zoom references are documented separately and do not replace real mobile/assistive-technology QA.
 
 ## Experience and architecture
 

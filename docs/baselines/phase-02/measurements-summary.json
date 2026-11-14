@@ -1,0 +1,37 @@
+[
+  {
+    "project": "mobile-narrow",
+    "pathDelta": 0.4781,
+    "paintedEdgeRisePx": 31.2,
+    "linkClearancePx": 38.4,
+    "overflowPx": 0
+  },
+  {
+    "project": "mobile-wide",
+    "pathDelta": 0.4786,
+    "paintedEdgeRisePx": 31.17,
+    "linkClearancePx": 38.38,
+    "overflowPx": 0
+  },
+  {
+    "project": "tablet",
+    "pathDelta": 0.4775,
+    "paintedEdgeRisePx": 46.71,
+    "linkClearancePx": 44.06,
+    "overflowPx": 0
+  },
+  {
+    "project": "desktop",
+    "pathDelta": 0.4774,
+    "paintedEdgeRisePx": 31.2,
+    "linkClearancePx": 65.4,
+    "overflowPx": 0
+  },
+  {
+    "project": "reflow-320",
+    "pathDelta": 0.4788,
+    "paintedEdgeRisePx": 31.2,
+    "linkClearancePx": 38.4,
+    "overflowPx": 0
+  }
+]

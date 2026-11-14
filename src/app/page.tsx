@@ -4,12 +4,17 @@ import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { brand, connectionChapters, differences } from "@/content/site";
 import { DifferenceArtwork, CommunityArtwork } from "@/components/story-art";
 import { HomeStoryMotion } from "@/components/home-story-motion";
+import { HeroTransitionArt } from "@/components/hero-transition-art";
 
 export default function HomePage() {
   return (
     <main id="main-content" tabIndex={-1}>
       <HomeStoryMotion />
-      <section className="hero wrap surface-paper" aria-labelledby="hero-title">
+      <section
+        className="hero wrap surface-paper"
+        aria-labelledby="hero-title"
+        data-welcome-scene
+      >
         <div className="hero-copy">
           <p className="eyebrow">
             <span className="status-dot" />
@@ -51,6 +56,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="hero-composition">
+          <HeroTransitionArt />
           <div className="hero-orbit" aria-hidden="true">
             <span />
             <span />
@@ -91,6 +97,7 @@ export default function HomePage() {
         className="recognition surface-scene surface-panel"
         aria-labelledby="recognition-title"
       >
+        <div className="recognition-sheet" data-recognition-sheet aria-hidden="true" />
         <div className="wrap recognition-grid">
           <div className="recognition-art">
             <span className="eyebrow">01 / A shared starting point</span>

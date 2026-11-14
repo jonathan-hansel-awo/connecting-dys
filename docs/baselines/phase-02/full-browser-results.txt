@@ -1,0 +1,75 @@
+
+> connecting-dys@0.1.0 test:browser
+> playwright test
+
+
+Running 60 tests using 1 worker
+
+  ✓   1 [mobile-narrow] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (5.6s)
+  ✓   2 [mobile-narrow] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.2s)
+  ✓   3 [mobile-narrow] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.0s)
+  ✓   4 [mobile-narrow] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.5s)
+  -   5 [mobile-narrow] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓   6 [mobile-narrow] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.0s)
+  ✓   7 [mobile-narrow] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.8s)
+  ✓   8 [mobile-narrow] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (3.9s)
+  ✓   9 [mobile-narrow] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.5s)
+  ✓  10 [mobile-narrow] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+  ✓  11 [mobile-wide] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (6.1s)
+  ✓  12 [mobile-wide] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.2s)
+  ✓  13 [mobile-wide] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.0s)
+  ✓  14 [mobile-wide] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.5s)
+  -  15 [mobile-wide] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓  16 [mobile-wide] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (12.9s)
+  ✓  17 [mobile-wide] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.7s)
+  ✓  18 [mobile-wide] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (3.9s)
+  ✓  19 [mobile-wide] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.4s)
+  ✓  20 [mobile-wide] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+  ✓  21 [tablet] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (6.6s)
+  ✓  22 [tablet] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.3s)
+  ✓  23 [tablet] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (1.9s)
+  ✓  24 [tablet] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.4s)
+  -  25 [tablet] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓  26 [tablet] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.3s)
+  ✓  27 [tablet] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.7s)
+  ✓  28 [tablet] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.2s)
+  ✓  29 [tablet] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.5s)
+  ✓  30 [tablet] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+  ✓  31 [desktop] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (6.9s)
+  ✓  32 [desktop] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.1s)
+  ✓  33 [desktop] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.1s)
+  ✓  34 [desktop] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.4s)
+  ✓  35 [desktop] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe (8.7s)
+  ✓  36 [desktop] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.3s)
+  ✓  37 [desktop] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.8s)
+  ✓  38 [desktop] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.5s)
+  ✓  39 [desktop] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.6s)
+  ✓  40 [desktop] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.1s)
+  ✓  41 [phone-landscape] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (5.6s)
+  ✓  42 [phone-landscape] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (7.9s)
+  ✓  43 [phone-landscape] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (1.8s)
+  ✓  44 [phone-landscape] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.4s)
+  -  45 [phone-landscape] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓  46 [phone-landscape] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (12.7s)
+  ✓  47 [phone-landscape] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.6s)
+  -  48 [phone-landscape] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets
+  ✓  49 [phone-landscape] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.4s)
+  ✓  50 [phone-landscape] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+  ✓  51 [reflow-320] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (5.3s)
+  ✓  52 [reflow-320] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.0s)
+  ✓  53 [reflow-320] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (1.9s)
+  ✓  54 [reflow-320] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.4s)
+  -  55 [reflow-320] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓  56 [reflow-320] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.0s)
+  ✓  57 [reflow-320] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.6s)
+  ✓  58 [reflow-320] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (3.9s)
+  ✓  59 [reflow-320] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.4s)
+  ✓  60 [reflow-320] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+
+  6 skipped
+  54 passed (4.9m)
+
+To open last HTML report run:
+
+  npx playwright show-report
+

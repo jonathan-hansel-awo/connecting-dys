@@ -1627,7 +1627,7 @@ html[data-reading-custom="true"] .recognition,
 html[data-reading-custom="true"] .connection,
 html[data-reading-custom="true"] .about-home,
 html[data-reading-custom="true"] .site-footer {
-  background: var(--reading-background);
+  background-color: var(--reading-background);
   color: var(--brand-navy);
   border-top: 1px solid var(--rule);
 }
@@ -1906,4 +1906,10 @@ html[data-spacious="true"] .footer-top {
 }
 html[data-spacious="true"] .hero-orbit {
   display: none;
+}
+
+/* Keep the recognition link inside its column at maximum reading spacing. */
+html[data-spacious="true"] .recognition-copy .text-link {
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
 }

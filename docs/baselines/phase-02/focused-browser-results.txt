@@ -1,0 +1,33 @@
+
+> connecting-dys@0.1.0 test:browser
+> playwright test tests/browser/welcome.spec.ts
+
+
+Running 18 tests using 1 worker
+
+  ✓   1 [mobile-narrow] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.3s)
+  ✓   2 [mobile-narrow] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (8.2s)
+  ✓   3 [mobile-narrow] › tests/browser/welcome.spec.ts:93:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.1s)
+  ✓   4 [mobile-wide] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.1s)
+  ✓   5 [mobile-wide] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.5s)
+  ✓   6 [mobile-wide] › tests/browser/welcome.spec.ts:93:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.1s)
+  ✓   7 [tablet] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.3s)
+  ✓   8 [tablet] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.6s)
+  ✓   9 [tablet] › tests/browser/welcome.spec.ts:93:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.2s)
+  ✓  10 [desktop] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.5s)
+  ✓  11 [desktop] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (8.1s)
+  ✓  12 [desktop] › tests/browser/welcome.spec.ts:93:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.3s)
+  -  13 [phone-landscape] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets
+  ✓  14 [phone-landscape] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.5s)
+  ✓  15 [phone-landscape] › tests/browser/welcome.spec.ts:93:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.1s)
+  ✓  16 [reflow-320] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (3.9s)
+  ✓  17 [reflow-320] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.4s)
+  ✓  18 [reflow-320] › tests/browser/welcome.spec.ts:93:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+
+  1 skipped
+  17 passed (1.4m)
+
+To open last HTML report run:
+
+  npx playwright show-report
+

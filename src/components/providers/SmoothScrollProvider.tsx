@@ -15,6 +15,16 @@ export function SmoothScrollProvider({
 }) {
   const pathname = usePathname();
   useEffect(() => {
+    // Native fragment navigation creates a null-state history entry. Register
+    // its URL through Next's documented History API integration while the
+    // matching page is still active, so Back can restore its cached route.
+    // Keep the browser's anchor scroll/focus and do not add a history entry.
+    const syncNativeFragment = () => {
+      if (location.hash && history.state === null)
+        history.replaceState(null, "", location.href);
+    };
+    window.addEventListener("hashchange", syncNativeFragment);
+    syncNativeFragment();
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(pointer: fine)");
     const forcedColours = window.matchMedia("(forced-colors: active)");
@@ -128,6 +138,7 @@ export function SmoothScrollProvider({
     window.addEventListener(PREFERENCES_EVENT, changed);
     window.addEventListener("pageshow", refresh);
     return () => {
+      window.removeEventListener("hashchange", syncNativeFragment);
       active = false;
       generation++;
       disposeLenis?.();

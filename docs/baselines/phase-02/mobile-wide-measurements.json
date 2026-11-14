@@ -1,0 +1,164 @@
+{
+  "geometry": {
+    "top": 130,
+    "height": 1215,
+    "recognitionTop": 1345,
+    "viewport": 932
+  },
+  "before": {
+    "path": 0.8466,
+    "plane": {
+      "top": 964.12939453125,
+      "bottom": 1099.70751953125,
+      "transform": "matrix(1, 0, 0, 1, 0, -2.7144)"
+    },
+    "sheet": {
+      "top": 1335.78125,
+      "bottom": 1398.78125,
+      "transform": "matrix(1, 0, 0, 1, 0, 27)"
+    },
+    "copy": {
+      "top": 161.921875,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "cta": {
+      "top": 525.984375,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "lastLink": {
+      "top": 1219.78125,
+      "bottom": 1263.78125,
+      "transform": "none"
+    },
+    "recognition": {
+      "top": 1762.109375,
+      "bottom": 2164.1875,
+      "transform": "none"
+    },
+    "caption": {
+      "top": 1706.8125,
+      "bottom": 1726.109375,
+      "transform": "none"
+    },
+    "overflow": 0
+  },
+  "after": {
+    "path": 0.368,
+    "plane": {
+      "top": 946.4437561035156,
+      "bottom": 1082.0218811035156,
+      "transform": "matrix(1, 0, 0, 1, 0, -20.4)"
+    },
+    "sheet": {
+      "top": 1309.4413452148438,
+      "bottom": 1372.4413452148438,
+      "transform": "matrix(1, 0, 0, 1, 0, 0.6601)"
+    },
+    "copy": {
+      "top": 161.921875,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "cta": {
+      "top": 525.984375,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "lastLink": {
+      "top": 1219.78125,
+      "bottom": 1263.78125,
+      "transform": "none"
+    },
+    "recognition": {
+      "top": 1762.109375,
+      "bottom": 2164.1875,
+      "transform": "none"
+    },
+    "caption": {
+      "top": 1706.8125,
+      "bottom": 1726.109375,
+      "transform": "none"
+    },
+    "overflow": 0
+  },
+  "sheetEarly": {
+    "path": 0.6489,
+    "plane": {
+      "top": 956.8256530761719,
+      "bottom": 1092.40380859375,
+      "transform": "matrix(1, 0, 0, 1, 0, -10.0181)"
+    },
+    "sheet": {
+      "top": 1333.3340454101562,
+      "bottom": 1396.3340454101562,
+      "transform": "matrix(1, 0, 0, 1, 0, 24.5528)"
+    },
+    "copy": {
+      "top": 161.921875,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "cta": {
+      "top": 525.984375,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "lastLink": {
+      "top": 1219.78125,
+      "bottom": 1263.78125,
+      "transform": "none"
+    },
+    "recognition": {
+      "top": 1762.109375,
+      "bottom": 2164.1875,
+      "transform": "none"
+    },
+    "caption": {
+      "top": 1706.8125,
+      "bottom": 1726.109375,
+      "transform": "none"
+    },
+    "overflow": 0
+  },
+  "sheetLate": {
+    "path": 0.2824,
+    "plane": {
+      "top": 943.2816467285156,
+      "bottom": 1078.8597717285156,
+      "transform": "matrix(1, 0, 0, 1, 0, -23.5621)"
+    },
+    "sheet": {
+      "top": 1302.1640625,
+      "bottom": 1365.1640625,
+      "transform": "matrix(1, 0, 0, 1, 0, -6.6172)"
+    },
+    "copy": {
+      "top": 161.921875,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "cta": {
+      "top": 525.984375,
+      "bottom": 640.390625,
+      "transform": "none"
+    },
+    "lastLink": {
+      "top": 1219.78125,
+      "bottom": 1263.78125,
+      "transform": "none"
+    },
+    "recognition": {
+      "top": 1762.109375,
+      "bottom": 2164.1875,
+      "transform": "none"
+    },
+    "caption": {
+      "top": 1706.8125,
+      "bottom": 1726.109375,
+      "transform": "none"
+    },
+    "overflow": 0
+  }
+}

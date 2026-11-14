@@ -1,7 +1,7 @@
 // Source/HTTP evidence only. This does not substitute for rendered browser QA.
-// Usage: node scripts/audit-materials.mjs /path/to/built/reference-checkout
+// Usage: node scripts/audit-materials.mjs /path/to/built/reference-checkout [output.json]
 import assert from 'node:assert/strict';
-import { spawn } from 'node:child_process';
+import { spawn, execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
@@ -9,7 +9,8 @@ import { gzipSync } from 'node:zlib';
 import { JSDOM } from 'jsdom';
 
 const reference = process.argv[2];
-assert.ok(reference, 'Pass the built Phase 00 checkout as the first argument');
+const output = process.argv[3] || 'docs/baselines/phase-01/source-http-audit.json';
+assert.ok(reference, 'Pass a built reference checkout as the first argument');
 const routes = ['', 'about', 'support', 'contact', 'get-involved', 'accessibility', 'dyslexia', 'dyspraxia', 'dyscalculia', 'dysgraphia'];
 const semantic = (html) => {
   const dom = new JSDOM(html);
@@ -52,15 +53,15 @@ try {
   assert.equal(texture.status, 200);
   assert.ok(texture.headers.get('content-type').includes('image/svg+xml'));
   const report = {
-    generatedAt: new Date().toISOString(), reference: '790264146141fd9b14cbe0246475c773b704418c', pages,
+    generatedAt: new Date().toISOString(), reference: execFileSync('git', ['-C', reference, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), pages,
     texture: { status: texture.status, contentType: texture.headers.get('content-type'), bytes: fs.statSync('public/textures/fine-paper.svg').size, gzipBytes: gzipSync(fs.readFileSync('public/textures/fine-paper.svg')).length },
     assets: ['connecting_dys_logo.png', 'connecting-dys-embrace.png'].map((name) => ({ name, sha256: createHash('sha256').update(fs.readFileSync(`public/brand/${name}`)).digest('hex') })),
     productionStaticAssets: Object.fromEntries(['.js', '.css'].map((ext) => [ext, { before: size(path.join(reference, '.next/static'), ext), after: size('.next/static', ext) }])),
     sourceSurfaceCss: { bytes: fs.statSync('src/styles/surfaces.css').size, gzipBytes: gzipSync(fs.readFileSync('src/styles/surfaces.css')).length },
     scope: 'Byte counts are totals over all built static chunks, not page transfer, LCP/CLS or a performance score. HTTP/semantic checks do not render CSS or execute client scripts.',
   };
-  fs.mkdirSync('docs/baselines/phase-01', { recursive: true });
-  fs.writeFileSync('docs/baselines/phase-01/source-http-audit.json', JSON.stringify(report, null, 2) + '\n');
+  fs.mkdirSync(path.dirname(output), { recursive: true });
+  fs.writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
   console.log(JSON.stringify(report));
 } finally {
   server.kill('SIGTERM');

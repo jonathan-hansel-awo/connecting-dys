@@ -1,0 +1,98 @@
+/* Phase 02: only painted/decorative layers move. The hero's final padding
+   reserves MORE than the sheet's furthest reach, including at larger fonts. */
+:root {
+  --welcome-overlap: clamp(2rem, 7vw, 5rem);
+}
+.hero[data-welcome-scene] {
+  padding-bottom: calc(1.5rem + var(--welcome-overlap) * 1.5);
+}
+.hero-depth-plane {
+  position: absolute;
+  z-index: -2;
+  right: 7%;
+  bottom: 16%;
+  width: 45%;
+  aspect-ratio: 1.15;
+  border-radius: 48% 42% 45% 38%;
+  background-color: color-mix(in srgb, var(--reading-background) 92%, var(--brand-amber));
+  pointer-events: none;
+}
+.hero-path-art {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-path-guide,
+.hero-connecting-path {
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+.hero-path-guide {
+  stroke: var(--brand-navy);
+  opacity: 0.1;
+}
+.hero-connecting-path {
+  stroke: var(--brand-teal);
+  opacity: 0.4;
+  filter: var(--surface-path-filter);
+}
+.hero-path-nodes {
+  filter: var(--surface-path-filter);
+}
+/* Keep the real section as the anchor and the grain/colour owner. Its paint
+   lip extends into reserved hero space; the content is never transformed. */
+#recognition.recognition {
+  margin-top: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+#recognition.recognition::before {
+  box-shadow: none;
+}
+.recognition-sheet {
+  position: absolute;
+  z-index: 0;
+  top: calc(-1 * var(--welcome-overlap));
+  left: 0;
+  right: 0;
+  height: calc(var(--welcome-overlap) + var(--surface-radius));
+  border-radius: var(--surface-radius) var(--surface-radius) 0 0;
+  background-color: inherit;
+  background-image: var(--surface-grain-image);
+  background-size: var(--surface-grain-size);
+  box-shadow: var(--surface-panel);
+  pointer-events: none;
+}
+.recognition-grid {
+  position: relative;
+  z-index: 1;
+}
+/* Static is the default: full path, settled sheet, same reading order. GSAP
+   adds inline transforms only when media/preferences permit. No-JS is useful. */
+html[data-spacious="true"] {
+  --welcome-overlap: 0px;
+}
+html[data-spacious="true"] .recognition-sheet,
+html[data-spacious="true"] .hero-depth-plane,
+html[data-spacious="true"] .hero-path-art {
+  display: none;
+}
+html[data-spacious="true"] #recognition.recognition {
+  border-radius: var(--surface-radius) var(--surface-radius) 0 0;
+}
+@media (max-height: 519px) {
+  .hero-depth-plane {
+    display: none;
+  }
+}
+@media (forced-colors: active), print {
+  .hero-path-art,
+  .hero-depth-plane,
+  .recognition-sheet {
+    display: none;
+  }
+}

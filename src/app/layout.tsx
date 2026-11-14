@@ -7,6 +7,7 @@ import { preferenceBootstrap } from "@/lib/preferences";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import "../styles/surfaces.css";
+import "../styles/hero-transition.css";
 
 const openSans = localFont({
   src: [

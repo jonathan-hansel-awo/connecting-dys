@@ -1,5 +1,7 @@
 # Phase 01 — Preference-safe material system
 
+> Follow-up: the owner approved proceeding to Phase 02. [Phase 02](PHASE_02_WELCOME_TRANSITION.md) now records actual Chromium screenshots/browser results and corrects texture removal when selecting an alternate reading background. The original handoff limitations below are historical; physical-device release checks remain outstanding.
+
 Implemented against `master` at `790264146141fd9b14cbe0246475c773b704418c`, 14 November 2026. **Code implementation is complete; rendered visual acceptance remains pending because browser access failed.** Phase 02 has not started. No deployment or Vercel status check is part of this work.
 
 ## Direction and scope

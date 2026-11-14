@@ -26,11 +26,58 @@ export function HomeStoryMotion() {
             "(min-width: 1100px) and (min-height: 700px) and (pointer: fine)",
           motion: "(prefers-reduced-motion: no-preference)",
           forcedColours: "(forced-colors: active)",
+          tall: "(min-height: 520px)",
         },
         (context) => {
           if (!context.conditions?.motion || context.conditions.forcedColours)
             return;
           const desktop = context.conditions.desktop;
+          const hero = document.querySelector<HTMLElement>("[data-welcome-scene]");
+          const path = hero?.querySelector<SVGPathElement>("[data-hero-path]");
+          const plane = hero?.querySelector<HTMLElement>("[data-hero-plane]");
+          const nodes = hero?.querySelector<SVGGElement>("[data-hero-nodes]");
+          const sheet = document.querySelector<HTMLElement>("[data-recognition-sheet]");
+          // Scope new targets to the welcome artwork. No logo, text, link,
+          // frame or caption is included in either timeline's transform set.
+          if (context.conditions.tall && hero && path && plane && nodes && sheet) {
+            const welcome = gsap.timeline({
+              scrollTrigger: {
+                id: "welcome-path",
+                trigger: hero,
+                start: "top top",
+                end: "bottom top",
+                scrub: desktop ? 0.35 : true,
+                invalidateOnRefresh: true,
+              },
+            });
+            welcome
+              .fromTo(path,
+                { strokeDasharray: "1 1", strokeDashoffset: 0.92 },
+                { strokeDashoffset: 0, autoRound: false, ease: "none" }, 0)
+              .fromTo(plane,
+                { x: 0, y: 0 },
+                { x: desktop ? 14 : 0, y: desktop ? -12 : -34, ease: "none" }, 0)
+              .fromTo(nodes,
+                { y: 0 },
+                { y: desktop ? -6 : -18, ease: "none" }, 0);
+            // offsetTop is resolved layout geometry, not an unparsed CSS clamp.
+            // Only the paint lip moves; 1.5× overlap is reserved before controls.
+            const overlap = () => Math.max(0, -sheet.offsetTop);
+            gsap.fromTo(sheet,
+              { y: () => overlap() * (desktop ? 0.3 : 0.75) },
+              {
+                y: () => -overlap() * (desktop ? 0.1 : 0.25),
+                ease: "none",
+                scrollTrigger: {
+                  id: "welcome-recognition",
+                  trigger: "#recognition",
+                  start: "top 96%",
+                  end: "top 36%",
+                  scrub: desktop ? 0.3 : true,
+                  invalidateOnRefresh: true,
+                },
+              });
+          }
           // Both modes keep native document order. Compact/touch mode never pins.
           gsap.to(".hero-orbit", {
             y: desktop ? -35 : -12,

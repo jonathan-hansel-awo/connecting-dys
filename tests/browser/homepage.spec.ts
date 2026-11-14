@@ -20,7 +20,13 @@ async function staticArtwork(page: Page) {
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
   await expect(page.locator("html")).not.toHaveClass(/\blenis\b/);
   await expect(page.locator(".recognition-photo")).toHaveCSS("transform", "none");
-  await expect(page.locator(".art-landscape")).toHaveCSS("transform", "none");
+  // GSAP restores SVG groups as an identity matrix; this is also static.
+  const landscape = page.locator(".art-landscape");
+  await expect(landscape).toHaveCSS("transform", /^(none|matrix\(1, 0, 0, 1, 0, 0\))$/);
+  const before = await landscape.evaluate((el) => getComputedStyle(el).transform);
+  await page.evaluate(() => window.scrollTo(0, document.querySelector("#community")!.getBoundingClientRect().top + scrollY));
+  await settled(page);
+  await expect(landscape).toHaveCSS("transform", before);
 }
 
 test("chapter screenshots, overflow, console and rendered accessibility", async ({ page }, info) => {
@@ -81,7 +87,7 @@ test("all fonts/backgrounds, maximum spacing, persistence, reset and modal focus
   await expect(page.locator("html")).toHaveAttribute("data-spacious", "true");
   await expect(page.locator("html")).toHaveCSS("font-size", "26px");
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
-  // A known Phase 00 narrow/400% overflow is deliberately NOT suppressed here.
+  // Maximum reading settings must reflow without clipping or overflow.
   await noPageOverflow(page);
   await trigger.click();
   await page.getByRole("button", { name: "Reset preferences" }).click();
@@ -93,6 +99,7 @@ test("all fonts/backgrounds, maximum spacing, persistence, reset and modal focus
 
 test("native skip/recognition anchors, menu and route history", async ({ page }) => {
   await page.goto("/");
+  await settled(page);
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Skip to main content" })).toBeFocused();
   await page.keyboard.press("Enter");
@@ -112,8 +119,16 @@ test("native skip/recognition anchors, menu and route history", async ({ page })
   }
   await page.locator('.difference-row[href="/dyslexia"]').click();
   await expect(page).toHaveURL(/\/dyslexia$/);
-  await expect(page.locator("h1")).toHaveText("Dyslexia");
+  await expect(page.getByRole("heading", { name: "Dyslexia", exact: true, level: 1 })).toBeVisible();
+  // Wait for the route commit/title, not only streamed/retained headings.
+  await expect(page).toHaveTitle("Dyslexia | Connecting Dys");
   await page.goBack();
+  await expect(page).toHaveURL(/\/#recognition$/);
+  await expect(page.locator("#explore")).toBeVisible();
+  await page.goForward();
+  await expect(page.getByRole("heading", { name: "Dyslexia", exact: true, level: 1 })).toBeVisible();
+  await page.goBack();
+  await expect(page).toHaveURL(/\/#recognition$/);
   await expect(page.locator("#explore")).toBeVisible();
   await page.getByRole("link", { name: "Connecting Dys — home", exact: true }).click();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
@@ -132,10 +147,10 @@ test("site and OS reduced motion tear down animation; no-JS content remains usab
   await page.emulateMedia({ reducedMotion: "reduce" });
   await settled(page);
   await staticArtwork(page);
-  const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport });
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport, baseURL: info.project.use.baseURL });
   try {
     const native = await context.newPage();
-    await native.goto("http://127.0.0.1:3100/");
+    await native.goto("/");
     for (const selector of scenes) await expect(native.locator(selector)).toBeVisible();
     await expect(native.locator(".pin-spacer")).toHaveCount(0);
     await native.locator('.difference-row[href="/dysgraphia"]').click();
@@ -178,7 +193,7 @@ test("texture toggles every surface, persists with reading choices and resets", 
           connection: getComputedStyle(document.querySelector("#community")!).backgroundColor,
           textShadow: getComputedStyle(document.querySelector("h1")!).textShadow,
         }), surfaces);
-        for (const image of state.backgrounds) expect(image.includes("fine-paper.svg")).toBe(enabled);
+        for (const [index, image] of state.backgrounds.entries()) expect(image.includes("fine-paper.svg"), `${surfaces.split(",")[index]} grain`).toBe(enabled);
         expect(state.connection).toBe(state.body);
         expect(state.textShadow).toBe("none");
       }
@@ -210,10 +225,10 @@ test("forced colours flattens texture/relief and tears down motion; no-JS stays 
   await expect(page.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
   await page.emulateMedia({ forcedColors: "none" });
   await expect(page.locator("body")).toHaveCSS("background-image", /fine-paper\.svg/);
-  const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport });
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport, baseURL: info.project.use.baseURL });
   try {
     const native = await context.newPage();
-    await native.goto("http://127.0.0.1:3100/");
+    await native.goto("/");
     await expect(native.locator("body")).toHaveCSS("background-image", "none");
     await expect(native.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
     await expect(native.locator("h1")).toBeVisible();
