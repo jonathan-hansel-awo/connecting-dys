@@ -467,7 +467,7 @@ html[data-js="true"] .js-only {
   min-width: 0;
 }
 .recognition-art > .eyebrow {
-  color: #eab85c;
+  color: var(--reading-accent, var(--brand-amber));
 }
 .path-art {
   display: block;
@@ -480,7 +480,7 @@ html[data-js="true"] .js-only {
   font-size: clamp(2rem, 3.6vw, 3.1rem);
 }
 .recognition-copy h2 span {
-  color: var(--brand-amber);
+  color: var(--reading-accent, var(--brand-amber));
 }
 .recognition-copy p:not(.eyebrow) {
   max-width: 45ch;
@@ -794,7 +794,7 @@ html[data-js="true"] .js-only {
   gap: 1.5rem;
 }
 .footer-brand span {
-  color: var(--brand-amber);
+  color: var(--reading-accent, var(--brand-amber));
 }
 .footer-top p {
   font-size: 0.85rem;
@@ -1599,32 +1599,6 @@ html[data-reduce-motion="true"] *::after {
     padding: 0 !important;
   }
 }
-/* Reading surfaces follow an explicitly chosen background, including coloured chapters. */
-html[data-reading-custom="true"] .recognition,
-html[data-reading-custom="true"] .connection,
-html[data-reading-custom="true"] .about-home,
-html[data-reading-custom="true"] .site-footer {
-  background-color: var(--reading-background);
-  color: var(--reading-ink, var(--brand-navy));
-  border-top: 1px solid var(--rule);
-}
-html[data-reading-custom="true"] .recognition-copy h2 span,
-html[data-reading-custom="true"] .recognition-art > .eyebrow {
-  color: var(--reading-accent, var(--brand-teal));
-}
-html[data-reading-custom="true"] .footer-bottom {
-  border-color: var(--rule);
-}
-html[data-reading-custom="true"] .footer-brand span {
-  color: var(--reading-accent, var(--brand-teal));
-}
-html[data-reading-custom="true"] .light-link {
-  text-decoration-color: var(--reading-accent, var(--brand-teal));
-}
-html[data-reading-custom="true"] .recognition :focus-visible,
-html[data-reading-custom="true"] .site-footer :focus-visible {
-  outline-color: var(--reading-accent, var(--brand-teal));
-}
 html[data-spacious="true"] h1,
 html[data-spacious="true"] h2,
 html[data-spacious="true"] h3 {
@@ -1725,18 +1699,6 @@ html[data-js="true"] .reading-toolbar {
 }
 html[data-reading-custom="true"] .approved-logo img {
   border-radius: 4px;
-}
-html[data-reading-custom="true"] .approved-logo figcaption {
-  color: var(--reading-ink, var(--brand-navy));
-}
-html[data-reading-custom="true"] .about-home .about-caption {
-  border-color: var(--rule);
-}
-html[data-reading-custom="true"] .about-home .text-link {
-  text-decoration-color: var(--reading-accent, var(--brand-teal));
-}
-html[data-reading-custom="true"] .about-home :focus-visible {
-  outline-color: var(--reading-accent, var(--brand-teal));
 }
 @media (max-width: 700px) {
   .site-header {

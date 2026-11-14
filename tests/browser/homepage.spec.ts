@@ -194,7 +194,7 @@ test("texture toggles every surface, persists with reading choices and resets", 
           textShadow: getComputedStyle(document.querySelector("h1")!).textShadow,
         }), surfaces);
         for (const [index, image] of state.backgrounds.entries()) expect(image.includes("fine-paper.svg"), `${surfaces.split(",")[index]} grain`).toBe(enabled);
-        expect(state.connection).toBe(state.body);
+        expect(state.connection).not.toBe(state.body);
         expect(state.textShadow).toBe("none");
       }
     }

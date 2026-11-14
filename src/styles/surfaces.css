@@ -3,7 +3,7 @@
    these tokens, so Texture Off/forced colours can flatten it in one place. */
 :root {
   --surface-paper: var(--reading-background);
-  --surface-soft: var(--reading-background);
+  --surface-soft: color-mix(in srgb, var(--reading-background) 88%, var(--brand-teal));
   --surface-grain-image: none;
   --surface-grain-size: 192px 192px;
   --surface-highlight: rgb(255 255 255 / 0.7);
@@ -72,9 +72,28 @@ html[data-texture="on"][data-texture-style="plaster"] {
   background-color: var(--surface-paper);
 }
 .connection.surface-soft {
-  /* A reading surface: all FOUR background presets take priority, including
-     Cream. Teal remains in the artwork window rather than tinting the prose. */
+  /* Keep a gentle teal chapter tint while adapting to the chosen reading colour. */
   background-color: var(--surface-soft);
+}
+/* Branded chapters retain their own palette when a reading background is
+   selected. Light chapters and controls still use the selected colour. */
+@media screen and (forced-colors: none) {
+  :is(.recognition, .about-home, .site-footer).surface-scene {
+    --reading-ink: var(--brand-cream);
+    --reading-accent: var(--brand-amber);
+    --reading-muted: #d3e0df;
+    --rule: rgb(252 247 237 / .3);
+    color: var(--reading-ink);
+  }
+  html[data-theme="dark"] {
+    --surface-soft: color-mix(in srgb, var(--reading-background) 65%, var(--brand-teal));
+  }
+  html[data-theme="dark"] :is(.recognition, .about-home, .site-footer).surface-scene {
+    --reading-accent: #f5d49d;
+  }
+  html[data-theme="dark"] .recognition,
+  html[data-theme="dark"] .site-footer { background-color: #294d5b; }
+  html[data-theme="dark"] .about-home { background-color: #284b54; }
 }
 .surface-panel {
   position: relative;

@@ -360,8 +360,10 @@ test("material grain and button highlight retain conservative AA text contrast",
       assert.ok(ratio(rgb(ink), darkest(rgb(paper))) >= 4.5, `${ink} on textured ${paper}`);
   }
   assert.ok(ratio(rgb("#FFFFFF"), lightest(mix(rgb("#146C78"), [1, 1, 1], 0.04))) >= 4.5);
-  for (const scene of ["#20354D", "#063F51", "#146C78"])
+  for (const scene of ["#20354D", "#063F51", "#146C78", "#294D5B", "#284B54"])
     assert.ok(ratio(rgb("#FCF7ED"), lightest(rgb(scene))) >= 4.5, `cream on textured ${scene}`);
+  for (const scene of ["#294D5B", "#284B54"])
+    assert.ok(ratio(rgb("#F5D49D"), lightest(rgb(scene))) >= 4.5, `amber on textured ${scene}`);
 });
 
 test("optional fonts are real local assets and are not eagerly preloaded", () => {

@@ -1,3 +1,11 @@
+# Section colour follow-up — 14 November 2026
+
+Recognition and the footer retain navy; About retains deep teal. Dark mode uses distinct deeper teal chapter palettes with lighter amber text. Community has a gentle teal tint derived from the chosen reading colour; hero, discovery, support, invitation, navigation and dialog retain the selected reading surface. Font, spacing, texture and motion preferences remain active. The rounded Recognition lip inherits its chapter colour, preserving contrast during stacking. See [the restored overlap](baselines/section-colours/recognition-overlap.png).
+
+Validation: lint, typecheck, production build and 13/13 production regression groups pass, including conservative text contrast over maximum grain brightness. The broader focused browser run reports 54 passed / 6 intentional skips (five duplicate route audits and short-landscape stacking). After adjusting dark amber for texture contrast, the final palette/material recheck reports 12 passed across six viewports. New rendered audits exercise all four backgrounds in both themes; the existing checks cover textures, maximum spacing, forced colours, no-JS and overlap/navigation. Physical-device verification remains outstanding. No Vercel deployment or monitoring.
+
+---
+
 # Phase 06 integration gate — 14 November 2026
 
 The separate homepage Dark mode button is removed; the persisted checkbox remains in Reading settings. The footer now uses the existing SVG arrow rather than a missing font glyph. A 64px tab icon replaces downloading the 1.46 MB original logo for a favicon; both approved source logo files remain byte-for-byte unchanged. No dependency, deployment configuration or Phase 07 game is added.

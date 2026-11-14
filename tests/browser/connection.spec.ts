@@ -108,7 +108,7 @@ test("Phase 04 textures retain colour, persist across routes and flatten accessi
         chapter: getComputedStyle(document.querySelector(".connection-chapter")!).backgroundColor,
       }));
       expect(state.images.every((image) => image.includes(asset))).toBe(true);
-      expect(state.chapter).toBe(state.body);
+      expect(state.chapter).not.toBe(state.body);
     }
     await page.screenshot({ path: info.outputPath(`texture-${texture}.png`) });
   }
