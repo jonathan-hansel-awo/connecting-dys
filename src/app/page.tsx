@@ -8,6 +8,7 @@ import { ConnectionTrail } from "@/components/connection-trail";
 import { DiscoveryTrail } from "@/components/discovery-trail";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
 import { FinalePath } from "@/components/finale-path";
+import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
 
 export default function HomePage() {
   return (
@@ -373,6 +374,7 @@ export default function HomePage() {
           Back to the beginning ↑
         </a>
       </section>
+      <PathsToBelongingSection />
     </main>
   );
 }
