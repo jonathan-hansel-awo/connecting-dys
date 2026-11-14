@@ -71,7 +71,7 @@ button.paths-piece::before {
   pointer-events: none;
 }
 button.paths-piece.is-linked::before { border: 3px double currentColor; }
-.paths-piece[role="img"].is-linked::before { content: ""; position: absolute; inset: 17%; border: 3px double currentColor; border-radius: 50%; }
+.paths-piece[role="img"]:is(.is-linked, .is-joined)::before { content: ""; position: absolute; inset: 17%; border: 3px double currentColor; border-radius: 50%; }
 .paths-piece.is-hint { outline: 3px dashed currentColor; outline-offset: -7px; }
 .paths-piece:focus-visible { z-index: 2; outline: 3px solid var(--reading-ink, var(--brand-navy)); outline-offset: 3px; }
 /* Clip only SVG paint at each shared tile edge. Native button focus outlines
@@ -138,16 +138,22 @@ button.paths-piece.is-linked::before { border: 3px double currentColor; }
 .paths-path-paper { stroke: var(--reading-background); stroke-width: 13; }
 .paths-path-ink { stroke: currentColor; stroke-width: 4; stroke-dasharray: 4 7; }
 .is-linked .paths-path-ink { stroke-dasharray: none; }
+/* A steady connection cue, contained inside each place's tile. No pulsing,
+   movement or hit-area changes, including with reduced motion enabled. */
+.paths-landmark-halo { fill: #ed963c; opacity: 0; filter: blur(5px); }
+.is-joined .paths-landmark-halo { opacity: .5; }
+.is-joined .paths-landmark { filter: drop-shadow(0 0 4px #ed963c); }
 .paths-house-wall { fill: var(--reading-background); stroke: currentColor; stroke-width: 2.2; }
 .paths-house-roof { fill: var(--brand-coral); stroke: currentColor; stroke-width: 1.7; }
 .paths-house-door { fill: var(--paths-meadow, var(--reading-background)); stroke: currentColor; stroke-width: 1.7; }
 .paths-house-window { fill: var(--reading-background); stroke: currentColor; stroke-width: 1.7; }
-.is-linked .paths-house-window { fill: var(--brand-amber); }
+:where(.is-joined) .paths-house-window { fill: var(--brand-amber); }
 .paths-garden-soil { fill: var(--paths-meadow, var(--reading-background)); stroke: currentColor; stroke-width: 2; }
 .paths-meeting-roof { stroke: currentColor; stroke-width: 5; stroke-linecap: round; }
 .paths-meeting-table { stroke: currentColor; stroke-width: 2.5; }
 .paths-heart-cutout { fill: var(--brand-coral); stroke: currentColor; stroke-width: 2.2; }
 .paths-heart-glint { stroke: var(--reading-background); stroke-width: 2.2; stroke-linecap: round; }
+:where(.is-joined) :is(.paths-house-wall, .paths-garden-soil, .paths-heart-cutout) { fill: color-mix(in srgb, var(--reading-background) 72%, #ed963c); }
 .paths-ending {
   --paths-leaf: color-mix(in srgb, var(--reading-background) 70%, var(--brand-teal));
   --paths-meadow: color-mix(in srgb, var(--reading-background) 84%, var(--brand-amber));
@@ -177,6 +183,8 @@ html[data-texture="off"] .paths-world::before, html[data-texture="off"] :is(.pat
 }
 html[data-spacious="true"] .paths-play-layout { grid-template-columns: minmax(0, 1fr); }
 @media (forced-colors: active) {
+  .paths-landmark-halo { display: none; }
+  .is-joined .paths-landmark { filter: none; }
   .paths-piece, .paths-control { background: Canvas; color: CanvasText; border-color: CanvasText; box-shadow: none; }
   .paths-piece.is-linked { border-style: double; }
   .paths-piece.is-hint { outline-color: Highlight; }

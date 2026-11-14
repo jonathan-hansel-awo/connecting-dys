@@ -112,6 +112,22 @@ test("an unrelated matched cycle cannot satisfy required landmarks; traversal is
   assert.deepEqual(new Set(reversed.reachable), new Set(forward.reachable));
 });
 
+test("only places joined to another place light up, including pairs outside the home network", () => {
+  assert.deepEqual(evaluateBoard(tinyChapter, { bend: 0 }).pairedLandmarks, ["home", "garden"]);
+  assert.deepEqual(evaluateBoard(tinyChapter, { bend: 1 }).pairedLandmarks, [], "an isolated starting home does not light up");
+  const remotePair: Chapter = { ...tinyChapter, tiles: [
+    ...tinyChapter.tiles,
+    { id: "neighbour", name: "Neighbour", kind: "landmark", motif: "home", ports: ["east"], x: 5, y: 0 },
+    { id: "remote-path", name: "Remote path", kind: "path", shape: "straight", rotatable: true, x: 6, y: 0 },
+    { id: "heart", name: "Heart", kind: "landmark", motif: "heart", ports: ["west"], x: 7, y: 0 },
+  ], arrangements: [{ id: "start", name: "Start", board: { bend: 1, "remote-path": 1 } }] };
+  const result = evaluateBoard(remotePair, remotePair.arrangements[0].board);
+  assert.deepEqual(result.pairedLandmarks, ["neighbour", "heart"]);
+  assert.deepEqual(result.connectedLandmarks, ["home"], "lighting another pair cannot complete the home objective");
+  assert.equal(result.complete, false);
+  assert.deepEqual(evaluateBoard(remotePair, { bend: 1, "remote-path": 0 }).pairedLandmarks, [], "breaking the path switches both places off");
+});
+
 test("rotation changes only movable pieces and board/history snapshots stay immutable", () => {
   const chapter = chapters[0];
   const board = chapter.arrangements[0].board;

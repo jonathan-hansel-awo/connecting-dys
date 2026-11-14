@@ -147,18 +147,24 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       await mount();
       await click(button("Play the little journey"));
       await waitForGame();
+      assert.equal(doc.querySelectorAll(".paths-piece.is-joined").length, 0);
       await solve(0, gardenRoutes.upper);
+      assert.equal(doc.querySelectorAll('.paths-piece[role="img"].is-joined .paths-landmark-halo').length, 2);
+      assert.match(doc.querySelector('.paths-piece[role="img"].is-joined')!.getAttribute("aria-label")!, /Connected to another place/);
       const world = doc.querySelector(".paths-world")!;
       assert.equal(world.getAttribute("data-complete"), "true");
       const piece = doc.getElementById("paths-piece-willow-bend")!;
       await click(piece);
       assert.strictEqual(doc.activeElement, piece);
       assert.equal(world.getAttribute("data-complete"), "false");
+      assert.equal(doc.querySelectorAll(".paths-piece.is-joined").length, 0);
       assert.equal(doc.querySelector(".paths-landscape-layers")?.getAttribute("data-complete"), "false");
       await click(button("Undo"));
       assert.equal(world.getAttribute("data-complete"), "true");
+      assert.equal(doc.querySelectorAll(".paths-piece.is-joined").length, 2);
       await click(button("Restart chapter"));
       assert.equal(world.getAttribute("data-complete"), "false");
+      assert.equal(doc.querySelectorAll(".paths-piece.is-joined").length, 0);
       await reset();
     });
     await suite.test("failed lazy loading focuses the fallback and leaves the footer reachable", async () => {

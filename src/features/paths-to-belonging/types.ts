@@ -45,6 +45,8 @@ export type Connectivity = {
   readonly connections: readonly Connection[];
   readonly reachable: readonly string[];
   readonly connectedLandmarks: readonly string[];
+  // Places sharing a matched path with another place, even outside the home network.
+  readonly pairedLandmarks: readonly string[];
   readonly complete: boolean;
   readonly endingId: string | null;
 };

@@ -117,20 +117,30 @@ export function createBoardEvaluator(chapter: Chapter): (board: Board) => Connec
         connections.push([tile.id, tiles[next].id]);
       }
     });
-    const visited = new Set([source]);
-    const queue = [source];
-    for (let cursor = 0; cursor < queue.length; cursor++) {
-      for (const next of adjacency[queue[cursor]]) {
-        if (!visited.has(next)) { visited.add(next); queue.push(next); }
+    const components = new Array<number>(tiles.length).fill(-1);
+    const placeCounts: number[] = [];
+    for (let start = 0; start < tiles.length; start++) {
+      if (components[start] !== -1) continue;
+      const component = placeCounts.length;
+      placeCounts.push(0);
+      const queue = [start];
+      components[start] = component;
+      for (let cursor = 0; cursor < queue.length; cursor++) {
+        const current = queue[cursor];
+        if (tiles[current].kind === "landmark") placeCounts[component]++;
+        for (const next of adjacency[current]) {
+          if (components[next] === -1) { components[next] = component; queue.push(next); }
+        }
       }
     }
-    const reachable = tiles.filter((_, index) => visited.has(index)).map(({ id }) => id);
+    const reachable = tiles.filter((_, index) => components[index] === components[source]).map(({ id }) => id);
+    const pairedLandmarks = tiles.filter((tile, index) => tile.kind === "landmark" && placeCounts[components[index]] >= 2).map(({ id }) => id);
     const connectedLandmarks = requiredLandmarks.filter((id) => reachable.includes(id));
     const complete = connectedLandmarks.length === requiredLandmarks.length;
     const endingId = complete ? chapter.endings.find((ending) => ending.connections.every(([a, b]) =>
       reachable.includes(a) && connections.some(([from, to]) => (from === a && to === b) || (from === b && to === a)),
     ))?.id ?? null : null;
-    return { connections, reachable, connectedLandmarks, complete, endingId };
+    return { connections, reachable, connectedLandmarks, pairedLandmarks, complete, endingId };
   };
 }
 
