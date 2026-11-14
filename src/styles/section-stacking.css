@@ -23,6 +23,9 @@ main[data-home-story] > section {
     top: var(--sheet-top);
     z-index: var(--sheet-order);
   }
+  main[data-section-stack="on"] > .invitation {
+    z-index: var(--sheet-order);
+  }
   main[data-section-stack="on"] .section-backdrop {
     border-radius: var(--surface-radius) var(--surface-radius) 0 0;
     box-shadow: var(--surface-panel);

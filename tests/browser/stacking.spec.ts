@@ -52,6 +52,10 @@ test("whole sections pause while the next opaque sheet rises over them", async (
     await page.screenshot({ path: info.outputPath(`${selector.slice(1)}-stacked.png`) });
     results.push({ selector, geometry, early, late });
   }
+  // The invitation keeps its paint order over About, then scrolls naturally
+  // into the optional journey so neither ending can cover the other's links.
+  await expect(page.locator(".invitation")).toHaveCSS("position", "relative");
+  await expect(page.locator("[data-paths-section]")).toHaveCSS("position", "relative");
   await info.attach("section-stacking", { body: JSON.stringify(results, null, 2), contentType: "application/json" });
 });
 
