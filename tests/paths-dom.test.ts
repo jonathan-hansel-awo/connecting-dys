@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import React, { act } from "react";
 import { createRoot } from "react-dom/client";
+import { renderToStaticMarkup } from "react-dom/server";
 import { JSDOM } from "jsdom";
 import axe from "axe-core";
 import { registerTsx } from "./helpers/register-tsx.mjs";
@@ -16,6 +17,7 @@ test("actual optional journey components: DOM interaction and focus", async (sui
   const original = new Map(Object.keys(globals).map((key) => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
   for (const [key, value] of Object.entries(globals)) Object.defineProperty(globalThis, key, { configurable: true, value });
   const { PathsToBelongingSection, JourneyBoundary } = await import("../src/features/paths-to-belonging/section.tsx");
+  const { EndingComposition, worldBounds } = await import("../src/features/paths-to-belonging/paper-world.tsx");
   const doc = dom.window.document;
   let root = createRoot(doc.getElementById("root")!);
   const button = (name: string) => {
@@ -57,7 +59,12 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       assert.equal(button("Undo").disabled, true);
       const targets = [gardenRoutes.upper, neighbourhoodRoutes.perimeter, endingRoutes["home-arch"]];
       for (let index = 0; index < 3; index++) {
+        const landscape = doc.querySelector("[data-paper-landscape]")!;
+        assert.equal(landscape.getAttribute("viewBox"), worldBounds(chapters[index]).viewBox);
+        assert.equal(landscape.getAttribute("aria-hidden"), "true");
+        assert.equal(landscape.querySelectorAll("button,a,[tabindex]").length, 0, "scenery has no controls or focus targets");
         await solve(index, targets[index]);
+        assert.equal(doc.querySelector(".paths-world")?.getAttribute("data-complete"), "true");
         assert.ok(doc.querySelector("h3")?.textContent === chapters[index].name);
         dom.window.eval(axe.source);
         const audit = await (dom.window as unknown as { axe: typeof axe }).axe.run(doc, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] }, rules: { "color-contrast": { enabled: false } } });
@@ -66,8 +73,10 @@ test("actual optional journey components: DOM interaction and focus", async (sui
         assert.equal(doc.activeElement?.textContent, index === 2 ? "There's more than one way to belong." : chapters[index + 1].name);
       }
       assert.match(doc.querySelector('[role="status"]')!.textContent!, /An arch above a home/);
+      assert.equal(doc.querySelector("[data-ending]")?.getAttribute("data-ending"), "home-arch");
       await click(button("Replay journey"));
       assert.equal(doc.activeElement?.textContent, "Find a Way");
+      assert.equal(doc.querySelector("[data-ending]"), null, "replay removes the previous ending");
       assert.match(doc.getElementById("paths-piece-willow-bend")!.getAttribute("aria-label")!, /south and west/);
       await click(button("Exit game"));
       assert.strictEqual(doc.activeElement, button("Play the little journey"));
@@ -103,8 +112,52 @@ test("actual optional journey components: DOM interaction and focus", async (sui
         await click(button("Continue"));
       }
       assert.equal(doc.activeElement?.textContent, "Thank you for exploring.");
+      assert.equal(doc.querySelector("[data-ending]"), null, "skipping never invents an ending picture");
       await click(button("Return to page"));
       assert.strictEqual(doc.activeElement, button("Play the little journey"));
+      await reset();
+    });
+    await suite.test("ending art preserves the actual graph and offers three distinct compositions", () => {
+      const pictures = new Set<string>();
+      const frames = new Set<string>();
+      for (const [endingId, board] of Object.entries(endingRoutes)) {
+        const snapshot: Board = board;
+        const markup = renderToStaticMarkup(React.createElement(EndingComposition, { chapter: chapters[2], board, endingId }));
+        const picture = new JSDOM(markup).window.document;
+        assert.equal(picture.querySelector("figure")?.getAttribute("data-ending"), endingId);
+        assert.equal(picture.querySelectorAll("[data-ending-piece]").length, chapters[2].tiles.length);
+        assert.equal(picture.querySelectorAll("button,a,[tabindex]").length, 0);
+        assert.equal(picture.querySelector("svg")?.getAttribute("aria-hidden"), "true");
+        assert.match(picture.querySelector("figcaption")!.textContent!, /connections you made/);
+        for (const tile of chapters[2].tiles) {
+          const piece = picture.querySelector(`[data-ending-piece='${tile.id}']`)!;
+          assert.equal(piece.getAttribute("transform"), `translate(${tile.x * 100} ${tile.y * 100})`);
+          if (tile.kind === "path" && tile.rotatable) assert.equal(piece.querySelector(".paths-pathwork")?.getAttribute("transform"), `rotate(${snapshot[tile.id] * 90} 50 50)`);
+        }
+        frames.add(picture.querySelector(".paths-ending-frame")!.getAttribute("d")!);
+        pictures.add(markup);
+      }
+      assert.equal(frames.size, 3);
+      assert.equal(pictures.size, 3);
+      assert.equal(renderToStaticMarkup(React.createElement(EndingComposition, { chapter: chapters[2], board: chapters[2].arrangements[0].board, endingId: "heart-loop" })), "");
+      assert.equal(renderToStaticMarkup(React.createElement(EndingComposition, { chapter: chapters[2], board: endingRoutes["heart-loop"], endingId: "home-arch" })), "");
+    });
+    await suite.test("decorative completion is reversible without losing the focused tile", async () => {
+      await mount();
+      await click(button("Play the little journey"));
+      await waitForGame();
+      await solve(0, gardenRoutes.upper);
+      const world = doc.querySelector(".paths-world")!;
+      assert.equal(world.getAttribute("data-complete"), "true");
+      const piece = doc.getElementById("paths-piece-willow-bend")!;
+      await click(piece);
+      assert.strictEqual(doc.activeElement, piece);
+      assert.equal(world.getAttribute("data-complete"), "false");
+      assert.equal(doc.querySelector(".paths-landscape-layers")?.getAttribute("data-complete"), "false");
+      await click(button("Undo"));
+      assert.equal(world.getAttribute("data-complete"), "true");
+      await click(button("Restart chapter"));
+      assert.equal(world.getAttribute("data-complete"), "false");
       await reset();
     });
     await suite.test("a render failure is contained and focuses an unobstructed fallback", async () => {

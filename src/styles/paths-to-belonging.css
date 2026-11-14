@@ -1,4 +1,4 @@
-/* Functional, static game surfaces. Illustrated world/reveals follow in 7C. */
+/* Original paper world. All art consumes the shared reading/material tokens. */
 .paths-section {
   z-index: var(--sheet-order, 8);
   padding-block: clamp(3rem, 7vw, 6rem);
@@ -46,7 +46,7 @@
 .paths-help p { margin-top: .8rem; }
 .paths-play-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(1rem, 5vw, 4rem); }
 .paths-board-region { min-width: 0; }
-.paths-board { display: grid; padding: .5rem; margin: 0; list-style: none; max-width: 28rem; }
+.paths-board { display: grid; position: relative; padding: 0; margin: 0; list-style: none; z-index: 1; }
 .paths-board > li { min-width: 0; aspect-ratio: 1; position: relative; }
 .paths-piece {
   display: block;
@@ -55,19 +55,26 @@
   height: 100%;
   min-width: 44px;
   min-height: 44px;
-  border-radius: .6rem;
+  border-radius: 32% 27% 35% 24%;
   color: var(--reading-ink, var(--brand-navy));
-  background: var(--reading-background);
-  border: 1px solid var(--rule);
+  background: transparent;
+  border: 0;
 }
 button.paths-piece { cursor: pointer; }
-.paths-piece.is-linked { color: var(--reading-accent, var(--brand-teal)); border: 3px double currentColor; }
+.paths-piece.is-linked { color: var(--reading-accent, var(--brand-teal)); }
+button.paths-piece::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1px dashed currentColor;
+  border-radius: inherit;
+  pointer-events: none;
+}
+button.paths-piece.is-linked::before { border: 3px double currentColor; }
+.paths-piece[role="img"].is-linked::before { content: ""; position: absolute; inset: 17%; border: 3px double currentColor; border-radius: 50%; }
 .paths-piece.is-hint { outline: 3px dashed currentColor; outline-offset: -7px; }
 .paths-piece:focus-visible { z-index: 2; outline: 3px solid var(--reading-ink, var(--brand-navy)); outline-offset: 3px; }
-.paths-lines { position: absolute; inset: 0; width: 100%; height: 100%; stroke: currentColor; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 5 9; }
-.is-linked > .paths-lines { stroke-dasharray: none; }
-.paths-landmark-mark { position: absolute; inset: 23%; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; background: var(--reading-background); }
-.paths-landmark-mark svg { width: 65%; height: 65%; }
+.paths-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .paths-turn-mark { position: absolute; bottom: 7%; right: 7%; background: var(--reading-background); border-radius: 50%; }
 .paths-place-list h4 { margin-block: 1rem; }
 .paths-place-list ul { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
@@ -78,6 +85,89 @@ button.paths-piece { cursor: pointer; }
 .paths-feedback h4 { margin-top: .6rem; }
 #paths-hint { min-height: 1.8em; }
 .paths-forward { margin-top: 1.2rem; }
+.paths-world {
+  --paths-leaf: color-mix(in srgb, var(--reading-background) 70%, var(--brand-teal));
+  --paths-meadow: color-mix(in srgb, var(--reading-background) 84%, var(--brand-amber));
+  --paths-water: color-mix(in srgb, var(--reading-background) 73%, var(--brand-teal));
+  position: relative;
+  isolation: isolate;
+  max-width: 32rem;
+  padding: .55rem;
+  border: 1px solid var(--rule);
+  border-radius: 2rem 1.5rem 2.2rem 1.2rem;
+  background-color: var(--reading-background);
+  box-shadow: var(--surface-inset), var(--surface-edge);
+}
+.paths-world::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: .4rem -.3rem -.4rem .3rem;
+  border: 1px solid var(--rule);
+  border-radius: inherit;
+  background: var(--reading-background);
+  box-shadow: var(--surface-raised);
+}
+.paths-canvas { position: relative; }
+.paths-landscape { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; border-radius: 1.5rem; }
+.paths-world-caption { margin-top: 1.1rem; font-size: .85rem; }
+.paths-paper-cut { filter: var(--surface-path-filter); }
+.paths-field { fill: var(--paths-leaf); opacity: .22; }
+.paths-meadow { fill: var(--paths-meadow); opacity: .75; }
+.paths-earth { fill: var(--reading-ink, var(--brand-navy)); opacity: .08; }
+.paths-leaf { fill: var(--paths-leaf); stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 1.4; }
+.paths-leaf-vein, .paths-tree-stem { stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 2; stroke-linecap: round; }
+.paths-leaf-vein { fill: none; stroke-width: 1.5; }
+.paths-water-bank { stroke: var(--reading-background); stroke-width: 32; }
+.paths-water { stroke: var(--paths-water); stroke-width: 22; }
+.paths-water-ripple { stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 1; opacity: .5; stroke-linecap: round; }
+.paths-bridge-deck { fill: var(--paths-meadow); stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 1.2; }
+.paths-bridge-grain { fill: none; opacity: .4; }
+.paths-garden-bed { stroke: var(--brand-coral); stroke-width: 8; stroke-linecap: round; opacity: .45; }
+.paths-flower-petals { fill: var(--brand-coral); }
+.paths-flower-centres { fill: var(--brand-amber); }
+.paths-grass { stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 1.2; opacity: .5; }
+.paths-birds { stroke: var(--reading-ink, var(--brand-navy)); stroke-width: 1.5; stroke-linecap: round; }
+.paths-landscape-layers[data-complete="false"] .paths-garden-bloom { opacity: 0; }
+.paths-landscape-layers[data-complete="true"] .paths-garden-bloom { opacity: 1; }
+.paths-pathwork { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.paths-path-relief { stroke: var(--reading-ink, var(--brand-navy)); stroke-width: 17; opacity: .16; }
+.paths-path-paper { stroke: var(--reading-background); stroke-width: 13; }
+.paths-path-ink { stroke: currentColor; stroke-width: 4; stroke-dasharray: 4 7; }
+.is-linked .paths-path-ink { stroke-dasharray: none; }
+.paths-house-wall { fill: var(--reading-background); stroke: currentColor; stroke-width: 2.2; }
+.paths-house-roof { fill: var(--brand-coral); stroke: currentColor; stroke-width: 1.7; }
+.paths-house-door { fill: var(--paths-meadow, var(--reading-background)); stroke: currentColor; stroke-width: 1.7; }
+.paths-house-window { fill: var(--reading-background); stroke: currentColor; stroke-width: 1.7; }
+.is-linked .paths-house-window { fill: var(--brand-amber); }
+.paths-garden-soil { fill: var(--paths-meadow, var(--reading-background)); stroke: currentColor; stroke-width: 2; }
+.paths-meeting-roof { stroke: currentColor; stroke-width: 5; stroke-linecap: round; }
+.paths-meeting-table { stroke: currentColor; stroke-width: 2.5; }
+.paths-heart-cutout { fill: var(--brand-coral); stroke: currentColor; stroke-width: 2.2; }
+.paths-heart-glint { stroke: var(--reading-background); stroke-width: 2.2; stroke-linecap: round; }
+.paths-ending {
+  --paths-leaf: color-mix(in srgb, var(--reading-background) 70%, var(--brand-teal));
+  --paths-meadow: color-mix(in srgb, var(--reading-background) 84%, var(--brand-amber));
+  --paths-water: color-mix(in srgb, var(--reading-background) 73%, var(--brand-teal));
+  margin: 1.5rem 0;
+  max-width: 34rem;
+  color: var(--reading-accent, var(--brand-teal));
+}
+.paths-ending-art { display: block; width: 100%; height: auto; background: var(--surface-grain-image) repeat var(--reading-background); background-size: var(--surface-grain-size); border-radius: 2rem; }
+.paths-ending figcaption { color: var(--reading-ink, var(--brand-navy)); font-size: .85rem; margin-top: .8rem; }
+.paths-ending-relief { stroke: var(--reading-ink, var(--brand-navy)); stroke-width: 14; opacity: .1; stroke-linejoin: round; }
+.paths-ending-frame { stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+html[data-texture="off"] .paths-world::before, html[data-texture="off"] :is(.paths-path-relief, .paths-ending-relief) { display: none; }
+/* Only scenery animates. Tiles, text, focus rings and hit areas stay stationary.
+   Media/data changes immediately restore the fully drawn static composition. */
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  html:not([data-reduce-motion="true"]):not([data-spacious="true"]) .paths-landscape { animation: paths-world-arrive .45s ease-out; }
+  html:not([data-reduce-motion="true"]):not([data-spacious="true"]) .paths-garden-bloom { transition: opacity .25s ease-out; }
+  html:not([data-reduce-motion="true"]):not([data-spacious="true"]) .paths-ending-frame { animation: paths-frame-reveal .85s ease-out; }
+  html:not([data-reduce-motion="true"]):not([data-spacious="true"]) .paths-ending-sprig { animation: paths-world-arrive .45s ease-out; }
+}
+@keyframes paths-world-arrive { from { opacity: .3; } to { opacity: 1; } }
+@keyframes paths-frame-reveal { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @media (max-width: 760px) {
   .paths-play-layout { grid-template-columns: minmax(0, 1fr); }
   .paths-place-list ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
@@ -90,5 +180,14 @@ html[data-spacious="true"] .paths-play-layout { grid-template-columns: minmax(0,
   .paths-piece:focus-visible { outline-color: Highlight; }
   .paths-section :focus-visible, .paths-section h3:focus { outline-color: Highlight; }
   .paths-section button:disabled { color: GrayText; opacity: 1; }
-  .paths-landmark-mark, .paths-turn-mark { background: Canvas; }
+  .paths-turn-mark { background: Canvas; }
+  .paths-landscape, .paths-world::before, .paths-ending-relief, .paths-path-relief, .paths-paper-cut { filter: none; }
+  .paths-landscape, .paths-world::before { display: none; }
+  .paths-world, .paths-ending-art { background: Canvas; border-color: CanvasText; box-shadow: none; }
+  .paths-path-paper { stroke: Canvas; fill: none; }
+  .paths-house-wall { stroke: CanvasText; fill: Canvas; }
+  .paths-path-ink, .paths-ending-frame { stroke: CanvasText; }
+  .paths-ending .paths-landscape-layers, .paths-ending-sprig, .paths-ending-relief { display: none; }
+  .paths-house-window, .paths-house-door, .paths-house-roof, .paths-heart-cutout, .paths-garden-soil, .paths-leaf { fill: Canvas; stroke: CanvasText; }
+  .paths-section .is-linked .paths-house-window { fill: Canvas; stroke: CanvasText; }
 }

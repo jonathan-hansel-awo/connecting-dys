@@ -51,7 +51,9 @@ test("optional game fetches only on activation; keyboard completes all chapters 
   await expect(control(page, "Continue")).toHaveCount(0);
   const targets = [gardenRoutes.upper, neighbourhoodRoutes.perimeter, endingRoutes["home-arch"]];
   for (let index = 0; index < chapters.length; index++) {
+    await expect(page.locator("[data-paper-landscape]")).toHaveAttribute("viewBox", ["0 0 300 300", "0 -100 300 500", "0 -100 400 500"][index]);
     await solve(page, index, targets[index]);
+    await expect(page.locator(".paths-world")).toHaveAttribute("data-complete", "true");
     await expect(page.getByRole("heading", { name: chapters[index].name, exact: true })).toBeVisible();
     await noOverflow(page);
     expect(await page.locator("[data-paths-section]").evaluate((el) => getComputedStyle(el).position)).toBe("relative");
@@ -63,12 +65,44 @@ test("optional game fetches only on activation; keyboard completes all chapters 
   }
   await expect(page.getByRole("heading", { name: "There's more than one way to belong.", exact: true })).toBeFocused();
   await expect(page.getByRole("status")).toContainText("An arch above a home");
+  await expect(page.locator('[data-ending="home-arch"]')).toBeVisible();
+  await page.locator(".paths-ending").screenshot({ path: info.outputPath("home-arch-ending.png") });
   await control(page, "Replay journey").click();
   await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).toBeFocused();
   await expect(page.locator("#paths-piece-willow-bend")).toHaveAttribute("aria-label", /opening south and west/);
   await control(page, "Exit game").click();
   await expect(launch(page)).toBeFocused();
   expect(errors).toEqual([]);
+});
+
+test("paper effects respond live to OS/site motion, texture and forced-colour preferences", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference", forcedColors: "none" });
+  await play(page);
+  const scenery = page.locator("[data-paper-landscape]");
+  await expect(scenery).toHaveCSS("animation-name", "paths-world-arrive");
+  const piece = page.locator("#paths-piece-willow-bend");
+  await piece.click();
+  const before = await piece.getAttribute("aria-label");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(scenery).toHaveCSS("animation-name", "none");
+  await expect(page.locator(".paths-garden-bloom").first()).toHaveCSS("transition-duration", "0s");
+  await expect(piece).toHaveAttribute("aria-label", before!);
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await control(page, "Reading settings").click();
+  await page.getByRole("checkbox", { name: "Reduce decorative motion", exact: true }).check();
+  await page.getByRole("checkbox", { name: "Background texture", exact: true }).uncheck();
+  await page.keyboard.press("Escape");
+  await expect(scenery).toHaveCSS("animation-name", "none");
+  expect(await page.locator(".paths-world").evaluate((el) => getComputedStyle(el, "::before").display)).toBe("none");
+  await expect(page.locator(".paths-paper-cut").first()).toHaveCSS("filter", "none");
+  await expect(piece).toHaveAttribute("aria-label", before!);
+  await page.emulateMedia({ forcedColors: "active" });
+  await expect(scenery).toHaveCSS("display", "none");
+  await expect(piece).toBeVisible();
+  await piece.press("Enter");
+  await expect(piece).toBeFocused();
+  await expect(piece).not.toHaveAttribute("aria-label", before!);
+  await noOverflow(page);
 });
 
 test("hints, undo, restart, skip and exit preserve clear feedback and focus", async ({ page }) => {
