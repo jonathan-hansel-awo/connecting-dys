@@ -9,6 +9,7 @@ import { registerTsx } from "./helpers/register-tsx.mjs";
 import { chapters } from "../src/features/paths-to-belonging/chapters.ts";
 import { gardenRoutes, neighbourhoodRoutes, endingRoutes } from "./fixtures/paths-to-belonging.ts";
 import type { Board } from "../src/features/paths-to-belonging/types.ts";
+import type { JourneyLoader } from "../src/features/paths-to-belonging/section.tsx";
 
 test("actual optional journey components: DOM interaction and focus", async (suite) => {
   const loader = registerTsx();
@@ -35,7 +36,7 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       await act(async () => { await new Promise((resolve) => setTimeout(resolve, 10)); });
     }
   }
-  async function mount() { await reset(); await act(async () => root.render(React.createElement(PathsToBelongingSection))); }
+  async function mount(loadJourney?: JourneyLoader) { await reset(); await act(async () => root.render(React.createElement(PathsToBelongingSection, { loadJourney }))); }
   async function reset() {
     await act(async () => root.unmount());
     root = createRoot(doc.getElementById("root")!);
@@ -159,6 +160,65 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       await click(button("Restart chapter"));
       assert.equal(world.getAttribute("data-complete"), "false");
       await reset();
+    });
+    await suite.test("failed lazy loading focuses the fallback and leaves the footer reachable", async () => {
+      await mount(async () => { throw new Error("Expected network failure"); });
+      await click(button("Play the little journey"));
+      assert.equal(doc.activeElement?.textContent, "The little journey isn't available right now");
+      assert.equal(doc.querySelector('[data-paths-game]'), null);
+      assert.equal([...doc.querySelectorAll("a")].find((link) => link.textContent === "Continue exploring")?.getAttribute("href"), "#site-footer");
+      assert.ok(doc.getElementById("site-footer"));
+      await click(button("Return to introduction"));
+      assert.strictEqual(doc.activeElement, button("Play the little journey"));
+      await reset();
+    });
+    await suite.test("leaving during loading discards the late result and can launch again", async () => {
+      const loaded = await import("../src/features/paths-to-belonging/journey.tsx");
+      let resolve: (value: typeof loaded) => void = () => {};
+      const pending = new Promise<typeof loaded>((done) => { resolve = done; });
+      await mount(() => pending);
+      await click(button("Play the little journey"));
+      assert.equal(doc.activeElement?.textContent, "Preparing the little journey…");
+      await click(button("Exit game"));
+      assert.strictEqual(doc.activeElement, button("Play the little journey"));
+      await act(async () => resolve(loaded));
+      assert.equal(doc.querySelector('[data-paths-game]'), null);
+      assert.strictEqual(doc.activeElement, button("Play the little journey"));
+      await click(button("Play the little journey"));
+      await waitForGame();
+      assert.equal(doc.activeElement?.textContent, "Find a Way");
+      await reset();
+    });
+    await suite.test("a cancelled request cannot replace or focus a newer request", async () => {
+      const loaded = await import("../src/features/paths-to-belonging/journey.tsx");
+      let first: (value: typeof loaded) => void = () => {};
+      let second: (value: typeof loaded) => void = () => {};
+      const firstLoad = new Promise<typeof loaded>((done) => { first = done; });
+      const secondLoad = new Promise<typeof loaded>((done) => { second = done; });
+      let requests = 0;
+      await mount(() => ++requests === 1 ? firstLoad : secondLoad);
+      await click(button("Play the little journey"));
+      await click(button("Exit game"));
+      await click(button("Play the little journey"));
+      await act(async () => first(loaded));
+      assert.equal(doc.activeElement?.textContent, "Preparing the little journey…");
+      assert.equal(doc.querySelector('[data-paths-game]'), null);
+      await act(async () => second(loaded));
+      await waitForGame();
+      assert.equal(doc.activeElement?.textContent, "Find a Way");
+      assert.equal(requests, 2);
+      await reset();
+    });
+    await suite.test("unmounting during loading cannot mount a late game", async () => {
+      const loaded = await import("../src/features/paths-to-belonging/journey.tsx");
+      let resolve: (value: typeof loaded) => void = () => {};
+      const pending = new Promise<typeof loaded>((done) => { resolve = done; });
+      await mount(() => pending);
+      await click(button("Play the little journey"));
+      await reset();
+      await act(async () => resolve(loaded));
+      assert.equal(doc.getElementById("root")?.childElementCount, 0);
+      assert.equal(doc.querySelector('[data-paths-game]'), null);
     });
     await suite.test("a render failure is contained and focuses an unobstructed fallback", async () => {
       const previousError = console.error;
