@@ -1,7 +1,7 @@
 # Connecting Dys — Homepage Experience Enhancement Action Plan
 
 **Version:** 1.0 — 14 November 2026  
-**Status:** Phases 00–03 implemented. Phase 03 adds a guided discovery passage and owner-requested heart/house recesses; see [implementation/limits](PHASE_03_DISCOVERY_PASSAGE.md). Phases 04–07 not implemented. The owner accepted Phase 01 direction by requesting Phase 02; physical-device release checks remain outstanding.
+**Status:** Phases 00–04 implemented. Phase 04 adds the evolving connection scene, owner-requested portrait stacking reveal and Paper/Linen/Plaster texture choices; see [implementation/limits](PHASE_04_CONNECTION_JOURNEY.md). Phases 05–07 not implemented. The owner accepted Phase 01 direction by requesting Phase 02; physical-device release checks remain outstanding.
 **Repository:** [`jonathan-hansel-awo/connecting-dys`](https://github.com/jonathan-hansel-awo/connecting-dys) (current default branch: `master`)  
 **Current site:** https://connecting-dys.vercel.app/  
 **Primary focus:** mobile-first scroll choreography, an original tactile visual system, and compatibility with the existing reading settings  
@@ -181,14 +181,14 @@ Actions:
 
 Actions:
 
-- [ ] Keep the existing three connection chapters and the factual statement that the CIC is **still building** its community/support foundations.
-- [ ] Refine—not replace by default—the current `CommunityArtwork` SVG; maintain proportioned figures and correctly drawn hands/arms. If a new illustration is proposed, treat it as a separate reviewable improvement.
-- [ ] Use a scroll-linked GSAP timeline to **draw/emboss connecting paths**, bring decorative nodes together and subtly evolve the composition as each chapter enters view.
-- [ ] Desktop: retain selective artwork pinning only while the real three chapter elements are traversed; recalculate distances from actual element dimensions.
-- [ ] Mobile: replace the mostly imperceptible compact movement with a **short, readable evolving tableau**: ideally sticky artwork for a carefully bounded interval *only if proven safe*, otherwise a non-pinned ScrollTrigger scene with clearly visible path progression and layered transitions.
-- [ ] Never pin paragraphs or freeze a focusable control behind the artwork; do not add arbitrary blank scroll distance or visually obscure link destinations.
-- [ ] Integrate the path with the tactile surface system (subtle relief along the strokes and nodes, not blurred lettering).
-- [ ] Fully tear down/rebuild timelines when reading settings, viewport height, orientation, images or fonts change.
+- [x] Keep the existing three connection chapters and the factual statement that the CIC is **still building** its community/support foundations.
+- [x] Refine—not replace by default—the current `CommunityArtwork` SVG; maintain proportioned figures and correctly drawn hands/arms. If a new illustration is proposed, treat it as a separate reviewable improvement.
+- [x] Use a scroll-linked GSAP timeline to **draw/emboss connecting paths**, bring decorative nodes together and subtly evolve the composition as each chapter enters view.
+- [x] Desktop: retain selective artwork pinning only while the real three chapter elements are traversed; recalculate distances from actual element dimensions.
+- [x] Mobile: replace the mostly imperceptible compact movement with a **short, readable evolving tableau**: ideally sticky artwork for a carefully bounded interval *only if proven safe*, otherwise a non-pinned ScrollTrigger scene with clearly visible path progression and layered transitions.
+- [x] Never pin paragraphs or freeze a focusable control behind the artwork; do not add arbitrary blank scroll distance or visually obscure link destinations.
+- [x] Integrate the path with the tactile surface system (subtle relief along the strokes and nodes, not blurred lettering).
+- [x] Fully tear down/rebuild timelines when reading settings, viewport height, orientation, images or fonts change.
 
 **Exit criteria:** The path visibly develops across the three chapter beats on mobile; normal-flow fallback is equally coherent. Navigation, screen readers, large type and reduced motion pass.
 
@@ -283,13 +283,13 @@ Actions:
 - [x] Site-wide fine tactile background and preference-aware visual surface system (Phase 01; subsequent browser evidence in Phase 02)
 - [x] Noticeable mobile hero→recognition transition (Phase 02; browser evidence recorded)
 - [x] Curated, accessible DYS discovery progression (Phase 03; physical assistive-technology review remains in the release gate)
-- [ ] Signature connection story, mobile and desktop (Phase 04)
+- [x] Signature connection story, mobile and desktop (Phase 04; physical assistive-technology/device review remains in the release gate)
 - [ ] Calm, complete support/about/invitation journey (Phase 05)
 - [ ] Full mobile, preference, performance and accessibility release gate (Phase 06)
 - [ ] Optional accessible Paths to Belonging game **LAST** (Phase 07)
 
 **Reminder:** the visual mock-up is a moodboard for textures/overlap, **not an approved replacement screenshot**. It used a different generated logo and compressed some content; the real homepage and approved assets take precedence.
 
-## Owner follow-up outside Phase 03
+## Owner follow-up authorised with Phase 04
 
-- [ ] Offer selectable background texture styles in Reading settings, preserving the existing Off option, font/background/spacing/motion preferences and storage compatibility. Recorded at the owner's request; no style selector is included in Phase 03.
+- [x] Offer selectable background texture styles in Reading settings, preserving the existing Off option, font/background/spacing/motion preferences and storage compatibility. Explicitly authorised with Phase 04: Paper, Linen and Plaster; Phase 03 itself remains the historical paper-only implementation.

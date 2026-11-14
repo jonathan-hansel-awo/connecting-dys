@@ -13,6 +13,11 @@ export const backgrounds = [
   { label: "Soft blue", value: "#EBF4FA" },
   { label: "Soft peach", value: "#FFF0E4" },
 ];
+export const textures = [
+  { value: "paper", label: "Paper" },
+  { value: "linen", label: "Linen" },
+  { value: "plaster", label: "Plaster" },
+] as const;
 export type Preferences = {
   font: keyof typeof fonts;
   size: number;
@@ -21,6 +26,7 @@ export type Preferences = {
   background: string;
   reduceMotion: boolean;
   texture: boolean;
+  textureStyle: (typeof textures)[number]["value"];
 };
 export const defaults: Preferences = {
   font: "Open Sans",
@@ -30,6 +36,7 @@ export const defaults: Preferences = {
   background: "#FCF7ED",
   reduceMotion: false,
   texture: true,
+  textureStyle: "paper",
 };
 // This self-contained function also runs before paint. Keep dependencies in config.
 function preferenceRuntime(
@@ -37,6 +44,7 @@ function preferenceRuntime(
     defaults: Preferences;
     fonts: typeof fonts;
     backgrounds: typeof backgrounds;
+    textures: typeof textures;
   },
   input: unknown,
 ) {
@@ -62,6 +70,9 @@ function preferenceRuntime(
     reduceMotion: p.reduceMotion === true,
     // Older saved objects have no texture field. Only a real boolean opts out.
     texture: typeof p.texture === "boolean" ? p.texture : config.defaults.texture,
+    textureStyle: config.textures.some((t) => t.value === p.textureStyle)
+      ? (p.textureStyle as Preferences["textureStyle"])
+      : config.defaults.textureStyle,
   };
   const root = document.documentElement;
   root.style.setProperty("--reading-font", config.fonts[prefs.font]);
@@ -80,6 +91,7 @@ function preferenceRuntime(
   root.style.setProperty("--reading-background", prefs.background);
   root.dataset.reduceMotion = String(prefs.reduceMotion);
   root.dataset.texture = prefs.texture ? "on" : "off";
+  root.dataset.textureStyle = prefs.textureStyle;
   root.dataset.readingCustom = String(
     prefs.background !== config.defaults.background,
   );
@@ -92,7 +104,7 @@ function preferenceRuntime(
   root.dataset.js = "true";
   return prefs;
 }
-const config = { defaults, fonts, backgrounds };
+const config = { defaults, fonts, backgrounds, textures };
 export function applyPreferences(input: unknown) {
   const prefs = preferenceRuntime(config, input);
   window.dispatchEvent(new Event(PREFERENCES_EVENT));

@@ -23,6 +23,7 @@ export function CommunityArtwork() {
           fill="#FCF7ED"
           opacity=".08"
         />
+        <path className="community-path-bed" d="M40 390C130 265 210 480 370 382S565 275 720 380" />
         <path
           className="journey-path"
           pathLength="1"
@@ -38,6 +39,14 @@ export function CommunityArtwork() {
           strokeDasharray="5 10"
           opacity=".7"
         />
+        <g className="community-branches">
+          <path className="community-branch" pathLength="1" d="M126 342Q100 300 150 275" />
+          <path className="community-branch" pathLength="1" d="M370 382Q340 370 327 350" />
+          <path className="community-branch" pathLength="1" d="M622 331Q650 310 659 278" />
+        </g>
+        <g className="community-node"><circle cx="126" cy="342" r="13" fill="#146C78" stroke="#FCF7ED" strokeWidth="2" /><circle cx="126" cy="342" r="6" fill="#D98677" /></g>
+        <g className="community-node"><circle cx="370" cy="382" r="13" fill="#146C78" stroke="#FCF7ED" strokeWidth="2" /><circle cx="370" cy="382" r="6" fill="#EAB85C" /></g>
+        <g className="community-node"><circle cx="622" cy="331" r="13" fill="#146C78" stroke="#FCF7ED" strokeWidth="2" /><circle cx="622" cy="331" r="6" fill="#FCF7ED" /></g>
         {/* A plant and a shared table give the people a setting and a natural scale. */}
         <g className="scene-plant">
           <path

@@ -1,4 +1,6 @@
-# Homepage scene contracts — Phase 00
+# Homepage scene contracts — current addenda and Phase 00 baseline
+
+**Phase 04 addendum (14 November 2026):** [connection journey contract](PHASE_04_CONNECTION_JOURNEY.md) supersedes the old community row and compact-never-pins policy below. Art-only desktop pin uses actual header/art/chapter geometry. Safe portrait phones (≤699px wide, ≥650px tall, fitting artwork) receive a bounded art-only stacking reveal as the first opaque chapter sheet rises in front; paragraphs/links never pin. Three real chapters drive decorative trails/nodes; short/reduced/spacious/forced-colour/no-JS modes retain static reading flow. Font/image/size/orientation/pageshow changes now rebuild the context. Reading settings adds allowlisted Paper/Linen/Plaster styles while preserving the boolean Off setting, saved fonts/backgrounds and pre-paint restoration. The rows below remain the historical Phase 00 baseline, not the latest implementation.
 
 **Phase 03 addendum (14 November 2026):** [discovery passage contract](PHASE_03_DISCOVERY_PASSAGE.md) supersedes the Discovery “no timeline” row below. Each real row drives its own unpinned path draw, inner illustration drift and paper-band opacity from `top 85%` to `bottom 25%`. The row, reading text, disc and arrow never move. New motion requires height ≥520px; reduced/spacious/forced-colour/no-JS alternatives remain ordinary links. Owner-requested heart/house hero recesses replace only decorative surfaces. Phase 04 community choreography is unchanged.
 

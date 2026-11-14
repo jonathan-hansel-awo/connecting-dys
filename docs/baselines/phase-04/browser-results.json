@@ -1,0 +1,847 @@
+{
+  "generatedAt": "2026-11-14T10:01:44.735978+00:00",
+  "reference": "4275c6ef4ad8617e40dc36da2dbaa42f84f00a35",
+  "stats": {
+    "total": 102,
+    "expected": 91,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 11,
+    "ok": true
+  },
+  "durationMs": 510213.36100000003,
+  "projects": [
+    "mobile-narrow",
+    "mobile-wide",
+    "tablet",
+    "desktop",
+    "phone-landscape",
+    "reflow-320"
+  ],
+  "tests": [
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 04 three chapter paths visibly develop with stationary reading content",
+      "outcome": "expected",
+      "duration": 6944,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 04 artwork pauses while the first portrait chapter overlaps in front",
+      "outcome": "expected",
+      "duration": 2798,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 04 textures retain colour, persist across routes and flatten accessibly",
+      "outcome": "expected",
+      "duration": 5410,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap",
+      "outcome": "expected",
+      "duration": 2609,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 04 three chapter paths visibly develop with stationary reading content",
+      "outcome": "expected",
+      "duration": 6784,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 04 artwork pauses while the first portrait chapter overlaps in front",
+      "outcome": "expected",
+      "duration": 2848,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 04 textures retain colour, persist across routes and flatten accessibly",
+      "outcome": "expected",
+      "duration": 5521,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap",
+      "outcome": "expected",
+      "duration": 2522,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 04 three chapter paths visibly develop with stationary reading content",
+      "outcome": "expected",
+      "duration": 6888,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 04 artwork pauses while the first portrait chapter overlaps in front",
+      "outcome": "skipped",
+      "duration": 146,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The stacking reveal is portrait-only; desktop has a separate artwork pin.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/connection.spec.ts",
+            "line": 58,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 04 textures retain colour, persist across routes and flatten accessibly",
+      "outcome": "expected",
+      "duration": 5730,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap",
+      "outcome": "expected",
+      "duration": 1808,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 04 three chapter paths visibly develop with stationary reading content",
+      "outcome": "expected",
+      "duration": 7357,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 04 artwork pauses while the first portrait chapter overlaps in front",
+      "outcome": "skipped",
+      "duration": 155,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The stacking reveal is portrait-only; desktop has a separate artwork pin.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/connection.spec.ts",
+            "line": 58,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 04 textures retain colour, persist across routes and flatten accessibly",
+      "outcome": "expected",
+      "duration": 5730,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap",
+      "outcome": "expected",
+      "duration": 2883,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 04 three chapter paths visibly develop with stationary reading content",
+      "outcome": "skipped",
+      "duration": 169,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Short screens get a complete static tableau.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/connection.spec.ts",
+            "line": 25,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 04 artwork pauses while the first portrait chapter overlaps in front",
+      "outcome": "skipped",
+      "duration": 289,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "The stacking reveal is portrait-only; desktop has a separate artwork pin.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/connection.spec.ts",
+            "line": 58,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 04 textures retain colour, persist across routes and flatten accessibly",
+      "outcome": "expected",
+      "duration": 4778,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap",
+      "outcome": "expected",
+      "duration": 1536,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 04 three chapter paths visibly develop with stationary reading content",
+      "outcome": "expected",
+      "duration": 6874,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 04 artwork pauses while the first portrait chapter overlaps in front",
+      "outcome": "expected",
+      "duration": 2697,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 04 textures retain colour, persist across routes and flatten accessibly",
+      "outcome": "expected",
+      "duration": 5490,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap",
+      "outcome": "expected",
+      "duration": 2721,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 03 four linked beats draw and drift while text and hit targets stay still",
+      "outcome": "expected",
+      "duration": 8160,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 03 every topic supports keyboard navigation and restores its reading position",
+      "outcome": "expected",
+      "duration": 4112,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage",
+      "outcome": "expected",
+      "duration": 8600,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 03 four linked beats draw and drift while text and hit targets stay still",
+      "outcome": "expected",
+      "duration": 8282,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 03 every topic supports keyboard navigation and restores its reading position",
+      "outcome": "expected",
+      "duration": 3807,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage",
+      "outcome": "expected",
+      "duration": 8446,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 03 four linked beats draw and drift while text and hit targets stay still",
+      "outcome": "expected",
+      "duration": 8509,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 03 every topic supports keyboard navigation and restores its reading position",
+      "outcome": "expected",
+      "duration": 3670,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage",
+      "outcome": "expected",
+      "duration": 8298,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 03 four linked beats draw and drift while text and hit targets stay still",
+      "outcome": "expected",
+      "duration": 8699,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 03 every topic supports keyboard navigation and restores its reading position",
+      "outcome": "expected",
+      "duration": 4182,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage",
+      "outcome": "expected",
+      "duration": 9142,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 03 four linked beats draw and drift while text and hit targets stay still",
+      "outcome": "skipped",
+      "duration": 144,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Short landscape deliberately uses a complete static passage.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/discovery.spec.ts",
+            "line": 31,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 03 every topic supports keyboard navigation and restores its reading position",
+      "outcome": "expected",
+      "duration": 2945,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage",
+      "outcome": "expected",
+      "duration": 8338,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 03 four linked beats draw and drift while text and hit targets stay still",
+      "outcome": "expected",
+      "duration": 8074,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 03 every topic supports keyboard navigation and restores its reading position",
+      "outcome": "expected",
+      "duration": 3928,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage",
+      "outcome": "expected",
+      "duration": 8265,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "duration": 5649,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "duration": 8173,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "duration": 2143,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "duration": 2325,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "duration": 134,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Shared routes audited once at desktop; homepage reflow covered per viewport.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/homepage.spec.ts",
+            "line": 164,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "duration": 13428,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "duration": 1995,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "duration": 5938,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "duration": 8389,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "duration": 2152,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "duration": 2535,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "duration": 145,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Shared routes audited once at desktop; homepage reflow covered per viewport.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/homepage.spec.ts",
+            "line": 164,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "duration": 13734,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "duration": 1840,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "duration": 6544,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "duration": 8172,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "duration": 1981,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "duration": 2562,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "duration": 147,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Shared routes audited once at desktop; homepage reflow covered per viewport.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/homepage.spec.ts",
+            "line": 164,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "tablet",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "duration": 13656,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "duration": 1893,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "duration": 7497,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "duration": 8444,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "duration": 2194,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "duration": 2685,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "expected",
+      "duration": 9144,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "duration": 14081,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "duration": 2109,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "duration": 5690,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "duration": 8102,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "duration": 1844,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "duration": 2435,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "duration": 139,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Shared routes audited once at desktop; homepage reflow covered per viewport.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/homepage.spec.ts",
+            "line": 164,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "duration": 13041,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "duration": 1785,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "chapter screenshots, overflow, console and rendered accessibility",
+      "outcome": "expected",
+      "duration": 5723,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "all fonts/backgrounds, maximum spacing, persistence, reset and modal focus",
+      "outcome": "expected",
+      "duration": 8384,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "native skip/recognition anchors, menu and route history",
+      "outcome": "expected",
+      "duration": 2096,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "site and OS reduced motion tear down animation; no-JS content remains usable",
+      "outcome": "expected",
+      "duration": 2364,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "all public routes return content and pass rendered axe",
+      "outcome": "skipped",
+      "duration": 131,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Shared routes audited once at desktop; homepage reflow covered per viewport.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/homepage.spec.ts",
+            "line": 164,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "texture toggles every surface, persists with reading choices and resets",
+      "outcome": "expected",
+      "duration": 13779,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "forced colours flattens texture/relief and tears down motion; no-JS stays flat",
+      "outcome": "expected",
+      "duration": 1969,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "duration": 3930,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "duration": 7571,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-narrow",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "duration": 1995,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "duration": 3936,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "duration": 7543,
+      "annotations": []
+    },
+    {
+      "projectName": "mobile-wide",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "duration": 2040,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "duration": 4192,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "duration": 7977,
+      "annotations": []
+    },
+    {
+      "projectName": "tablet",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "duration": 2193,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "duration": 4377,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "duration": 8279,
+      "annotations": []
+    },
+    {
+      "projectName": "desktop",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "duration": 2233,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "skipped",
+      "duration": 148,
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Short screens deliberately use the settled scene.",
+          "location": {
+            "file": "/workspace/scratch/da8d3fd1d2ba/connecting-dys/tests/browser/welcome.spec.ts",
+            "line": 31,
+            "column": 8
+          }
+        }
+      ]
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "duration": 7811,
+      "annotations": []
+    },
+    {
+      "projectName": "phone-landscape",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "duration": 1998,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 02 path/depth and paint-sheet progress without moving reading targets",
+      "outcome": "expected",
+      "duration": 3943,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 02 recognition anchor, reduced motion and reading choices stay usable",
+      "outcome": "expected",
+      "duration": 7753,
+      "annotations": []
+    },
+    {
+      "projectName": "reflow-320",
+      "title": "Phase 02 OS/short-screen and no-JS fallback keep a complete static scene",
+      "outcome": "expected",
+      "duration": 2093,
+      "annotations": []
+    }
+  ]
+}

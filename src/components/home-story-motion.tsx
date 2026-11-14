@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { createConnectionMotion } from "@/lib/connection-motion";
 import { PREFERENCES_EVENT } from "@/lib/preferences";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -27,6 +28,7 @@ export function HomeStoryMotion() {
           motion: "(prefers-reduced-motion: no-preference)",
           forcedColours: "(forced-colors: active)",
           tall: "(min-height: 520px)",
+          portraitOverlap: "(max-width: 699px) and (min-height: 650px)",
         },
         (context) => {
           if (!context.conditions?.motion || context.conditions.forcedColours)
@@ -78,7 +80,7 @@ export function HomeStoryMotion() {
                 },
               });
           }
-          // Both modes keep native document order. Compact/touch mode never pins.
+          // Both modes keep native document order. Only decorative art may pin.
           gsap.to(".hero-orbit", {
             y: desktop ? -35 : -12,
             rotation: desktop ? -8 : -10,
@@ -140,53 +142,7 @@ export function HomeStoryMotion() {
                 .to(wash, { opacity: 0.05, ease: "none", duration: 0.5 }, 0.5);
             });
           }
-          const visual =
-            document.querySelector<HTMLElement>(".connection-visual");
-          const chapters = document.querySelector<HTMLElement>(
-            ".connection-chapters",
-          );
-          if (!visual || !chapters) return;
-          if (desktop) {
-            ScrollTrigger.create({
-              id: "connection-art",
-              trigger: visual,
-              start: "top 140px",
-              end: () =>
-                `+=${Math.max(0, chapters.offsetHeight - visual.offsetHeight)}`,
-              pin: visual,
-              pinSpacing: false,
-              invalidateOnRefresh: true,
-            });
-          }
-          const timeline = gsap.timeline({
-            scrollTrigger: {
-              id: desktop ? "connection-desktop" : "connection-compact",
-              trigger: desktop ? chapters : visual,
-              start: desktop ? "top 55%" : "top 90%",
-              end: desktop ? "bottom 70%" : "bottom 20%",
-              scrub: desktop ? 0.7 : true,
-              invalidateOnRefresh: true,
-            },
-          });
-          timeline
-            .fromTo(
-              ".connection-visual .art-landscape",
-              { x: desktop ? 45 : 18 },
-              { x: desktop ? -45 : -18, ease: "none" },
-              0,
-            )
-            .fromTo(
-              ".connection-visual .journey-path",
-              { strokeDasharray: 1, strokeDashoffset: 0.95 },
-              { strokeDashoffset: 0, ease: "none" },
-              0,
-            )
-            .fromTo(
-              ".connection-progress span",
-              { scaleX: 0 },
-              { scaleX: 1, ease: "none" },
-              0,
-            );
+          createConnectionMotion(Boolean(desktop), Boolean(context.conditions.portraitOverlap), Boolean(context.conditions.tall));
         },
       );
       ScrollTrigger.refresh();
@@ -196,11 +152,38 @@ export function HomeStoryMotion() {
       timer = window.setTimeout(rebuild, 120);
     };
     rebuild();
+    // Refresh handles positions; rebuild also rechecks whether the art safely
+    // fits after font loading, orientation and responsive layout changes.
+    let geometry = "";
+    const resized = () => {
+      const targets = [".connection-visual", ".connection-chapters", ".site-header"];
+      const next = [innerWidth, innerHeight, ...targets.flatMap((selector) => {
+        const el = document.querySelector<HTMLElement>(selector);
+        return [el?.offsetWidth || 0, el?.offsetHeight || 0];
+      })].join(":");
+      if (geometry && geometry !== next) changed();
+      geometry = next;
+    };
+    resized();
+    const observer = new ResizeObserver(resized);
+    for (const selector of [".connection-visual", ".connection-chapters", ".site-header"]) {
+      const element = document.querySelector(selector);
+      if (element) observer.observe(element);
+    }
+    document.fonts.addEventListener("loadingdone", changed);
+    document.addEventListener("load", changed, true);
+    window.addEventListener("pageshow", changed);
+    window.addEventListener("resize", resized);
     window.addEventListener(PREFERENCES_EVENT, changed);
     return () => {
       window.clearTimeout(timer);
       window.removeEventListener(PREFERENCES_EVENT, changed);
       media?.revert();
+      observer.disconnect();
+      document.fonts.removeEventListener("loadingdone", changed);
+      document.removeEventListener("load", changed, true);
+      window.removeEventListener("pageshow", changed);
+      window.removeEventListener("resize", resized);
     };
   });
   return null;

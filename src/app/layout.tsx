@@ -9,6 +9,7 @@ import "./globals.css";
 import "../styles/surfaces.css";
 import "../styles/hero-transition.css";
 import "../styles/discovery.css";
+import "../styles/connection.css";
 
 const openSans = localFont({
   src: [

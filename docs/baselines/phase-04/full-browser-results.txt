@@ -1,0 +1,119 @@
+
+> connecting-dys@0.1.0 test:browser
+> playwright test
+
+
+Running 102 tests using 1 worker
+
+  ✓    1 [mobile-narrow] › tests/browser/connection.spec.ts:24:1 › Phase 04 three chapter paths visibly develop with stationary reading content (6.9s)
+  ✓    2 [mobile-narrow] › tests/browser/connection.spec.ts:56:1 › Phase 04 artwork pauses while the first portrait chapter overlaps in front (2.8s)
+  ✓    3 [mobile-narrow] › tests/browser/connection.spec.ts:94:1 › Phase 04 textures retain colour, persist across routes and flatten accessibly (5.4s)
+  ✓    4 [mobile-narrow] › tests/browser/connection.spec.ts:156:1 › Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap (2.6s)
+  ✓    5 [mobile-narrow] › tests/browser/discovery.spec.ts:30:1 › Phase 03 four linked beats draw and drift while text and hit targets stay still (8.2s)
+  ✓    6 [mobile-narrow] › tests/browser/discovery.spec.ts:66:1 › Phase 03 every topic supports keyboard navigation and restores its reading position (4.1s)
+  ✓    7 [mobile-narrow] › tests/browser/discovery.spec.ts:94:1 › Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage (8.6s)
+  ✓    8 [mobile-narrow] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (5.6s)
+  ✓    9 [mobile-narrow] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.2s)
+  ✓   10 [mobile-narrow] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.1s)
+  ✓   11 [mobile-narrow] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.3s)
+  -   12 [mobile-narrow] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓   13 [mobile-narrow] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.4s)
+  ✓   14 [mobile-narrow] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (2.0s)
+  ✓   15 [mobile-narrow] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (3.9s)
+  ✓   16 [mobile-narrow] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.6s)
+  ✓   17 [mobile-narrow] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+  ✓   18 [mobile-wide] › tests/browser/connection.spec.ts:24:1 › Phase 04 three chapter paths visibly develop with stationary reading content (6.8s)
+  ✓   19 [mobile-wide] › tests/browser/connection.spec.ts:56:1 › Phase 04 artwork pauses while the first portrait chapter overlaps in front (2.8s)
+  ✓   20 [mobile-wide] › tests/browser/connection.spec.ts:94:1 › Phase 04 textures retain colour, persist across routes and flatten accessibly (5.5s)
+  ✓   21 [mobile-wide] › tests/browser/connection.spec.ts:156:1 › Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap (2.5s)
+  ✓   22 [mobile-wide] › tests/browser/discovery.spec.ts:30:1 › Phase 03 four linked beats draw and drift while text and hit targets stay still (8.3s)
+  ✓   23 [mobile-wide] › tests/browser/discovery.spec.ts:66:1 › Phase 03 every topic supports keyboard navigation and restores its reading position (3.8s)
+  ✓   24 [mobile-wide] › tests/browser/discovery.spec.ts:94:1 › Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage (8.4s)
+  ✓   25 [mobile-wide] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (5.9s)
+  ✓   26 [mobile-wide] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.4s)
+  ✓   27 [mobile-wide] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.2s)
+  ✓   28 [mobile-wide] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.5s)
+  -   29 [mobile-wide] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓   30 [mobile-wide] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.7s)
+  ✓   31 [mobile-wide] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.8s)
+  ✓   32 [mobile-wide] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (3.9s)
+  ✓   33 [mobile-wide] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.5s)
+  ✓   34 [mobile-wide] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+  ✓   35 [tablet] › tests/browser/connection.spec.ts:24:1 › Phase 04 three chapter paths visibly develop with stationary reading content (6.9s)
+  -   36 [tablet] › tests/browser/connection.spec.ts:56:1 › Phase 04 artwork pauses while the first portrait chapter overlaps in front
+  ✓   37 [tablet] › tests/browser/connection.spec.ts:94:1 › Phase 04 textures retain colour, persist across routes and flatten accessibly (5.7s)
+  ✓   38 [tablet] › tests/browser/connection.spec.ts:156:1 › Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap (1.8s)
+  ✓   39 [tablet] › tests/browser/discovery.spec.ts:30:1 › Phase 03 four linked beats draw and drift while text and hit targets stay still (8.5s)
+  ✓   40 [tablet] › tests/browser/discovery.spec.ts:66:1 › Phase 03 every topic supports keyboard navigation and restores its reading position (3.7s)
+  ✓   41 [tablet] › tests/browser/discovery.spec.ts:94:1 › Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage (8.3s)
+  ✓   42 [tablet] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (6.5s)
+  ✓   43 [tablet] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.2s)
+  ✓   44 [tablet] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.0s)
+  ✓   45 [tablet] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.6s)
+  -   46 [tablet] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓   47 [tablet] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.7s)
+  ✓   48 [tablet] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.9s)
+  ✓   49 [tablet] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.2s)
+  ✓   50 [tablet] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (8.0s)
+  ✓   51 [tablet] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.2s)
+  ✓   52 [desktop] › tests/browser/connection.spec.ts:24:1 › Phase 04 three chapter paths visibly develop with stationary reading content (7.4s)
+  -   53 [desktop] › tests/browser/connection.spec.ts:56:1 › Phase 04 artwork pauses while the first portrait chapter overlaps in front
+  ✓   54 [desktop] › tests/browser/connection.spec.ts:94:1 › Phase 04 textures retain colour, persist across routes and flatten accessibly (5.7s)
+  ✓   55 [desktop] › tests/browser/connection.spec.ts:156:1 › Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap (2.9s)
+  ✓   56 [desktop] › tests/browser/discovery.spec.ts:30:1 › Phase 03 four linked beats draw and drift while text and hit targets stay still (8.7s)
+  ✓   57 [desktop] › tests/browser/discovery.spec.ts:66:1 › Phase 03 every topic supports keyboard navigation and restores its reading position (4.2s)
+  ✓   58 [desktop] › tests/browser/discovery.spec.ts:94:1 › Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage (9.1s)
+  ✓   59 [desktop] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (7.5s)
+  ✓   60 [desktop] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.4s)
+  ✓   61 [desktop] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.2s)
+  ✓   62 [desktop] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.7s)
+  ✓   63 [desktop] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe (9.1s)
+  ✓   64 [desktop] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (14.1s)
+  ✓   65 [desktop] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (2.1s)
+  ✓   66 [desktop] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (4.4s)
+  ✓   67 [desktop] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (8.3s)
+  ✓   68 [desktop] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.2s)
+  -   69 [phone-landscape] › tests/browser/connection.spec.ts:24:1 › Phase 04 three chapter paths visibly develop with stationary reading content
+  -   70 [phone-landscape] › tests/browser/connection.spec.ts:56:1 › Phase 04 artwork pauses while the first portrait chapter overlaps in front
+  ✓   71 [phone-landscape] › tests/browser/connection.spec.ts:94:1 › Phase 04 textures retain colour, persist across routes and flatten accessibly (4.8s)
+  ✓   72 [phone-landscape] › tests/browser/connection.spec.ts:156:1 › Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap (1.5s)
+  -   73 [phone-landscape] › tests/browser/discovery.spec.ts:30:1 › Phase 03 four linked beats draw and drift while text and hit targets stay still
+  ✓   74 [phone-landscape] › tests/browser/discovery.spec.ts:66:1 › Phase 03 every topic supports keyboard navigation and restores its reading position (2.9s)
+  ✓   75 [phone-landscape] › tests/browser/discovery.spec.ts:94:1 › Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage (8.3s)
+  ✓   76 [phone-landscape] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (5.7s)
+  ✓   77 [phone-landscape] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.1s)
+  ✓   78 [phone-landscape] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (1.8s)
+  ✓   79 [phone-landscape] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.4s)
+  -   80 [phone-landscape] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓   81 [phone-landscape] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.0s)
+  ✓   82 [phone-landscape] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (1.8s)
+  -   83 [phone-landscape] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets
+  ✓   84 [phone-landscape] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.8s)
+  ✓   85 [phone-landscape] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.0s)
+  ✓   86 [reflow-320] › tests/browser/connection.spec.ts:24:1 › Phase 04 three chapter paths visibly develop with stationary reading content (6.9s)
+  ✓   87 [reflow-320] › tests/browser/connection.spec.ts:56:1 › Phase 04 artwork pauses while the first portrait chapter overlaps in front (2.7s)
+  ✓   88 [reflow-320] › tests/browser/connection.spec.ts:94:1 › Phase 04 textures retain colour, persist across routes and flatten accessibly (5.5s)
+  ✓   89 [reflow-320] › tests/browser/connection.spec.ts:156:1 › Phase 04 scene rebuilds mid-passage without duplicate pins or a short-screen trap (2.7s)
+  ✓   90 [reflow-320] › tests/browser/discovery.spec.ts:30:1 › Phase 03 four linked beats draw and drift while text and hit targets stay still (8.1s)
+  ✓   91 [reflow-320] › tests/browser/discovery.spec.ts:66:1 › Phase 03 every topic supports keyboard navigation and restores its reading position (3.9s)
+  ✓   92 [reflow-320] › tests/browser/discovery.spec.ts:94:1 › Phase 03 preferences, short screens, forced colours and no-JS keep a readable passage (8.3s)
+  ✓   93 [reflow-320] › tests/browser/homepage.spec.ts:32:1 › chapter screenshots, overflow, console and rendered accessibility (5.7s)
+  ✓   94 [reflow-320] › tests/browser/homepage.spec.ts:59:1 › all fonts/backgrounds, maximum spacing, persistence, reset and modal focus (8.4s)
+  ✓   95 [reflow-320] › tests/browser/homepage.spec.ts:100:1 › native skip/recognition anchors, menu and route history (2.1s)
+  ✓   96 [reflow-320] › tests/browser/homepage.spec.ts:137:1 › site and OS reduced motion tear down animation; no-JS content remains usable (2.4s)
+  -   97 [reflow-320] › tests/browser/homepage.spec.ts:163:1 › all public routes return content and pass rendered axe
+  ✓   98 [reflow-320] › tests/browser/homepage.spec.ts:175:1 › texture toggles every surface, persists with reading choices and resets (13.8s)
+  ✓   99 [reflow-320] › tests/browser/homepage.spec.ts:216:1 › forced colours flattens texture/relief and tears down motion; no-JS stays flat (2.0s)
+  ✓  100 [reflow-320] › tests/browser/welcome.spec.ts:30:1 › Phase 02 path/depth and paint-sheet progress without moving reading targets (3.9s)
+  ✓  101 [reflow-320] › tests/browser/welcome.spec.ts:60:1 › Phase 02 recognition anchor, reduced motion and reading choices stay usable (7.8s)
+  ✓  102 [reflow-320] › tests/browser/welcome.spec.ts:95:1 › Phase 02 OS/short-screen and no-JS fallback keep a complete static scene (2.1s)
+
+  11 skipped
+  91 passed (8.5m)
+
+To open last HTML report run:
+
+  npx playwright show-report
+
+
+BROWSER_EXIT=0

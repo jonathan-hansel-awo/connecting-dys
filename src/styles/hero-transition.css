@@ -133,3 +133,9 @@ html[data-spacious="true"] .hero-house-recess {
     display: none;
   }
 }
+
+.recess-linen, .recess-plaster { display: none; }
+html[data-texture-style="linen"] .recess-paper,
+html[data-texture-style="plaster"] .recess-paper { display: none; }
+html[data-texture-style="linen"] .recess-linen,
+html[data-texture-style="plaster"] .recess-plaster { display: block; }

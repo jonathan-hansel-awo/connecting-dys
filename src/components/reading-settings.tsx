@@ -7,6 +7,7 @@ import {
   backgrounds,
   defaults,
   fonts,
+  textures,
   restorePreferences,
   STORAGE_KEY,
   type Preferences,
@@ -164,8 +165,23 @@ export function ReadingSettings() {
               </span>
             </span>
           </label>
+          <label>
+            Texture style
+            <select
+              value={preferences.textureStyle}
+              disabled={!preferences.texture}
+              aria-describedby="texture-hint"
+              onChange={(e) => update({ ...preferences, textureStyle: e.target.value as Preferences["textureStyle"] })}
+            >
+              {textures.map((texture) => (
+                <option key={texture.value} value={texture.value}>{texture.label}</option>
+              ))}
+            </select>
+          </label>
+          <div className="texture-preview surface-paper" aria-hidden="true" />
           <p className="small" id="texture-hint">
-            Subtle paper grain and surface depth. Choose what feels comfortable.
+            Fine paper grain, a soft linen weave or matte plaster. Turn Background
+            texture off for a plain surface. Your colour choice stays the same.
           </p>
           <label className="check-label">
             <input

@@ -64,6 +64,8 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   assert.equal(artwork.querySelectorAll("a,button,input,select,[tabindex]").length, 0);
   assert.equal(artwork.querySelector(".journey-path")?.getAttribute("pathLength"), "1");
   assert.equal(doc.querySelectorAll(".connection-chapters > article").length, 3);
+  assert.equal(doc.querySelectorAll(".connection-chapter .chapter-path[pathLength='1']").length, 3);
+  assert.equal(doc.querySelectorAll(".connection-trail[aria-hidden='true']").length, 3);
   assert.deepEqual(
     [...doc.querySelectorAll(".difference-row")].map((a) => a.getAttribute("href")),
     ["/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"],
@@ -255,6 +257,7 @@ test("texture migrates safely and restores before paint without changing reading
         vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
         const html = dom.window.document.documentElement;
         assert.equal(html.dataset.texture, texture === false ? "off" : "on");
+        assert.equal(html.dataset.textureStyle, "paper", "legacy settings use paper");
         assert.equal(html.dataset.reduceMotion, "true");
         assert.equal(html.dataset.spacious, "true");
         assert.equal(html.style.getPropertyValue("--reading-background"), background);
@@ -262,6 +265,22 @@ test("texture migrates safely and restores before paint without changing reading
         assert.ok(html.style.getPropertyValue("--reading-font").includes(font === "Open Sans" ? "--font-open-sans" : font));
         dom.window.close();
       }
+    }
+  }
+});
+
+test("texture styles validate before paint, including Off and hostile stored values", () => {
+  for (const textureStyle of ["paper", "linen", "plaster", "url(https://example.com)", "__proto__", null, 5]) {
+    for (const texture of [true, false]) {
+      const dom = page();
+      dom.window.localStorage.setItem("connecting-dys-reading-settings", JSON.stringify({ texture, textureStyle, background: "#EBF4FA", font: "Verdana" }));
+      const bootstrap = [...dom.window.document.scripts].find((s) => s.textContent?.startsWith("try{"))!;
+      vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
+      const html = dom.window.document.documentElement;
+      assert.equal(html.dataset.textureStyle, ["paper", "linen", "plaster"].includes(textureStyle as string) ? textureStyle : "paper");
+      assert.equal(html.dataset.texture, texture ? "on" : "off");
+      assert.equal(html.style.getPropertyValue("--reading-background"), "#EBF4FA");
+      dom.window.close();
     }
   }
 });
@@ -330,8 +349,8 @@ test("material grain and button highlight retain conservative AA text contrast",
   const mix = (base: number[], overlay: number[], alpha: number) => base.map((v, i) => v * (1 - alpha) + overlay[i] * alpha);
   const luminance = (c: number[]) => c.map((v) => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4).reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
   const ratio = (a: number[], b: number[]) => (Math.max(luminance(a), luminance(b)) + 0.05) / (Math.min(luminance(a), luminance(b)) + 0.05);
-  // Bound the SVG's 0.08 alpha at entirely black/white, stronger than its real
-  // fine fibres. Button sheen adds at most 0.04 white. No layout/axe claim.
+  // Bound all three tiles by 0.08 alpha at entirely black/white. Paper is .08;
+  // linen uses .06 white / at most .055 dark and plaster is at most .042. Button sheen adds at most 0.04 white. No layout/axe claim.
   const darkest = (c: number[]) => mix(c, [0, 0, 0], 0.08);
   const lightest = (c: number[]) => mix(c, [1, 1, 1], 0.08);
   for (const paper of ["#FCF7ED", "#FFFFFF", "#EBF4FA", "#FFF0E4"]) {

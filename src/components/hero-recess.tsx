@@ -24,7 +24,9 @@ export function HeroRecess({ shape }: { shape: keyof typeof shapes }) {
           <feComposite in2="shadowed" operator="over" />
         </filter>
         <pattern id={`${id}-paper`} width="192" height="192" patternUnits="userSpaceOnUse">
-          <image href="/textures/fine-paper.svg" width="192" height="192" />
+          <image className="recess-texture recess-paper" href="/textures/fine-paper.svg" width="192" height="192" />
+          <image className="recess-texture recess-linen" href="/textures/linen.svg" width="192" height="192" />
+          <image className="recess-texture recess-plaster" href="/textures/plaster.svg" width="192" height="192" />
         </pattern>
       </defs>
       <path className="hero-recess-shape" d={shapes[shape]} filter={`url(#${id})`} />

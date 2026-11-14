@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-14",
+  "method": "Native Chromium browser UI zoom via Ctrl-plus; read-only DOM geometry on local production server",
+  "checks": [
+    {"zoomPercent": 200, "width": 681, "height": 468, "devicePixelRatio": 2, "texture": "linen", "pageOverflow": 0, "pins": 0},
+    {"zoomPercent": 400, "width": 340, "height": 234, "devicePixelRatio": 4, "texture": "linen", "pageOverflow": 0, "dialogOverflow": 0, "pins": 0},
+    {"zoomPercent": 400, "width": 340, "height": 234, "texture": "plaster", "font": "OpenDyslexic", "size": 26, "lineHeight": 2, "letterSpacing": 0.12, "pageOverflow": 0, "dialogOverflow": 0, "pins": 0}
+  ],
+  "restored": "100% zoom and default reading preferences after checking",
+  "limits": "Native desktop Chromium zoom, not a physical phone, VoiceOver or high-DPI display review. No persisted browser screenshot is represented by this measurement file."
+}

@@ -18,7 +18,15 @@ See [implementation, exact scene contract and limits](docs/PHASE_02_WELCOME_TRAN
 
 The four existing topic links now share a fine embossed trail, alternating inner-art drift and a soft paper-band highlight as each row enters view. Text, hit targets and arrows stay in place; all links remain directly available. Short screens/reduced motion/spacious settings/no-JS keep complete static alternatives. The owner's requested heart and house recesses replace only hero decoration, preserving the approved identity. Texture-style selection is recorded for later; the existing On/Off setting is unchanged.
 
-See [implementation and scene contract](docs/PHASE_03_DISCOVERY_PASSAGE.md) and [browser evidence](docs/baselines/phase-03/README.md). Phase 04 is next.
+See [implementation and scene contract](docs/PHASE_03_DISCOVERY_PASSAGE.md) and [browser evidence](docs/baselines/phase-03/README.md). Phase 04 is implemented below.
+
+## Phase 04 connection journey and texture choices
+
+The retained three-part community story now has converging decorative nodes and paths plus a tactile trail beside each chapter. Safe portrait phones receive an artwork-only **pinned overlap / stacking reveal**: the illustration pauses while the first chapter sheet rises over it. Desktop art pinning measures the actual header and chapter geometry; text and links always stay in normal flow. Short/reduced/spacious/forced-colour/no-JS alternatives remain complete and static.
+
+Reading settings now offers **Paper, Linen and Plaster**, with the existing Background texture On/Off switch, colour choices and saved reading preferences retained. Older saved settings migrate to Paper; Off retains your chosen style; Reset restores defaults. The same allowlisted runtime restores before paint and after hydration.
+
+See [implementation, contracts and file list](docs/PHASE_04_CONNECTION_JOURNEY.md) and [screenshots/browser evidence](docs/baselines/phase-04/README.md). Build/lint/typecheck and 12 production regression groups pass. Full Chromium matrix: **91 passed, 11 intentional skips, zero failures/flaky tests**; actual UI 200%/400% zoom reflow also passes. Phase 05 is next.
 
 ## Run locally
 
@@ -60,14 +68,14 @@ The runner owns a local production server on port 3100 (override with validated 
 - `src/app/page.tsx`: server-rendered editorial homepage, following welcome → recognition → discovery → connection → practical support → organisation → invitation. The voices chapter is deliberately omitted until real, permissioned stories exist.
 - `src/content/site.ts`: branding, verified contact address, learning-difference introductions and editable connection copy.
 - `src/components/story-art.tsx`: original inline decorative SVG landscapes and topic illustrations. These are abstract illustrations, not member portraits or alternative logos.
-- `src/components/home-story-motion.tsx`: GSAP + ScrollTrigger with `useGSAP` cleanup and matchMedia. The recognition photo pans within its frame; the connection artwork pins briefly on desktop while its landscape travels laterally. Compact/touch layouts use short unpinned lateral movement and path drawing. All reading text stays still in ordinary DOM order.
+- `src/components/home-story-motion.tsx`: GSAP + ScrollTrigger with `useGSAP` cleanup and matchMedia. The recognition photo pans within its frame; the connection artwork pins briefly on desktop while its landscape travels laterally. Compact/touch layouts use native scroll-driven art and chapter trails; fitting portrait-phone artwork briefly pins behind the first rising chapter sheet. All reading text stays still in ordinary DOM order.
 - `src/components/providers/SmoothScrollProvider.tsx`: one GSAP ticker drives Lenis. Dynamic Lenis import, no touch interpolation, native anchors/history/keyboard interruption, and complete lifecycle cleanup. No transformed scrolling container or body scroll lock.
 - `src/lib/preferences.ts`: shared validated preference application; its self-contained runtime also runs before paint. Storage failures cannot block rendering. Optional font faces are fetched only when selected. Preferences apply to headings, controls and reading surfaces; branded artwork stays unchanged.
 - `src/components/reading-settings.tsx`: a control below the navigation (not sticky), opening a native modal dialog with Escape, focus containment and focus return, plus a native scrollable panel.
 - `src/app/[slug]/page.tsx`: calm reading routes for the four DYS subjects, about, support, getting involved, contact and accessibility. Existing organisation policy information remains linked to the original website.
 - `src/app/globals.css`: central brand/reading tokens, fluid responsive layouts, enhanced large-spacing layouts, reduced-motion, print and forced-colour alternatives.
 
-Pinned desktop choreography requires a fine pointer, at least 1100px width and 700px height. Other viewports use contained, unpinned artwork movement driven by native scrolling. Both modes require no OS reduced-motion preference and no personal simplified-reading preference. Large type/line/letter spacing and OpenDyslexic select spacious compositions. Lenis is disabled on coarse pointers and in reduced-motion mode. No information relies on animation or JavaScript being available.
+Pinned desktop choreography requires a fine pointer, at least 1100px width and 700px height. Safe portrait phones (≤699px wide, ≥650px tall, fitting artwork) also allow the short artwork-only stacking reveal; other viewports use contained, unpinned artwork movement driven by native scrolling. Both modes require no OS reduced-motion preference and no personal simplified-reading preference. Large type/line/letter spacing and OpenDyslexic select spacious compositions. Lenis is disabled on coarse pointers and in reduced-motion mode. No information relies on animation or JavaScript being available.
 
 The pre-paint script is static, contains no untrusted interpolation and does not require `unsafe-eval`. If a Content Security Policy is introduced, authorise that script with a nonce or hash and accommodate Next.js’s own scripts; do not simply permit arbitrary inline scripts.
 

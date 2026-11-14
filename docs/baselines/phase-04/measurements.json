@@ -1,0 +1,569 @@
+[
+  {
+    "project": "mobile-narrow",
+    "name": "connection-measurements",
+    "data": [
+      {
+        "early": {
+          "path": 0.959,
+          "node": "matrix(0.6643, 0, 0, 0.6643, -11.5081, 0)",
+          "text": [
+            {
+              "y": 4450.984375,
+              "transform": "none"
+            },
+            {
+              "y": 4530.71875,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0395,
+          "node": "matrix(0.9862, 0, 0, 0.9862, -0.4744, 0)",
+          "text": [
+            {
+              "y": 4450.984375,
+              "transform": "none"
+            },
+            {
+              "y": 4530.71875,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9605,
+          "node": "matrix(0.6638, 0, 0, 0.6638, 11.5256, 0)",
+          "text": [
+            {
+              "y": 4773.625,
+              "transform": "none"
+            },
+            {
+              "y": 4853.359375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.041,
+          "node": "matrix(0.9857, 0, 0, 0.9857, 0.4919, 0)",
+          "text": [
+            {
+              "y": 4773.625,
+              "transform": "none"
+            },
+            {
+              "y": 4853.359375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9603,
+          "node": "matrix(0.6639, 0, 0, 0.6639, -11.5237, 0)",
+          "text": [
+            {
+              "y": 5096.265625,
+              "transform": "none"
+            },
+            {
+              "y": 5176,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0397,
+          "node": "matrix(0.9861, 0, 0, 0.9861, -0.4763, 0)",
+          "text": [
+            {
+              "y": 5096.265625,
+              "transform": "none"
+            },
+            {
+              "y": 5176,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      }
+    ]
+  },
+  {
+    "project": "mobile-narrow",
+    "name": "overlap-geometry",
+    "data": {
+      "geometry": {
+        "start": 3938.125,
+        "end": 4289.125,
+        "inset": 86.1875
+      },
+      "early": {
+        "art": 86.3125,
+        "chapter": 384.3125
+      },
+      "late": {
+        "art": 86.3125,
+        "chapter": 174.3125
+      }
+    }
+  },
+  {
+    "project": "mobile-wide",
+    "name": "connection-measurements",
+    "data": [
+      {
+        "early": {
+          "path": 0.9604,
+          "node": "matrix(0.6639, 0, 0, 0.6639, -11.5249, 0)",
+          "text": [
+            {
+              "y": 4294.0625,
+              "transform": "none"
+            },
+            {
+              "y": 4341.125,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0396,
+          "node": "matrix(0.9861, 0, 0, 0.9861, -0.4751, 0)",
+          "text": [
+            {
+              "y": 4294.0625,
+              "transform": "none"
+            },
+            {
+              "y": 4341.125,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9608,
+          "node": "matrix(0.6637, 0, 0, 0.6637, 11.5301, 0)",
+          "text": [
+            {
+              "y": 4556.703125,
+              "transform": "none"
+            },
+            {
+              "y": 4636.4375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0406,
+          "node": "matrix(0.9858, 0, 0, 0.9858, 0.4867, 0)",
+          "text": [
+            {
+              "y": 4556.703125,
+              "transform": "none"
+            },
+            {
+              "y": 4636.4375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9593,
+          "node": "matrix(0.6642, 0, 0, 0.6642, -11.5116, 0)",
+          "text": [
+            {
+              "y": 4852.015625,
+              "transform": "none"
+            },
+            {
+              "y": 4931.75,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0407,
+          "node": "matrix(0.9858, 0, 0, 0.9858, -0.4884, 0)",
+          "text": [
+            {
+              "y": 4852.015625,
+              "transform": "none"
+            },
+            {
+              "y": 4931.75,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      }
+    ]
+  },
+  {
+    "project": "mobile-wide",
+    "name": "overlap-geometry",
+    "data": {
+      "geometry": {
+        "start": 3726.203125,
+        "end": 4132.203125,
+        "inset": 86.1875
+      },
+      "early": {
+        "art": 86.390625,
+        "chapter": 431.390625
+      },
+      "late": {
+        "art": 86.390625,
+        "chapter": 187.390625
+      }
+    }
+  },
+  {
+    "project": "tablet",
+    "name": "connection-measurements",
+    "data": [
+      {
+        "early": {
+          "path": 0.9596,
+          "node": "matrix(0.6641, 0, 0, 0.6641, -11.5158, 0)",
+          "text": [
+            {
+              "y": 3431.0625,
+              "transform": "none"
+            },
+            {
+              "y": 3512.40625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0404,
+          "node": "matrix(0.9859, 0, 0, 0.9859, -0.4842, 0)",
+          "text": [
+            {
+              "y": 3431.0625,
+              "transform": "none"
+            },
+            {
+              "y": 3512.40625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9596,
+          "node": "matrix(0.6641, 0, 0, 0.6641, 11.5158, 0)",
+          "text": [
+            {
+              "y": 3763.140625,
+              "transform": "none"
+            },
+            {
+              "y": 3844.484375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0404,
+          "node": "matrix(0.9859, 0, 0, 0.9859, 0.4842, 0)",
+          "text": [
+            {
+              "y": 3763.140625,
+              "transform": "none"
+            },
+            {
+              "y": 3844.484375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9595,
+          "node": "matrix(0.6642, 0, 0, 0.6642, -11.5144, 0)",
+          "text": [
+            {
+              "y": 4095.21875,
+              "transform": "none"
+            },
+            {
+              "y": 4176.5625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0392,
+          "node": "matrix(0.9863, 0, 0, 0.9863, -0.47, 0)",
+          "text": [
+            {
+              "y": 4095.21875,
+              "transform": "none"
+            },
+            {
+              "y": 4176.5625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      }
+    ]
+  },
+  {
+    "project": "desktop",
+    "name": "connection-measurements",
+    "data": [
+      {
+        "early": {
+          "path": 0.9602,
+          "node": "matrix(0.6639, 0, 0, 0.6639, -11.5226, 0)",
+          "text": [
+            {
+              "y": 3357.40625,
+              "transform": "none"
+            },
+            {
+              "y": 3412.03125,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0398,
+          "node": "matrix(0.9861, 0, 0, 0.9861, -0.4774, 0)",
+          "text": [
+            {
+              "y": 3357.40625,
+              "transform": "none"
+            },
+            {
+              "y": 3412.03125,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9599,
+          "node": "matrix(0.664, 0, 0, 0.664, 11.5188, 0)",
+          "text": [
+            {
+              "y": 3681.40625,
+              "transform": "none"
+            },
+            {
+              "y": 3772.65625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0401,
+          "node": "matrix(0.986, 0, 0, 0.986, 0.4812, 0)",
+          "text": [
+            {
+              "y": 3681.40625,
+              "transform": "none"
+            },
+            {
+              "y": 3772.65625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9611,
+          "node": "matrix(0.6636, 0, 0, 0.6636, -11.5329, 0)",
+          "text": [
+            {
+              "y": 4048.875,
+              "transform": "none"
+            },
+            {
+              "y": 4140.125,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0403,
+          "node": "matrix(0.9859, 0, 0, 0.9859, -0.4832, 0)",
+          "text": [
+            {
+              "y": 4048.875,
+              "transform": "none"
+            },
+            {
+              "y": 4140.125,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      }
+    ]
+  },
+  {
+    "project": "reflow-320",
+    "name": "connection-measurements",
+    "data": [
+      {
+        "early": {
+          "path": 0.9605,
+          "node": "matrix(0.6638, 0, 0, 0.6638, -11.5261, 0)",
+          "text": [
+            {
+              "y": 4625.171875,
+              "transform": "none"
+            },
+            {
+              "y": 4704.90625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0395,
+          "node": "matrix(0.9862, 0, 0, 0.9862, -0.4739, 0)",
+          "text": [
+            {
+              "y": 4625.171875,
+              "transform": "none"
+            },
+            {
+              "y": 4704.90625,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9593,
+          "node": "matrix(0.6642, 0, 0, 0.6642, 11.5122, 0)",
+          "text": [
+            {
+              "y": 4975.140625,
+              "transform": "none"
+            },
+            {
+              "y": 5054.875,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0407,
+          "node": "matrix(0.9858, 0, 0, 0.9858, 0.4878, 0)",
+          "text": [
+            {
+              "y": 4975.140625,
+              "transform": "none"
+            },
+            {
+              "y": 5054.875,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      },
+      {
+        "early": {
+          "path": 0.9608,
+          "node": "matrix(0.6637, 0, 0, 0.6637, -11.5301, 0)",
+          "text": [
+            {
+              "y": 5352.4375,
+              "transform": "none"
+            },
+            {
+              "y": 5464.84375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        },
+        "late": {
+          "path": 0.0406,
+          "node": "matrix(0.9858, 0, 0, 0.9858, -0.4867, 0)",
+          "text": [
+            {
+              "y": 5352.4375,
+              "transform": "none"
+            },
+            {
+              "y": 5464.84375,
+              "transform": "none"
+            }
+          ],
+          "overflow": 0
+        }
+      }
+    ]
+  },
+  {
+    "project": "reflow-320",
+    "name": "overlap-geometry",
+    "data": {
+      "geometry": {
+        "start": 4126.3125,
+        "end": 4463.3125,
+        "inset": 86.1875
+      },
+      "early": {
+        "art": 86.5,
+        "chapter": 372.5
+      },
+      "late": {
+        "art": 86.5,
+        "chapter": 170.5
+      }
+    }
+  }
+]

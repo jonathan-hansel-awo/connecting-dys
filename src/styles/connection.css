@@ -1,0 +1,72 @@
+/* Phase 04: a single evolving illustration and a continuous chapter rail.
+   Native reading flow is the baseline; no text is a tween/pin target. */
+.connection-layout { position: relative; isolation: isolate; }
+.connection-visual { position: relative; z-index: 0; }
+.connection-chapters { position: relative; z-index: 2; min-width: 0; }
+.connection-chapter {
+  position: relative;
+  isolation: isolate;
+  padding-inline-start: clamp(2.8rem, 5vw, 4.5rem);
+  background-color: var(--surface-soft);
+  background-image: var(--surface-grain-image);
+  background-size: var(--surface-grain-size);
+}
+.chapter-wash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 1.5rem 0 0 1.5rem;
+  background: linear-gradient(110deg, rgb(20 108 120 / .04), transparent 75%);
+  opacity: .2;
+  pointer-events: none;
+}
+.connection-trail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(2rem, 4vw, 3.5rem);
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.chapter-path-bed { stroke: var(--brand-navy); stroke-width: 3; opacity: .09; }
+.connection-trail svg { width: 100%; height: 100%; overflow: visible; }
+.chapter-path { stroke: var(--brand-teal); stroke-width: 2; filter: var(--surface-path-filter); }
+.chapter-node {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--brand-teal);
+  background: var(--surface-soft);
+  box-shadow: var(--surface-raised);
+}
+.chapter-node span { width: 8px; height: 8px; border-radius: 50%; }
+.community-path-bed { stroke: var(--brand-navy); stroke-width: 9; opacity: .18; }
+.community-node { filter: var(--surface-path-filter); }
+.community-branch { stroke: var(--brand-cream); stroke-width: 2; opacity: .45; }
+@media (max-width: 699px) {
+  /* The sheet paints in FRONT of the pinned decoration. Its text never moves
+     independently, and no chapter overlaps another chapter. */
+  .connection-chapters {
+    border-radius: 1.75rem 1.75rem 0 0;
+    background-color: var(--surface-soft);
+    background-image: var(--surface-grain-image);
+    background-size: var(--surface-grain-size);
+    box-shadow: var(--surface-panel);
+  }
+  .connection-chapter:first-child { border-radius: inherit; }
+  .connection-chapter { padding-inline-start: 2.8rem; padding-inline-end: .25rem; }
+}
+html[data-spacious="true"] .connection-chapter { padding-inline: 0; }
+html[data-spacious="true"] .connection-trail,
+html[data-spacious="true"] .chapter-wash { display: none; }
+@media (forced-colors: active), print {
+  .connection-trail, .chapter-wash, .community-path-bed { display: none; }
+  .connection-chapter { padding-inline: 0; background-image: none; }
+  .connection-chapters { box-shadow: none; }
+}

@@ -4,6 +4,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { brand, connectionChapters, differences } from "@/content/site";
 import { DifferenceArtwork, CommunityArtwork } from "@/components/story-art";
 import { HomeStoryMotion } from "@/components/home-story-motion";
+import { ConnectionTrail } from "@/components/connection-trail";
 import { DiscoveryTrail } from "@/components/discovery-trail";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
 
@@ -221,8 +222,10 @@ export default function HomePage() {
               </div>
             </div>
             <div className="connection-chapters">
-              {connectionChapters.map((chapter) => (
+              {connectionChapters.map((chapter, index) => (
                 <article className="connection-chapter" key={chapter.number}>
+                  <div className="chapter-wash" aria-hidden="true" />
+                  <ConnectionTrail index={index} />
                   <span className="chapter-number">{chapter.number}</span>
                   <h3>{chapter.title}</h3>
                   <p>{chapter.text}</p>

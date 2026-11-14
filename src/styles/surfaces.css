@@ -40,6 +40,18 @@ html[data-texture="on"] {
   --surface-button: var(--surface-edge), var(--surface-raised);
   --surface-frame: var(--surface-inset), var(--surface-edge);
 }
+html[data-texture="on"][data-texture-style="linen"] {
+  --surface-grain-image: url("/textures/linen.svg");
+}
+html[data-texture="on"][data-texture-style="plaster"] {
+  --surface-grain-image: url("/textures/plaster.svg");
+}
+.texture-preview {
+  height: 3rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.6rem;
+  box-shadow: var(--surface-inset);
+}
 /* Background layers, not a full-screen overlay: grain cannot cover text,
    approved logos, photographs, selection, focus outlines or pointer targets. */
 .surface-paper,
@@ -181,7 +193,7 @@ html[data-spacious="true"] .hero-composition::after {
   display: none;
 }
 @media (forced-colors: active) {
-  html[data-texture="on"] {
+  html[data-texture="on"][data-texture-style] {
     --surface-grain-image: none;
     --surface-raised: none;
     --surface-inset: none;
@@ -201,7 +213,7 @@ html[data-spacious="true"] .hero-composition::after {
   }
 }
 @media print {
-  html[data-texture="on"] {
+  html[data-texture="on"][data-texture-style] {
     --surface-grain-image: none;
     --surface-raised: none;
     --surface-inset: none;
