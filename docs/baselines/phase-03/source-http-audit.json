@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-11-14T08:35:08.688Z",
+  "reference": "604b3af65b9fa8e9193d07d8b3cdeae757d7da66",
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/support",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/get-involved",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/accessibility",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/dyslexia",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/dyspraxia",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/dyscalculia",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    },
+    {
+      "route": "/dysgraphia",
+      "status": 200,
+      "mainContentIdentical": true,
+      "allLinksIdentical": true,
+      "imagesIdentical": true
+    }
+  ],
+  "texture": {
+    "status": 200,
+    "contentType": "image/svg+xml",
+    "bytes": 725,
+    "gzipBytes": 411
+  },
+  "assets": [
+    {
+      "name": "connecting_dys_logo.png",
+      "sha256": "bb68edef8faee420c861661d3b1f19e06db8c12dc17060d01a3deb4caba1112b"
+    },
+    {
+      "name": "connecting-dys-embrace.png",
+      "sha256": "a0126d9aa517efc994eb72af77d2eea45d580e1ba85fb2d8d0fdcc7d64875e6f"
+    }
+  ],
+  "productionStaticAssets": {
+    ".js": {
+      "before": {
+        "files": 14,
+        "rawBytes": 758014,
+        "gzipBytes": 243057
+      },
+      "after": {
+        "files": 14,
+        "rawBytes": 759918,
+        "gzipBytes": 243641
+      }
+    },
+    ".css": {
+      "before": {
+        "files": 1,
+        "rawBytes": 91573,
+        "gzipBytes": 16601
+      },
+      "after": {
+        "files": 1,
+        "rawBytes": 93373,
+        "gzipBytes": 16878
+      }
+    }
+  },
+  "sourceSurfaceCss": {
+    "bytes": 6590,
+    "gzipBytes": 2112
+  },
+  "scope": "Byte counts are totals over all built static chunks, not page transfer, LCP/CLS or a performance score. HTTP/semantic checks do not render CSS or execute client scripts."
+}

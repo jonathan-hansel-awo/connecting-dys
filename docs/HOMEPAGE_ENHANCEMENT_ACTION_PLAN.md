@@ -1,7 +1,7 @@
 # Connecting Dys — Homepage Experience Enhancement Action Plan
 
 **Version:** 1.0 — 14 November 2026  
-**Status:** Phases 00–02 implemented. Phase 02 adds the first signature transition and real browser evidence; see [implementation/limits](PHASE_02_WELCOME_TRANSITION.md). Phases 03–07 not implemented. The owner accepted Phase 01 direction by requesting Phase 02; physical-device release checks remain outstanding.
+**Status:** Phases 00–03 implemented. Phase 03 adds a guided discovery passage and owner-requested heart/house recesses; see [implementation/limits](PHASE_03_DISCOVERY_PASSAGE.md). Phases 04–07 not implemented. The owner accepted Phase 01 direction by requesting Phase 02; physical-device release checks remain outstanding.
 **Repository:** [`jonathan-hansel-awo/connecting-dys`](https://github.com/jonathan-hansel-awo/connecting-dys) (current default branch: `master`)  
 **Current site:** https://connecting-dys.vercel.app/  
 **Primary focus:** mobile-first scroll choreography, an original tactile visual system, and compatibility with the existing reading settings  
@@ -165,13 +165,13 @@ Actions:
 
 Actions:
 
-- [ ] Retain names, descriptions, existing illustrations and four functional deep links: Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia. No fabricated symptoms/stereotypes.
-- [ ] Introduce a subtle running path/marker or soft tactile highlights that progress as rows enter the viewport.
-- [ ] Desktop: consider a **short lateral visual passage** or split artwork accompanying the four links; do not require horizontal scroll to reach any link.
-- [ ] Mobile: favour **sequential perspective shifts / short lateral art drift** with ordinary vertical scrolling. No forced carousel, long pin or compulsory swipe.
-- [ ] Keep each link stationary and selectable; a visitor can tap directly into any topic at any point.
-- [ ] If a sticky illustration is used, ensure it is artwork-only, compact, and automatically disabled when viewport height/spacing/font size makes it unsafe.
-- [ ] Check touch target sizes, high contrast, voiceover reading order and return-from-topic-page scroll restoration.
+- [x] Retain names, descriptions, existing illustrations and four functional deep links: Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia. No fabricated symptoms/stereotypes.
+- [x] Introduce a subtle running path/marker or soft tactile highlights that progress as rows enter the viewport.
+- [x] Desktop: consider a **short lateral visual passage** or split artwork accompanying the four links; do not require horizontal scroll to reach any link.
+- [x] Mobile: favour **sequential perspective shifts / short lateral art drift** with ordinary vertical scrolling. No forced carousel, long pin or compulsory swipe.
+- [x] Keep each link stationary and selectable; a visitor can tap directly into any topic at any point.
+- [x] If a sticky illustration is used, ensure it is artwork-only, compact, and automatically disabled when viewport height/spacing/font size makes it unsafe.
+- [x] Check touch target sizes, contrast, accessible DOM/heading order and return-from-topic-page scroll restoration. **Physical VoiceOver review remains outstanding; keyboard/semantics automation is recorded separately.**
 
 **Exit criteria:** Clear progression through the four topics on phone and desktop; navigation never depends on animation; larger fonts/reduced motion produce readable static rows.
 
@@ -282,10 +282,14 @@ Actions:
 - [x] Documented current baseline and motion/reading-preference contracts (Phase 00; browser limits recorded)
 - [x] Site-wide fine tactile background and preference-aware visual surface system (Phase 01; subsequent browser evidence in Phase 02)
 - [x] Noticeable mobile hero→recognition transition (Phase 02; browser evidence recorded)
-- [ ] Curated, accessible DYS discovery progression (Phase 03)
+- [x] Curated, accessible DYS discovery progression (Phase 03; physical assistive-technology review remains in the release gate)
 - [ ] Signature connection story, mobile and desktop (Phase 04)
 - [ ] Calm, complete support/about/invitation journey (Phase 05)
 - [ ] Full mobile, preference, performance and accessibility release gate (Phase 06)
 - [ ] Optional accessible Paths to Belonging game **LAST** (Phase 07)
 
 **Reminder:** the visual mock-up is a moodboard for textures/overlap, **not an approved replacement screenshot**. It used a different generated logo and compressed some content; the real homepage and approved assets take precedence.
+
+## Owner follow-up outside Phase 03
+
+- [ ] Offer selectable background texture styles in Reading settings, preserving the existing Off option, font/background/spacing/motion preferences and storage compatibility. Recorded at the owner's request; no style selector is included in Phase 03.

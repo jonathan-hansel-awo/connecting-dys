@@ -106,6 +106,40 @@ export function HomeStoryMotion() {
               },
             },
           );
+          // Each topic is a short unpinned beat. The real link and its copy
+          // never become animation targets; artwork stays within its SVG disc.
+          if (context.conditions.tall) {
+            const rows = document.querySelectorAll<HTMLElement>("#explore .difference-row");
+            rows.forEach((row, index) => {
+              const line = row.querySelector(".discovery-path");
+              const art = row.querySelector(".difference-art-drift");
+              const wash = row.querySelector(".discovery-wash");
+              if (!line || !art || !wash) return;
+              const direction = index % 2 ? -1 : 1;
+              const drift = desktop ? 6 : 4;
+              const passage = gsap.timeline({
+                scrollTrigger: {
+                  id: `discovery-${index}`,
+                  trigger: row,
+                  start: "top 85%",
+                  end: "bottom 25%",
+                  scrub: desktop ? 0.3 : true,
+                  invalidateOnRefresh: true,
+                },
+              });
+              passage
+                .fromTo(line,
+                  { strokeDasharray: "1 1", strokeDashoffset: 1 },
+                  { strokeDashoffset: 0, autoRound: false, ease: "none", duration: 1 }, 0)
+                .fromTo(art,
+                  { x: -direction * drift },
+                  { x: direction * drift, ease: "none", duration: 1 }, 0)
+                .fromTo(wash,
+                  { opacity: 0.05 },
+                  { opacity: 0.8, ease: "none", duration: 0.5 }, 0)
+                .to(wash, { opacity: 0.05, ease: "none", duration: 0.5 }, 0.5);
+            });
+          }
           const visual =
             document.querySelector<HTMLElement>(".connection-visual");
           const chapters = document.querySelector<HTMLElement>(

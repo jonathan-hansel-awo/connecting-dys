@@ -249,6 +249,7 @@ export function DifferenceArtwork({ index }: { index: number }) {
       aria-hidden="true"
       className="difference-art"
     >
+      <g className="difference-art-drift">
       {index === 0 && (
         <>
           <path
@@ -308,6 +309,7 @@ export function DifferenceArtwork({ index }: { index: number }) {
           />
         </>
       )}
+      </g>
     </svg>
   );
 }

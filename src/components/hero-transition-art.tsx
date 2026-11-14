@@ -1,10 +1,17 @@
+import { HeroRecess } from "@/components/hero-recess";
+
 // Decorative material/path only. The approved logo and every word stay separate.
 const path = "M548 35C428 39 374 82 397 150S565 233 533 331 359 471 282 482 118 466 54 568";
 
 export function HeroTransitionArt() {
   return (
     <>
-      <div className="hero-depth-plane surface-inset" data-hero-plane aria-hidden="true" />
+      <div className="hero-depth-plane" data-hero-plane aria-hidden="true">
+        <HeroRecess shape="heart" />
+      </div>
+      <div className="hero-house-recess" aria-hidden="true">
+        <HeroRecess shape="house" />
+      </div>
       <svg
         className="hero-path-art"
         viewBox="0 0 600 600"

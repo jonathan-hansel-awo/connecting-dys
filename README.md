@@ -12,7 +12,13 @@ See [Phase 01 implementation and verification](docs/PHASE_01_MATERIAL_SYSTEM.md)
 
 The first scroll extends an embossed path, shifts decorative depth and raises Recognition’s rounded paper edge into reserved hero space. Mobile uses native scrolling and larger vertical art movement; desktop stays restrained. All reading text, controls, approved identity and the recognition caption remain in flow. Reduced motion, short screens, spacious reading, forced colours and no-JS retain complete static alternatives.
 
-See [implementation, exact scene contract and limits](docs/PHASE_02_WELCOME_TRANSITION.md) and [actual screenshots/browser evidence](docs/baselines/phase-02/README.md). The full Chromium suite passes **54 tests with 6 intentional skips**, including rendered axe, preferences, anchors and Back/Forward across six viewports. Shared route audits run once at desktop; short screens test a static fallback. Phase 03 remains next.
+See [implementation, exact scene contract and limits](docs/PHASE_02_WELCOME_TRANSITION.md) and [actual screenshots/browser evidence](docs/baselines/phase-02/README.md). The full Chromium suite passes **54 tests with 6 intentional skips**, including rendered axe, preferences, anchors and Back/Forward across six viewports. Shared route audits run once at desktop; short screens test a static fallback. Phase 03 is now implemented below.
+
+## Phase 03 discovery passage
+
+The four existing topic links now share a fine embossed trail, alternating inner-art drift and a soft paper-band highlight as each row enters view. Text, hit targets and arrows stay in place; all links remain directly available. Short screens/reduced motion/spacious settings/no-JS keep complete static alternatives. The owner's requested heart and house recesses replace only hero decoration, preserving the approved identity. Texture-style selection is recorded for later; the existing On/Off setting is unchanged.
+
+See [implementation and scene contract](docs/PHASE_03_DISCOVERY_PASSAGE.md) and [browser evidence](docs/baselines/phase-03/README.md). Phase 04 is next.
 
 ## Run locally
 

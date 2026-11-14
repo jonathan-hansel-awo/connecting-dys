@@ -4,6 +4,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { brand, connectionChapters, differences } from "@/content/site";
 import { DifferenceArtwork, CommunityArtwork } from "@/components/story-art";
 import { HomeStoryMotion } from "@/components/home-story-motion";
+import { DiscoveryTrail } from "@/components/discovery-trail";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
 
 export default function HomePage() {
@@ -165,6 +166,7 @@ export default function HomePage() {
               className={`difference-row theme-${d.theme}`}
               key={d.slug}
             >
+              <DiscoveryTrail />
               <span className="row-number" aria-hidden="true">
                 0{index + 1}
               </span>

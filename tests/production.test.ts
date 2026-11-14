@@ -78,6 +78,10 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   assert.ok(sheet, "paint lip belongs to the real recognition anchor");
   assert.equal(sheet.querySelectorAll("a,button,input,[tabindex],img").length, 0);
   assert.equal(doc.querySelectorAll("[data-welcome-scene] .logo-stage img").length, 1);
+  assert.equal(doc.querySelectorAll("#explore .discovery-waypoint[aria-hidden='true']").length, 4);
+  assert.equal(doc.querySelectorAll("#explore .discovery-path[pathLength='1']").length, 4);
+  assert.equal(doc.querySelectorAll("#explore .difference-art-drift").length, 4);
+  assert.equal(doc.querySelectorAll(".hero-recess-shape").length, 2);
   dom.window.close();
 });
 

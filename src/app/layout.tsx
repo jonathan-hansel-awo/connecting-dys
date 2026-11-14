@@ -8,6 +8,7 @@ import "lenis/dist/lenis.css";
 import "./globals.css";
 import "../styles/surfaces.css";
 import "../styles/hero-transition.css";
+import "../styles/discovery.css";
 
 const openSans = localFont({
   src: [

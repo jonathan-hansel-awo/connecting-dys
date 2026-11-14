@@ -1,0 +1,26 @@
+{
+  "environment": "Actual native Chromium browser zoom, local production build, default reading choices",
+  "checks": [
+    {
+      "zoom": "200%",
+      "innerWidth": 681,
+      "clientWidth": 674,
+      "height": 468,
+      "pageOverflow": 0
+    },
+    {
+      "zoom": "400%",
+      "innerWidth": 340,
+      "clientWidth": 337,
+      "height": 234,
+      "pageOverflow": 0
+    }
+  ],
+  "topicsPresent": [
+    "Dyslexia",
+    "Dyspraxia",
+    "Dyscalculia",
+    "Dysgraphia"
+  ],
+  "note": "Browser zoom indicators visually confirmed; default zoom restored afterward. This is not physical-device or screen-reader testing."
+}

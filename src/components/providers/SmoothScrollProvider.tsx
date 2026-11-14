@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTopicReturnRestoration } from "@/lib/use-topic-return-restoration";
 import { PREFERENCES_EVENT } from "@/lib/preferences";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +15,7 @@ export function SmoothScrollProvider({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  useTopicReturnRestoration(pathname);
   useEffect(() => {
     // Native fragment navigation creates a null-state history entry. Register
     // its URL through Next's documented History API integration while the
