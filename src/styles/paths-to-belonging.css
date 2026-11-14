@@ -81,7 +81,8 @@ button.paths-piece.is-linked::before { border: 3px double currentColor; }
 .paths-place-list h4 { margin-block: 1rem; }
 .paths-place-list ul { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
 .paths-place-list li { display: flex; gap: .7rem; align-items: start; }
-.paths-place-list li > svg { margin-top: .3em; }
+.paths-place-list li > svg { margin-top: .3em; flex-shrink: 0; }
+.paths-place-list li > span { min-width: 0; overflow-wrap: anywhere; }
 .paths-place-list strong { font-size: .85rem; font-weight: 600; }
 .paths-feedback { margin-top: 1.5rem; }
 .paths-feedback h4 { margin-top: .6rem; }
