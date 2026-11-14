@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:paths": "node --experimental-strip-types --test tests/paths-to-belonging.test.ts",
     "test:browser": "playwright test",
     "test:performance": "playwright test --config=playwright.performance.config.ts"
   },
