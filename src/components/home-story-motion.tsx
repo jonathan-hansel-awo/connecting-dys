@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { createConnectionMotion } from "@/lib/connection-motion";
 import { createSectionStacking } from "@/lib/section-stacking";
+import { createFinishMotion } from "@/lib/finish-motion";
 import { PREFERENCES_EVENT } from "@/lib/preferences";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -146,6 +147,7 @@ export function HomeStoryMotion() {
             });
           }
           createConnectionMotion(Boolean(desktop), Boolean(context.conditions.portraitOverlap), Boolean(context.conditions.tall));
+          createFinishMotion(Boolean(desktop), Boolean(context.conditions.tall));
           if (context.conditions.stacking) return createSectionStacking(stackingInteraction);
         },
       );

@@ -1,0 +1,100 @@
+/* Phase 05: one quiet support surface, a framed approved logo and an echo of
+   the connecting paths. Reading content and actionable targets never tween. */
+.support-links {
+  position: relative;
+  isolation: isolate;
+  padding-inline: clamp(1rem, 2.2vw, 1.75rem);
+}
+.support-surface {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border: 1px solid var(--rule);
+  border-radius: 1.5rem;
+  background-color: var(--reading-background);
+  background-image: var(--surface-grain-image);
+  background-size: var(--surface-grain-size);
+  box-shadow: var(--surface-raised);
+  pointer-events: none;
+}
+.support-links > a:first-of-type { border-top: 0; }
+.support-links > a:last-child { border-bottom: 0; }
+.about-logo-frame {
+  position: relative;
+  padding: clamp(.6rem, 1.2vw, 1rem);
+  border-radius: 1.5rem;
+}
+.about-frame-edge {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(252 247 237 / .3);
+  border-radius: inherit;
+  box-shadow: var(--surface-frame);
+  pointer-events: none;
+}
+.about-logo-frame .approved-logo-image { border-radius: 1rem; }
+html[data-reading-custom="true"] .about-frame-edge { border-color: var(--rule); }
+.invitation-decoration {
+  inset: 1.5rem 0 .75rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+.invitation-decoration > svg { width: 100%; height: 100%; }
+.finale-path-bed { stroke: var(--brand-navy); stroke-width: 3; opacity: .07; }
+.finale-path {
+  stroke: var(--brand-teal);
+  stroke-width: 2;
+  opacity: .2;
+  filter: var(--surface-path-filter);
+}
+.invitation-decoration .finale-node {
+  position: absolute;
+  top: 7.5%;
+  left: 6.5%;
+  width: 10px;
+  height: 10px;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 50%;
+  background: var(--brand-amber);
+  box-shadow: var(--surface-raised);
+}
+.invitation-decoration .finale-node-1 {
+  top: 10%;
+  left: auto;
+  right: 6%;
+  background: var(--brand-coral);
+}
+.invitation-decoration .finale-meeting {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  top: 95%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  aspect-ratio: auto;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--brand-teal);
+  border-radius: 50%;
+  background: var(--reading-background);
+  box-shadow: var(--surface-raised);
+}
+.invitation-decoration .finale-meeting > span {
+  position: static;
+  width: 6px;
+  height: 6px;
+  border: 0;
+  transform: none;
+  box-shadow: none;
+  background: var(--brand-teal);
+}
+html[data-spacious="true"] .invitation-decoration { display: none; }
+@media (max-width: 700px) {
+  .support-links > a { padding-block: 1.4rem; }
+  .invitation-decoration { inset-inline: -.3rem; }
+}
+@media (forced-colors: active), print {
+  .invitation-decoration { display: none; }
+  .support-surface, .about-frame-edge { opacity: 1; box-shadow: none; }
+}

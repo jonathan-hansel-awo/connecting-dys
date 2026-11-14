@@ -767,23 +767,6 @@ html[data-js="true"] .js-only {
   z-index: -1;
   overflow: hidden;
 }
-.invitation-decoration span {
-  position: absolute;
-  border: 2px solid #eab85c88;
-  border-radius: 50%;
-  width: 40%;
-  aspect-ratio: 1;
-  left: 0;
-  top: 10%;
-  transform: rotate(-25deg);
-}
-.invitation-decoration span + span {
-  border-color: #d9867755;
-  width: 35%;
-  left: auto;
-  right: 0;
-  top: 0;
-}
 .back-top {
   display: block;
   width: fit-content;
@@ -1400,12 +1383,6 @@ html[data-js="true"] .js-only {
   }
   .invitation-decoration {
     inset: 20% 0 25%;
-  }
-  .invitation-decoration span {
-    width: 42%;
-  }
-  .invitation-decoration span + span {
-    top: 55%;
   }
   .site-footer {
     padding-top: 2rem;

@@ -7,6 +7,7 @@ import { HomeStoryMotion } from "@/components/home-story-motion";
 import { ConnectionTrail } from "@/components/connection-trail";
 import { DiscoveryTrail } from "@/components/discovery-trail";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
+import { FinalePath } from "@/components/finale-path";
 
 export default function HomePage() {
   return (
@@ -268,6 +269,7 @@ export default function HomePage() {
           </p>
         </div>
         <div className="support-links">
+          <div className="support-surface" aria-hidden="true" />
           <Link href="/support">
             <div>
               <h3>Find information & support</h3>
@@ -306,13 +308,17 @@ export default function HomePage() {
           <div className="about-statement">
             <p className="eyebrow">05 / Meet Connecting Dys</p>
             <figure className="approved-logo">
-              <Image
-                src={brand.logo}
-                alt="Connecting Dys — A home for every DYS mind. The original embracing-figures logo."
-                width={1536}
-                height={1024}
-                sizes="(max-width: 1000px) 90vw, 45vw"
-              />
+              <div className="about-logo-frame">
+                <div className="about-frame-edge" aria-hidden="true" />
+                <Image
+                  className="approved-logo-image"
+                  src={brand.logo}
+                  alt="Connecting Dys — A home for every DYS mind. The original embracing-figures logo."
+                  width={1536}
+                  height={1024}
+                  sizes="(max-width: 1000px) 90vw, 45vw"
+                />
+              </div>
               <figcaption>
                 The embrace at the heart of Connecting Dys.
               </figcaption>
@@ -348,8 +354,7 @@ export default function HomePage() {
       >
         <div className="section-backdrop" aria-hidden="true" />
         <div className="invitation-decoration" aria-hidden="true">
-          <span />
-          <span />
+          <FinalePath />
         </div>
         <p className="eyebrow">A beginning, whenever you’re ready</p>
         <h2 id="invitation-title">
