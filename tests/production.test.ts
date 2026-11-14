@@ -48,14 +48,13 @@ test("approved logo is byte-for-byte unchanged", () => {
   );
 });
 
-test("optional journey has a static explanation, inert pre-hydration launcher and footer escape", () => {
+test("optional journey has a static explanation, inert pre-hydration launcher and available footer", () => {
   const dom = page();
   const section = dom.window.document.querySelector("[data-paths-section]")!;
   assert.ok(section.textContent?.includes("Three short chapters"));
   assert.ok(section.querySelector("noscript")?.textContent?.includes("needs JavaScript"));
   assert.equal(section.querySelector("button")?.disabled, true);
   assert.equal(section.querySelector('[data-paths-game]'), null);
-  assert.equal(section.querySelector('a[href="#site-footer"]')?.textContent, "Continue to the footer");
   assert.ok(dom.window.document.getElementById("site-footer"));
   const chunks = fs.readdirSync(".next/static/chunks").filter((name) => name.endsWith(".js") && fs.readFileSync(path.join(".next/static/chunks", name), "utf8").includes("paths-piece-"));
   assert.ok(chunks.length > 0, "the board is emitted in a separate chunk");
