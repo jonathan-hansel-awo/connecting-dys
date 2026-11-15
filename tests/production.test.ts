@@ -48,18 +48,15 @@ test("approved logo is byte-for-byte unchanged", () => {
   );
 });
 
-test("optional journey has a static explanation, inert pre-hydration launcher and available footer", () => {
+test("inline journey exposes its first board before hydration and keeps the footer available", () => {
   const dom = page();
   const section = dom.window.document.querySelector("[data-paths-section]")!;
   assert.ok(section.textContent?.includes("Three short chapters"));
-  assert.ok(section.querySelector("noscript")?.textContent?.includes("needs JavaScript"));
-  assert.equal(section.querySelector("button")?.disabled, true);
-  assert.equal(section.querySelector('[data-paths-game]'), null);
+  assert.ok(section.querySelector("noscript")?.textContent?.includes("need JavaScript"));
+  assert.ok(section.querySelector("[data-paths-game]"));
+  assert.ok(section.querySelector(".paths-world"));
+  assert.ok([...section.querySelectorAll("button")].every((button) => button.disabled));
   assert.ok(dom.window.document.getElementById("site-footer"));
-  const chunks = fs.readdirSync(".next/static/chunks").filter((name) => name.endsWith(".js") && fs.readFileSync(path.join(".next/static/chunks", name), "utf8").includes("paths-piece-"));
-  assert.ok(chunks.length > 0, "the board is emitted in a separate chunk");
-  const html = fs.readFileSync(path.join(built, "index.html"), "utf8");
-  for (const chunk of chunks) assert.equal(html.includes(chunk), false, "the optional board chunk is not preloaded in initial HTML");
   dom.window.close();
 });
 

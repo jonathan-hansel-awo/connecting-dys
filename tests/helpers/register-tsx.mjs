@@ -6,6 +6,10 @@ import ts from "typescript";
 // Scoped to the DOM test process. Ordinary .ts modules use Node's existing loader.
 export function registerTsx() {
   return registerHooks({
+    resolve(specifier, context, nextResolve) {
+      // Node ESM needs the extension for Next's documented package entry.
+      return nextResolve(specifier === "next/dynamic" ? "next/dynamic.js" : specifier, context);
+    },
     load(url, context, nextLoad) {
       if (!url.endsWith(".tsx")) return nextLoad(url, context);
       const { outputText } = ts.transpileModule(readFileSync(new URL(url), "utf8"), {

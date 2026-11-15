@@ -9,12 +9,11 @@ import type { Board } from "../../src/features/paths-to-belonging/types";
 const tags = ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"];
 const gameChunks = fs.readdirSync(".next/static/chunks").filter((name) => name.endsWith(".js") && fs.readFileSync(path.join(".next/static/chunks", name), "utf8").includes("paths-piece-"));
 const gameChunk = (url: string) => gameChunks.some((chunk) => new URL(url).pathname.endsWith(`/${chunk}`));
-const launch = (page: Page) => page.getByRole("button", { name: "Play the little journey", exact: true });
 const control = (page: Page, name: string) => page.getByRole("button", { name, exact: true });
 async function play(page: Page) {
   await page.goto("/");
-  await launch(page).click();
-  await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).toBeFocused();
+  await expect(control(page, "Restart chapter")).toBeEnabled();
+  await page.locator("[data-paths-game]").scrollIntoViewIfNeeded();
 }
 async function solve(page: Page, index: number, target: Board) {
   const initial = chapters[index].arrangements[0].board;
@@ -33,20 +32,30 @@ async function noOverflow(page: Page) {
   expect(await page.locator("[data-paths-game]").evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
 }
 
-test("optional game fetches only on activation; keyboard completes all chapters and replays", async ({ page }, info) => {
+async function headingHasClearOutline(page: Page) {
+  const geometry = await page.locator("[data-paths-game] h3").evaluate((heading) => {
+    const label = heading.previousElementSibling!;
+    const style = getComputedStyle(heading);
+    return {
+      gap: heading.getBoundingClientRect().top - label.getBoundingClientRect().bottom,
+      outset: parseFloat(style.outlineWidth) + parseFloat(style.outlineOffset),
+    };
+  });
+  expect(geometry.gap).toBeGreaterThanOrEqual(geometry.outset + 1);
+}
+
+test("inline game keeps initial page position; keyboard completes all chapters and replays", async ({ page }, info) => {
   const requests: string[] = [];
   const errors: string[] = [];
   page.on("request", (request) => { if (gameChunk(request.url())) requests.push(request.url()); });
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await expect(launch(page)).toBeEnabled();
-  await launch(page).scrollIntoViewIfNeeded();
+  await expect(control(page, "Restart chapter")).toBeEnabled();
+  expect(await page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
+  await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).not.toBeFocused();
   expect(gameChunks.length).toBeGreaterThan(0);
-  expect(requests).toEqual([]);
-  await launch(page).focus();
-  await launch(page).press("Enter");
-  await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).toBeFocused();
   expect(requests.length).toBeGreaterThan(0);
+  await page.locator("[data-paths-game]").scrollIntoViewIfNeeded();
   await expect(control(page, "Undo")).toBeDisabled();
   await expect(control(page, "Continue")).toHaveCount(0);
   const targets = [gardenRoutes.upper, neighbourhoodRoutes.perimeter, endingRoutes["home-arch"]];
@@ -62,16 +71,37 @@ test("optional game fetches only on activation; keyboard completes all chapters 
     await page.locator(".paths-board").screenshot({ path: info.outputPath(`chapter-${index}.png`) });
     await control(page, "Continue").click();
     if (index < 2) await expect(page.getByRole("heading", { name: chapters[index + 1].name, exact: true })).toBeFocused();
+    await headingHasClearOutline(page);
   }
   await expect(page.getByRole("heading", { name: "There's more than one way to belong.", exact: true })).toBeFocused();
   await expect(page.getByRole("status")).toContainText("An arch above a home");
   await expect(page.locator('[data-ending="home-arch"]')).toBeVisible();
   await page.locator(".paths-ending").screenshot({ path: info.outputPath("home-arch-ending.png") });
+  const endingHeading = page.getByRole("heading", { name: "There's more than one way to belong.", exact: true });
+  for (const font of ["Open Sans", "Arial", "Verdana", "Atkinson Hyperlegible", "OpenDyslexic"]) {
+    await control(page, "Reading settings").click();
+    await page.getByRole("combobox", { name: "Font family", exact: true }).selectOption(font);
+    await control(page, "Soft blue").click();
+    if (font === "OpenDyslexic") {
+      await page.getByRole("slider").press("End");
+      await page.getByRole("combobox", { name: "Line spacing", exact: true }).selectOption("2");
+      await page.getByRole("combobox", { name: "Letter spacing", exact: true }).selectOption("0.12");
+    }
+    await page.keyboard.press("Escape");
+    await page.evaluate(() => document.fonts.ready);
+    await endingHeading.focus();
+    await headingHasClearOutline(page);
+    await noOverflow(page);
+  }
+  await page.locator(".paths-message").screenshot({ path: info.outputPath("completion-focus-large.png") });
+  await control(page, "Reading settings").click();
+  await control(page, "Reset preferences").click();
+  await page.keyboard.press("Escape");
+  await endingHeading.focus();
+  await page.locator(".paths-message").screenshot({ path: info.outputPath("completion-focus-default.png") });
   await control(page, "Replay journey").click();
   await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).toBeFocused();
   await expect(page.locator("#paths-piece-willow-bend")).toHaveAttribute("aria-label", /opening south and west/);
-  await control(page, "Exit game").click();
-  await expect(launch(page)).toBeFocused();
   expect(errors).toEqual([]);
 });
 
@@ -139,7 +169,7 @@ test("both joined places glow steadily and clear on a broken path, undo or resta
   await expect(joined).toHaveCount(0);
 });
 
-test("hints, undo, restart, skip and exit preserve clear feedback and focus", async ({ page }) => {
+test("hints, undo, restart and skip preserve feedback and allow scrolling to the footer", async ({ page }) => {
   await play(page);
   const piece = page.locator("#paths-piece-willow-bend");
   const before = await piece.getAttribute("aria-label");
@@ -166,8 +196,6 @@ test("hints, undo, restart, skip and exit preserve clear feedback and focus", as
     await control(page, "Continue").click();
   }
   await expect(page.getByRole("heading", { name: "Thank you for exploring.", exact: true })).toBeFocused();
-  await control(page, "Return to page").click();
-  await expect(launch(page)).toBeFocused();
   await page.locator("#site-footer").scrollIntoViewIfNeeded();
   await expect(page.getByRole("navigation", { name: "Footer navigation", exact: true })).toBeVisible();
 });
@@ -212,8 +240,6 @@ test("active game retains state across reading preferences and reflows at large 
     }));
     expect(Math.min(...sizes)).toBeGreaterThanOrEqual(44);
   }
-  await control(page, "Exit game").click();
-  await expect(launch(page)).toBeFocused();
 });
 
 test("forced colours, OS reduced motion and touch keep the journey usable", async ({ page }, info) => {
@@ -228,8 +254,6 @@ test("forced colours, OS reduced motion and touch keep the journey usable", asyn
   await expect(page.locator(".is-hint")).toHaveCount(1);
   await noOverflow(page);
   await page.locator(".paths-board").screenshot({ path: info.outputPath("forced-colours.png") });
-  await control(page, "Exit game").click();
-  await expect(launch(page)).toBeFocused();
 });
 
 test("no JavaScript leaves explanation, footer and contact routes available", async ({ browser }, info) => {
@@ -238,8 +262,10 @@ test("no JavaScript leaves explanation, footer and contact routes available", as
     const page = await context.newPage();
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Paths to Belonging", exact: true })).toBeVisible();
-    await expect(page.getByText(/The optional little journey needs JavaScript/)).toBeVisible();
-    await expect(launch(page)).toBeDisabled();
+    await expect(page.getByText(/The puzzle controls need JavaScript/)).toBeVisible();
+    await expect(page.locator(".paths-world")).toBeVisible();
+    await expect(control(page, "Restart chapter")).toBeDisabled();
+    await expect(page.locator("#paths-piece-willow-bend")).toBeDisabled();
     await page.locator("#site-footer").scrollIntoViewIfNeeded();
     await page.getByRole("navigation", { name: "Footer navigation", exact: true }).getByRole("link", { name: "Contact", exact: true }).click();
     await expect(page.locator("main h1")).toBeVisible();
@@ -247,35 +273,36 @@ test("no JavaScript leaves explanation, footer and contact routes available", as
   } finally { await context.close(); }
 });
 
-test("load failure shows an accessible escape and never hides the footer", async ({ page }) => {
+test("failed game script leaves the section fallback and footer navigation usable", async ({ page }) => {
   await page.route("**/_next/static/chunks/*.js", (route) => gameChunk(route.request().url()) ? route.abort() : route.continue());
   await page.goto("/");
-  await launch(page).click();
-  const error = page.getByRole("heading", { name: "The little journey isn't available right now", exact: true });
-  await expect(error).toBeFocused();
+  await expect(page.getByRole("heading", { name: "The little journey isn't available right now", exact: true })).toBeVisible();
+  expect(await page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
   await page.getByRole("link", { name: "Continue exploring", exact: true }).click();
   await expect(page.locator("#site-footer")).toBeFocused();
-  await control(page, "Return to introduction").click();
-  await expect(launch(page)).toBeFocused();
+  await page.getByRole("navigation", { name: "Footer navigation", exact: true }).getByRole("link", { name: "Contact", exact: true }).click();
+  await expect(page).toHaveURL(/\/contact$/);
 });
 
-test("leaving during a slow load cannot reopen the game after cancellation", async ({ page }) => {
+test("a slow game script preserves the visible board and does not steal focus or scroll", async ({ page }) => {
   let release: () => void = () => {};
   const held = new Promise<void>((resolve) => { release = resolve; });
   await page.route("**/_next/static/chunks/*.js", async (route) => {
     if (gameChunk(route.request().url())) await held;
     await route.continue();
   });
-  await page.goto("/");
-  await launch(page).click();
-  await expect(page.getByRole("heading", { name: "Preparing the little journey…", exact: true })).toBeFocused();
-  await control(page, "Exit game").click();
-  await expect(launch(page)).toBeFocused();
-  const loaded = page.waitForResponse((response) => gameChunk(response.url()));
-  release();
-  await loaded;
-  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
-  await expect(page.locator("[data-paths-game]")).toHaveCount(0);
-  await launch(page).click();
-  await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).toBeFocused();
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  try {
+    await expect(page.locator(".paths-world")).toBeVisible();
+    await expect(page.locator("#paths-piece-willow-bend")).toBeDisabled();
+    await page.evaluate(() => document.fonts.ready);
+    await page.locator("#site-footer").scrollIntoViewIfNeeded();
+    await page.locator("#site-footer").focus();
+    const before = await page.evaluate(() => scrollY);
+    release();
+    await expect(control(page, "Restart chapter")).toBeEnabled();
+    await expect(page.locator("#site-footer")).toBeFocused();
+    expect(Math.abs(await page.evaluate(() => scrollY) - before)).toBeLessThanOrEqual(1);
+    await expect(page.locator("[data-paths-game]")).toHaveCount(1);
+  } finally { release(); }
 });
