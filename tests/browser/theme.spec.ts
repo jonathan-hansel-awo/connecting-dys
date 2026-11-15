@@ -117,7 +117,7 @@ test("theme controls remain usable with Chromium forced darkening, blocked stora
   await setDarkMode(page, true);
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.getByRole("button", { name: "Reading settings", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText("Browser storage is unavailable");
+  await expect(page.getByRole("dialog").getByRole("status")).toContainText("Browser storage is unavailable");
 });
 
 test("all ten dark public routes pass rendered accessibility", async ({ page }, info) => {
