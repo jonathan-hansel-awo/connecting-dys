@@ -9,7 +9,6 @@ import { registerTsx } from "./helpers/register-tsx.mjs";
 import { chapters } from "../src/features/paths-to-belonging/chapters.ts";
 import { gardenRoutes, neighbourhoodRoutes, endingRoutes } from "./fixtures/paths-to-belonging.ts";
 import type { Board } from "../src/features/paths-to-belonging/types.ts";
-import type { JourneyLoader } from "../src/features/paths-to-belonging/section.tsx";
 
 test("actual optional journey components: DOM interaction and focus", async (suite) => {
   const loader = registerTsx();
@@ -18,6 +17,7 @@ test("actual optional journey components: DOM interaction and focus", async (sui
   const original = new Map(Object.keys(globals).map((key) => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
   for (const [key, value] of Object.entries(globals)) Object.defineProperty(globalThis, key, { configurable: true, value });
   const { PathsToBelongingSection, JourneyBoundary } = await import("../src/features/paths-to-belonging/section.tsx");
+  const { default: PathsJourney } = await import("../src/features/paths-to-belonging/journey.tsx");
   const { EndingComposition, worldBounds } = await import("../src/features/paths-to-belonging/paper-world.tsx");
   const doc = dom.window.document;
   let root = createRoot(doc.getElementById("root")!);
@@ -36,7 +36,7 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       await act(async () => { await new Promise((resolve) => setTimeout(resolve, 10)); });
     }
   }
-  async function mount(loadJourney?: JourneyLoader) { await reset(); await act(async () => root.render(React.createElement(PathsToBelongingSection, { loadJourney }))); }
+  async function mount() { await reset(); await act(async () => root.render(React.createElement(PathsToBelongingSection))); await waitForGame(); }
   async function reset() {
     await act(async () => root.unmount());
     root = createRoot(doc.getElementById("root")!);
@@ -51,12 +51,10 @@ test("actual optional journey components: DOM interaction and focus", async (sui
     }
   }
   try {
-    await suite.test("opt-in, actual tile actions, three chapters, ending and replay", async () => {
+    await suite.test("inline board does not steal focus; actual tile actions, three chapters, ending and replay", async () => {
       await mount();
-      assert.equal(doc.querySelector("[data-paths-game]"), null);
-      await click(button("Play the little journey"));
-      await waitForGame();
-      assert.equal(doc.activeElement?.textContent, "Find a Way");
+      assert.ok(doc.querySelector("[data-paths-game]"));
+      assert.strictEqual(doc.activeElement, doc.body, "an inline game must not steal page focus on mount");
       assert.equal(button("Undo").disabled, true);
       const targets = [gardenRoutes.upper, neighbourhoodRoutes.perimeter, endingRoutes["home-arch"]];
       for (let index = 0; index < 3; index++) {
@@ -79,14 +77,10 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       assert.equal(doc.activeElement?.textContent, "Find a Way");
       assert.equal(doc.querySelector("[data-ending]"), null, "replay removes the previous ending");
       assert.match(doc.getElementById("paths-piece-willow-bend")!.getAttribute("aria-label")!, /south and west/);
-      await click(button("Exit game"));
-      assert.strictEqual(doc.activeElement, button("Play the little journey"));
       await reset();
     });
-    await suite.test("hint, undo, restart, skip, preference changes and exit", async () => {
+    await suite.test("hint, undo, restart, skip and preference changes preserve the inline game", async () => {
       await mount();
-      await click(button("Play the little journey"));
-      await waitForGame();
       const piece = doc.getElementById("paths-piece-willow-bend")!;
       const initial = piece.getAttribute("aria-label");
       await click(button("Hint"));
@@ -114,8 +108,6 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       }
       assert.equal(doc.activeElement?.textContent, "Thank you for exploring.");
       assert.equal(doc.querySelector("[data-ending]"), null, "skipping never invents an ending picture");
-      await click(button("Return to page"));
-      assert.strictEqual(doc.activeElement, button("Play the little journey"));
       await reset();
     });
     await suite.test("ending art preserves the actual graph and offers three distinct compositions", () => {
@@ -145,8 +137,6 @@ test("actual optional journey components: DOM interaction and focus", async (sui
     });
     await suite.test("decorative completion is reversible without losing the focused tile", async () => {
       await mount();
-      await click(button("Play the little journey"));
-      await waitForGame();
       assert.equal(doc.querySelectorAll(".paths-piece.is-joined").length, 0);
       await solve(0, gardenRoutes.upper);
       assert.equal(doc.querySelectorAll('.paths-piece[role="img"].is-joined .paths-landmark-halo').length, 2);
@@ -167,72 +157,23 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       assert.equal(doc.querySelectorAll(".paths-piece.is-joined").length, 0);
       await reset();
     });
-    await suite.test("failed lazy loading focuses the fallback and leaves the footer reachable", async () => {
-      await mount(async () => { throw new Error("Expected network failure"); });
-      await click(button("Play the little journey"));
-      assert.equal(doc.activeElement?.textContent, "The little journey isn't available right now");
-      assert.equal(doc.querySelector('[data-paths-game]'), null);
-      assert.equal([...doc.querySelectorAll("a")].find((link) => link.textContent === "Continue exploring")?.getAttribute("href"), "#site-footer");
-      assert.ok(doc.getElementById("site-footer"));
-      await click(button("Return to introduction"));
-      assert.strictEqual(doc.activeElement, button("Play the little journey"));
-      await reset();
+    await suite.test("first board is server-rendered with inert controls and no launch gate", () => {
+      const html = renderToStaticMarkup(React.createElement(PathsJourney));
+      const staticDoc = new JSDOM(html).window.document;
+      assert.ok(staticDoc.querySelector(".paths-world"));
+      assert.equal(staticDoc.querySelectorAll(".paths-board > li").length, chapters[0].tiles.length);
+      assert.ok([...staticDoc.querySelectorAll("button")].every((el) => el.disabled));
+      assert.equal(staticDoc.querySelector("h3")?.textContent, "Find a Way");
     });
-    await suite.test("leaving during loading discards the late result and can launch again", async () => {
-      const loaded = await import("../src/features/paths-to-belonging/journey.tsx");
-      let resolve: (value: typeof loaded) => void = () => {};
-      const pending = new Promise<typeof loaded>((done) => { resolve = done; });
-      await mount(() => pending);
-      await click(button("Play the little journey"));
-      assert.equal(doc.activeElement?.textContent, "Preparing the little journey…");
-      await click(button("Exit game"));
-      assert.strictEqual(doc.activeElement, button("Play the little journey"));
-      await act(async () => resolve(loaded));
-      assert.equal(doc.querySelector('[data-paths-game]'), null);
-      assert.strictEqual(doc.activeElement, button("Play the little journey"));
-      await click(button("Play the little journey"));
-      await waitForGame();
-      assert.equal(doc.activeElement?.textContent, "Find a Way");
-      await reset();
-    });
-    await suite.test("a cancelled request cannot replace or focus a newer request", async () => {
-      const loaded = await import("../src/features/paths-to-belonging/journey.tsx");
-      let first: (value: typeof loaded) => void = () => {};
-      let second: (value: typeof loaded) => void = () => {};
-      const firstLoad = new Promise<typeof loaded>((done) => { first = done; });
-      const secondLoad = new Promise<typeof loaded>((done) => { second = done; });
-      let requests = 0;
-      await mount(() => ++requests === 1 ? firstLoad : secondLoad);
-      await click(button("Play the little journey"));
-      await click(button("Exit game"));
-      await click(button("Play the little journey"));
-      await act(async () => first(loaded));
-      assert.equal(doc.activeElement?.textContent, "Preparing the little journey…");
-      assert.equal(doc.querySelector('[data-paths-game]'), null);
-      await act(async () => second(loaded));
-      await waitForGame();
-      assert.equal(doc.activeElement?.textContent, "Find a Way");
-      assert.equal(requests, 2);
-      await reset();
-    });
-    await suite.test("unmounting during loading cannot mount a late game", async () => {
-      const loaded = await import("../src/features/paths-to-belonging/journey.tsx");
-      let resolve: (value: typeof loaded) => void = () => {};
-      const pending = new Promise<typeof loaded>((done) => { resolve = done; });
-      await mount(() => pending);
-      await click(button("Play the little journey"));
-      await reset();
-      await act(async () => resolve(loaded));
-      assert.equal(doc.getElementById("root")?.childElementCount, 0);
-      assert.equal(doc.querySelector('[data-paths-game]'), null);
-    });
-    await suite.test("a render failure is contained and focuses an unobstructed fallback", async () => {
+    await suite.test("a render failure stays within the section without taking outside focus", async () => {
       const previousError = console.error;
       function BrokenJourney(): never { throw new Error("Expected test failure"); }
       console.error = () => {};
       try {
-        await act(async () => root.render(React.createElement(JourneyBoundary, { onExit: () => {} }, React.createElement(BrokenJourney))));
-        assert.equal(doc.activeElement?.textContent, "The little journey isn't available right now");
+        doc.getElementById("site-footer")!.focus();
+        await act(async () => root.render(React.createElement(JourneyBoundary, {}, React.createElement(BrokenJourney))));
+        assert.strictEqual(doc.activeElement, doc.getElementById("site-footer"));
+        assert.match(doc.querySelector('[role="alert"]')!.textContent!, /isn.t available/);
         const escape = [...doc.querySelectorAll("a")].find((el) => el.textContent === "Continue exploring");
         assert.equal(escape?.getAttribute("href"), "#site-footer");
         assert.ok(doc.getElementById("site-footer"));

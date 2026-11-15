@@ -23,6 +23,7 @@
 }
 .paths-game, .paths-message { margin-top: 2rem; }
 .paths-game { padding-top: 1.8rem; border-top: 1px solid var(--rule); }
+.paths-message > h3 { margin-block: 1rem; }
 .paths-message > :is(p, a, button) { margin-top: 1rem; }
 .paths-control {
   padding: .65rem .9rem;
@@ -39,7 +40,7 @@
 .paths-progress { display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; padding: 0; list-style: none; font-size: .85rem; }
 .paths-progress [aria-current="step"] { font-weight: 600; text-decoration: underline; text-underline-offset: .3em; }
 .paths-chapter-heading { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: 1rem; margin-block: 1.5rem; }
-.paths-chapter-heading h3 { margin-top: .4rem; }
+.paths-chapter-heading h3 { margin-top: max(.75rem, 12px); }
 .paths-game > p { margin-top: .8rem; }
 .paths-help { margin-block: 1.2rem; max-width: 65ch; }
 .paths-help summary { min-height: 44px; padding-block: .5rem; font-weight: 600; text-decoration: underline; text-underline-offset: .2em; }

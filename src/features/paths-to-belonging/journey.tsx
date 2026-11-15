@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties } from "react";
 import { Heart, House, Sprout, UsersRound, RotateCw } from "lucide-react";
 import { chapters } from "./chapters.ts";
@@ -14,7 +14,10 @@ const chapterProgress = ["First", "Second", "Third"];
 const motifIcons = { home: House, garden: Sprout, meeting: UsersRound, heart: Heart };
 const worldCaptions = ["A small home. A welcoming garden.", "The same paths, a wider neighbourhood.", "Your neighbourhood, with room to create."];
 
-export default function PathsJourney({ onExit }: { onExit: () => void }) {
+const subscribe = () => () => {};
+
+export default function PathsJourney() {
+  const ready = useSyncExternalStore(subscribe, () => true, () => false);
   const [state, dispatch] = useReducer(journeyReducer, undefined, () => journeyReducer(createJourneyState(), { type: "start" }));
   const [focusVersion, requestFocus] = useReducer((version: number) => version + 1, 0);
   const [hint, setHint] = useState<Hint | null>(null);
@@ -25,7 +28,9 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
   const finished = state.status === "finished";
   const skipped = state.status === "skipped";
   const { minX, minY, columns } = worldBounds(chapter);
-  useEffect(() => { heading.current?.focus(); }, [state.chapterId, state.arrangementIndex, finished, focusVersion]);
+  // Only an explicit chapter/restart/replay action moves focus. Mounting this
+  // inline section must never jump a visitor away from the rest of the page.
+  useEffect(() => { if (focusVersion > 0) heading.current?.focus(); }, [focusVersion]);
 
   function act(action: JourneyAction, focus = false) {
     setHint(null);
@@ -42,11 +47,10 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
   if (finished) return <div className="paths-game paths-message" data-paths-game>
     <p className="eyebrow">At your pace</p>
     <h3 ref={heading} tabIndex={-1}>{state.endingId ? "There's more than one way to belong." : "Thank you for exploring."}</h3>
-    <p role="status">{state.endingId ? `Your connected composition: ${chapter.endings.find(({ id }) => id === state.endingId)!.name}.` : "You can try another arrangement or return to the page whenever you like."}</p>
+    <p role="status">{state.endingId ? `Your connected composition: ${chapter.endings.find(({ id }) => id === state.endingId)!.name}.` : "You can try another arrangement or keep scrolling whenever you like."}</p>
     {state.endingId && <EndingComposition chapter={chapter} board={state.board} endingId={state.endingId} />}
     <div className="paths-actions">
-      <button type="button" className="button" onClick={() => act({ type: "replay" }, true)}>Replay journey</button>
-      <button type="button" className="paths-control" onClick={onExit}>Return to page</button>
+      <button type="button" className="button" disabled={!ready} onClick={() => act({ type: "replay" }, true)}>Replay journey</button>
     </div>
   </div>;
 
@@ -61,7 +65,6 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
         <p className="small">{chapterProgress[chapterIndex]} of three chapters</p>
         <h3 ref={heading} tabIndex={-1}>{chapter.name}</h3>
       </div>
-      <button type="button" className="paths-control" onClick={onExit}>Exit game</button>
     </div>
     <p id="paths-objective">{chapter.objective}</p>
     <p id="paths-instructions">Tap or click a curved path or junction to turn it clockwise. With a keyboard, use Tab to choose a path and Enter or Space to turn it.</p>
@@ -87,7 +90,7 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
             const position: CSSProperties = { gridColumn: tile.x - minX + 1, gridRow: tile.y - minY + 1 };
             return <li key={tile.id} style={position}>
               {movable
-                ? <button id={`paths-piece-${tile.id}`} type="button" className={classes} aria-label={label} disabled={skipped} onClick={() => act({ type: "rotate", tileId: tile.id })}><PaperPiece tile={tile} board={state.board} /><RotateCw className="paths-turn-mark" size={14} aria-hidden="true" /></button>
+                ? <button id={`paths-piece-${tile.id}`} type="button" className={classes} aria-label={label} disabled={!ready || skipped} onClick={() => act({ type: "rotate", tileId: tile.id })}><PaperPiece tile={tile} board={state.board} /><RotateCw className="paths-turn-mark" size={14} aria-hidden="true" /></button>
                 : <span className={classes} role="img" aria-label={label}><PaperPiece tile={tile} board={state.board} /></span>}
             </li>;
           })}
@@ -118,11 +121,11 @@ export default function PathsJourney({ onExit }: { onExit: () => void }) {
       <p id="paths-hint" role="status" aria-atomic="true">{hint?.text ?? ""}</p>
     </div>
     <div className="paths-controls" role="group" aria-label="Chapter controls">
-      <button type="button" className="paths-control" disabled={state.status !== "playing"} onClick={revealHint}>Hint</button>
-      <button type="button" className="paths-control" disabled={!state.history.length || skipped} onClick={() => act({ type: "undo" })}>Undo</button>
-      <button type="button" className="paths-control" onClick={() => act({ type: "restart" }, true)}>Restart chapter</button>
-      <button type="button" className="paths-control" disabled={state.status !== "playing"} onClick={() => act({ type: "skip" }, true)}>Skip chapter</button>
+      <button type="button" className="paths-control" disabled={!ready || state.status !== "playing"} onClick={revealHint}>Hint</button>
+      <button type="button" className="paths-control" disabled={!ready || !state.history.length || skipped} onClick={() => act({ type: "undo" })}>Undo</button>
+      <button type="button" className="paths-control" disabled={!ready} onClick={() => act({ type: "restart" }, true)}>Restart chapter</button>
+      <button type="button" className="paths-control" disabled={!ready || state.status !== "playing"} onClick={() => act({ type: "skip" }, true)}>Skip chapter</button>
     </div>
-    {(state.status === "complete" || skipped) && <div className="paths-forward"><button type="button" className="button" onClick={() => act({ type: "continue" }, true)}>Continue</button></div>}
+    {(state.status === "complete" || skipped) && <div className="paths-forward"><button type="button" className="button" disabled={!ready} onClick={() => act({ type: "continue" }, true)}>Continue</button></div>}
   </div>;
 }
