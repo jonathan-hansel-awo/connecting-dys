@@ -38,3 +38,7 @@ Self-hosted Latin fonts were copied from the installed `@fontsource/open-sans`, 
 ## Recognition imagery refinement
 
 The owner requested a more human, lively image and authorised generated people. `public/images/shared-moment.webp` is a fictional editorial scene generated specifically for the site, featuring young adults in a relaxed conversation. It is not evidence of an event, service, membership or activity. A visible caption discloses that it is AI-created and not Connecting Dys members. Its alt text describes an illustrative scene. The separate connection chapter uses original decorative SVG people, with clothed bodies, filled arms, sleeves and hands rather than floating curved strokes.
+
+## Commissioned content — 18 November 2026
+
+Marie’s supplied `website recommendation 3.pdf` and BRIDGE values email PDF inform the short homepage edits, `/about`, `/what-we-do`, `/our-approach`, `/values`, and participation/support summaries. Repetition is condensed; optional native disclosure holds supporting detail. Current community-building is distinguished from planned services. Values describe commitments, not proof that internal logs or governance processes already exist. The homepage photograph replacement is deferred to the supplied-photo task. Existing public contact details are retained.

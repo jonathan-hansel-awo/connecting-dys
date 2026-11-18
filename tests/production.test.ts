@@ -12,6 +12,9 @@ const built = path.join(root, ".next/server/app");
 const routes = [
   "",
   "about",
+  "what-we-do",
+  "our-approach",
+  "values",
   "support",
   "contact",
   "get-involved",

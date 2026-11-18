@@ -49,7 +49,7 @@ export default function HomePage() {
           </p>
           <p className="hero-description">
             We’re building a community for teenagers and young adults navigating
-            dyslexia, dyspraxia, dyscalculia and dysgraphia.
+            dyslexia, dyspraxia, dyscalculia and dysgraphia, alongside their families.
           </p>
           <div className="hero-actions">
             <Link href="/support" className="button">
@@ -129,12 +129,12 @@ export default function HomePage() {
               <span>Room for all of them.</span>
             </h2>
             <p>
-              Some things may take a little more time. Some things may need a
-              different approach. Your experience is your own.
+              Diagnosed, waiting for answers, or unsure where you fit —
+              your experience matters. You don’t need a diagnosis to belong.
             </p>
             <p>
-              Here, the starting point is simple: listening to each other,
-              making space and finding connection.
+              We’re creating space to meet people who understand, share
+              experiences and find connection.
             </p>
             <a href="#explore" className="text-link light-link">
               Start with understanding{" "}
@@ -206,7 +206,7 @@ export default function HomePage() {
               <br />
               It’s finding <span className="text-teal">your people.</span>
             </h2>
-            <p>What we’re working towards, together.</p>
+            <p>Community first. Shaped by lived experience.</p>
           </div>
           <div className="connection-layout">
             <div
@@ -243,8 +243,8 @@ export default function HomePage() {
               We’re growing our community and building the foundations for
               future support. Full services are not yet being delivered.
             </p>
-            <Link className="text-link" href="/get-involved">
-              Help shape what’s next{" "}
+            <Link className="text-link" href="/what-we-do">
+              See what we’re building{" "}
               <ArrowUpRight size={19} aria-hidden="true" />
             </Link>
           </div>
@@ -333,17 +333,18 @@ export default function HomePage() {
             <p>
               Connecting Dys is a UK Community Interest Company, led by Marie
               Johnson. We’re building a community around lived experience,
-              connection and shared understanding.
+              connection and shared understanding. Our mission is to reduce
+              isolation for DYS individuals and families.
             </p>
             <p>
               Based in Nottingham and welcoming DYS minds nationwide, our focus
               is teenagers, young adults and the people alongside them.
             </p>
             <Link href="/about" className="text-link">
-              Get to know us <ArrowUpRight size={20} aria-hidden="true" />
+              Our story & purpose <ArrowUpRight size={20} aria-hidden="true" />
             </Link>
             <div className="about-caption">
-              Community led. Together from the start.
+              <Link href="/values">Our BRIDGE values</Link> · <Link href="/our-approach">How we work</Link>
             </div>
           </div>
         </div>

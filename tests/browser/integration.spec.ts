@@ -70,13 +70,13 @@ test("mid-scene reading changes and cached routes clean up and restore the scene
     await expect(page.locator("#community .pin-spacer")).toHaveCount(initialPins);
     await page.locator(".community-note a").focus();
     await page.keyboard.press("Enter");
-    await expect(page).toHaveTitle("Help shape what comes next | Connecting Dys");
+    await expect(page).toHaveTitle("What we do | Connecting Dys");
     await expect(page.locator(".pin-spacer")).toHaveCount(0);
     await page.goBack();
     await expect(page).toHaveTitle("Connecting Dys | A home for every DYS mind.");
     await expect(page.locator("#community .pin-spacer")).toHaveCount(initialPins);
     await page.goForward();
-    await expect(page).toHaveTitle("Help shape what comes next | Connecting Dys");
+    await expect(page).toHaveTitle("What we do | Connecting Dys");
     await expect(page.locator(".pin-spacer")).toHaveCount(0);
     await page.goBack();
     await expect(page).toHaveTitle("Connecting Dys | A home for every DYS mind.");

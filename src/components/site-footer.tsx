@@ -15,6 +15,9 @@ export function SiteFooter() {
         </div>
         <nav aria-label="Footer navigation">
           <Link href="/about">Our story</Link>
+          <Link href="/what-we-do">What we do</Link>
+          <Link href="/our-approach">Our approach</Link>
+          <Link href="/values">Our values</Link>
           <Link href="/support">Support & resources</Link>
           <Link href="/get-involved">Get involved</Link>
           <Link href="/contact">Contact</Link>

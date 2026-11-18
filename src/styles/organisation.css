@@ -1,0 +1,70 @@
+.organisation-page { max-width: 1160px; padding-block: 3rem 5rem; }
+.about-caption a { display: inline-flex; align-items: center; min-height: 44px; font-size: .85rem; text-decoration: underline; text-underline-offset: .3em; }
+.organisation-page .surface-soft { background-color: var(--surface-soft); }
+.organisation-heading { max-width: 48rem; }
+.organisation-heading h1 { font-size: clamp(2.4rem, 5.4vw, 4.4rem); margin: 1rem 0 1.5rem; }
+.organisation-page .lead { font-size: 1.12rem; max-width: 56ch; }
+.organisation-page p { max-width: 62ch; }
+.organisation-page h2 { font-size: clamp(1.6rem, 3.4vw, 2.25rem); margin-bottom: 1rem; }
+.organisation-page h3 { font-size: 1.35rem; margin-bottom: .5rem; }
+.organisation-nav { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; padding-block: 1.2rem; margin-block: 2rem 3rem; border-block: 1px solid var(--rule); }
+.organisation-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: .35rem .15rem; text-decoration: underline; text-underline-offset: .4em; }
+.organisation-nav a[aria-current] { color: var(--reading-accent, var(--brand-teal)); font-weight: 600; text-decoration-thickness: 3px; }
+.organisation-split { display: grid; grid-template-columns: .8fr 1fr; align-items: center; gap: clamp(2rem, 5vw, 4rem); }
+.organisation-split > *, .future-row > *, .bridge-row > * { min-width: 0; }
+.belonging-picture { padding: 2.5rem 1.5rem; min-height: 18rem; border-radius: 45% 45% 1.5rem 1.5rem; display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 1rem; text-align: center; }
+.belonging-picture > svg { width: 6rem; height: 6rem; color: var(--reading-accent, var(--brand-teal)); }
+.belonging-picture > span { font-family: var(--reading-heading-font); max-width: 16ch; font-size: 1.5rem; }
+.belonging-path { display: flex; gap: 2rem; border-bottom: 2px dashed currentColor; padding-bottom: .75rem; color: var(--reading-accent, var(--brand-teal)); }
+.belonging-path span { width: .65rem; height: .65rem; border-radius: 50%; background: currentColor; }
+.organisation-section { margin-block: 3.5rem; }
+.picture-cue { width: 3.5rem; height: 3.5rem; border: 1px solid var(--rule); border-radius: 1rem; display: inline-flex; align-items: center; justify-content: center; color: var(--reading-accent, var(--brand-teal)); flex-shrink: 0; }
+.picture-cue svg { width: 1.9rem; height: 1.9rem; }
+.purpose-row { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding-block: 1.7rem; border-bottom: 1px solid var(--rule); }
+.purpose-row p { margin-bottom: .4rem; }
+.purpose-cue { font-weight: 600; color: var(--reading-accent, var(--brand-teal)); }
+.organisation-note { border-left: 4px solid var(--reading-accent, var(--brand-teal)); padding: 1.1rem 1.5rem; margin-block: 2.5rem; }
+.organisation-note p { margin: 0; }
+.organisation-note h2 { font-size: 1.4rem; }
+.work-now, .approach-path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-block: 2rem; }
+.work-now article, .approach-path li { border-top: 2px solid var(--rule); padding-top: 1.5rem; }
+.work-now .picture-cue, .approach-path .picture-cue { margin-bottom: 1.2rem; }
+.approach-path { list-style: none; padding: 0; }
+.future-row { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 1.5rem; padding-block: 1.7rem; border-bottom: 1px solid var(--rule); }
+.development-label { font-size: .8rem; border: 1px solid currentColor; border-radius: 2rem; padding: .3rem .7rem; }
+.more-detail summary { cursor: pointer; min-height: 44px; padding-block: .6rem; color: var(--reading-accent, var(--brand-teal)); text-decoration: underline; text-underline-offset: .25em; }
+.more-detail p { margin-top: .6rem; }
+.commitment-panel { padding: 2rem; border-radius: 1.5rem; }
+.commitment-panel > .picture-cue { margin-bottom: 1.2rem; }
+.commitment-panel ul { padding-left: 1.2rem; list-style: disc; }
+.commitment-panel li { margin-block: .8rem; }
+.bridge-row { display: grid; grid-template-columns: auto 1fr auto; gap: 1.8rem; align-items: start; border-bottom: 1px solid var(--rule); padding-block: 1.7rem; }
+.bridge-letter { display: grid; place-items: center; width: 4rem; height: 4rem; border-radius: 50%; border: 1px solid var(--rule); font-family: var(--reading-heading-font); color: var(--reading-accent, var(--brand-teal)); font-size: 2rem; }
+.bridge-row p { margin-bottom: .3rem; }
+.organisation-invitation { padding: 2rem; border-radius: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.organisation-invitation .button { flex-shrink: 0; }
+.organisation-invitation p { margin-bottom: 0; }
+.organisation-page a, .organisation-page p, .organisation-page h1, .organisation-page h2, .organisation-page h3, .organisation-page li, .organisation-page summary { overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .organisation-split, .work-now, .approach-path { grid-template-columns: 1fr; }
+  .belonging-picture { min-height: 13rem; max-width: 28rem; width: 100%; }
+  .future-row { grid-template-columns: auto 1fr; gap: 1rem; }
+  .development-label { grid-column: 2; justify-self: start; }
+  .organisation-invitation { align-items: start; flex-direction: column; }
+}
+@media (max-width: 450px) {
+  .bridge-row { grid-template-columns: auto 1fr; gap: 1rem; }
+  .bridge-row > .picture-cue { display: none; }
+  .bridge-letter { width: 2.6rem; height: 2.6rem; font-size: 1.5rem; }
+  .purpose-row { gap: 1rem; }
+  .organisation-invitation, .commitment-panel { padding: 1.25rem; }
+}
+html[data-spacious="true"] .organisation-split,
+html[data-spacious="true"] .work-now,
+html[data-spacious="true"] .approach-path { grid-template-columns: 1fr; }
+html[data-spacious="true"] .future-row { grid-template-columns: 1fr; }
+html[data-spacious="true"] .future-row .development-label { grid-column: 1; justify-self: start; }
+html[data-spacious="true"] .bridge-row { grid-template-columns: auto 1fr; }
+html[data-spacious="true"] .bridge-row > .picture-cue { display: none; }
+html[data-spacious="true"] .organisation-invitation { align-items: start; flex-direction: column; }
+@media print { .more-detail > p { display: block !important; } }

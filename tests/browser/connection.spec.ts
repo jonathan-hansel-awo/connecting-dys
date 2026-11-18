@@ -83,9 +83,9 @@ test("Phase 04 artwork pauses while the first portrait chapter overlaps in front
   });
   expect(front).toBe(true);
   await page.screenshot({ path: info.outputPath("overlap-late.png") });
-  await page.getByRole("link", { name: "Help shape what’s next", exact: true }).focus();
+  await page.getByRole("link", { name: "See what we’re building", exact: true }).focus();
   await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/\/get-involved$/);
+  await expect(page).toHaveURL(/\/what-we-do$/);
   await page.goBack();
   await expect(page.locator("#community .pin-spacer")).toHaveCount(1);
   await info.attach("overlap-geometry", { body: JSON.stringify({ geometry, early, late }), contentType: "application/json" });
@@ -136,8 +136,8 @@ test("Phase 04 textures retain colour, persist across routes and flatten accessi
   await page.screenshot({ path: info.outputPath("connection-spacious.png") });
   const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
   expect(audit.violations).toEqual([]);
-  await page.getByRole("link", { name: "Help shape what’s next", exact: true }).click();
-  await expect(page).toHaveURL(/\/get-involved$/);
+  await page.getByRole("link", { name: "See what we’re building", exact: true }).click();
+  await expect(page).toHaveURL(/\/what-we-do$/);
   await expect(page.locator("html")).toHaveAttribute("data-texture-style", "plaster");
   await page.goBack();
   await trigger.click();

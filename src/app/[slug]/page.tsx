@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { OrganisationPage } from "@/components/organisation-page";
+import { organisationPages, type OrganisationSlug } from "@/content/organisation";
 import { brand, differences, originalSite } from "@/content/site";
 
-const pages = ["about", "support", "get-involved", "contact", "accessibility"];
+const pages = [...Object.keys(organisationPages), "support", "get-involved", "contact", "accessibility"];
 const titles: Record<string, string> = {
-  about: "Our story",
+  ...Object.fromEntries(Object.entries(organisationPages).map(([slug, page]) => [slug, page.label])),
   support: "Information & support",
   "get-involved": "Help shape what comes next",
   contact: "A hello is a good place to start.",
@@ -26,7 +28,7 @@ export async function generateMetadata({
   const difference = differences.find((d) => d.slug === slug);
   return {
     title: difference?.name || titles[slug],
-    description: difference?.description,
+    description: difference?.description || organisationPages[slug as OrganisationSlug]?.intro,
   };
 }
 export default async function ReadingPage({
@@ -37,6 +39,9 @@ export default async function ReadingPage({
   const { slug } = await params;
   const difference = differences.find((d) => d.slug === slug);
   if (!difference && !pages.includes(slug)) notFound();
+  if (Object.hasOwn(organisationPages, slug)) {
+    return <OrganisationPage slug={slug as OrganisationSlug} />;
+  }
   return (
     <main id="main-content" tabIndex={-1} className="reading-page wrap">
       <Link href={difference ? "/#explore" : "/"} className="breadcrumb">
@@ -76,42 +81,10 @@ export default async function ReadingPage({
         </>
       ) : (
         <div className="article-body">
-          {slug === "about" && (
-            <>
-              <p className="lead">Belonging begins with connection.</p>
-              <h2>Who we are</h2>
-              <p>
-                Connecting Dys is a UK Community Interest Company, led by Marie
-                Johnson. We’re building a community for teenagers and young
-                adults navigating dyslexia, dyspraxia, dyscalculia and
-                dysgraphia, alongside families and supporters.
-              </p>
-              <p>
-                We are based in Nottingham and welcome DYS minds nationwide,
-                including people who are waiting for a diagnosis, newly
-                diagnosed, or unsure where they fit.
-              </p>
-              <h2>Community comes first</h2>
-              <p>
-                Our purpose is to bring people together around lived experience,
-                connection and shared understanding. We want young people and
-                families to help shape what comes next.
-              </p>
-              <div className="article-note">
-                <p>
-                  We are currently building the community and foundations for
-                  future support. Full services are not yet being delivered.
-                </p>
-              </div>
-              <Link className="button" href="/get-involved">
-                Get involved <ArrowUpRight size={18} aria-hidden="true" />
-              </Link>
-            </>
-          )}
           {slug === "support" && (
             <>
               <p className="lead">
-                Find a starting point that feels useful to you.
+                Find a starting point that feels useful to you. You don’t need a diagnosis to explore or get in touch.
               </p>
               <h2>Understand a learning difference</h2>
               <ul>
@@ -121,6 +94,8 @@ export default async function ReadingPage({
                   </li>
                 ))}
               </ul>
+              <h2>Community support, growing with you</h2>
+              <p>We’re preparing peer spaces, family gatherings and practical workshops with the community. <Link href="/what-we-do">See what we’re building</Link> and what’s still in development.</p>
               <h2>Ask about Connecting Dys</h2>
               <p>
                 If you’re a young person, family member, educator or supporter,
@@ -149,12 +124,15 @@ export default async function ReadingPage({
               <p className="lead">
                 A community takes shape through the people in it.
               </p>
+              <h2>There’s room for you</h2>
+              <p>Our focus is teenagers and young adults with DYS, alongside families and carers. Diagnosed, awaiting assessment or unsure where you fit — you’re welcome to start a conversation.</p>
               <h2>Bring your perspective</h2>
               <p>
                 Young people, families, educators, prospective partners and
                 supporters are welcome to get in touch. Tell us what connection
                 means to you and what you would like to help shape.
               </p>
+              <p>You can share an experience, suggest an idea or ask about working with us. <Link href="/our-approach">See how we build with the community</Link>.</p>
               <h2>Start with a conversation</h2>
               <p>
                 We’re building the foundations for a community led by shared

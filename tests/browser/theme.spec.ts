@@ -120,11 +120,11 @@ test("theme controls remain usable with Chromium forced darkening, blocked stora
   await expect(page.getByRole("dialog").getByRole("status")).toContainText("Browser storage is unavailable");
 });
 
-test("all ten dark public routes pass rendered accessibility", async ({ page }, info) => {
+test("all dark public routes pass rendered accessibility", async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "Shared routes audited once; homepage/preferences covered in every viewport.");
   await ready(page);
   await setDarkMode(page, true);
-  for (const route of ["/", "/about", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
+  for (const route of ["/", "/about", "/what-we-do", "/our-approach", "/values", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
     await page.goto(route);
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     expect((await audit(page)).violations, route).toEqual([]);

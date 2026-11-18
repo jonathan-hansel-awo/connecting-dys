@@ -162,7 +162,7 @@ test("site and OS reduced motion tear down animation; no-JS content remains usab
 
 test("all public routes return content and pass rendered axe", async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "Shared routes audited once at desktop; homepage reflow covered per viewport.");
-  for (const route of ["/", "/about", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
+  for (const route of ["/", "/about", "/what-we-do", "/our-approach", "/values", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
     await expect(page.locator("main h1")).toHaveCount(1);

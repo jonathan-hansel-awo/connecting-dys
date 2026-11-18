@@ -6,6 +6,7 @@ import { brand } from "@/content/site";
 
 const links = [
   ["/about", "Our story"],
+  ["/what-we-do", "What we do"],
   ["/#explore", "Explore DYS"],
   ["/support", "Find support"],
   ["/contact", "Get in touch"],
