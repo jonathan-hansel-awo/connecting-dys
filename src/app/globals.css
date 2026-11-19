@@ -1760,7 +1760,7 @@ html[data-reading-custom="true"] .approved-logo img {
 .recognition-media {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 1 / 1;
   overflow: clip;
   isolation: isolate;
   border-radius: 7px;
@@ -1768,6 +1768,7 @@ html[data-reading-custom="true"] .approved-logo img {
 }
 .recognition-photo {
   object-fit: cover;
+  object-position: center bottom;
 }
 .recognition-figure figcaption {
   font-size: 0.64rem;

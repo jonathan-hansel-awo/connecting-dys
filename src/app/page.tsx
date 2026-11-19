@@ -109,15 +109,15 @@ export default function HomePage() {
             <figure className="recognition-figure">
               <div className="recognition-media surface-inset">
                 <Image
-                  src="/images/shared-moment.webp"
-                  alt="An illustrative scene of four young adults talking together in a relaxed shared space."
+                  src="/images/community-reading.webp"
+                  alt="Five people sitting together around a table with books."
                   fill
                   sizes="(max-width: 1000px) 90vw, 45vw"
                   className="recognition-photo"
                 />
               </div>
               <figcaption>
-                AI-created illustrative scene. Not Connecting Dys members.
+                Photo provided by Connecting Dys. Background edited for privacy.
               </figcaption>
             </figure>
           </div>

@@ -85,7 +85,7 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
     [...doc.querySelectorAll(".difference-row")].map((a) => a.getAttribute("href")),
     ["/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"],
   );
-  assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Not Connecting Dys members"));
+  assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Background edited for privacy"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
   assert.equal(doc.querySelectorAll('.reading-toolbar .settings-trigger[aria-haspopup="dialog"]').length, 1);
   assert.equal(doc.querySelectorAll('.reading-toolbar .theme-trigger').length, 0);
