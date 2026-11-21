@@ -53,42 +53,24 @@ test("Phase 04 three chapter paths visibly develop with stationary reading conte
   expect(errors).toEqual([]);
 });
 
-test("Phase 04 artwork pauses while the first portrait chapter overlaps in front", async ({ page }, info) => {
-  const { width, height } = page.viewportSize()!;
-  test.skip(width > 699 || height < 650, "The stacking reveal is portrait-only; desktop has a separate artwork pin.");
+test("word cloud movement can be paused without pinning or hiding its control", async ({ page }) => {
   await ready(page);
-  await expect(page.locator("#community .pin-spacer")).toHaveCount(1);
-  const geometry = await page.evaluate(() => {
-    const art = document.querySelector(".connection-visual")!.getBoundingClientRect();
-    const chapter = document.querySelector(".connection-chapter")!.getBoundingClientRect();
-    const inset = document.querySelector(".site-header")!.getBoundingClientRect().height + 16;
-    return { start: art.top + scrollY - inset, end: chapter.top + scrollY - inset, inset };
-  });
-  const sample = async (fraction: number) => {
-    await scroll(page, geometry.start + (geometry.end - geometry.start) * fraction);
-    return page.evaluate(() => ({
-      art: document.querySelector(".connection-visual")!.getBoundingClientRect().top,
-      chapter: document.querySelector(".connection-chapter")!.getBoundingClientRect().top,
-    }));
-  };
-  const early = await sample(.15);
-  await page.screenshot({ path: info.outputPath("overlap-early.png") });
-  const late = await sample(.75);
-  expect(Math.abs(early.art - late.art)).toBeLessThan(1);
-  expect(Math.abs(late.art - geometry.inset)).toBeLessThan(2);
-  expect(early.chapter - late.chapter).toBeGreaterThan(50);
-  const front = await page.locator(".connection-chapter h3").first().evaluate((el) => {
-    const r = el.getBoundingClientRect();
-    return el.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
-  });
-  expect(front).toBe(true);
-  await page.screenshot({ path: info.outputPath("overlap-late.png") });
-  await page.getByRole("link", { name: "See what we’re building", exact: true }).focus();
-  await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/\/what-we-do$/);
-  await page.goBack();
-  await expect(page.locator("#community .pin-spacer")).toHaveCount(1);
-  await info.attach("overlap-geometry", { body: JSON.stringify({ geometry, early, late }), contentType: "application/json" });
+  await expect(page.locator("#community .pin-spacer")).toHaveCount(0);
+  const cloud = page.locator(".word-cloud");
+  const button = page.getByRole("button", { name: "Pause word movement", exact: true });
+  await button.scrollIntoViewIfNeeded();
+  await expect(page.locator(".word-drift").first()).toHaveCSS("animation-play-state", "running");
+  await button.click();
+  await expect(cloud).toHaveAttribute("data-paused", "true");
+  const word = page.locator(".word-drift").first();
+  const before = await word.evaluate(el => getComputedStyle(el).transform);
+  await page.waitForTimeout(150);
+  await expect(word).toHaveCSS("transform", before);
+  await page.getByRole("button", { name: "Resume word movement", exact: true }).press("Space");
+  await expect(cloud).toHaveAttribute("data-paused", "false");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(word).toHaveCSS("animation-name", "none");
+  await expect(page.locator(".word-cloud-toggle")).toBeHidden();
 });
 
 test("Phase 04 textures retain colour, persist across routes and flatten accessibly", async ({ page }, info) => {

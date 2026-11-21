@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { brand, connectionChapters, differences } from "@/content/site";
-import { DifferenceArtwork, CommunityArtwork } from "@/components/story-art";
+import { DifferenceArtwork } from "@/components/story-art";
+import { HeroDysEmbrace } from "@/components/hero-dys-embrace";
+import { AnimatedDysWords } from "@/components/animated-dys-words";
+import { DysConnections } from "@/components/dys-connections";
 import { HomeStoryMotion } from "@/components/home-story-motion";
 import { ConnectionTrail } from "@/components/connection-trail";
 import { DiscoveryTrail } from "@/components/discovery-trail";
@@ -71,14 +74,7 @@ export default function HomePage() {
             A little more understood.
           </div>
           <div className="logo-stage">
-            <Image
-              src={brand.symbol}
-              alt="Two figures embracing inside a heart."
-              width={1024}
-              height={1024}
-              sizes="(max-width: 700px) 90vw, (max-width: 1100px) 65vw, 46vw"
-              preload
-            />
+            <HeroDysEmbrace />
             <div className="hero-lockup">
               <span className="hero-wordmark">Connecting Dys</span>
               <span className="hero-tagline">{brand.tagline}</span>
@@ -191,6 +187,7 @@ export default function HomePage() {
           You might recognise more than one. You don’t need a diagnosis to start
           exploring.
         </p>
+        <DysConnections placement="home" />
       </section>
 
       <section
@@ -209,22 +206,7 @@ export default function HomePage() {
             <p>Community first. Shaped by lived experience.</p>
           </div>
           <div className="connection-layout">
-            <div
-              className="connection-visual surface-scene surface-inset"
-              aria-hidden="true"
-            >
-              <div className="landscape-label">
-                Every path has a place here.
-              </div>
-              <CommunityArtwork />
-              <div className="landscape-caption">
-                <span>Different perspectives.</span>
-                <span>Shared possibility.</span>
-              </div>
-              <div className="connection-progress">
-                <span />
-              </div>
-            </div>
+            <AnimatedDysWords />
             <div className="connection-chapters">
               {connectionChapters.map((chapter, index) => (
                 <article className="connection-chapter" key={chapter.number}>
@@ -344,7 +326,7 @@ export default function HomePage() {
               Our story & purpose <ArrowUpRight size={20} aria-hidden="true" />
             </Link>
             <div className="about-caption">
-              <Link href="/values">Our BRIDGE values</Link> · <Link href="/our-approach">How we work</Link>
+              <Link href="/about#mission-and-vision">Our mission & vision</Link> · <Link href="/values">Our BRIDGE values</Link> · <Link href="/our-approach">How we work</Link>
             </div>
           </div>
         </div>

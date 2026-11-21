@@ -20,13 +20,12 @@ async function staticArtwork(page: Page) {
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
   await expect(page.locator("html")).not.toHaveClass(/\blenis\b/);
   await expect(page.locator(".recognition-photo")).toHaveCSS("transform", "none");
-  // GSAP restores SVG groups as an identity matrix; this is also static.
-  const landscape = page.locator(".art-landscape");
-  await expect(landscape).toHaveCSS("transform", /^(none|matrix\(1, 0, 0, 1, 0, 0\))$/);
-  const before = await landscape.evaluate((el) => getComputedStyle(el).transform);
+  const words = page.locator(".word-drift").first();
+  await expect(words).toHaveCSS("animation-name", "none");
+  const before = await words.evaluate((el) => getComputedStyle(el).transform);
   await page.evaluate(() => window.scrollTo(0, document.querySelector("#community")!.getBoundingClientRect().top + scrollY));
   await settled(page);
-  await expect(landscape).toHaveCSS("transform", before);
+  await expect(words).toHaveCSS("transform", before);
 }
 
 test("chapter screenshots, overflow, console and rendered accessibility", async ({ page }, info) => {

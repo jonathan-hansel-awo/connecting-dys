@@ -32,7 +32,6 @@ export function HomeStoryMotion() {
           forcedColours: "(forced-colors: active)",
           tall: "(min-height: 520px)",
           stacking: "(min-height: 650px)",
-          portraitOverlap: "(max-width: 699px) and (min-height: 650px)",
         },
         (context) => {
           if (!context.conditions?.motion || context.conditions.forcedColours)
@@ -146,7 +145,7 @@ export function HomeStoryMotion() {
                 .to(wash, { opacity: 0.05, ease: "none", duration: 0.5 }, 0.5);
             });
           }
-          createConnectionMotion(Boolean(desktop), Boolean(context.conditions.portraitOverlap), Boolean(context.conditions.tall));
+          createConnectionMotion(Boolean(desktop), Boolean(context.conditions.tall));
           createFinishMotion(Boolean(desktop), Boolean(context.conditions.tall));
           if (context.conditions.stacking) return createSectionStacking(stackingInteraction);
         },

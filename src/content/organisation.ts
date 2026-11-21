@@ -25,9 +25,9 @@ export const organisationPages = {
 export type OrganisationSlug = keyof typeof organisationPages;
 
 export const purpose = [
-  { icon: "connection", title: "Our mission", cue: "Less isolation. More connection.", text: "Build inclusive spaces where DYS individuals and families feel understood through shared experience." },
-  { icon: "sun", title: "Our vision", cue: "Connected, confident, understood.", text: "A society where DYS individuals and families grow with communities that understand them." },
-  { icon: "home", title: "Our goal", cue: "A community built to last.", text: "Create trusted spaces and networks that people can shape, support and lead over time." },
+  { icon: "connection", title: "Our mission", cue: "Less isolation. More connection.", text: "To reduce isolation among DYS individuals and families by building inclusive, community-led spaces rooted in lived experience, connection, and shared understanding.", detail: "We’re developing non-clinical, relational peer support alongside existing services, helping individuals and families feel seen, supported and empowered in everyday life." },
+  { icon: "sun", title: "Our vision", cue: "Connected, confident, understood.", text: "A society where DYS individuals and families are connected, confident, and supported by communities that understand them — not in isolation, but together.", detail: "We envision communities where:", points: ["DYS experiences are understood without constant explanation.", "Connection is as valued as intervention.", "Lived experience shapes how support is designed and delivered.", "People move from surviving to thriving through belonging."] },
+  { icon: "home", title: "Our goal", cue: "A community built to last.", text: "To build sustainable community infrastructure that enables DYS teenagers, young adults and their families to connect, support one another and grow with confidence over the long term.", detail: "This means creating inclusive social spaces and systems that endure beyond short-term projects, grounded in trust, co-design and shared ownership." },
 ] as const;
 
 export const currentWork = [

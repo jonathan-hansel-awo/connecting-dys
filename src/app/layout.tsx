@@ -17,6 +17,7 @@ import "../styles/theme.css";
 import "../styles/organisation.css";
 import "../styles/paths-to-belonging.css";
 import "../styles/policies.css";
+import "../styles/home-visuals.css";
 
 const openSans = localFont({
   src: [

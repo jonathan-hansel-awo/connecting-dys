@@ -47,11 +47,11 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
           <p>But after the appointments ended, a question remained: where could you go for everyday connection? Somewhere to ask questions and meet people who understood without needing every detail explained.</p>
           <details className="more-detail"><summary>Read how the idea grew</summary><p>Later postgraduate research into social support brought the same gap into focus: the need for ongoing community alongside formal services.</p><p>Connecting Dys CIC was created to help fill that gap. We’re building places for shared experience, human support and belonging throughout everyday life.</p></details>
         </section>
-        <section aria-labelledby="purpose-title" className="organisation-section">
+        <section id="mission-and-vision" aria-labelledby="purpose-title" className="organisation-section">
           <h2 id="purpose-title">Why we’re here</h2>
           <div className="purpose-list">
             {purpose.map(item => <article key={item.title} className="purpose-row">
-              <PictureCue name={item.icon} /><div><h3>{item.title}</h3><p className="purpose-cue">{item.cue}</p><p>{item.text}</p></div>
+              <PictureCue name={item.icon} /><div><h3>{item.title}</h3><p className="purpose-cue">{item.cue}</p><p>{item.text}</p><details className="more-detail"><summary>Read more about {item.title.toLowerCase()}</summary><p>{item.detail}</p>{"points" in item && <ul>{item.points.map(point => <li key={point}>{point}</li>)}</ul>}</details></div>
             </article>)}
           </div>
         </section>

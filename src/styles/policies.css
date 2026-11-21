@@ -35,13 +35,6 @@
 .membership-option ul, .membership-steps { padding-left: 1.3rem; list-style: disc; }
 .membership-steps { list-style: decimal; }
 .membership-option .button { white-space: normal; overflow-wrap: anywhere; }
-.dys-connections { margin-block: 3rem; }
-.dys-hearts { width: min(100%, 28rem); aspect-ratio: 1; position: relative; margin: 1.5rem auto; }
-.dys-hearts svg { position: absolute; inset: 0; width: 100%; height: 100%; stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 2; opacity: .65; }
-.dys-hearts use:nth-of-type(2) { stroke: var(--brand-coral); }
-.dys-hearts use:nth-of-type(3) { stroke: var(--brand-amber); }
-.dys-heart-links { position: absolute; inset: 15%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-.dys-heart-links a { min-width: 0; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--reading-ink, var(--brand-navy)); text-underline-offset: .3em; }
 .cookie-information { color: inherit; background: none; border: 0; text-decoration: underline; text-underline-offset: .3em; min-height: 44px; cursor: pointer; text-align: left; }
 .cookie-notice { position: relative; margin: 1.5rem 0 0; padding: 1.5rem; border: 1px solid var(--rule); border-radius: 1.25rem; background: var(--reading-background, var(--brand-cream)); color: var(--reading-ink, var(--brand-navy)); }
 .cookie-notice[hidden] { display: none; }
@@ -54,10 +47,5 @@
    screens. It is placed directly below the site's reading toolbar. */
 .privacy-toolbar { padding-block: 0 1rem; }
 @media (max-width: 700px) { .policy-index, .membership-options { grid-template-columns: 1fr; } .membership-option { padding: 1.3rem; } }
-@media (max-width: 400px) { .dys-hearts { aspect-ratio: auto; } .dys-hearts svg { display: none; } .dys-heart-links { position: static; grid-template-columns: 1fr; gap: 0; } .dys-heart-links a { justify-content: start; padding-block: .65rem; border-bottom: 1px solid var(--rule); } }
 html[data-spacious="true"] .policy-index, html[data-spacious="true"] .membership-options { grid-template-columns: 1fr; }
-html[data-spacious="true"] .dys-hearts { aspect-ratio: auto; }
-html[data-spacious="true"] .dys-hearts svg { display: none; }
-html[data-spacious="true"] .dys-heart-links { position: static; grid-template-columns: 1fr; }
-html[data-spacious="true"] .dys-heart-links a { justify-content: start; padding-block: .5rem; }
 @media print { .privacy-toolbar, .cookie-information, .cookie-notice, .policy-contents { display: none !important; } }

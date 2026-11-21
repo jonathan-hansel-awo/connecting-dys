@@ -1,0 +1,62 @@
+/* Supplied visual concepts, drawn as crisp vectors and preference-aware text. */
+.hero-dys-embrace { width: 100%; max-width: 34rem; }
+.hero-dys-embrace svg { display: block; width: 100%; height: auto; overflow: visible; }
+.embrace-ring-bed { stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 1; opacity: .15; }
+.embrace-ring-word { font-family: var(--reading-font); font-size: 31px; font-weight: 600; letter-spacing: .3px; fill: var(--reading-ink, var(--brand-navy)); }
+.ring-word-0, .ring-word-3 { fill: var(--reading-accent, var(--brand-teal)); }
+.embrace-people { stroke: var(--reading-accent, var(--brand-teal)); }
+.embrace-dot { fill: var(--brand-coral); }
+.dys-connections { margin-block: 3rem; }
+.dys-connections-home { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 2rem; border-top: 1px solid var(--rule); padding-top: 3rem; }
+.dys-connections-copy > .eyebrow { font-size: .8rem; }
+.dys-connections h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); margin-block: 1rem; }
+.dys-connections-copy > p { max-width: 40ch; }
+.dys-connections-copy > p:last-child { font-size: .9rem; margin-top: 1rem; }
+.dys-hearts { width: min(100%, 34rem); aspect-ratio: 1; position: relative; margin: 0 auto; }
+.dys-hearts svg { position: absolute; inset: 0; width: 100%; height: 100%; stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 2.5; }
+.heart-petal > use:first-child { fill: var(--reading-accent, var(--brand-teal)); fill-opacity: .025; }
+.heart-petal-90 { color: var(--brand-coral); }
+.heart-petal-90 > use { stroke: currentColor; }
+.heart-petal-180 > use { stroke: var(--brand-amber); }
+.heart-pencil { stroke-width: 1.5; opacity: .2; }
+.dys-heart-links { position: absolute; inset: 0; }
+.dys-heart-links a { position: absolute; width: 42%; min-height: 44px; display: flex; justify-content: center; align-items: center; text-align: center; transform: translate(-50%, -50%); font-size: .95rem; font-weight: 600; color: var(--reading-ink, var(--brand-navy)); text-underline-offset: .3em; }
+.dys-heart-links a:nth-child(1) { left: 29%; top: 28%; }
+.dys-heart-links a:nth-child(2) { left: 72%; top: 29%; }
+.dys-heart-links a:nth-child(3) { left: 28%; top: 71%; }
+.dys-heart-links a:nth-child(4) { left: 71%; top: 72%; }
+.dys-heart-centre { position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--reading-background); border-radius: 2rem; padding: .35rem .7rem; font-size: .85rem; font-weight: 600; white-space: nowrap; color: var(--reading-accent, var(--brand-teal)); }
+.word-cloud { min-width: 0; }
+.word-cloud-controls { display: flex; justify-content: flex-end; min-height: 44px; margin-bottom: .5rem; }
+.word-cloud-toggle { border: 1px solid var(--rule); border-radius: 2rem; padding: .5rem .8rem; background: var(--reading-background); color: var(--reading-ink, var(--brand-navy)); font-size: .85rem; cursor: pointer; min-height: 44px; align-items: center; }
+.word-cloud-static-note { display: none; font-size: .85rem; align-self: center; }
+.word-cloud .connection-visual { margin-top: 0; border-radius: 1.5rem; }
+.word-cloud-art { position: relative; aspect-ratio: 1.25; overflow: hidden; contain: paint; margin: 1rem .25rem; }
+.word-anchor { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-family: var(--reading-font); font-size: clamp(.85rem, 1.5vw, 1.15rem); font-weight: 600; }
+.word-drift { display: block; transform: rotate(var(--word-tilt)); animation: dys-word-drift var(--word-duration) ease-in-out var(--word-delay) infinite alternate; animation-play-state: paused; }
+.word-colour-0 { color: #fcf7ed; }
+.word-colour-1 { color: #fff2da; }
+.word-colour-2 { color: #e9fff6; }
+.word-colour-3 { color: #fff0eb; }
+@keyframes dys-word-drift { from { transform: translate(calc(var(--word-x) * -1), calc(var(--word-y) * -1)) rotate(var(--word-tilt)); } to { transform: translate(var(--word-x), var(--word-y)) rotate(calc(var(--word-tilt) + 7deg)); } }
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  html[data-js="true"]:not([data-reduce-motion="true"]):not([data-spacious="true"]) .word-cloud[data-paused="false"] .word-drift { animation-play-state: running; }
+}
+html[data-reduce-motion="true"] .word-drift, html[data-spacious="true"] .word-drift { animation: none; }
+html[data-reduce-motion="true"] .word-cloud-toggle, html[data-spacious="true"] .word-cloud-toggle { display: none; }
+html[data-reduce-motion="true"] .word-cloud-static-note, html[data-spacious="true"] .word-cloud-static-note { display: inline; }
+html[data-spacious="true"] .dys-connections-home { grid-template-columns: 1fr; }
+html[data-spacious="true"] .dys-hearts { aspect-ratio: auto; }
+html[data-spacious="true"] .dys-hearts svg { display: none; }
+html[data-spacious="true"] .dys-heart-centre { position: static; display: block; transform: none; padding: 0; }
+html[data-spacious="true"] .dys-heart-links { position: static; display: grid; grid-template-columns: 1fr; }
+html[data-spacious="true"] .dys-heart-links a { position: static; transform: none; width: auto; justify-content: start; text-align: left; padding-block: .5rem; }
+html[data-spacious="true"] .word-cloud-art { aspect-ratio: auto; padding: 1rem; display: grid; gap: 1rem; }
+html[data-spacious="true"] .word-anchor { position: static; transform: none; }
+html[data-spacious="true"] .word-anchor:nth-child(n+5) { display: none; }
+html[data-spacious="true"] .word-drift { transform: none; }
+@media (max-width: 760px) { .dys-connections-home { grid-template-columns: 1fr; gap: .5rem; } }
+@media (max-width: 400px) { .dys-heart-links a { font-size: .85rem; } .word-anchor:nth-child(n+9) { display: none; } .word-anchor { font-size: .85rem; } }
+@media (prefers-reduced-motion: reduce) { .word-drift { animation: none; } .word-cloud-toggle { display: none !important; } .word-cloud-static-note { display: inline; } }
+@media (forced-colors: active) { .hero-dys-embrace text { fill: CanvasText; } .hero-dys-embrace g, .dys-hearts svg { stroke: CanvasText; } .word-drift { animation: none; } .word-anchor { color: CanvasText; } .word-cloud-toggle { display: none !important; } .word-cloud-static-note { display: inline; } }
+@media print { .word-drift { animation: none; } .word-cloud-controls { display: none; } }

@@ -73,13 +73,15 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
     sections.map((section) => section.getAttribute("aria-labelledby")),
     ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title", "paths-title"],
   );
-  for (const selector of [".hero-orbit", ".recognition-media .recognition-photo", ".connection-visual .art-landscape", ".connection-chapters", ".connection-progress span"]) {
+  for (const selector of [".hero-orbit", ".recognition-media .recognition-photo", ".connection-visual .word-cloud-art", ".connection-chapters", ".connection-progress span"]) {
     assert.equal(doc.querySelectorAll(selector).length, 1, selector);
   }
   const artwork = doc.querySelector('.connection-visual[aria-hidden="true"]');
-  assert.ok(artwork, "only decorative artwork may pin");
+  assert.ok(artwork, "moving word artwork is decorative");
   assert.equal(artwork.querySelectorAll("a,button,input,select,[tabindex]").length, 0);
-  assert.equal(artwork.querySelector(".journey-path")?.getAttribute("pathLength"), "1");
+  assert.equal(artwork.querySelectorAll(".word-drift").length, 12);
+  assert.equal(doc.querySelectorAll(".art-landscape").length, 0, "the illustrated people are replaced");
+  assert.ok(doc.querySelector('.word-cloud-toggle[aria-controls="dys-word-art"]'));
   assert.equal(doc.querySelectorAll(".connection-chapters > article").length, 3);
   assert.equal(doc.querySelectorAll(".connection-chapter .chapter-path[pathLength='1']").length, 3);
   assert.equal(doc.querySelectorAll(".connection-trail[aria-hidden='true']").length, 3);
@@ -98,11 +100,24 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   const sheet = doc.querySelector('#recognition > [data-recognition-sheet][aria-hidden="true"]');
   assert.ok(sheet, "paint lip belongs to the real recognition anchor");
   assert.equal(sheet.querySelectorAll("a,button,input,[tabindex],img").length, 0);
-  assert.equal(doc.querySelectorAll("[data-welcome-scene] .logo-stage img").length, 1);
+  assert.equal(doc.querySelectorAll("[data-welcome-scene] .hero-dys-embrace svg").length, 1);
+  assert.equal(doc.querySelectorAll(".hero-dys-embrace textPath").length, 4);
+  assert.equal(doc.querySelectorAll("#explore .heart-petal").length, 4);
+  assert.equal(doc.querySelector("#explore .dys-heart-centre")?.textContent, "DYS Connect");
   assert.equal(doc.querySelectorAll("#explore .discovery-waypoint[aria-hidden='true']").length, 4);
   assert.equal(doc.querySelectorAll("#explore .discovery-path[pathLength='1']").length, 4);
   assert.equal(doc.querySelectorAll("#explore .difference-art-drift").length, 4);
   assert.equal(doc.querySelectorAll(".hero-recess-shape").length, 2);
+  dom.window.close();
+});
+
+test("mission and vision retain the latest supplied statements and are directly discoverable", () => {
+  const dom = page("about");
+  const content = dom.window.document.querySelector("#mission-and-vision")!;
+  assert.ok(content);
+  assert.ok(content.textContent?.includes("To reduce isolation among DYS individuals and families by building inclusive, community-led spaces rooted in lived experience, connection, and shared understanding."));
+  assert.ok(content.textContent?.includes("A society where DYS individuals and families are connected, confident, and supported by communities that understand them — not in isolation, but together."));
+  assert.equal(content.querySelectorAll("details").length, 3);
   dom.window.close();
 });
 
