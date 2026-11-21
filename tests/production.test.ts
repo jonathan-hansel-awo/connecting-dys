@@ -100,10 +100,10 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   const sheet = doc.querySelector('#recognition > [data-recognition-sheet][aria-hidden="true"]');
   assert.ok(sheet, "paint lip belongs to the real recognition anchor");
   assert.equal(sheet.querySelectorAll("a,button,input,[tabindex],img").length, 0);
-  assert.equal(doc.querySelectorAll("[data-welcome-scene] .hero-dys-embrace svg").length, 1);
-  assert.equal(doc.querySelectorAll(".hero-dys-embrace textPath").length, 4);
-  assert.equal(doc.querySelectorAll("#explore .heart-petal").length, 4);
-  assert.equal(doc.querySelector("#explore .dys-heart-centre")?.textContent, "DYS Connect");
+  assert.equal(doc.querySelectorAll("[data-welcome-scene] .hero-dys-embrace img").length, 1);
+  assert.equal(doc.querySelectorAll(".hero-dys-embrace svg, #explore .heart-petal").length, 0, "the supplied PNG artwork replaces the recreations");
+  assert.equal(doc.querySelectorAll("#explore .dys-hearts img").length, 1);
+  assert.equal(doc.querySelectorAll("#explore .dys-heart-links a").length, 4, "accessible topic links sit beside the original illustration");
   assert.equal(doc.querySelectorAll("#explore .discovery-waypoint[aria-hidden='true']").length, 4);
   assert.equal(doc.querySelectorAll("#explore .discovery-path[pathLength='1']").length, 4);
   assert.equal(doc.querySelectorAll("#explore .difference-art-drift").length, 4);
