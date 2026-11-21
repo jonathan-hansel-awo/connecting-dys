@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { brand, differences, originalSite } from "@/content/site";
+import { brand, differences } from "@/content/site";
+import { CookieInformation } from "@/components/cookie-notice";
 
 export function SiteFooter() {
   return (
@@ -20,6 +21,7 @@ export function SiteFooter() {
           <Link href="/values">Our values</Link>
           <Link href="/support">Support & resources</Link>
           <Link href="/get-involved">Get involved</Link>
+          <Link href="/membership">Membership interest</Link>
           <Link href="/contact">Contact</Link>
         </nav>
         <nav aria-label="Learning differences">
@@ -32,10 +34,10 @@ export function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <span>Connecting Dys CIC · Built around belonging.</span>
-        <a href={`${originalSite}/OurPolicies`}>
-          Organisation policies <ArrowUpRight size={16} aria-hidden="true" />
-          <span className="sr-only"> (existing website)</span>
-        </a>
+        <Link href="/policies">Our policies</Link>
+        <Link href="/privacy">Privacy</Link>
+        <Link href="/safeguarding">Safeguarding</Link>
+        <CookieInformation />
         <Link href="/accessibility">Accessibility & reading</Link>
       </div>
     </footer>

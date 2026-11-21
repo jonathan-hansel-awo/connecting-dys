@@ -37,8 +37,15 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
             <h2 id="who-title">Here for the in-between.</h2>
             <p>Waiting for an assessment, finding your way after diagnosis or facing a gap in support can feel isolating.</p>
             <p>We’re building a community where young people and families can meet others who understand.</p>
-            <p>Led by Marie Johnson, Connecting Dys is a UK Community Interest Company based in Nottingham, welcoming DYS minds nationwide.</p>
+            <p>Connecting Dys is a UK Community Interest Company based in Nottingham, welcoming DYS minds nationwide.</p>
           </div>
+        </section>
+        <section className="organisation-section" aria-labelledby="story-title">
+          <p className="eyebrow">Our story</p>
+          <h2 id="story-title">What happens after the answers?</h2>
+          <p>Connecting Dys began with lived experience of life before and after diagnosis. Finding a name for the challenges brought answers — and a lot of information to take in.</p>
+          <p>But after the appointments ended, a question remained: where could you go for everyday connection? Somewhere to ask questions and meet people who understood without needing every detail explained.</p>
+          <details className="more-detail"><summary>Read how the idea grew</summary><p>Later postgraduate research into social support brought the same gap into focus: the need for ongoing community alongside formal services.</p><p>Connecting Dys CIC was created to help fill that gap. We’re building places for shared experience, human support and belonging throughout everyday life.</p></details>
         </section>
         <section aria-labelledby="purpose-title" className="organisation-section">
           <h2 id="purpose-title">Why we’re here</h2>

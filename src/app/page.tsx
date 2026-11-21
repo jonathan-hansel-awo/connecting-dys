@@ -331,8 +331,8 @@ export default function HomePage() {
               <br />A shared purpose.
             </h2>
             <p>
-              Connecting Dys is a UK Community Interest Company, led by Marie
-              Johnson. We’re building a community around lived experience,
+              Connecting Dys is a UK Community Interest Company.
+              We’re building a community around lived experience,
               connection and shared understanding. Our mission is to reduce
               isolation for DYS individuals and families.
             </p>
@@ -368,8 +368,8 @@ export default function HomePage() {
           You don’t need all the answers.
           <br />A hello is a good place to start.
         </p>
-        <Link href="/contact" className="button">
-          Let’s connect <ArrowUpRight size={22} aria-hidden="true" />
+        <Link href="/membership" className="button">
+          Express your interest <ArrowUpRight size={22} aria-hidden="true" />
         </Link>
         <a href="#main-content" className="back-top">
           Back to the beginning ↑

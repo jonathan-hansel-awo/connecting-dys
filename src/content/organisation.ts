@@ -1,4 +1,4 @@
-// Paraphrased from Marie's November 2026 website recommendations and BRIDGE email.
+// Paraphrased from the supplied November 2026 website recommendations and BRIDGE email.
 // Future activities remain explicitly in development; governance evidence is not a public claim.
 export const organisationPages = {
   about: {

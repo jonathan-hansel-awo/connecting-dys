@@ -1,0 +1,48 @@
+.policy-page { max-width: 1060px; }
+.policy-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.5rem; margin-block: 2.5rem; }
+.policy-index > a { display: block; padding-block: 1.5rem; border-bottom: 1px solid var(--rule); text-decoration: none; }
+.policy-index h2 { font-size: 1.35rem; text-decoration: underline; text-underline-offset: .25em; }
+.policy-index p { margin-bottom: 0; }
+.policy-contents { margin-block: 2rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--reading-accent, var(--brand-teal)); background: var(--surface-soft); }
+.policy-contents p { font-weight: 600; margin-bottom: .4rem; }
+.policy-contents ul { margin: 0; padding-left: 1.2rem; }
+.policy-contents a { display: inline-block; padding-block: .3rem; }
+.policy-page .article-body section { margin-block: 2.5rem; scroll-margin-top: 7rem; }
+.policy-page .article-body li, .membership-page li { margin-block: .8rem; }
+.policy-date { font-size: .9rem; margin-top: 2rem; }
+.retention-scroll { max-width: 100%; overflow-x: auto; }
+.retention-table { width: 100%; border-collapse: collapse; text-align: left; margin-block: 1.5rem; }
+.retention-table caption { text-align: left; font-weight: 600; padding-bottom: 1rem; }
+.retention-table th, .retention-table td { border-bottom: 1px solid var(--rule); padding: .8rem; vertical-align: top; overflow-wrap: anywhere; }
+.retention-table th { font-weight: 600; }
+.membership-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.membership-option { border: 1px solid var(--rule); border-radius: 1.5rem; padding: 2rem; }
+.membership-option ul, .membership-steps { padding-left: 1.3rem; list-style: disc; }
+.membership-steps { list-style: decimal; }
+.membership-option .button { white-space: normal; overflow-wrap: anywhere; }
+.dys-connections { margin-block: 3rem; }
+.dys-hearts { width: min(100%, 28rem); aspect-ratio: 1; position: relative; margin: 1.5rem auto; }
+.dys-hearts svg { position: absolute; inset: 0; width: 100%; height: 100%; stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 2; opacity: .65; }
+.dys-hearts use:nth-of-type(2) { stroke: var(--brand-coral); }
+.dys-hearts use:nth-of-type(3) { stroke: var(--brand-amber); }
+.dys-heart-links { position: absolute; inset: 15%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.dys-heart-links a { min-width: 0; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--reading-ink, var(--brand-navy)); text-underline-offset: .3em; }
+.cookie-information { color: inherit; background: none; border: 0; text-decoration: underline; text-underline-offset: .3em; min-height: 44px; cursor: pointer; text-align: left; }
+.cookie-notice { position: relative; margin: 1.5rem 0 0; padding: 1.5rem; border: 1px solid var(--rule); border-radius: 1.25rem; background: var(--reading-background, var(--brand-cream)); color: var(--reading-ink, var(--brand-navy)); }
+.cookie-notice[hidden] { display: none; }
+.cookie-notice h2 { font-size: 1.3rem; margin: 0 0 .5rem; }
+.cookie-notice p { max-width: 65ch; margin-bottom: 1rem; }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; }
+.cookie-actions > a { display: inline-flex; min-height: 44px; align-items: center; color: var(--reading-accent, var(--brand-teal)); text-decoration: underline; }
+.cookie-actions .button { font-size: 1rem; }
+/* A normal-flow notice avoids covering reading text or keyboard focus on small
+   screens. It is placed directly below the site's reading toolbar. */
+.privacy-toolbar { padding-block: 0 1rem; }
+@media (max-width: 700px) { .policy-index, .membership-options { grid-template-columns: 1fr; } .membership-option { padding: 1.3rem; } }
+@media (max-width: 400px) { .dys-hearts { aspect-ratio: auto; } .dys-hearts svg { display: none; } .dys-heart-links { position: static; grid-template-columns: 1fr; gap: 0; } .dys-heart-links a { justify-content: start; padding-block: .65rem; border-bottom: 1px solid var(--rule); } }
+html[data-spacious="true"] .policy-index, html[data-spacious="true"] .membership-options { grid-template-columns: 1fr; }
+html[data-spacious="true"] .dys-hearts { aspect-ratio: auto; }
+html[data-spacious="true"] .dys-hearts svg { display: none; }
+html[data-spacious="true"] .dys-heart-links { position: static; grid-template-columns: 1fr; }
+html[data-spacious="true"] .dys-heart-links a { justify-content: start; padding-block: .5rem; }
+@media print { .privacy-toolbar, .cookie-information, .cookie-notice, .policy-contents { display: none !important; } }

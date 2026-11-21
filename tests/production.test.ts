@@ -23,6 +23,8 @@ const routes = [
   "dyspraxia",
   "dyscalculia",
   "dysgraphia",
+  "membership", "policies", "privacy", "cookies", "safeguarding", "complaints",
+  "equality", "confidentiality", "disclaimer", "data-retention",
 ];
 function page(route = "") {
   return new JSDOM(
@@ -131,7 +133,7 @@ test("production routes have complete semantic content without JavaScript", () =
       );
     }
     const headings = [...doc.querySelectorAll("h1,h2,h3")].filter(
-      (h) => !h.closest("dialog"),
+      (h) => !h.closest("dialog, #cookie-notice"),
     );
     let previous = 0;
     for (const h of headings) {
@@ -152,6 +154,10 @@ test("all internal route links and fragments resolve in production HTML", () => 
     for (const link of dom.window.document.querySelectorAll("a[href]")) {
       const url = new URL(link.getAttribute("href")!, dom.window.location.href);
       if (url.origin !== dom.window.location.origin) continue;
+      if (url.pathname.startsWith("/documents/")) {
+        assert.ok(fs.statSync(path.join(root, "public", url.pathname)).size > 1000, `${route}: missing download ${url.pathname}`);
+        continue;
+      }
       const destination = decodeURIComponent(url.pathname)
         .replace(/^\//, "")
         .replace(/\/$/, "");
@@ -172,6 +178,23 @@ test("all internal route links and fragments resolve in production HTML", () => 
     }
     dom.window.close();
   }
+});
+
+test("new content removes personal attribution, uses supplied contact and publishes real downloads", () => {
+  for (const route of routes) {
+    const dom = page(route);
+    assert.doesNotMatch(dom.window.document.body.textContent || "", /\bMarie\b|\bJohnson\b|hello@connectingdys\.org|\[Insert|coming soon/i, route);
+    assert.ok(dom.window.document.querySelector('a[href="/policies"]'), route);
+    assert.ok(dom.window.document.querySelector('a[href="/cookies"]'), route);
+    dom.window.close();
+  }
+  const membership = page("membership");
+  assert.equal(membership.window.document.querySelectorAll('main a[download]').length, 2);
+  assert.equal(membership.window.document.querySelectorAll("main form").length, 0);
+  assert.match(membership.window.document.querySelector("main")!.textContent!, /does not enrol you/);
+  assert.match(membership.window.document.querySelector("main")!.textContent!, /Ages 13–15/);
+  assert.match(membership.window.document.querySelector("main")!.textContent!, /Ages 16–17/);
+  membership.window.close();
 });
 
 test("pre-paint bootstrap applies all fonts and saved reading choices", () => {

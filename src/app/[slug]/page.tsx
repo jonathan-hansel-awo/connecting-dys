@@ -5,14 +5,21 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { OrganisationPage } from "@/components/organisation-page";
 import { organisationPages, type OrganisationSlug } from "@/content/organisation";
 import { brand, differences, originalSite } from "@/content/site";
+import { policies } from "@/content/policies";
+import { PolicyPage } from "@/components/policy-page";
+import { MembershipPage } from "@/components/membership-page";
+import { DysConnections } from "@/components/dys-connections";
 
-const pages = [...Object.keys(organisationPages), "support", "get-involved", "contact", "accessibility"];
+const pages = [...Object.keys(organisationPages), ...Object.keys(policies), "policies", "membership", "support", "get-involved", "contact", "accessibility"];
 const titles: Record<string, string> = {
   ...Object.fromEntries(Object.entries(organisationPages).map(([slug, page]) => [slug, page.label])),
   support: "Information & support",
   "get-involved": "Help shape what comes next",
   contact: "A hello is a good place to start.",
   accessibility: "Your reading experience",
+  membership: "Membership interest",
+  policies: "Our policies",
+  ...Object.fromEntries(Object.entries(policies).map(([slug, policy]) => [slug, policy.title])),
 };
 export function generateStaticParams() {
   return [...pages, ...differences.map((d) => d.slug)].map((slug) => ({
@@ -28,7 +35,7 @@ export async function generateMetadata({
   const difference = differences.find((d) => d.slug === slug);
   return {
     title: difference?.name || titles[slug],
-    description: difference?.description || organisationPages[slug as OrganisationSlug]?.intro,
+    description: difference?.description || organisationPages[slug as OrganisationSlug]?.intro || policies[slug]?.intro,
   };
 }
 export default async function ReadingPage({
@@ -39,6 +46,8 @@ export default async function ReadingPage({
   const { slug } = await params;
   const difference = differences.find((d) => d.slug === slug);
   if (!difference && !pages.includes(slug)) notFound();
+  if (slug === "policies" || Object.hasOwn(policies, slug)) return <PolicyPage slug={slug} />;
+  if (slug === "membership") return <MembershipPage />;
   if (Object.hasOwn(organisationPages, slug)) {
     return <OrganisationPage slug={slug as OrganisationSlug} />;
   }
@@ -111,12 +120,9 @@ export default async function ReadingPage({
                   particular time.
                 </p>
               </div>
-              <h2>More from the organisation</h2>
-              <p>
-                Visit the{" "}
-                <a href={`${originalSite}/Support`}>existing support page</a>{" "}
-                for information currently published by Connecting Dys.
-              </p>
+              <DysConnections />
+              <h2>A safe next step</h2>
+              <p><Link href="/membership">Express interest in membership</Link>, or read our <Link href="/safeguarding">safeguarding information</Link> before getting in touch.</p>
             </>
           )}
           {slug === "get-involved" && (
@@ -133,24 +139,15 @@ export default async function ReadingPage({
                 means to you and what you would like to help shape.
               </p>
               <p>You can share an experience, suggest an idea or ask about working with us. <Link href="/our-approach">See how we build with the community</Link>.</p>
-              <h2>Start with a conversation</h2>
+              <h2>Interested in membership?</h2>
               <p>
-                We’re building the foundations for a community led by shared
-                experience. Contact us to find out where things stand and
-                discuss how you might contribute.
+                If you are aged 13–17 or 18–24, you can request membership information using our short interest forms. This is a first enquiry, so you can read more before deciding whether to join.
               </p>
-              <Link href="/contact" className="button">
-                Talk to Connecting Dys{" "}
+              <Link href="/membership" className="button">
+                Express your interest{" "}
                 <ArrowUpRight size={18} aria-hidden="true" />
               </Link>
-              <h2>Explore the existing website</h2>
-              <p>
-                You can also read the organisation’s current{" "}
-                <a href={`${originalSite}/GetInvolved`}>
-                  get involved information
-                </a>{" "}
-                and <a href={`${originalSite}/Partner`}>partner information</a>.
-              </p>
+              <h2>Volunteer or work with us</h2><p>Families, carers, educators, prospective volunteers and partners can <Link href="/contact">start a conversation</Link> about contributing. We’re building slowly, with safeguarding and sustainable growth at the centre.</p>
             </>
           )}
           {slug === "contact" && (
@@ -169,13 +166,9 @@ export default async function ReadingPage({
                 This opens your email application. You can also copy the address
                 and use your preferred email service.
               </p>
-              <h2>Prefer the existing contact page?</h2>
-              <p>
-                The organisation’s{" "}
-                <a href={`${originalSite}/Contact`}>existing contact page</a> is
-                also available. That website manages its own contact form and
-                data handling.
-              </p>
+              <h2>Choose the right starting point</h2>
+              <p><Link href="/membership">Membership information</Link> · <Link href="/complaints">Complaints & feedback</Link> · <Link href="/safeguarding">Raise a safeguarding concern</Link></p>
+              <p>Based in Nottingham, welcoming DYS minds nationwide. You can write to us, send an audio explanation or ask someone you trust to help.</p>
               <div className="article-note">
                 <p>
                   Connecting Dys is a community led organisation and may not
@@ -183,6 +176,7 @@ export default async function ReadingPage({
                   information in an initial enquiry.
                 </p>
               </div>
+              <p>Read <Link href="/privacy">how we handle your information</Link>. This mailbox is not an emergency service. If someone is in immediate danger, call 999.</p>
             </>
           )}
           {slug === "accessibility" && (
@@ -212,17 +206,15 @@ export default async function ReadingPage({
               </p>
               <h2>Your preferences and privacy</h2>
               <p>
-                Reading preferences are saved in your browser’s local storage.
+                Reading preferences are saved in your browser’s local storage when you change them.
                 This site does not add analytics, tracking cookies, account
                 registration or a contact database. External websites and email
-                services manage their own data.
+                services manage their own data. Read our <Link href="/cookies">cookies & device storage information</Link> or our <Link href="/privacy">privacy notice</Link>.
               </p>
               <h2>Tell us about a barrier</h2>
               <p>
                 We target WCAG 2.2 AA and continue to review the experience. If
-                something makes the site difficult to use,{" "}
-                <Link href="/contact">contact Connecting Dys</Link> and describe
-                the page and the issue.
+                something makes the site difficult to use, email <a href={`mailto:${brand.email}?subject=Accessibility%20Support`}>{brand.email}</a> with the subject “Accessibility Support”. Describe the page and the issue, or ask for information in another format. You can send an audio explanation or ask about reasonable adjustments.
               </p>
             </>
           )}
