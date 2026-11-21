@@ -180,7 +180,7 @@ test("all internal route links and fragments resolve in production HTML", () => 
   }
 });
 
-test("new content removes personal attribution, uses supplied contact and publishes real downloads", () => {
+test("new content removes personal attribution and provides on-page membership interest forms", () => {
   for (const route of routes) {
     const dom = page(route);
     assert.doesNotMatch(dom.window.document.body.textContent || "", /\bMarie\b|\bJohnson\b|hello@connectingdys\.org|\[Insert|coming soon/i, route);
@@ -189,8 +189,15 @@ test("new content removes personal attribution, uses supplied contact and publis
     dom.window.close();
   }
   const membership = page("membership");
-  assert.equal(membership.window.document.querySelectorAll('main a[download]').length, 2);
-  assert.equal(membership.window.document.querySelectorAll("main form").length, 0);
+  assert.equal(membership.window.document.querySelectorAll('main a[download]').length, 0);
+  assert.equal(membership.window.document.querySelectorAll("main form").length, 2);
+  assert.doesNotMatch(membership.window.document.querySelector("main")!.textContent!, /download|nothing is submitted/i);
+  for (const form of membership.window.document.querySelectorAll("main form")) {
+    assert.equal(form.getAttribute("action"), "mailto:connectingdys@gmail.com");
+    assert.equal(form.getAttribute("method"), "post", "no-JS fallback must never put personal data in a page URL");
+    assert.ok(form.querySelector('input[name="acknowledgement"][required]'));
+    assert.ok(form.querySelector('button[type="submit"][disabled]'), "no-JS users have the direct email link");
+  }
   assert.match(membership.window.document.querySelector("main")!.textContent!, /does not enrol you/);
   assert.match(membership.window.document.querySelector("main")!.textContent!, /Ages 13–15/);
   assert.match(membership.window.document.querySelector("main")!.textContent!, /Ages 16–17/);
