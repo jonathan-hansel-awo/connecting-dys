@@ -1,7 +1,6 @@
 import { HeroRecess } from "@/components/hero-recess";
 
-// Decorative material/path only. The approved logo and every word stay separate.
-const path = "M548 35C428 39 374 82 397 150S565 233 533 331 359 471 282 482 118 466 54 568";
+// Subtle recessed shapes only; the hero artwork has no decorative line overlay.
 
 export function HeroTransitionArt() {
   return (
@@ -12,21 +11,6 @@ export function HeroTransitionArt() {
       <div className="hero-house-recess" aria-hidden="true">
         <HeroRecess shape="house" />
       </div>
-      <svg
-        className="hero-path-art"
-        viewBox="0 0 600 600"
-        fill="none"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path className="hero-path-guide" d={path} />
-        <path className="hero-connecting-path" data-hero-path d={path} pathLength="1" />
-        <g className="hero-path-nodes" data-hero-nodes>
-          <circle cx="487" cy="45" r="9" fill="var(--brand-coral)" />
-          <circle cx="520" cy="356" r="8" fill="var(--brand-teal)" />
-          <circle cx="112" cy="516" r="11" fill="var(--brand-amber)" />
-        </g>
-      </svg>
     </>
   );
 }

@@ -73,7 +73,7 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
     sections.map((section) => section.getAttribute("aria-labelledby")),
     ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title", "paths-title"],
   );
-  for (const selector of [".hero-orbit", ".recognition-media .recognition-photo", ".connection-visual .word-cloud-art", ".connection-chapters", ".connection-progress span"]) {
+  for (const selector of [".recognition-media .recognition-photo", ".connection-visual .word-cloud-art", ".connection-chapters", ".connection-progress span"]) {
     assert.equal(doc.querySelectorAll(selector).length, 1, selector);
   }
   const artwork = doc.querySelector('.connection-visual[aria-hidden="true"]');
@@ -94,9 +94,7 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   assert.equal(doc.querySelectorAll('.reading-toolbar .settings-trigger[aria-haspopup="dialog"]').length, 1);
   assert.equal(doc.querySelectorAll('.reading-toolbar .theme-trigger').length, 0);
   assert.equal(doc.querySelectorAll('dialog input[type="checkbox"]').length, 3);
-  const welcomePath = doc.querySelector('[data-welcome-scene] svg[aria-hidden="true"] [data-hero-path]');
-  assert.ok(welcomePath, "welcome path is a separate decorative SVG, not the logo");
-  assert.equal(welcomePath.getAttribute("pathLength"), "1");
+  assert.equal(doc.querySelectorAll('.hero-orbit, .hero-path-art, .hero-path-nodes, .hero .status-dot').length, 0, "old curves and dots cannot cross the supplied hero artwork");
   const sheet = doc.querySelector('#recognition > [data-recognition-sheet][aria-hidden="true"]');
   assert.ok(sheet, "paint lip belongs to the real recognition anchor");
   assert.equal(sheet.querySelectorAll("a,button,input,[tabindex],img").length, 0);

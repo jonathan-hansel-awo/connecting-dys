@@ -25,7 +25,6 @@ export default function HomePage() {
         <div className="section-backdrop" aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow">
-            <span className="status-dot" />
             Different minds. Shared belonging.
           </p>
           <h1 id="hero-title">
@@ -65,11 +64,6 @@ export default function HomePage() {
         </div>
         <div className="hero-composition">
           <HeroTransitionArt />
-          <div className="hero-orbit" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </div>
           <div className="hero-note note-top surface-raised">
             A little more understood.
           </div>

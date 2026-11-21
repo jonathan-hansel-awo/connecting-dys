@@ -18,7 +18,6 @@ async function sample(page: Page, y: number) {
       return { top: r.top + scrollY, bottom: r.bottom + scrollY, transform: getComputedStyle(el).transform };
     };
     return {
-      path: parseFloat(getComputedStyle(document.querySelector("[data-hero-path]")!).strokeDashoffset),
       plane: box("[data-hero-plane]"), sheet: box("[data-recognition-sheet]"),
       copy: box(".hero-copy"), cta: box(".hero-actions"), lastLink: box(".hero-bottom a"),
       recognition: box(".recognition-copy"), caption: box(".recognition-figure figcaption"),
@@ -27,7 +26,7 @@ async function sample(page: Page, y: number) {
   });
 }
 
-test("Phase 02 path/depth and paint-sheet progress without moving reading targets", async ({ page }, info) => {
+test("hero depth and paint-sheet progress without decorative lines crossing the artwork", async ({ page }, info) => {
   test.skip((page.viewportSize()?.height || 0) < 520, "Short screens deliberately use the settled scene.");
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
@@ -41,7 +40,7 @@ test("Phase 02 path/depth and paint-sheet progress without moving reading target
   await page.screenshot({ path: info.outputPath("welcome-early.png") });
   const after = await sample(page, geometry.top + geometry.height * 0.6);
   await page.screenshot({ path: info.outputPath("welcome-late.png") });
-  expect(before.path - after.path).toBeGreaterThan(0.25);
+  await expect(page.locator(".hero-orbit, .hero-path-art, .hero-path-nodes, .hero .status-dot")).toHaveCount(0);
   expect(before.plane.transform).not.toBe(after.plane.transform);
   for (const key of ["copy", "cta", "lastLink", "recognition", "caption"] as const) {
     expect(Math.abs(before[key].top - after[key].top), `${key} remains in document flow`).toBeLessThan(1);
@@ -95,23 +94,23 @@ test("Phase 02 recognition anchor, reduced motion and reading choices stay usabl
 test("Phase 02 OS/short-screen and no-JS fallback keep a complete static scene", async ({ page, browser }, info) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await ready(page);
-  await expect(page.locator("[data-hero-path]")).toHaveCSS("stroke-dasharray", "none");
+  await expect(page.locator("[data-hero-path]")).toHaveCount(0);
   await expect(page.locator("[data-recognition-sheet]")).toHaveCSS("transform", "none");
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.waitForTimeout(250);
   if ((page.viewportSize()?.height || 0) < 520) {
-    await expect(page.locator("[data-hero-path]")).toHaveCSS("stroke-dasharray", "none");
+    await expect(page.locator("[data-hero-path]")).toHaveCount(0);
     await expect(page.locator("[data-recognition-sheet]")).toHaveCSS("transform", "none");
   }
   await page.emulateMedia({ forcedColors: "active" });
   await page.waitForTimeout(250);
-  await expect(page.locator(".hero-path-art")).toBeHidden();
+  await expect(page.locator(".hero-path-art")).toHaveCount(0);
   await expect(page.locator("[data-recognition-sheet]")).toBeHidden();
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport, baseURL: info.project.use.baseURL });
   try {
     const native = await context.newPage();
     await native.goto("/");
-    await expect(native.locator("[data-hero-path]")).toHaveCSS("stroke-dasharray", "none");
+    await expect(native.locator("[data-hero-path]")).toHaveCount(0);
     await expect(native.locator(".hero-copy")).toHaveCSS("transform", "none");
     await native.getByRole("link", { name: "Find your own way through", exact: true }).click();
     await expect(native).toHaveURL(/#recognition$/);

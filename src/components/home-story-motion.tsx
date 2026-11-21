@@ -38,16 +38,14 @@ export function HomeStoryMotion() {
             return;
           const desktop = context.conditions.desktop;
           const hero = document.querySelector<HTMLElement>("[data-welcome-scene]");
-          const path = hero?.querySelector<SVGPathElement>("[data-hero-path]");
           const plane = hero?.querySelector<HTMLElement>("[data-hero-plane]");
-          const nodes = hero?.querySelector<SVGGElement>("[data-hero-nodes]");
           const sheet = document.querySelector<HTMLElement>("[data-recognition-sheet]");
           // Scope new targets to the welcome artwork. No logo, text, link,
           // frame or caption is included in either timeline's transform set.
-          if (context.conditions.tall && hero && path && plane && nodes && sheet) {
+          if (context.conditions.tall && hero && plane && sheet) {
             const welcome = gsap.timeline({
               scrollTrigger: {
-                id: "welcome-path",
+                id: "welcome-depth",
                 trigger: hero,
                 start: "top top",
                 end: "bottom top",
@@ -55,16 +53,9 @@ export function HomeStoryMotion() {
                 invalidateOnRefresh: true,
               },
             });
-            welcome
-              .fromTo(path,
-                { strokeDasharray: "1 1", strokeDashoffset: 0.92 },
-                { strokeDashoffset: 0, autoRound: false, ease: "none" }, 0)
-              .fromTo(plane,
+            welcome.fromTo(plane,
                 { x: 0, y: 0 },
-                { x: desktop ? 14 : 0, y: desktop ? -12 : -34, ease: "none" }, 0)
-              .fromTo(nodes,
-                { y: 0 },
-                { y: desktop ? -6 : -18, ease: "none" }, 0);
+                { x: desktop ? 14 : 0, y: desktop ? -12 : -34, ease: "none" }, 0);
             // offsetTop is resolved layout geometry, not an unparsed CSS clamp.
             // Only the paint lip moves; 1.5× overlap is reserved before controls.
             const overlap = () => Math.max(0, -sheet.offsetTop);
@@ -83,18 +74,6 @@ export function HomeStoryMotion() {
                 },
               });
           }
-          // Both modes keep native document order. Only decorative art may pin.
-          gsap.to(".hero-orbit", {
-            y: desktop ? -35 : -12,
-            rotation: desktop ? -8 : -10,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".hero",
-              start: "top top",
-              end: "bottom top",
-              scrub: desktop ? 0.6 : true,
-            },
-          });
           // The frame, caption and copy stay still; only the contained image pans.
           gsap.fromTo(
             ".recognition-photo",
