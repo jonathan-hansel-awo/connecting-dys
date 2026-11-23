@@ -1,0 +1,54 @@
+/* Colours sampled from the supplied collage; no opacity, recolouring or blend
+   filters. These decorative colours are intentionally independent of UI ink. */
+:root {
+  --doodle-ink: #3f3f3f;
+  --doodle-amber: #f6d8ab;
+  --doodle-coral: #de9484;
+  --doodle-mauve: #d0c1ce;
+  --doodle-olive: #d5d4c7;
+  --doodle-teal: #99cad0;
+  --doodle-green: #bcd4c0;
+  --doodle-yellow: #e8e2b2;
+  --doodle-purple: #9c8ad5;
+  --doodle-blue: #94a2ba;
+  --doodle-mint: #d8f3e4;
+}
+main.reading-page, main.organisation-page { position: relative; isolation: isolate; }
+.background-doodles {
+  position: absolute;
+  inset-block: 0;
+  z-index: -5;
+  overflow: clip;
+  pointer-events: none;
+  user-select: none;
+  contain: paint;
+}
+.background-doodle {
+  position: absolute;
+  display: inline-block;
+  white-space: nowrap;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  transform: translate(-50%, -50%) rotate(var(--doodle-angle));
+  transform-origin: center;
+}
+.background-doodle[hidden] { display: none; }
+.doodle-ink { color: var(--doodle-ink); }
+.doodle-amber { color: var(--doodle-amber); }
+.doodle-coral { color: var(--doodle-coral); }
+.doodle-mauve { color: var(--doodle-mauve); }
+.doodle-olive { color: var(--doodle-olive); }
+.doodle-mint-blue, .doodle-teal-yellow, .doodle-green-purple {
+  color: var(--doodle-teal);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.doodle-mint-blue { background-image: linear-gradient(90deg, var(--doodle-mint), var(--doodle-teal), var(--doodle-blue)); }
+.doodle-teal-yellow { background-image: linear-gradient(90deg, var(--doodle-teal), var(--doodle-green), var(--doodle-yellow)); }
+.doodle-green-purple { background-image: linear-gradient(90deg, var(--doodle-green), var(--doodle-blue), var(--doodle-purple)); }
+html[data-spacious="true"] .background-doodles,
+html[data-texture="off"] .background-doodles { display: none; }
+@media (forced-colors: active), print { .background-doodles { display: none; } }

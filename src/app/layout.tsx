@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { BackgroundDoodles } from "@/components/background-doodles";
 import { CookieNotice } from "@/components/cookie-notice";
 import { preferenceBootstrap } from "@/lib/preferences";
 import "lenis/dist/lenis.css";
@@ -19,6 +20,7 @@ import "../styles/paths-to-belonging.css";
 import "../styles/policies.css";
 import "../styles/home-visuals.css";
 import "../styles/content-panels.css";
+import "../styles/background-doodles.css";
 
 const openSans = localFont({
   src: [
@@ -63,6 +65,7 @@ export default function RootLayout({
           <SiteHeader />
           <CookieNotice />
           {children}
+          <BackgroundDoodles />
           <SiteFooter />
         </SmoothScrollProvider>
       </body>

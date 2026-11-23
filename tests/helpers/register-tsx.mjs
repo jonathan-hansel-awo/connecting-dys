@@ -4,9 +4,13 @@ import ts from "typescript";
 
 // Execute the actual TSX with the installed compiler; no test-only UI copies.
 // Scoped to the DOM test process. Ordinary .ts modules use Node's existing loader.
-export function registerTsx() {
+export function registerTsx({ pathname } = {}) {
   return registerHooks({
     resolve(specifier, context, nextResolve) {
+      if (pathname !== undefined && specifier === "next/navigation") return {
+        url: `data:text/javascript,${encodeURIComponent(`export const usePathname = () => ${JSON.stringify(pathname)};`)}`,
+        shortCircuit: true,
+      };
       // Node ESM needs the extension for Next's documented package entry.
       if (specifier === "next/dynamic" || specifier === "next/link") return nextResolve(`${specifier}.js`, context);
       if (specifier.startsWith("@/")) {
