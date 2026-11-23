@@ -1,106 +1,27 @@
 import Link from "next/link";
-import { ArrowLeft, Ear, HeartHandshake, House, MessageCircle, ShieldCheck, Sprout, Sun, Wrench, type LucideIcon } from "lucide-react";
-import { bridgeValues, currentWork, futureWork, organisationPages, purpose, type OrganisationSlug } from "@/content/organisation";
-
-const icons: Record<string, LucideIcon> = {
-  connection: HeartHandshake, home: House, listen: Ear, sun: Sun,
-  tools: Wrench, choice: MessageCircle, shield: ShieldCheck, hands: Sprout,
-};
-function PictureCue({ name }: { name: string }) {
-  const Icon = icons[name];
-  return <span className="picture-cue" aria-hidden="true"><Icon strokeWidth={1.5} /></span>;
-}
+import { organisationPages, type OrganisationSlug } from "@/content/organisation";
+import { SourcePanel, SourcePanels } from "@/components/source-panel";
 
 export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
   const page = organisationPages[slug];
-  return (
-    <main id="main-content" tabIndex={-1} className="organisation-page wrap">
-      <Link href="/" className="breadcrumb"><ArrowLeft size={17} aria-hidden="true" />Back to home</Link>
-      <header className="organisation-heading">
-        <p className="eyebrow">Connecting Dys CIC / {page.label}</p>
-        <h1>{page.title}</h1>
-        <p className="lead">{page.intro}</p>
-      </header>
-      <nav className="organisation-nav" aria-label="About Connecting Dys">
-        {Object.entries(organisationPages).map(([key, item]) => (
-          <Link key={key} href={`/${key}`} aria-current={slug === key ? "page" : undefined}>{item.label}</Link>
-        ))}
-      </nav>
-
-      {slug === "about" && <>
-        <section className="organisation-split" aria-labelledby="who-title">
-          <div className="belonging-picture surface-soft surface-inset" aria-hidden="true">
-            <House strokeWidth={1} /><span>Your mind is at home here.</span>
-            <div className="belonging-path"><span /><span /><span /></div>
-          </div>
-          <div>
-            <h2 id="who-title">Here for the in-between.</h2>
-            <p>Waiting for an assessment, finding your way after diagnosis or facing a gap in support can feel isolating.</p>
-            <p>We’re building a community where young people and families can meet others who understand.</p>
-            <p>Connecting Dys is a UK Community Interest Company based in Nottingham, welcoming DYS minds nationwide.</p>
-          </div>
-        </section>
-        <section className="organisation-section" aria-labelledby="story-title">
-          <p className="eyebrow">Our story</p>
-          <h2 id="story-title">What happens after the answers?</h2>
-          <p>Connecting Dys began with lived experience of life before and after diagnosis. Finding a name for the challenges brought answers — and a lot of information to take in.</p>
-          <p>But after the appointments ended, a question remained: where could you go for everyday connection? Somewhere to ask questions and meet people who understood without needing every detail explained.</p>
-          <details className="more-detail"><summary>Read how the idea grew</summary><p>Later postgraduate research into social support brought the same gap into focus: the need for ongoing community alongside formal services.</p><p>Connecting Dys CIC was created to help fill that gap. We’re building places for shared experience, human support and belonging throughout everyday life.</p></details>
-        </section>
-        <section id="mission-and-vision" aria-labelledby="purpose-title" className="organisation-section">
-          <h2 id="purpose-title">Why we’re here</h2>
-          <div className="purpose-list">
-            {purpose.map(item => <article key={item.title} className="purpose-row">
-              <PictureCue name={item.icon} /><div><h3>{item.title}</h3><p className="purpose-cue">{item.cue}</p><p>{item.text}</p><details className="more-detail"><summary>Read more about {item.title.toLowerCase()}</summary><p>{item.detail}</p>{"points" in item && <ul>{item.points.map(point => <li key={point}>{point}</li>)}</ul>}</details></div>
-            </article>)}
-          </div>
-        </section>
-        <aside className="organisation-note"><p>Our support is social and non-clinical. We work alongside existing services. We do not provide diagnosis or treatment.</p></aside>
-      </>}
-
-      {slug === "what-we-do" && <>
-        <aside className="organisation-note" aria-label="Our current stage"><h2>We’re at the beginning.</h2><p>Full services are not yet being delivered. We’re building slowly, safely and with the community.</p></aside>
-        <section className="organisation-section" aria-labelledby="now-title">
-          <p className="eyebrow">Right now</p><h2 id="now-title">Laying the foundations</h2>
-          <div className="work-now">{currentWork.map(item => <article key={item.title}><PictureCue name={item.icon} /><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-        </section>
-        <section className="organisation-section" aria-labelledby="next-title">
-          <p className="eyebrow">In development</p><h2 id="next-title">What we’re preparing</h2>
-          <p>These are plans we’ll shape with members as the community grows.</p>
-          <div className="future-list">{futureWork.map(item => <article key={item.title} className="future-row">
-            <PictureCue name={item.icon} /><div><h3>{item.title}</h3><p>{item.text}</p>
-              {"detail" in item && <details className="more-detail"><summary>More about {item.title.toLowerCase()}</summary><p>{item.detail}</p></details>}
-            </div><span className="development-label">In development</span>
-          </article>)}</div>
-        </section>
-      </>}
-
-      {slug === "our-approach" && <>
-        <section className="organisation-section" aria-labelledby="together-title">
-          <h2 id="together-title">Your experience shapes what comes next.</h2>
-          <ol className="approach-path">
-            <li><PictureCue name="listen" /><h3>Listen</h3><p>You share what matters and what would make life easier.</p></li>
-            <li><PictureCue name="choice" /><h3>Shape</h3><p>We explore ideas together, with choices about taking part.</p></li>
-            <li><PictureCue name="hands" /><h3>Grow</h3><p>We try ideas, hear feedback and adapt at the community’s pace.</p></li>
-          </ol>
-        </section>
-        <section className="organisation-split approach-principles" aria-labelledby="connection-first-title">
-          <div><p className="eyebrow">Connection first</p><h2 id="connection-first-title">Belonging comes before programmes.</h2><p>Feeling understood is a starting point. Our work focuses on social connection and shared experience, alongside existing services.</p><p>Members will help shape decisions and lead the community as it grows.</p></div>
-          <div className="commitment-panel surface-soft"><PictureCue name="shield" /><h2>Care at every step</h2><ul><li>Safeguarding and privacy come first.</li><li>Volunteers and staff should be trained, supported and valued.</li><li>We grow at a pace that protects the community.</li></ul></div>
-        </section>
-        <section className="organisation-section" aria-labelledby="welcome-title"><h2 id="welcome-title">Different voices. Shared ownership.</h2><p>We welcome people from all backgrounds, including ethnic minority communities and others whose experiences are under-represented.</p><p>You can contribute through conversation, writing or visuals. We listen, adapt and build with you.</p><Link className="text-link" href="/values">Explore our BRIDGE values</Link></section>
-      </>}
-
-      {slug === "values" && <section className="organisation-section" aria-labelledby="bridge-title">
-        <h2 id="bridge-title" className="sr-only">Our six BRIDGE values</h2>
-        <div className="bridge-list">{bridgeValues.map(value => <article key={value.letter} className="bridge-row">
-          <span className="bridge-letter surface-raised" aria-hidden="true">{value.letter}</span>
-          <div><h3>{value.name}</h3><p>{value.text}</p><details className="more-detail"><summary>{value.name} in practice</summary><p>{value.practice}</p></details></div>
-          <PictureCue name={value.icon} />
-        </article>)}</div>
-      </section>}
-
-      <section className="organisation-invitation surface-soft" aria-labelledby="conversation-title"><div><h2 id="conversation-title">You can help shape this.</h2><p>A question, an idea or your own experience — we’d like to hear from you.</p></div><Link className="button" href="/contact">Start a conversation</Link></section>
-    </main>
-  );
+  return <main id="main-content" tabIndex={-1} className="organisation-page wrap">
+    <Link href="/" className="breadcrumb">Back to home</Link>
+    <SourcePanel source={page.source} level={1} tone="blue" />
+    <nav className="organisation-nav" aria-label="About Connecting Dys">
+      {Object.entries(organisationPages).map(([key, item]) => <Link key={key} href={`/${key}`} aria-current={slug === key ? "page" : undefined}>{item.label}</Link>)}
+    </nav>
+    {slug === "about" && <>
+      <SourcePanels sources={["why", "story", "founder"]} />
+      <div id="mission-and-vision" className="copy-panels">
+        <SourcePanel source="mission" tone="amber" />
+        <SourcePanel source="vision" tone="blue" />
+        <SourcePanel source="goal" tone="teal" />
+      </div>
+      <SourcePanels sources={["about-work", "how", "different", "commitment", "who-join", "purpose"]} />
+    </>}
+    {slug === "what-we-do" && <SourcePanels sources={["work-1", "work-2", "work-3", "work-4", "work-5", "work-6", "work-7", "work-8", "goal-young"]} />}
+    {slug === "our-approach" && <SourcePanels sources={["approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"]} />}
+    {slug === "values" && <SourcePanels sources={["value-B", "value-R", "value-I", "value-D", "value-G", "value-E"]} />}
+    <nav className="article-links copy-panel panel-cream" aria-label="Keep exploring"><Link href="/membership">Register Your Interest</Link><Link href="/contact">Work With Us</Link><Link href="/values">Our Values</Link></nav>
+  </main>;
 }

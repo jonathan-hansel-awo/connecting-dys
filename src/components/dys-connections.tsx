@@ -6,8 +6,8 @@ import Image from "next/image";
 export function DysConnections({ placement = "support" }: { placement?: "home" | "support" }) {
   const prefix = `dys-hearts-${placement}`;
   return <section className={`dys-connections dys-connections-${placement}`} aria-labelledby={`${prefix}-title`}>
-    <div className="dys-connections-copy"><p className="eyebrow">Different paths, one community</p><h2 id={`${prefix}-title`}>Four experiences. Connected.</h2>
-    <p>Our community brings all four DYS experiences together. They can overlap, and every person’s experience is their own.</p>
+    <div className="dys-connections-copy copy-panel panel-blue"><h2 id={`${prefix}-title`}>Your mind is at home here.</h2>
+    <p>DYS stands for Dyslexia, Dyspraxia, Dyscalculia and Dysgraphia, including those waiting for a diagnosis or unsure where they fit.</p>
       <nav className="dys-heart-links" aria-label="Explore the four DYS experiences"><Link href="/dysgraphia">Dysgraphia</Link><Link href="/dyspraxia">Dyspraxia</Link><Link href="/dyslexia">Dyslexia</Link><Link href="/dyscalculia">Dyscalculia</Link></nav>
     </div>
     <div className="dys-hearts">

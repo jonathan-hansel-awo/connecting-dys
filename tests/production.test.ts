@@ -114,8 +114,9 @@ test("mission and vision retain the latest supplied statements and are directly 
   const content = dom.window.document.querySelector("#mission-and-vision")!;
   assert.ok(content);
   assert.ok(content.textContent?.includes("To reduce isolation among DYS individuals and families by building inclusive, community-led spaces rooted in lived experience, connection, and shared understanding."));
-  assert.ok(content.textContent?.includes("A society where DYS individuals and families are connected, confident, and supported by communities that understand them — not in isolation, but together."));
-  assert.equal(content.querySelectorAll("details").length, 3);
+  assert.ok(content.textContent?.includes("A society where DYS individuals and families are connected, confident, and supported by communities that understand them not in isolation, but together."));
+  assert.equal(content.querySelectorAll("details").length, 0, "the complete statements are visible without opening disclosures");
+  assert.equal(content.querySelectorAll(".copy-panel").length, 3);
   dom.window.close();
 });
 
@@ -196,7 +197,7 @@ test("all internal route links and fragments resolve in production HTML", () => 
 test("new content removes personal attribution and provides on-page membership interest forms", () => {
   for (const route of routes) {
     const dom = page(route);
-    assert.doesNotMatch(dom.window.document.body.textContent || "", /\bMarie\b|\bJohnson\b|hello@connectingdys\.org|\[Insert|coming soon/i, route);
+    assert.doesNotMatch(dom.window.document.body.textContent || "", /\bMarie\b|\bJohnson\b|hello@connectingdys\.org|\[Insert/i, route);
     assert.ok(dom.window.document.querySelector('a[href="/policies"]'), route);
     assert.ok(dom.window.document.querySelector('a[href="/cookies"]'), route);
     dom.window.close();
@@ -212,8 +213,8 @@ test("new content removes personal attribution and provides on-page membership i
     assert.ok(form.querySelector('button[type="submit"][disabled]'), "no-JS users have the direct email link");
   }
   assert.match(membership.window.document.querySelector("main")!.textContent!, /does not enrol you/);
-  assert.match(membership.window.document.querySelector("main")!.textContent!, /Ages 13–15/);
-  assert.match(membership.window.document.querySelector("main")!.textContent!, /Ages 16–17/);
+  assert.match(membership.window.document.querySelector("main")!.textContent!, /If you are aged 13–15:/);
+  assert.match(membership.window.document.querySelector("main")!.textContent!, /If you are aged 16–17:/);
   membership.window.close();
 });
 

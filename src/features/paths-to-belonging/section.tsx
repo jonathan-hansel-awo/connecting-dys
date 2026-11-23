@@ -24,7 +24,7 @@ export class JourneyBoundary extends Component<{ children?: ReactNode }, { faile
 export function PathsToBelongingSection() {
   return <section id="paths-to-belonging" className="paths-section surface-paper" aria-labelledby="paths-title" data-paths-section>
     <div className="wrap">
-      <div className="paths-intro">
+      <div className="paths-intro copy-panel panel-blue">
         <p className="eyebrow">A little journey, if you like</p>
         <h2 id="paths-title">Paths to Belonging</h2>
         <p>Discover a way, make connections and create a little network of your own. Three short chapters, at your pace. No timer or score.</p>

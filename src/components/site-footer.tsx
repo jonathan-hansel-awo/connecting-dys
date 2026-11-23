@@ -33,7 +33,7 @@ export function SiteFooter() {
         </nav>
       </div>
       <div className="footer-bottom">
-        <span>Connecting Dys CIC · Built around belonging.</span>
+        <span>Connecting DYS A community where every DYS mind feels at home.</span>
         <Link href="/policies">Our policies</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/safeguarding">Safeguarding</Link>

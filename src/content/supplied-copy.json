@@ -1,0 +1,3806 @@
+{
+  "home-intro": {
+    "title": "Connecting DYS CIC",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Building community and connection for Teenagers, young adults and families affected by Dyslexia, Dyspraxia, Dyscalculia, and Dysgraphia."
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC exists so no one has to navigate their DYS journey alone."
+      }
+    ]
+  },
+  "home-who": {
+    "title": "Who We Are",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is a community-led organisation supporting teenagers, young adults and families affected by Dyslexia, Dyspraxia, Dyscalculia, and Dysgraphia (DYS)."
+      },
+      {
+        "type": "paragraph",
+        "text": "We focus on connection, belonging, and lived experience, creating spaces where people can relate to others who understand their day-to-day realities. Our work is non-clinical and designed to sit alongside existing services, offering social support, peer led and community connection where it is often missing."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are intentionally building strong foundations before delivering services, ensuring that what we grow is inclusive, safe, and shaped by the community it exists to serve."
+      }
+    ]
+  },
+  "home-stand": {
+    "title": "WHAT WE STAND FOR",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We stand for belonging, lived experience and connection, offering a social community where teenagers and young adults with DYS and their families can feel genuinely understood, supported, and valued. Everyone deserves a space where their mind is at home and they know they belong."
+      },
+      {
+        "type": "paragraph",
+        "text": "No young person should feel alone, misunderstood, or caught in the “in-between” while waiting for answers and formal recognition. This “in-between” can mean waiting for a diagnosis, feeling uncertain about where you belong, or not having your challenges fully recognised yet. Everyone deserves a space where their mind is at home and they feel seen and supported."
+      },
+      {
+        "type": "paragraph",
+        "text": "Your mind is at home here."
+      },
+      {
+        "type": "paragraph",
+        "text": "DYS stands for Dyslexia, Dyspraxia, Dyscalculia and Dysgraphia, including those waiting for a diagnosis or unsure where they fit."
+      }
+    ]
+  },
+  "home-conditions": {
+    "title": "THE CONDITIONS WE REPRESENT",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We support teenagers and young adults with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Dyslexia – differences in reading, writing, and processing language",
+          "Dyspraxia (DCD) – differences in coordination, planning, and everyday tasks",
+          "Dyscalculia – differences in understanding numbers and patterns",
+          "Dysgraphia – differences in handwriting and written expression",
+          "And those still waiting for a diagnosis."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Support begins with community, where you can find understanding and encouragement. Our community offers peer connections, opportunities to discover your strengths, and resources to help you thrive. Whether you have a diagnosis or are seeking one, you’re welcome and your experiences matter."
+      }
+    ]
+  },
+  "home-work": {
+    "title": "WHAT WE DO",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS is in its initial stages. Right now, we are building the foundations for long-term, community-led support."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are currently:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "bringing DYS young people and families together",
+          "listening to lived experiences",
+          "identifying gaps in support",
+          "raising awareness of all DYS conditions",
+          "building the community that will shape our future services."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "As we grow, we will introduce:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Peer Support Spaces",
+          "Family & Carer Gatherings",
+          "Co-Designed Workshops",
+          "Awareness & Advocacy Projects",
+          "Open Forums & Listening Events"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We are building slowly, safely, and sustainably, with you at the centre."
+      }
+    ]
+  },
+  "home-approach": {
+    "title": "OUR APPROACH",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Community first."
+      },
+      {
+        "type": "paragraph",
+        "text": "Co-designed. Grounded in lived experience.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not impose ready-made solutions. We listen, collaborate, and build together."
+      },
+      {
+        "type": "paragraph",
+        "text": "Our approach is rooted in:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "belonging before services",
+          "lived experience shaping every decision.",
+          "inclusive, non-clinical social support",
+          "sustainable community infrastructure",
+          "shared ownership and collective leadership"
+        ]
+      }
+    ]
+  },
+  "home-invitation": {
+    "title": "CALL TO ACTION SECTION",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Join us in creating something meaningful. We are developing a lasting community built on trust, collaborative design, and collective ownership."
+      }
+    ]
+  },
+  "home-footer": {
+    "title": "FOOTER MESSAGE",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS A community where every DYS mind feels at home."
+      }
+    ]
+  },
+  "about-intro": {
+    "title": "About Us",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS is a community‑led organisation created to address the lack of community for teenagers and young adults with Dyslexia, Dyspraxia, Dyscalculia and Dysgraphia, including those who are still waiting for a diagnosis, newly diagnosed, or unsure where they fit."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are based in Nottingham, but our community is open to every DYS mind nationwide."
+      },
+      {
+        "type": "paragraph",
+        "text": "We exist to build inclusive, social spaces rooted in lived experience, connection, and shared understanding."
+      },
+      {
+        "type": "paragraph",
+        "text": "We know the “in‑between” can be the hardest part:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "the waiting",
+          "the self‑doubt",
+          "the feeling of not fitting anywhere."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That is why we are creating welcoming, non‑clinical social spaces where young people can rediscover themselves and grow socially, educationally, and professionally."
+      },
+      {
+        "type": "paragraph",
+        "text": "At Connecting DYS, your mind is at home."
+      },
+      {
+        "type": "paragraph",
+        "text": "You are community."
+      }
+    ]
+  },
+  "why": {
+    "title": "WHY WE EXIST",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Teenagers and young adults with DYS conditions grow up without a community that understands them."
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS exists to ease isolation and bridge the gap between formal systems and our community. We do this by addressing the lack of community for teenagers and young adults with DYS conditions and their families through building inclusive social spaces rooted in lived experience, connection, and shared understanding, where someone has walked the path before and can say, “I get it.”"
+      },
+      {
+        "type": "paragraph",
+        "text": "“I understand, I’ve been there too.”"
+      },
+      {
+        "type": "paragraph",
+        "text": "Families navigate the “in‑between” waiting for assessments, facing daily challenges, or trying to make sense of their child’s needs, while waiting for formal support, without formal support or just unsure of the direction to head to. This uncertainty can be isolating, confusing and emotionally heavy."
+      },
+      {
+        "type": "paragraph",
+        "text": "We also exist because every DYS condition deserves visibility, not just the popular ones. Every DYS mind deserves recognition and appreciation."
+      },
+      {
+        "type": "paragraph",
+        "text": "At Connecting DYS, your mind is at home."
+      }
+    ]
+  },
+  "mission": {
+    "title": "Our Mission",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "To reduce isolation among DYS individuals and families by building inclusive, community-led spaces rooted in lived experience, connection, and shared understanding."
+      },
+      {
+        "type": "paragraph",
+        "text": "We deliver non-clinical, relational support that sits alongside existing services, helping individuals and families with peer-support, feel seen, supported, and empowered in their everyday lives."
+      }
+    ]
+  },
+  "vision": {
+    "title": "Our Vision",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A society where DYS individuals and families are connected, confident, and supported by communities that understand them not in isolation, but together."
+      },
+      {
+        "type": "paragraph",
+        "text": "We envision communities where:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "DYS experiences are understood without constant explanation",
+          "connection is as valued as intervention",
+          "lived experience shapes how support is designed and delivered",
+          "people move from surviving to thriving through belonging"
+        ]
+      }
+    ]
+  },
+  "goal": {
+    "title": "Our Goal",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "To build sustainable community infrastructure that enables DYS individuals and families to connect, support one another, and grow with confidence over the long term."
+      },
+      {
+        "type": "paragraph",
+        "text": "This means creating spaces and systems that endure beyond short-term projects grounded in trust, co-design, and shared ownership."
+      }
+    ]
+  },
+  "values-summary": {
+    "title": "Our Values the BRIDGE Framework",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Everything we do is guided by our BRIDGE values:"
+      },
+      {
+        "type": "paragraph",
+        "text": "Belonging – Everyone deserves a place where they feel accepted and connected Respect – Lived experience has value and authority Inclusion – Support is co-designed, not assumed Dignity – Safe, trauma-informed environments matter Guardianship – We steward stories, trust, and resources responsibly Empathy – We listen to understand and adapt to diverse needs"
+      },
+      {
+        "type": "paragraph",
+        "text": "These values shape our culture, decisions, and relationships"
+      }
+    ]
+  },
+  "about-work": {
+    "title": "What We Do",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We create inclusive, non-clinical spaces where DYS individuals and families can connect, learn, and grow together."
+      },
+      {
+        "type": "paragraph",
+        "text": "Our work includes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Peer-led community spaces and support groups",
+          "Information and shared learning shaped by lived experience",
+          "Mentoring and confidence-building activities",
+          "Awareness and visibility work for all DYS conditions",
+          "Safe spaces for children, young people, adults, families, and carers"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Everything we develop is informed by the voices and experiences of the people we serve."
+      }
+    ]
+  },
+  "how": {
+    "title": "How We Work",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our approach is guided by a few core principles that are central to Connecting DYS CIC and not interchangeable with generic models:"
+      },
+      {
+        "type": "heading",
+        "text": "1. Lived Experience as Leadership"
+      },
+      {
+        "type": "paragraph",
+        "text": "Those with lived experience of DYS conditions are not participants alone they help shape, guide, and inform how the organisation grows."
+      },
+      {
+        "type": "heading",
+        "text": "2. Connection Before Intervention"
+      },
+      {
+        "type": "paragraph",
+        "text": "We recognise that people often need belonging and understanding before strategies, tools, or programmes can be meaningful."
+      },
+      {
+        "type": "heading",
+        "text": "3. Complement, Not Confront"
+      },
+      {
+        "type": "paragraph",
+        "text": "We work alongside existing services, not in opposition to them. Our role is to bridge gaps between formal systems and lived reality."
+      },
+      {
+        "type": "heading",
+        "text": "4. Community-Led, Not Prescriptive"
+      },
+      {
+        "type": "paragraph",
+        "text": "Our work evolves in response to the voices, needs, and rhythms of the community not fixed assumptions or one-size-fits-all solutions."
+      },
+      {
+        "type": "heading",
+        "text": "5. Safe, Inclusive Spaces"
+      },
+      {
+        "type": "paragraph",
+        "text": "We actively create environments where individuals across all DYS conditions feel welcome, respected, and understood including those from PEMB backgrounds and other under-represented groups."
+      }
+    ]
+  },
+  "different": {
+    "title": "What Makes Us Different",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is not built around service delivery alone, it is built around community continuity."
+      },
+      {
+        "type": "paragraph",
+        "text": "Unlike many organisations that focus on a single point of support, we focus on:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "what happens between services",
+          "what happens after diagnosis",
+          "what happens when formal support ends"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Our work recognises that thriving with DYS is not a moment, it is a journey that requires connection, understanding, and shared growth over time."
+      }
+    ]
+  },
+  "commitment": {
+    "title": "Our Commitment",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We are committed to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "building trust slowly and responsibly",
+          "prioritising safeguarding, governance, and sustainability",
+          "ensuring volunteers and staff are supported, trained, and valued",
+          "growing at a pace that protects the community we serve"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is intentionally developing strong foundations before scaling delivery, because community deserves care, not shortcuts."
+      }
+    ]
+  },
+  "who-join": {
+    "title": "Who Can Join",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is open to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Individuals with Dyslexia, Dyspraxia, Dyscalculia, or Dysgraphia",
+          "Parents, carers, and families",
+          "Children, young people, and adults",
+          "Those awaiting diagnosis"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "You do not need to fit a specific background or pathway. If DYS is part of your lived experience, you are welcome here."
+      }
+    ]
+  },
+  "purpose": {
+    "title": "PURPOSE",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "To ensure that every DYS young person diagnosed, undiagnosed or in the in-between knows they have a community built on lived experience, connection, and shared understanding. A place where they belong, and where their families feel heard and supported."
+      }
+    ]
+  },
+  "goal-young": {
+    "title": "Our Goal",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our goal is to build sustainable community infrastructure that enables DYS teenagers, young adults and their families to connect, support one another and grow with confidence over the long term. This means creating inclusive social spaces and systems that endure beyond short‑term projects grounded in trust, co‑design, and shared ownership."
+      }
+    ]
+  },
+  "work-intro": {
+    "title": "What We Do",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS is building a sustainable, community-led foundation for teenagers and young adults with Dyslexia, Dyspraxia, Dyscalculia and Dysgraphia including those waiting for a diagnosis or unsure where they fit."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are not delivering full services yet. We are building the community and structures that will make those services strong, safe, and long-lasting."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here is what we do right now and what we are preparing to deliver as we grow:"
+      }
+    ]
+  },
+  "work-1": {
+    "title": "1. We Build Community Before Services",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our priority is connection. We aim to bring teenagers and young adults with DYS and their families together, so they know they are not alone. This includes early conversations, community outreach and creating spaces where people feel understood and welcomed."
+      }
+    ]
+  },
+  "work-2": {
+    "title": "2. We Listen to Lived Experience",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We intend to gather insight from teenagers, young adults, families, and carers to understand:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "daily challenges",
+          "gaps in support",
+          "what belonging looks like",
+          "what would make life easier?"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These listening shapes everything we will build."
+      }
+    ]
+  },
+  "work-3": {
+    "title": "3. We Lay the Foundations for Peer Support Spaces",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We are preparing to launch safe, inclusive peer spaces where teenagers and young adults with the consent of their guardians can:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "share experiences.",
+          "talk openly.",
+          "exchange strategies",
+          "build confidence.",
+          "form meaningful connections."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The community will naturally influence and develop these spaces over time."
+      }
+    ]
+  },
+  "work-4": {
+    "title": "4. We Bring Families and Carers Together",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "It is our intention to create opportunities for families to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "share concerns.",
+          "explore challenges.",
+          "learn from one another.",
+          "shape future support."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We listen first, then build with them."
+      }
+    ]
+  },
+  "work-5": {
+    "title": "5. We Develop Future Workshops and Practical Support",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "As membership grows, we will co-design workshops on:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "understanding DYS conditions",
+          "navigating education",
+          "workplace confidence",
+          "emotional wellbeing",
+          "assistive technology",
+          "life skills and routines"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Members will work together to shape these, ensuring they feel genuine ownership rather than simply having them proposed by others."
+      }
+    ]
+  },
+  "work-6": {
+    "title": "6. We Raise Awareness of All DYS Conditions",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We challenge stigma and increase understanding of every DYS condition not just the ones people already know. Our awareness work ensures every young person feels seen and valued."
+      }
+    ]
+  },
+  "work-7": {
+    "title": "7. We Host Listening Events and Open Forums",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Before any service becomes permanent, we evaluate ideas with the community to ensure:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "relevance",
+          "accessibility",
+          "safety",
+          "inclusivity"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Our growth is responsive, not rushed."
+      }
+    ]
+  },
+  "work-8": {
+    "title": "8. We Build Sustainable Community Infrastructure",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our long-term goal is to create systems and spaces that last not short-term projects. This means building:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "trust",
+          "co-designed structures",
+          "shared ownership",
+          "leadership from within the community"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We are building something that will endure."
+      }
+    ]
+  },
+  "approach-intro": {
+    "title": "Our Approach",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "At Connecting DYS, our approach is simple but powerful: we build community first, services second. We exist to address the lack of community for DYS teenagers, young adults, and their families especially those navigating daily challenges or waiting for a diagnosis. Our approach is rooted in lived experience, co-design, and the belief that no one should struggle in isolation."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are building slowly, safely, and sustainably, ensuring that everything we create is shaped by the people it is meant to serve."
+      }
+    ]
+  },
+  "approach-community": {
+    "title": "Community First, Always",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We are not a clinical service. We are a community."
+      },
+      {
+        "type": "paragraph",
+        "text": "Our priority is to create spaces where young people and families can come to socialise, feel understood, welcomed and valued long before any formal programmes launch. We focus on connection, belonging and shared understanding as the foundation for everything that follows."
+      }
+    ]
+  },
+  "approach-design": {
+    "title": "Co-Designed with Lived Experience",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We will not assume what people need. We ask. We listen. We build together."
+      },
+      {
+        "type": "paragraph",
+        "text": "We will collaborate with our members to develop all upcoming events, including workshops and peer support groups etc. Lived experience is not an add-on; it is the centre of our approach."
+      }
+    ]
+  },
+  "approach-grow": {
+    "title": "Growing Organically, Not Rushing",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We are in our initial stages, building membership and trust. As our community grows, our support will grow with it."
+      },
+      {
+        "type": "paragraph",
+        "text": "This means:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "starting gently",
+          "testing ideas through open forums",
+          "gathering honest feedback",
+          "shaping services collectively",
+          "building structures that last"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We are committed to long-term sustainability, not quick fixes."
+      }
+    ]
+  },
+  "approach-social": {
+    "title": "Inclusive, non-Clinical Social Support",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our approach focuses on social connection, not diagnosis or treatment. We create environments where young people can:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "share experiences.",
+          "talk openly.",
+          "build confidence.",
+          "explore identity.",
+          "feel understood."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Families and carers will also have spaces to connect, learn from one another and shape future support."
+      }
+    ]
+  },
+  "approach-awareness": {
+    "title": "Awareness for All DYS Conditions",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We raise visibility for every DYS condition, not just the ones people already know. Our approach challenges stigma, celebrates strengths and ensures every young person feels seen."
+      }
+    ]
+  },
+  "approach-infrastructure": {
+    "title": "Building Sustainable Community Infrastructure",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our long-term goal is to build community structures that endure beyond short-term projects. This means creating:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "safe, inclusive social spaces",
+          "peer-led support.",
+          "family networks",
+          "co-designed workshops",
+          "systems shaped by shared ownership"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We are building something that lasts something the community can grow into and lead."
+      }
+    ]
+  },
+  "approach-gets": {
+    "title": "A Community That Gets You",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our approach canters on one core belief:"
+      },
+      {
+        "type": "paragraph",
+        "text": "No one should struggle in isolation. Your community gets you."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are here to build that community slowly, intentionally and with you at the centre."
+      }
+    ]
+  },
+  "approach-goals": {
+    "title": "How Our Work Reflects Our Goals",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS provides community-based, non-clinical social support grounded in lived experience. Our actions will be influence by the perspectives, requirements, and experiences of teens, young adults with DYS , and their families."
+      },
+      {
+        "type": "paragraph",
+        "text": "As we grow, our work will focus on:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Peer support and safe spaces",
+          "Community connection and belonging",
+          "Awareness raising and advocacy.",
+          "Mentoring and skills-building",
+          "Family and carer support",
+          "Celebrating strengths, creativity, and identity"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Members will be involved in developing activities to guarantee they are accessible, safe, and meaningful. This aims to create enjoyable experiences for members and their families while fostering safety and comfort. Our approach supports community-building, family empowerment, awareness of all DYS conditions, and helps young people succeed in school, work, and life."
+      }
+    ]
+  },
+  "approach-intend": {
+    "title": "How We Intend to Work",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We will consistently tailor our services to reflect the authentic voices, lived experiences, and genuine needs of our community. We are not here to impose ready-made solutions. We are here to listen, co-create and build together."
+      },
+      {
+        "type": "paragraph",
+        "text": "As we approach full operation, we will create our upcoming services in the following ways:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "open dialogue",
+          "shared experiences",
+          "collective leadership",
+          "continuous feedback"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This ensures our work remains responsive, not reactive, and always grounded in lived experience. This approach directly supports our goals of empowerment, belonging and co-design."
+      }
+    ]
+  },
+  "support-peer": {
+    "title": "Peer Support Spaces (Community-Led & Growing Organically)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Our Peer Support Spaces will begin gently and grow organically. These spaces will be safe, inclusive environments where teenagers and young adults with Dyslexia, Dyspraxia, Dyscalculia and Dysgraphia can:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "share lived experiences.",
+          "talk openly without judgement.",
+          "exchange coping strategies.",
+          "build confidence and belonging.",
+          "form meaningful connections."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We will guide the structure initially, but leadership will come from within the group. Members will shape discussions, influence themes, and help determine how the space evolves."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is not a top-down service. It is a shared space where every voice matters equally."
+      },
+      {
+        "type": "paragraph",
+        "text": "Over time, we envision peer facilitators emerging naturally individuals who feel ready to support others because they themselves have felt supported."
+      },
+      {
+        "type": "paragraph",
+        "text": "This directly fulfils our goals of building community, strengthening confidence, supporting the “in-between,” and nurturing self-advocacy."
+      }
+    ]
+  },
+  "support-family": {
+    "title": "Family & Carer Gatherings (Listening First, Building Together)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Behind every DYS young person, there is often a parent, carer, sibling, or partner navigating their own journey."
+      },
+      {
+        "type": "paragraph",
+        "text": "Our intention is to bring families and carers together not to lecture, but to listen."
+      },
+      {
+        "type": "paragraph",
+        "text": "These gatherings will provide space to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "share concerns and questions.",
+          "discuss challenges openly.",
+          "exchange practical strategies.",
+          "identify gaps in support.",
+          "explore collective solutions."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "From these conversations, we hope something powerful will grow: a connected family network built on understanding, empathy, and shared strength."
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not assume what families need. We will ask. We will listen. We will build alongside them."
+      },
+      {
+        "type": "paragraph",
+        "text": "This directly fulfils our goals of empowering families and carers, supporting the “in-between,” and ensuring no one feels alone."
+      }
+    ]
+  },
+  "support-workshops": {
+    "title": "Co-Designed Workshops & Practical Support (In Development)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "As our community grows, we will introduce workshops and practical sessions based on what members request. Potential areas include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "understanding DYS conditions beyond labels",
+          "navigating education systems",
+          "workplace advocacy and confidence building",
+          "emotional wellbeing and self-esteem",
+          "assistive technology guidance",
+          "building routines and practical life skills"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We will collaborate with our members to design workshops that genuinely address their needs, ensuring they are practical, accessible, and relevant for participants."
+      },
+      {
+        "type": "paragraph",
+        "text": "This directly fulfils our goals of raising awareness, building skills, supporting growth, and celebrating strengths."
+      }
+    ]
+  },
+  "support-forums": {
+    "title": "Open Community Forums & Listening Events",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Before formal services are finalised, we will host listening to sessions to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "test ideas",
+          "hear honest feedback.",
+          "understand what truly matters.",
+          "ensure accessibility and inclusivity."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Our growth will be responsive, thoughtful and community-led."
+      },
+      {
+        "type": "paragraph",
+        "text": "This directly fulfils our goals of co-design, belonging and ensuring every DYS mind feels at home."
+      }
+    ]
+  },
+  "story": {
+    "title": "Our Story",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC was born from lived experience."
+      },
+      {
+        "type": "paragraph",
+        "text": "For many people with Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia, and related neurodivergent experiences, the journey to understanding themselves can be confusing, isolating, and overwhelming. While there is often information available about diagnosis, education, and specialist support, there can be a significant gap when it comes to ongoing community, connection, and everyday social support."
+      },
+      {
+        "type": "paragraph",
+        "text": "That gap is the reason Connecting DYS exists."
+      },
+      {
+        "type": "paragraph",
+        "text": "The idea for Connecting DYS began after our founder's own experience of navigating life before and after diagnosis. Before receiving a diagnosis, there was a sense that certain things, particularly within education, required more effort, more adaptation, and more resilience than seemed necessary for others. There were strengths, talents, and ambitions, but there was no language to explain the challenges being experienced, and often no clear place to turn for understanding."
+      },
+      {
+        "type": "paragraph",
+        "text": "When diagnosis finally came, it brought answers, but it also brought a huge amount of information all at once. The process was overwhelming. Once the appointments ended and the reports were filed away, an important question remained:"
+      },
+      {
+        "type": "paragraph",
+        "text": "What happens next?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The search began for something beyond diagnosis. A place to connect with others. A place to ask questions. A place where experiences did not need to be constantly explained. A place where people understood because they had lived it too."
+      },
+      {
+        "type": "paragraph",
+        "text": "That place could not be found."
+      },
+      {
+        "type": "paragraph",
+        "text": "Years later, while undertaking postgraduate research, further exploration into social support for DYS individuals revealed the same reality. Despite growing awareness of neurodiversity and learning differences, there remained a lack of dedicated community-based spaces where DYS individuals and families could build relationships, share experiences, and access ongoing peer support."
+      },
+      {
+        "type": "paragraph",
+        "text": "The gap that existed years earlier was still there."
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC was created to help fill that gap."
+      },
+      {
+        "type": "paragraph",
+        "text": "We exist to connect DYS minds and build a community where individuals and families feel understood, valued, and supported throughout their journey not only at the point of diagnosis, but throughout everyday life."
+      },
+      {
+        "type": "paragraph",
+        "text": "Our focus is not on labels, assessments, or clinical interventions. Our focus is on people."
+      },
+      {
+        "type": "paragraph",
+        "text": "We believe that nobody should have to navigate their DYS journey alone."
+      },
+      {
+        "type": "paragraph",
+        "text": "We believe that belonging matters."
+      },
+      {
+        "type": "paragraph",
+        "text": "We believe that lived experience has value."
+      },
+      {
+        "type": "paragraph",
+        "text": "We believe that community can be life changing."
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is building the community that many of us searched for but could not find."
+      },
+      {
+        "type": "paragraph",
+        "text": "A place where your experiences are understood."
+      },
+      {
+        "type": "paragraph",
+        "text": "A place where connection comes before judgement."
+      },
+      {
+        "type": "paragraph",
+        "text": "A place where support feels human."
+      },
+      {
+        "type": "paragraph",
+        "text": "A place where your kind exist."
+      },
+      {
+        "type": "paragraph",
+        "text": "A home for every DYS mind."
+      }
+    ]
+  },
+  "founder": {
+    "title": "Founder’s Statement",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC was created to fill a gap I experienced firsthand: the lack of community-based social support for people with Dyslexia, Dyspraxia, Dyscalculia and Dysgraphia."
+      },
+      {
+        "type": "paragraph",
+        "text": "Before I was diagnosed, I didn’t understand why I struggled the way I did especially in education. I knew my  strengths, but I also knew there were areas (especially in education)  where things didn’t just  click the way they seemed to for others. I didn’t have the language for it, and I didn’t know where to turn. Instead, I concealed them and turned to create chaos around me in other not conceal my shortfalls"
+      },
+      {
+        "type": "paragraph",
+        "text": "When I finally received my diagnosis, I was given a lot of information and support all at once. It was overwhelming. I couldn’t take it all in, and I couldn’t remember most of what was said. And when the appointments ended, I realised something important:"
+      },
+      {
+        "type": "paragraph",
+        "text": "There was nowhere to go for ongoing, human, everyday support."
+      },
+      {
+        "type": "paragraph",
+        "text": "I searched for an organisation that offered social connection, a place to talk, to meet others, a place where I can go to aid my queries, to feel understood without having to explain every detail.\nI found none."
+      },
+      {
+        "type": "paragraph",
+        "text": "Years later, while working on my master’s dissertation, I went deeper into researching social support for DYS individuals. I expected to find established networks or community groups. Instead, I found the same gap I had experienced years before."
+      },
+      {
+        "type": "paragraph",
+        "text": "That gap is why Connecting DYS CIC exists."
+      },
+      {
+        "type": "paragraph",
+        "text": "We exist to connect DYS minds.\nTo make sure no one with DYS has to navigate their journey alone not at diagnosis, and not in the everyday challenges that follow.\n a community where your kind exist.\nA social support that feels human, consistent, and grounded in lived reality."
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is the community I needed but couldn’t find.\nNow, it’s here for anyone who needs it."
+      }
+    ]
+  },
+  "value-B": {
+    "title": "B – Belonging",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Commitment: We design for connection, not compliance."
+      },
+      {
+        "type": "heading",
+        "text": "Behaviours:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Welcome every participant with clear orientation and choice of communication style.",
+          "Actively check for isolation and create buddy systems."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Evidence: Attendance logs show buddy assignments; feedback forms highlight feelings of belonging."
+      }
+    ]
+  },
+  "value-R": {
+    "title": "R – Respect",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Commitment: Decision rights sit with lived experience."
+      },
+      {
+        "type": "heading",
+        "text": "Behaviours:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Invite lived-experience members into decision-making panels.",
+          "Ensure meeting agendas include time for their input."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Evidence: Minutes record lived-experience voices; governance documents show co-signatures."
+      }
+    ]
+  },
+  "value-I": {
+    "title": "I – Inclusion",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Commitment: Co-creation with consent and choice."
+      },
+      {
+        "type": "heading",
+        "text": "Behaviours:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Offer multiple ways to contribute (written, verbal, visual).",
+          "Provide opt-in pathways for involvement without pressure."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Evidence: Participation records show diverse formats; consent forms are stored and accessible."
+      }
+    ]
+  },
+  "value-D": {
+    "title": "D – Dignity",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Commitment: Safety is trauma informed."
+      },
+      {
+        "type": "heading",
+        "text": "Behaviours:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Use predictable routines and clear language.",
+          "Offer de-escalation and quiet spaces at events."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Evidence: Safeguarding logs include proactive adjustments; incident trackers show resolution steps."
+      }
+    ]
+  },
+  "value-G": {
+    "title": "G – Guardianship",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Commitment: Stewardship of privacy and resources."
+      },
+      {
+        "type": "heading",
+        "text": "Behaviours:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Protect personal stories with confidentiality agreements.",
+          "Publish pre-approved spend summaries with dual authentication."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Evidence: Finance reports show dual signatures; confidentiality agreements signed by volunteers."
+      }
+    ]
+  },
+  "value-E": {
+    "title": "E – Empathy",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Commitment: Neuro-affirming empathy."
+      },
+      {
+        "type": "heading",
+        "text": "Behaviours:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Listen to understand, not to respond.",
+          "Adjust pace, environment, and communication to individual needs."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Evidence: Volunteer training logs include neurodiversity modules; feedback highlights empathy in practice."
+      }
+    ]
+  },
+  "confidentiality": {
+    "title": "CONFIDENTIALITY STATEMENT",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Connecting DYS CIC Confidentiality Commitment"
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC works with teenagers, young adults (up to age 24), and their families affected by Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia and related neurodivergent profiles (collectively referred to as DYS)."
+      },
+      {
+        "type": "paragraph",
+        "text": "We understand that individuals and families may share personal experiences, educational challenges, emotional concerns and diagnostic information with us. We treat this information with respect, sensitivity and care."
+      },
+      {
+        "type": "paragraph",
+        "text": "We will not normally disclose personal information shared with us to any other person or organisation without explicit permission."
+      },
+      {
+        "type": "paragraph",
+        "text": "Information may be shared internally within Connecting DYS CIC on a strict need-to-know basis between authorised staff, volunteers, facilitators, or Directors where necessary to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Deliver services safely and effectively",
+          "Provide appropriate support",
+          "Manage participation",
+          "Meet safeguarding responsibilities",
+          "Comply with legal obligations"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "All individuals handling information are expected to maintain professional confidentiality and adhere to UK data protection law."
+      },
+      {
+        "type": "heading",
+        "text": "Limits to Confidentiality"
+      },
+      {
+        "type": "paragraph",
+        "text": "There are specific circumstances where confidentiality cannot be maintained."
+      },
+      {
+        "type": "paragraph",
+        "text": "We may share information without consent if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "A child, young person, or adult is at risk of serious harm",
+          "There is a safeguarding concern",
+          "We are legally required to do so",
+          "A court order requires disclosure",
+          "There is a risk of criminal activity"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Where possible and appropriate, we will aim to inform you before information is shared. However, if doing so increases risk, we may proceed without prior notice."
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding always takes priority over confidentiality."
+      }
+    ]
+  },
+  "privacy-notice": {
+    "title": "PRIVACY NOTICE",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "1. Who We Are"
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS is a Community Interest Company registered in England and Wales. We support teenagers, young adults (up to 24), and their families impacted by Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia and related neurodivergent profiles (DYS)."
+      },
+      {
+        "type": "paragraph",
+        "text": "We provide community-led, non-clinical peer support spaces online and, in future, face-to-face."
+      },
+      {
+        "type": "paragraph",
+        "text": "For the purposes of the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018, the Data Controller is:"
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC\nEmail: connectingdys@gmail.com\nRegistered in England & Wales\nRegistered Office: coming soon"
+      },
+      {
+        "type": "heading",
+        "text": "2. How We Collect Information"
+      },
+      {
+        "type": "paragraph",
+        "text": "We collect information when you:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Contact us by email or website form",
+          "Register for events or peer support sessions",
+          "Join our mailing list",
+          "Volunteer with us",
+          "Donate or support our work",
+          "Participate in surveys or feedback",
+          "Engage with our online platforms"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We may also collect limited information through cookies on our website."
+      },
+      {
+        "type": "heading",
+        "text": "3. What Information We Collect"
+      },
+      {
+        "type": "paragraph",
+        "text": "Because we work with teenagers and young adults, we only collect information that is relevant, proportionate and necessary."
+      },
+      {
+        "type": "heading",
+        "text": "Personal Information"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Name",
+          "Email address",
+          "Phone number",
+          "Postal address (where relevant)",
+          "Date of birth (to determine age-appropriate services)",
+          "Emergency contact details (for under-18s and where appropriate)"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "DYS & Support Information"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Information voluntarily shared about learning differences",
+          "Access requirements",
+          "Support needs",
+          "Communication preferences"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This may include special category data (health-related information), which we process under Article 9(2)(a) consent and/or safeguarding obligations."
+      },
+      {
+        "type": "heading",
+        "text": "Participation Information"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Attendance records",
+          "Session participation",
+          "Feedback",
+          "Volunteer application information"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Technical Information"
+      },
+      {
+        "type": "list",
+        "items": [
+          "IP address",
+          "Website usage data",
+          "Device/browser information"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not collect unnecessary or excessive data."
+      },
+      {
+        "type": "heading",
+        "text": "4. Legal Basis for Processing"
+      },
+      {
+        "type": "paragraph",
+        "text": "We process personal data under the following lawful bases:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Consent (e.g., newsletter subscription)",
+          "Contract (e.g., event participation)",
+          "Legitimate interest (e.g., service improvement)",
+          "Legal obligation (e.g., safeguarding referrals)",
+          "Vital interests (where someone is at risk of harm)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For special category data (e.g., learning difference information), we rely on:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Explicit consent",
+          "Safeguarding of children and adults at risk"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "5. How We Use Your Information"
+      },
+      {
+        "type": "paragraph",
+        "text": "We use your information to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Deliver peer support and community activities",
+          "Ensure age-appropriate safeguarding",
+          "Respond to enquiries",
+          "Communicate about sessions and events",
+          "Manage volunteer recruitment",
+          "Improve our services",
+          "Meet safeguarding duties",
+          "Fulfil legal and regulatory obligations"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not sell personal information."
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not use automated decision-making."
+      },
+      {
+        "type": "heading",
+        "text": "6. Who Has Access to Your Information"
+      },
+      {
+        "type": "paragraph",
+        "text": "Access is restricted to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Authorised Connecting DYS CIC staff",
+          "Approved volunteers and facilitators",
+          "Designated Safeguarding Lead (where required)",
+          "Directors where governance oversight is necessary",
+          "Professional advisors (e.g., legal, accounting)",
+          "Statutory authorities (where legally required)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "All individuals with access must adhere to confidentiality and data protection obligations."
+      },
+      {
+        "type": "heading",
+        "text": "7. Safeguarding & Information Sharing"
+      },
+      {
+        "type": "paragraph",
+        "text": "Because we represent teenagers and young adults, safeguarding is central to how we operate."
+      },
+      {
+        "type": "paragraph",
+        "text": "Information may be shared without consent where:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "A child or young person is at risk of harm",
+          "An adult at risk is experiencing abuse",
+          "There is risk of serious self-harm or suicide",
+          "There is criminal activity"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We follow statutory safeguarding guidance and local authority procedures."
+      },
+      {
+        "type": "heading",
+        "text": "8. Your Rights"
+      },
+      {
+        "type": "paragraph",
+        "text": "Under UK GDPR, you have the right to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Access your personal data",
+          "Request correction",
+          "Request erasure (where applicable)",
+          "Restrict processing",
+          "Object to processing",
+          "Withdraw consent",
+          "Lodge a complaint with the Information Commissioner’s Office (ICO)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "ICO: www.ico.org.uk"
+      },
+      {
+        "type": "paragraph",
+        "text": "Requests can be made via connectingdys@gmail.com."
+      }
+    ]
+  },
+  "accessibility": {
+    "title": "Accessibility Statement",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC"
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is committed to making our website and online services accessible, inclusive, and easy to use for everyone especially individuals affected by Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia, and other neurodivergent profiles."
+      },
+      {
+        "type": "paragraph",
+        "text": "Accessibility is central to our mission. We aim to design our content in a way that reduces barriers and supports clear understanding."
+      },
+      {
+        "type": "heading",
+        "text": "What We Aim to Provide"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Clear, plain English",
+          "Simple layouts and consistent navigation",
+          "High colour contrast",
+          "Short paragraphs and structured headings",
+          "Minimal visual clutter",
+          "Mobile-friendly design"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "As our services begin online, we also aim to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Provide clear joining instructions",
+          "Use structured session formats",
+          "Allow flexible participation where appropriate",
+          "Consider reasonable adjustments when requested"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Although we are a small, developing organisation, we are committed to continuous improvement and aligning with recognised accessibility principles, including the Web Content Accessibility Guidelines (WCAG)."
+      },
+      {
+        "type": "heading",
+        "text": "Need Support?"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you have trouble accessing any part of our website or online sessions, please contact us so we can provide information in an alternative format or consider reasonable adjustments."
+      },
+      {
+        "type": "paragraph",
+        "text": "📧 connectingdys@gmail.com\nSubject line: Accessibility Support"
+      }
+    ]
+  },
+  "data-retention": {
+    "title": "DATA RETENTION SCHEDULE",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC retains data only as long as necessary and in line with legal requirements."
+      },
+      {
+        "type": "paragraph",
+        "text": "Data is securely deleted or destroyed after retention period."
+      }
+    ],
+    "table": [
+      [
+        "Record Type",
+        "Retention Period",
+        "Legal/Operational Basis"
+      ],
+      [
+        "General enquiries",
+        "12 months",
+        "Administration"
+      ],
+      [
+        "Event attendance",
+        "2 years",
+        "Monitoring & evaluation"
+      ],
+      [
+        "Peer participation records",
+        "3 years",
+        "Safeguarding & evaluation"
+      ],
+      [
+        "Safeguarding records (child)",
+        "Until 25th birthday",
+        "Safeguarding best practice"
+      ],
+      [
+        "Safeguarding records (adult)",
+        "7 years after closure",
+        "Legal protection"
+      ],
+      [
+        "Volunteer (unsuccessful)",
+        "6 months",
+        "Recruitment compliance"
+      ],
+      [
+        "Volunteer (active)",
+        "Duration + 6 years",
+        "Legal & safeguarding"
+      ],
+      [
+        "Financial records",
+        "6 years",
+        "Companies Act & HMRC"
+      ],
+      [
+        "Gift Aid",
+        "6 years",
+        "HMRC"
+      ],
+      [
+        "Director records",
+        "Duration + 6 years",
+        "Governance"
+      ],
+      [
+        "Newsletter data",
+        "Until consent withdrawn",
+        "Marketing compliance"
+      ]
+    ]
+  },
+  "cookies-original": {
+    "title": "WEBSITE COOKIES POLICY",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "1. What Are Cookies"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cookies are small text files stored on your device when you visit a website. They help the site function securely and effectively."
+      },
+      {
+        "type": "paragraph",
+        "text": "Because we support teenagers and young adults, we aim to ensure our website is transparent, safe and age appropriate."
+      },
+      {
+        "type": "heading",
+        "text": "2. Cookies We Use"
+      },
+      {
+        "type": "heading",
+        "text": "Essential Cookies"
+      },
+      {
+        "type": "paragraph",
+        "text": "Required for website functionality and security."
+      },
+      {
+        "type": "paragraph",
+        "text": "Legal basis: Legitimate Interest."
+      },
+      {
+        "type": "heading",
+        "text": "Analytics Cookies"
+      },
+      {
+        "type": "paragraph",
+        "text": "Help us understand website usage and improve accessibility."
+      },
+      {
+        "type": "paragraph",
+        "text": "Legal basis: Consent."
+      },
+      {
+        "type": "paragraph",
+        "text": "We may use tools such as Google Analytics (if implemented)."
+      },
+      {
+        "type": "heading",
+        "text": "Functionality Cookies"
+      },
+      {
+        "type": "paragraph",
+        "text": "Remember accessibility or user preferences."
+      },
+      {
+        "type": "heading",
+        "text": "Third-Party Cookies"
+      },
+      {
+        "type": "paragraph",
+        "text": "May be set if embedded content (e.g., videos or social feeds) is used."
+      },
+      {
+        "type": "heading",
+        "text": "3. Managing Cookies"
+      },
+      {
+        "type": "paragraph",
+        "text": "Visitors can:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Adjust browser settings",
+          "Withdraw consent via cookie banner",
+          "Delete stored cookies"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Disabling essential cookies may affect site functionality."
+      },
+      {
+        "type": "heading",
+        "text": "4. Children & Young Visitors"
+      },
+      {
+        "type": "paragraph",
+        "text": "As our audience includes under-18s, we:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Avoid behavioural advertising",
+          "Do not knowingly collect data from children without appropriate safeguards",
+          "Ensure transparency in data usage"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "5. Updates"
+      },
+      {
+        "type": "paragraph",
+        "text": "This policy is reviewed annually or when website functionality changes."
+      }
+    ]
+  },
+  "disclaimer": {
+    "title": "Website Disclaimer – Connecting DYS CIC",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Last updated: 26/02/2026"
+      },
+      {
+        "type": "heading",
+        "text": "1. Introduction"
+      },
+      {
+        "type": "paragraph",
+        "text": "The information on this website is provided by Connecting DYS CIC (“we”, “us”, “our”) for general information and community support purposes only. While we aim to present accurate, useful and up-to-date information, we make no warranties or representations about the accuracy, completeness or reliability of any content on this site."
+      },
+      {
+        "type": "paragraph",
+        "text": "Use of this website and reliance on any content provided is at your own risk."
+      },
+      {
+        "type": "heading",
+        "text": "2. Non-Professional Information"
+      },
+      {
+        "type": "paragraph",
+        "text": "All content on this website is intended for general information or educational purposes only. It is not intended to be, and should not be relied upon as, medical, legal, educational, or psychological advice."
+      },
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC does not provide:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Clinical diagnosis or assessment",
+          "Therapeutic or counselling services",
+          "Legal advice",
+          "Medical advice"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "If you require specific professional support, you should consult a qualified professional in the relevant field."
+      },
+      {
+        "type": "heading",
+        "text": "3. No Liability"
+      },
+      {
+        "type": "paragraph",
+        "text": "To the fullest extent permitted by law, Connecting DYS CIC excludes all liability for any loss, damage or inconvenience arising from your use of this website or reliance on any information contained herein."
+      },
+      {
+        "type": "paragraph",
+        "text": "This includes (but is not limited to):"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Direct or indirect loss",
+          "Loss of data",
+          "Loss of income",
+          "Loss of business opportunity"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "4. External Links"
+      },
+      {
+        "type": "paragraph",
+        "text": "This website may contain links to third-party websites, organisations, services, or resources. These links are provided for convenience and informational purposes only."
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Control the content of these external sites",
+          "Endorse or guarantee their accuracy",
+          "Accept liability for content, services or products offered by third parties"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Your use of third-party websites is subject to the terms and policies of those websites."
+      },
+      {
+        "type": "heading",
+        "text": "5. Testimonials Disclaimer"
+      },
+      {
+        "type": "paragraph",
+        "text": "If this website includes testimonials, they reflect individual experiences and views. They do not guarantee similar results for all users and should not be interpreted as a promise of outcomes from participation in Connecting DYS programmes."
+      },
+      {
+        "type": "heading",
+        "text": "6. Changes to Information"
+      },
+      {
+        "type": "paragraph",
+        "text": "We may update content on this website at any time, without prior notice, including changes to programmes, services, policies, or statements contained here."
+      },
+      {
+        "type": "paragraph",
+        "text": "It is your responsibility to review this disclaimer periodically."
+      }
+    ]
+  },
+  "safeguarding-meta": {
+    "title": "SAFEGUARDING & CHILD / ADULT PROTECTION POLICY",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Version 1.0 Approved by the Board of Directors: 11/01/2026 Next Review: 11/01/2028 Policy Owner: Designated Safeguarding Lead (DSL)"
+      }
+    ]
+  },
+  "safeguarding-0": {
+    "title": "POLICY STATEMENT",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is committed to safeguarding and promoting the welfare of:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Children and young people under 18",
+          "Young adults aged 18–24",
+          "Adults at risk"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We recognise that DYS young people, particularly those in the “in-between” (awaiting diagnosis, newly diagnosed, or unsure where they fit) may experience heightened vulnerability due to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Social isolation",
+          "Masking and internalised distress",
+          "Educational trauma",
+          "Low self-esteem",
+          "Online dependency",
+          "Exploitation risks linked to belonging seeking"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding at Connecting DYS is therefore not limited to abuse prevention. It includes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Emotional safety",
+          "Psychological safety",
+          "Online safety",
+          "Relational boundaries",
+          "Prevention of exploitation",
+          "Suicide and self-harm risk awareness"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We operate as a Community Interest Company under the Companies Act 2006. Directors hold statutory duties of care and must ensure safeguarding systems are effective, proportionate and legally compliant."
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding is a standing governance responsibility."
+      }
+    ]
+  },
+  "safeguarding-1": {
+    "title": "LEGAL & REGULATORY FRAMEWORK",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This policy complies with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Children Act 1989 & 2004",
+          "Working Together to Safeguard Children"
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "Care Act 2014",
+          "Keeping Children Safe in Education (relevant principles)",
+          "Equality Act 2010",
+          "Counter-Terrorism and Security Act 2015 (Prevent Duty principles)",
+          "Safeguarding Vulnerable Groups Act 2006",
+          "Data Protection Act 2018 & UK GDPR",
+          "Companies Act 2006 (Director duties)",
+          "Local Nottinghamshire Safeguarding Partnership procedures"
+        ]
+      }
+    ]
+  },
+  "safeguarding-2": {
+    "title": "GOVERNANCE & ACCOUNTABILITY STRUCTURE",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "3.1 Board of Directors"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Board holds ultimate legal accountability for safeguarding."
+      },
+      {
+        "type": "paragraph",
+        "text": "Directors must:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Approve and annually review this policy",
+          "Ensure safeguarding is a standing agenda item",
+          "Appoint a Designated Safeguarding Lead (DSL)",
+          "Ensure safer recruitment practices",
+          "Ensure adequate training and DBS compliance",
+          "Review anonymised safeguarding reports quarterly",
+          "Maintain appropriate safeguarding insurance",
+          "Intervene if safeguarding systems fail"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Failure to maintain safeguarding standards may constitute breach of Director duties under Companies Act 2006."
+      },
+      {
+        "type": "heading",
+        "text": "3.2 Operations Director"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Operations Director has dual responsibility:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Strategic safeguarding implementation",
+          "Ensuring operational compliance"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "They must:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ensure procedures are followed",
+          "Support DSL",
+          "Escalate systemic risk to Board",
+          "Ensure online safeguarding controls are functioning"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "They do not override DSL referral decisions."
+      },
+      {
+        "type": "heading",
+        "text": "3.3 Designated Safeguarding Lead (DSL)"
+      },
+      {
+        "type": "paragraph",
+        "text": "The DSL holds operational safeguarding authority."
+      },
+      {
+        "type": "paragraph",
+        "text": "Responsibilities include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Receiving all safeguarding concerns",
+          "Risk assessing within 24 hours",
+          "Making referrals to: o MASH (Children’s Services) o Adult Safeguarding Team o Police (where required)",
+          "Consulting Local Authority Designated Officer (LADO) where allegations involve staff/volunteers",
+          "Maintaining confidential safeguarding records",
+          "Advising facilitators",
+          "Producing quarterly safeguarding summary for Board",
+          "Ensuring safeguarding training compliance"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "A Deputy DSL must be appointed."
+      }
+    ]
+  },
+  "safeguarding-3": {
+    "title": "SCOPE OF SERVICES",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS delivers:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Online peer support sessions",
+          "Online group discussions",
+          "Future face-to-face sessions",
+          "Community-led, non-clinical support spaces"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We are not a therapy or clinical service."
+      },
+      {
+        "type": "paragraph",
+        "text": "Peer support ≠ counselling."
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding therefore includes preventing inappropriate role blurring."
+      }
+    ]
+  },
+  "safeguarding-4": {
+    "title": "SAFER RECRUITMENT",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "All volunteers and future staff working with under-18s or adults at risk must:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Complete application form",
+          "Provide two references",
+          "Complete structured interview",
+          "Provide ID verification",
+          "Undergo Enhanced DBS (where role qualifies)",
+          "Complete safeguarding training before engagement",
+          "Sign Code of Conduct"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Directors with no operational contact do not require Enhanced DBS but must complete safeguarding awareness training."
+      }
+    ]
+  },
+  "safeguarding-5": {
+    "title": "ONLINE SAFEGUARDING (CRITICAL – PHASE 1 DELIVERY)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "As services begin online, additional controls will apply:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Minimum two adults present in under-18 online sessions",
+          "No private 1:1 online meeting with under-18s",
+          "No personal social media contact",
+          "Use organisation-controlled platforms only",
+          "Clear moderation standards",
+          "Recording of sessions where appropriate and consented",
+          "Clear reporting route displayed in every session",
+          "Waiting room and access control enabled"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Online exploitation risk is considered high priority."
+      }
+    ]
+  },
+  "safeguarding-6": {
+    "title": "FACE-TO-FACE SAFEGUARDING (PHASE 2)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Before in-person delivery:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Venue risk assessment",
+          "Fire and emergency procedures",
+          "First aid arrangements",
+          "Clear sign-in/out procedures",
+          "Parental consent for under-18s",
+          "Safe collection protocol",
+          "Lone working policy"
+        ]
+      }
+    ]
+  },
+  "safeguarding-7": {
+    "title": "RECOGNISING SAFEGUARDING RISKS IN DYS CONTEXT",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Indicators may include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Sudden shutdowns",
+          "Withdrawal from peer space",
+          "Extreme rejection sensitivity",
+          "Hyper-fixation on unsafe adult",
+          "Inappropriate online relationships",
+          "Burnout mislabelled as laziness",
+          "Self-harm ideation",
+          "Grooming vulnerability",
+          "Financial exploitation of 18–24-year-olds"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Training must reflect neurodivergent communication differences."
+      }
+    ]
+  },
+  "safeguarding-8": {
+    "title": "MANAGING DISCLOSURES",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If a disclosure occurs: 1. Stay calm. 2. Do not promise confidentiality. 3. Avoid leading questions. 4. Record exact words. 5. Report immediately to DSL. 6. DSL assesses risk and refers within 24 hours if threshold met."
+      },
+      {
+        "type": "paragraph",
+        "text": "Immediate danger → call 999."
+      }
+    ]
+  },
+  "safeguarding-9": {
+    "title": "SELF-HARM & SUICIDE PROTOCOL",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If suicidal ideation is disclosed:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Treat as safeguarding concern",
+          "Escalate to DSL immediately",
+          "Assess immediacy of risk",
+          "Contact emergency services if imminent",
+          "Encourage contact with parent/guardian (under-18)",
+          "Encourage trusted adult involvement (18–24)",
+          "Document thoroughly"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Volunteers must not provide therapeutic intervention."
+      }
+    ]
+  },
+  "safeguarding-10": {
+    "title": "MANAGING ALLEGATIONS AGAINST VOLUNTEERS / STAFF / DIRECTORS",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If allegation involves:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Volunteer → suspend from activity pending review",
+          "Staff → follow disciplinary process",
+          "Director → escalate to independent Director + LADO"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "All allegations involving harm risk must be referred to LADO."
+      },
+      {
+        "type": "paragraph",
+        "text": "Insurers must be notified where appropriate."
+      }
+    ]
+  },
+  "safeguarding-11": {
+    "title": "INFORMATION SHARING & CONFIDENTIALITY",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Safeguarding overrides confidentiality."
+      },
+      {
+        "type": "paragraph",
+        "text": "Information will be shared:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "With DSL",
+          "With statutory agencies",
+          "On strict need-to-know basis"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Records stored securely and separately from general files."
+      }
+    ]
+  },
+  "safeguarding-12": {
+    "title": "WHISTLEBLOWING",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Concerns about safeguarding practice can be raised:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "To DSL",
+          "To Lead Safeguarding Director",
+          "To Local Authority",
+          "To NSPCC whistleblowing helpline"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "No retaliation permitted."
+      }
+    ]
+  },
+  "safeguarding-13": {
+    "title": "MONITORING & REVIEW",
+    "blocks": [
+      {
+        "type": "list",
+        "items": [
+          "Annual full policy review",
+          "Quarterly Board safeguarding report",
+          "Post-incident review",
+          "Risk register integration",
+          "Online safeguarding audit every 6 months"
+        ]
+      }
+    ]
+  },
+  "safeguarding-14": {
+    "title": "POLICY BREACH",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Failure to follow safeguarding procedures may result in:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Removal from volunteer role",
+          "Disciplinary action (future staff)",
+          "Board investigation (Directors)"
+        ]
+      }
+    ]
+  },
+  "complaints-meta": {
+    "title": "Complaints Policy",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Policy Owner: Board of Directors Operational Lead: Operations Director Applies To: Directors, volunteers, staff (when appointed), facilitators, contractors Review Cycle: Annual"
+      }
+    ]
+  },
+  "complaints-0": {
+    "title": "Policy Statement",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is committed to delivering safe, respectful, inclusive services for teenagers, young adults (up to age 24), and their families affected by Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia and related neurodivergent profiles (DYS)."
+      },
+      {
+        "type": "paragraph",
+        "text": "We recognise that concerns or dissatisfaction may arise. We welcome feedback and complaints as part of maintaining accountability, improving services, and protecting participants."
+      },
+      {
+        "type": "paragraph",
+        "text": "Complaints will be:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Taken seriously",
+          "Handled fairly and proportionately",
+          "Managed confidentially",
+          "Resolved as promptly as possible",
+          "Used as learning opportunities"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding concerns are not managed solely under this policy and may trigger safeguarding procedures."
+      }
+    ]
+  },
+  "complaints-1": {
+    "title": "Scope",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This policy applies to complaints about:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Service delivery (online or in-person)",
+          "Conduct of volunteers, facilitators, staff or Directors",
+          "Safeguarding handling (procedural concerns)",
+          "Discrimination or exclusion",
+          "Data handling practices",
+          "Communications",
+          "Partnership conduct representing Connecting DYS"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This policy does not apply to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Immediate safeguarding risks (these must be escalated immediately)",
+          "Anonymous social media criticism (though themes may be reviewed)"
+        ]
+      }
+    ]
+  },
+  "complaints-2": {
+    "title": "Who Can Make a Complaint",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Complaints may be made by:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Young people participating in services",
+          "Young adults",
+          "Parents or guardians",
+          "Volunteers",
+          "Staff (when appointed)",
+          "Partners or members of the public"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For under-18s, complaints may be submitted directly or through a parent/guardian."
+      },
+      {
+        "type": "paragraph",
+        "text": "We will ensure the process is accessible and age appropriate."
+      }
+    ]
+  },
+  "complaints-3": {
+    "title": "Informal Resolution",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Where appropriate, concerns should first be raised informally with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The session facilitator",
+          "The Operations Lead"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Many concerns can be resolved quickly through clarification or discussion."
+      },
+      {
+        "type": "paragraph",
+        "text": "Informal resolution does not remove the right to submit a formal complaint."
+      }
+    ]
+  },
+  "complaints-4": {
+    "title": "Formal Complaints Procedure",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Step 1: Submitting a Complaint"
+      },
+      {
+        "type": "paragraph",
+        "text": "Complaints should be submitted in writing (email is acceptable) and include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Name",
+          "Contact details",
+          "Description of concern",
+          "Date(s) of incident",
+          "Desired outcome (if known)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Complaints should be sent to: connectingdys@gmail.com"
+      },
+      {
+        "type": "paragraph",
+        "text": "If the complaint concerns the Operations Lead, it should be directed to the Board of Directors."
+      },
+      {
+        "type": "heading",
+        "text": "Step 2: Acknowledgement"
+      },
+      {
+        "type": "paragraph",
+        "text": "We will acknowledge receipt within 5 working days."
+      },
+      {
+        "type": "heading",
+        "text": "Step 3: Investigation"
+      },
+      {
+        "type": "paragraph",
+        "text": "An appropriate person will be appointed to investigate. This may include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "The Operations Lead",
+          "A Director not directly involved",
+          "An independent external advisor (if required)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The investigation may involve:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Reviewing documentation",
+          "Interviewing relevant individuals",
+          "Reviewing safeguarding or session records",
+          "Assessing policy compliance"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We aim to conclude investigations within 20 working days, though complex cases may take longer."
+      },
+      {
+        "type": "heading",
+        "text": "Step 4: Outcome"
+      },
+      {
+        "type": "paragraph",
+        "text": "The complainant will receive a written response outlining:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Findings",
+          "Actions taken (if appropriate)",
+          "Any learning identified",
+          "Information about escalation options"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Confidentiality will be maintained; some details may not be shared where privacy or safeguarding considerations apply."
+      }
+    ]
+  },
+  "complaints-5": {
+    "title": "Escalation",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If the complainant is dissatisfied with the outcome, they may request a review by the Board of Directors."
+      },
+      {
+        "type": "paragraph",
+        "text": "The review must be requested within 10 working days of the outcome decision."
+      },
+      {
+        "type": "paragraph",
+        "text": "The Board’s decision will be final within the organisation."
+      },
+      {
+        "type": "paragraph",
+        "text": "External routes may include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Information Commissioner’s Office (for data protection issues)",
+          "Local safeguarding authority (for safeguarding concerns)",
+          "Charity Commission or CIC Regulator (governance concerns, where applicable)"
+        ]
+      }
+    ]
+  },
+  "complaints-6": {
+    "title": "Safeguarding-Linked Complaints",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If a complaint involves:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Allegations of abuse",
+          "Serious safeguarding failures",
+          "Risk to a child or adult at risk"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The Safeguarding Policy will take precedence."
+      },
+      {
+        "type": "paragraph",
+        "text": "Immediate protective action may be taken before the complaint process concludes."
+      }
+    ]
+  },
+  "complaints-7": {
+    "title": "Complaints About Directors",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If a complaint concerns a Director:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "It must be submitted to the Board (excluding the Director concerned)",
+          "An independent Director or external advisor may lead investigation",
+          "Conflicts of interest must be declared"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Directors remain subject to legal duties under the Companies Act 2006."
+      }
+    ]
+  },
+  "complaints-8": {
+    "title": "Vexatious or Malicious Complaints",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC recognises the importance of fair complaint handling."
+      },
+      {
+        "type": "paragraph",
+        "text": "However, complaints that are:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Deliberately false",
+          "Repetitive without new information",
+          "Harassing in nature"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "May be closed after review by the Board."
+      },
+      {
+        "type": "paragraph",
+        "text": "This will not apply to genuine complaints, even where evidence is limited."
+      }
+    ]
+  },
+  "complaints-9": {
+    "title": "Confidentiality",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Complaint information will be:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Stored securely",
+          "Shared only on a need-to-know basis",
+          "Retained in line with Data Retention Schedule"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Complainants will not be penalised for raising concerns in good faith."
+      }
+    ]
+  },
+  "complaints-10": {
+    "title": "Learning & Monitoring",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The Operations Lead will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Maintain a Complaints Log",
+          "Identify themes and patterns",
+          "Report serious or recurring issues to the Board",
+          "Recommend policy or procedural changes where necessary"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Complaints data may inform training and service development."
+      }
+    ]
+  },
+  "complaints-11": {
+    "title": "Accessibility",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We recognise that neurodivergent young people may require alternative communication methods."
+      },
+      {
+        "type": "paragraph",
+        "text": "Complaints may be made:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "In writing",
+          "By audio submission",
+          "With support from a trusted adult",
+          "With reasonable adjustments"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We will ensure the process does not create additional barriers."
+      }
+    ]
+  },
+  "complaints-12": {
+    "title": "Protection from Victimisation",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "No individual will be treated unfairly for making a complaint in good faith."
+      },
+      {
+        "type": "paragraph",
+        "text": "Retaliation against a complainant will be treated as misconduct."
+      }
+    ]
+  },
+  "complaints-13": {
+    "title": "Record Keeping",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Complaint records will include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Date received",
+          "Nature of complaint",
+          "Actions taken",
+          "Outcome",
+          "Date closed"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Records will be retained for a minimum of 6 years unless safeguarding retention requirements apply."
+      }
+    ]
+  },
+  "complaints-14": {
+    "title": "Policy Review",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This policy will be reviewed annually or sooner if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "A serious complaint highlights procedural weakness",
+          "Legislation changes",
+          "Organisational structure evolves"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Approved by: Connecting DYS CIC Board of Directors"
+      },
+      {
+        "type": "paragraph",
+        "text": "Review Date: 11/01/2027"
+      }
+    ]
+  },
+  "equality-meta": {
+    "title": "Equality, Diversity & Inclusion (EDI) Policy",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Policy Owner: Board of Directors Operational Lead: Operations Director Applies To: Directors, volunteers, staff (when appointed), facilitators, contractors Review Cycle: Annual Legal Framework: Equality Act 2010 and related UK legislation"
+      }
+    ]
+  },
+  "equality-0": {
+    "title": "Policy Statement",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is committed to promoting equality, valuing diversity, and creating inclusive environments across all areas of our work."
+      },
+      {
+        "type": "paragraph",
+        "text": "We support teenagers, young adults (up to age 24), and families affected by Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia and related neurodivergent profiles (DYS). We recognise that neurodivergent individuals often experience exclusion, discrimination, misunderstanding, and systemic disadvantage."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are committed to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Eliminating unlawful discrimination",
+          "Advancing equality of opportunity",
+          "Fostering good relations between different groups",
+          "Removing barriers to participation",
+          "Creating psychologically and physically safe environments"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Equality, diversity and inclusion are not optional values, they are central to our mission to reduce isolation and build community connection."
+      }
+    ]
+  },
+  "equality-1": {
+    "title": "Legal Framework",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This policy operates in accordance with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Equality Act 2010",
+          "Human Rights Act 1998",
+          "Children Act 1989 & 2004",
+          "Care Act 2014",
+          "Public Sector Equality Duty principles (where relevant to partnership work)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Under the Equality Act 2010, it is unlawful to discriminate against individuals based on protected characteristics."
+      },
+      {
+        "type": "paragraph",
+        "text": "EQUALITY, DIVERSITY & INCLUSION (EDI) POLICY"
+      }
+    ]
+  },
+  "equality-2": {
+    "title": "Protected Characteristics",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC recognises the following protected characteristics under the Equality Act 2010:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Age",
+          "Disability",
+          "Gender reassignment",
+          "Marriage and civil partnership",
+          "Pregnancy and maternity",
+          "Race",
+          "Religion or belief",
+          "Sex",
+          "Sexual orientation"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We recognise that many individuals may experience intersectionality, where multiple characteristics overlap and compound disadvantage."
+      },
+      {
+        "type": "paragraph",
+        "text": "We also acknowledge that neurodivergence, while often protected under disability provisions, may not always be formally diagnosed. We do not require diagnosis for respectful treatment and reasonable adjustment."
+      }
+    ]
+  },
+  "equality-3": {
+    "title": "Scope of This Policy",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This policy applies to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Service delivery (online and face-to-face)",
+          "Volunteer recruitment and management",
+          "Future staff recruitment and employment",
+          "Director conduct",
+          "Partnership working",
+          "Public communications",
+          "Complaints handling",
+          "Procurement and commissioning"
+        ]
+      }
+    ]
+  },
+  "equality-4": {
+    "title": "Our Commitment in Practice",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Service Delivery"
+      },
+      {
+        "type": "paragraph",
+        "text": "We will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Provide inclusive, non-judgmental peer spaces",
+          "Avoid deficit-based language about neurodivergence",
+          "Use accessible communication formats"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "EQUALITY, DIVERSITY & INCLUSION (EDI) POLICY"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Offer reasonable adjustments where possible",
+          "Ensure online platforms are accessible",
+          "Challenge discriminatory behaviour in sessions",
+          "Establish clear group agreements"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We recognise that DYS individuals may also face discrimination based on race, gender, class, faith, or other characteristics. We will actively work to ensure our spaces are inclusive to all."
+      }
+    ]
+  },
+  "equality-5": {
+    "title": "Reasonable Adjustments",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Where individuals experience barriers due to disability or neurodivergence, we will make reasonable adjustments where practical and proportionate."
+      },
+      {
+        "type": "paragraph",
+        "text": "Examples may include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Providing written summaries",
+          "Flexible participation methods",
+          "Allowing cameras off in online sessions",
+          "Adjusting session pace",
+          "Providing quiet breakout options (when in person)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not require formal diagnosis to consider adjustments."
+      }
+    ]
+  },
+  "equality-6": {
+    "title": "Recruitment & Volunteering",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is committed to fair and inclusive recruitment practices."
+      },
+      {
+        "type": "paragraph",
+        "text": "We will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Use inclusive language in recruitment materials",
+          "Make volunteer opportunities accessible",
+          "Assess applicants fairly and transparently",
+          "Avoid discrimination in selection decisions",
+          "Make reasonable adjustments during recruitment",
+          "Promote opportunities across diverse communities"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Selection decisions will be based on suitability, safeguarding considerations, and organisational need not personal characteristics."
+      }
+    ]
+  },
+  "equality-7": {
+    "title": "Zero Tolerance of Discrimination",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC does not tolerate: EQUALITY, DIVERSITY & INCLUSION (EDI) POLICY"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Direct discrimination",
+          "Indirect discrimination",
+          "Harassment",
+          "Victimisation",
+          "Bullying",
+          "Hate speech",
+          "Microaggressions",
+          "Online discriminatory conduct"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This applies to Directors, volunteers, staff, and participants."
+      },
+      {
+        "type": "paragraph",
+        "text": "Concerns will be addressed through:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Informal resolution where appropriate",
+          "Formal complaints procedures",
+          "Safeguarding procedures (where risk is present)",
+          "Removal from services if necessary"
+        ]
+      }
+    ]
+  },
+  "equality-8": {
+    "title": "Intersectionality & Cultural Awareness",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We recognise that:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Black and minoritised neurodivergent individuals may face delayed diagnosis and systemic barriers",
+          "Girls and young women with DYS profiles may be under-identified",
+          "Socioeconomic disadvantage may limit access to assessments",
+          "Faith and cultural contexts influence perceptions of neurodivergence"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We are committed to ongoing learning and cultural humility."
+      }
+    ]
+  },
+  "equality-9": {
+    "title": "Online Inclusion",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "As an online-first organisation, we will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ensure safeguarding-aware digital spaces",
+          "Prevent online harassment",
+          "Monitor group dynamics",
+          "Provide clear reporting pathways",
+          "Avoid exclusionary digital practices"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We recognise that digital exclusion (lack of devices or connectivity) can create inequality. Where possible, we will consider this in programme design."
+      },
+      {
+        "type": "paragraph",
+        "text": "EQUALITY, DIVERSITY & INCLUSION (EDI) POLICY"
+      }
+    ]
+  },
+  "equality-10": {
+    "title": "Responsibilities",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Board of Directors"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Board is responsible for:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Strategic oversight of equality and inclusion",
+          "Ensuring compliance with Equality Act 2010",
+          "Reviewing EDI risks within the organisational risk register",
+          "Ensuring policies are implemented"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Operations Lead"
+      },
+      {
+        "type": "paragraph",
+        "text": "Responsible for:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Day-to-day implementation",
+          "Monitoring inclusive practice",
+          "Managing complaints",
+          "Ensuring volunteers receive appropriate guidance"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Volunteers & Staff"
+      },
+      {
+        "type": "paragraph",
+        "text": "All representatives must:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Treat others with dignity and respect",
+          "Challenge discriminatory behaviour",
+          "Adhere to group agreements",
+          "Report concerns appropriately"
+        ]
+      }
+    ]
+  },
+  "equality-11": {
+    "title": "Monitoring & Review",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Review this policy annually",
+          "Monitor complaints relating to discrimination",
+          "Review participation data (where appropriate and lawful)",
+          "Consider accessibility feedback",
+          "Update practices as we grow"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We aim for continuous improvement."
+      },
+      {
+        "type": "paragraph",
+        "text": "EQUALITY, DIVERSITY & INCLUSION (EDI) POLICY"
+      }
+    ]
+  },
+  "equality-12": {
+    "title": "Complaints",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Individuals who believe they have experienced discrimination can:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Raise concerns informally with a facilitator",
+          "Contact the Operations Lead",
+          "Submit a formal complaint under our Complaints Policy"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "All complaints will be taken seriously and handled proportionately."
+      }
+    ]
+  },
+  "equality-13": {
+    "title": "Policy Review",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This policy will be reviewed annually or earlier if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Legislation changes",
+          "Service delivery expands",
+          "A serious incident highlights necessary revision"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Approved by: Connecting DYS CIC Board of Directors"
+      },
+      {
+        "type": "paragraph",
+        "text": "Review Date:11/01/2027"
+      },
+      {
+        "type": "paragraph",
+        "text": "EQUALITY, DIVERSITY & INCLUSION (EDI) POLICY"
+      }
+    ]
+  },
+  "privacy-policy-meta": {
+    "title": "Data Protection & Privacy Policy",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Policy Owner: Board of Directors Operational Lead: Operations Director Applies To: Directors, volunteers, staff (when appointed), facilitators, contractors Approved by the Board: 11/01/2026 Next review : 11/01/2027 Legislation:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "UK General Data Protection Regulation (UK GDPR)",
+          "Data Protection Act 2018",
+          "Privacy and Electronic Communications Regulations (PECR)"
+        ]
+      }
+    ]
+  },
+  "privacy-policy-0": {
+    "title": "Policy Statement",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC is committed to protecting the personal data of:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Teenagers (under 18)",
+          "Young adults (18–24)",
+          "Parents and carers",
+          "Volunteers",
+          "Directors",
+          "Partners and supporters"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "As an organisation supporting neurodivergent individuals (Dyslexia, Dyspraxia, Dyscalculia, Dysgraphia and related profiles), we recognise that some of the information shared with us may be sensitive."
+      },
+      {
+        "type": "paragraph",
+        "text": "We will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Process personal data lawfully, fairly and transparently",
+          "Collect only what is necessary",
+          "Keep data secure",
+          "Protect confidentiality",
+          "Respect individual rights",
+          "Integrate safeguarding responsibilities into data handling"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Data protection is a legal obligation and a core part of organisational integrity."
+      }
+    ]
+  },
+  "privacy-policy-1": {
+    "title": "Governance & Accountability",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Board of Directors"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Board holds ultimate accountability for data protection compliance."
+      },
+      {
+        "type": "paragraph",
+        "text": "Responsibilities include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ensuring legal compliance",
+          "Reviewing data protection risks",
+          "Approving this policy",
+          "Overseeing serious data breaches"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Operations Lead"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Operations Lead acts as the internal Data Protection Lead (unless a separate Data Protection Officer is appointed in future)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Responsibilities include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Day-to-day data protection oversight",
+          "Managing subject access requests",
+          "Maintaining breach log",
+          "Ensuring secure storage systems",
+          "Liaising with the ICO if required"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Volunteers & Representatives"
+      },
+      {
+        "type": "paragraph",
+        "text": "All volunteers and representatives must:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Follow this policy",
+          "Maintain confidentiality",
+          "Use organisational systems only",
+          "Report suspected breaches immediately"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Failure to comply may result in removal from role."
+      }
+    ]
+  },
+  "privacy-policy-2": {
+    "title": "Data Protection Principles",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC adheres to the seven principles of UK GDPR:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. Lawfulness, fairness and transparency 2. Purpose limitation 3. Data minimisation 4. Accuracy 5. Storage limitation 6. Integrity and confidentiality (security) 7. Accountability"
+      },
+      {
+        "type": "paragraph",
+        "text": "These principles apply to all data processing activities."
+      }
+    ]
+  },
+  "privacy-policy-3": {
+    "title": "Categories of Data We Process",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Personal Data"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Name",
+          "Contact details",
+          "Date of birth",
+          "Emergency contact information",
+          "Attendance records",
+          "Volunteer application information"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Special Category Data"
+      },
+      {
+        "type": "paragraph",
+        "text": "Due to our service user group, we may process:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Information about learning differences",
+          "Neurodivergent profiles",
+          "Health-related disclosures",
+          "Accessibility needs"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Special category data is processed under:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Explicit consent",
+          "Safeguarding obligations",
+          "Vital interests where risk exists"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not require formal diagnosis to provide support."
+      },
+      {
+        "type": "heading",
+        "text": "Safeguarding Records"
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding data may include:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Disclosures of abuse",
+          "Risk assessments",
+          "Referral records",
+          "Incident documentation"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This information is highly restricted and securely stored."
+      }
+    ]
+  },
+  "privacy-policy-4": {
+    "title": "Lawful Basis for Processing",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We rely on the following lawful bases:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Consent (e.g., newsletters, optional information)",
+          "Contract (e.g., event registration)",
+          "Legitimate Interest (running safe services)",
+          "Legal Obligation (safeguarding duties)"
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "Vital Interests (risk of harm situations)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For children under 13 engaging digitally, parental consent may be required depending on processing activity."
+      }
+    ]
+  },
+  "privacy-policy-5": {
+    "title": "Data Collection",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We collect data through:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Online registration forms",
+          "Email correspondence",
+          "Volunteer application forms",
+          "Event sign-ups",
+          "Website cookies",
+          "Direct communication"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not collect excessive information."
+      },
+      {
+        "type": "paragraph",
+        "text": "We avoid collecting unnecessary sensitive data."
+      }
+    ]
+  },
+  "privacy-policy-6": {
+    "title": "Data Security",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Connecting DYS CIC operates online-first and recognises digital risk."
+      },
+      {
+        "type": "paragraph",
+        "text": "We will implement:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Password-protected systems",
+          "Role-based access controls",
+          "Secure cloud storage",
+          "Two-factor authentication (where possible)",
+          "Encrypted devices where data is stored",
+          "Restricted access to safeguarding files",
+          "Secure deletion procedures"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Personal email accounts must not be used for organisational data."
+      },
+      {
+        "type": "paragraph",
+        "text": "Data must not be stored on unsecured personal devices."
+      }
+    ]
+  },
+  "privacy-policy-7": {
+    "title": "Data Sharing",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We do not sell or trade personal data."
+      },
+      {
+        "type": "paragraph",
+        "text": "Data may be shared with:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Safeguarding authorities (where required)",
+          "Emergency services",
+          "Professional advisors (legal/accounting)"
+        ]
+      },
+      {
+        "type": "list",
+        "items": [
+          "Insurance providers (if necessary)"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Information sharing decisions are recorded and justified."
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding obligations override confidentiality."
+      }
+    ]
+  },
+  "privacy-policy-8": {
+    "title": "Data Retention",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Data is retained only as long as necessary."
+      },
+      {
+        "type": "paragraph",
+        "text": "Safeguarding records involving children may be retained until the individual’s 25th birthday in line with safeguarding best practice."
+      },
+      {
+        "type": "paragraph",
+        "text": "Other records follow the approved retention schedule."
+      },
+      {
+        "type": "paragraph",
+        "text": "Data is securely deleted or destroyed at end of retention period."
+      }
+    ]
+  },
+  "privacy-policy-9": {
+    "title": "Individual Rights",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Individuals have the right to:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Access their data (Subject Access Request)",
+          "Request correction",
+          "Request erasure (where applicable)",
+          "Restrict processing",
+          "Object to processing",
+          "Withdraw consent",
+          "Lodge complaint with the ICO"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Requests must be responded to within one month."
+      }
+    ]
+  },
+  "privacy-policy-10": {
+    "title": "Subject Access Requests (SARs)",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Requests must:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Be made in writing (including email)",
+          "Be verified for identity",
+          "Be logged and tracked"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Responses will be provided within statutory timeframe."
+      },
+      {
+        "type": "paragraph",
+        "text": "Exemptions may apply where safeguarding risk exists."
+      }
+    ]
+  },
+  "privacy-policy-11": {
+    "title": "Data Breach Procedure",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "A data breach includes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Loss of personal data",
+          "Unauthorised access",
+          "Accidental disclosure",
+          "Cyber attack",
+          "Email sent to wrong recipient"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "If a breach occurs:"
+      },
+      {
+        "type": "paragraph",
+        "text": "1. Report immediately to Operations Lead 2. Assess risk level 3. Record in breach log 4. Notify ICO within 72 hours if required 5. Notify affected individuals if high risk"
+      },
+      {
+        "type": "paragraph",
+        "text": "Failure to report breaches may result in disciplinary action."
+      }
+    ]
+  },
+  "privacy-policy-12": {
+    "title": "Online Platforms & Third-Party Processors",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "When using third-party platforms (e.g., event platforms, analytics tools), Connecting DYS will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Ensure Data Processing Agreements are in place",
+          "Confirm UK GDPR compliance",
+          "Limit data sharing",
+          "Avoid unnecessary international data transfers"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We will avoid using platforms that do not meet reasonable security standards."
+      }
+    ]
+  },
+  "privacy-policy-13": {
+    "title": "Marketing & Communications",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "We comply with PECR regulations."
+      },
+      {
+        "type": "paragraph",
+        "text": "We will:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Obtain consent for newsletters",
+          "Provide opt-out options",
+          "Honour unsubscribes requests promptly",
+          "Avoid sending marketing to children without appropriate consent"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "We do not engage in behavioural advertising."
+      }
+    ]
+  },
+  "privacy-policy-14": {
+    "title": "Training",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "All volunteers and staff must receive:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Basic data protection awareness",
+          "Safeguarding-data linkage training",
+          "Clear confidentiality guidance"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Refresher training will be provided annually."
+      }
+    ]
+  },
+  "privacy-policy-15": {
+    "title": "Monitoring & Review",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "This policy will be reviewed annually or sooner if:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Legislation changes",
+          "Services expand",
+          "A serious data breach occurs"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The Board will review data protection risk as part of the organisational Risk Register."
+      }
+    ]
+  },
+  "privacy-policy-16": {
+    "title": "Contact",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Data Protection Queries: connectingdys@gmail.com"
+      },
+      {
+        "type": "paragraph",
+        "text": "Complaints can be made to: Information Commissioner’s Office www.ico.org.uk"
+      }
+    ]
+  }
+}

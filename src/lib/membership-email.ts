@@ -1,3 +1,5 @@
+import { membershipCopy } from "../content/membership-copy.ts";
+
 export type InterestKind = "young-people" | "young-adults";
 
 // Values belong only in the encoded message body, never in the page URL or headers.
@@ -15,7 +17,7 @@ export function membershipEmail(kind: InterestKind, data: FormData, recipient: s
   ];
   if (ownContact) lines.push("", "My contact details", `Email: ${value("email")}`, `Phone (optional): ${value("phone") || "Not provided"}`);
   if (young) lines.push("", "Parent / guardian details", `Full name: ${value("guardianName")}`, `Relationship: ${value("relationship")}`, `Email: ${value("guardianEmail")}`, `Phone: ${value("guardianPhone")}`, `Main contact: ${ownContact ? "Young person and parent / guardian" : "Parent / guardian"}`);
-  lines.push("", `Information pack preference: ${value("informationPreference")}`, "", "I understand this is an expression of interest only. I will receive membership information before deciding whether to join.");
+  lines.push("", `Information pack preference: ${value("informationPreference")}`, "", membershipCopy[kind].acknowledgement);
   const subject = `Membership interest — ${young ? "ages 13–17" : "ages 18–24"}`;
   const body = lines.join("\r\n");
   return { body, href: `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}` };
