@@ -1,15 +1,9 @@
-import { HandshakeIcon } from "@phosphor-icons/react/dist/ssr/Handshake";
-import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr/ChatsCircle";
-import { PlantIcon } from "@phosphor-icons/react/dist/ssr/Plant";
+import { LordiconHeart, LordiconHome, LordiconBook, LordiconGrowth, LordiconConversation } from "@/components/lordicon-doodles";
 import { BridgeIcon } from "@phosphor-icons/react/dist/ssr/Bridge";
-import { BookOpenTextIcon } from "@phosphor-icons/react/dist/ssr/BookOpenText";
 import { PathIcon } from "@phosphor-icons/react/dist/ssr/Path";
-import { HouseLineIcon } from "@phosphor-icons/react/dist/ssr/HouseLine";
-import { HandHeartIcon } from "@phosphor-icons/react/dist/ssr/HandHeart";
 import { ShieldCheckIcon } from "@phosphor-icons/react/dist/ssr/ShieldCheck";
 import { FileTextIcon } from "@phosphor-icons/react/dist/ssr/FileText";
 import { EnvelopeOpenIcon } from "@phosphor-icons/react/dist/ssr/EnvelopeOpen";
-import { UsersThreeIcon } from "@phosphor-icons/react/dist/ssr/UsersThree";
 import { PersonArmsSpreadIcon } from "@phosphor-icons/react/dist/ssr/PersonArmsSpread";
 import { LightbulbIcon } from "@phosphor-icons/react/dist/ssr/Lightbulb";
 import { MegaphoneIcon } from "@phosphor-icons/react/dist/ssr/Megaphone";
@@ -30,7 +24,7 @@ export const editorialDoodles: Record<string, Record<number, EdgeDoodleMotif>> =
 };
 
 
-const icons = { connection: HandshakeIcon, conversation: ChatsCircleIcon, growth: PlantIcon, bridge: BridgeIcon, book: BookOpenTextIcon, path: PathIcon, home: HouseLineIcon, care: HandHeartIcon, shield: ShieldCheckIcon, document: FileTextIcon, mail: EnvelopeOpenIcon, inclusion: UsersThreeIcon, accessibility: PersonArmsSpreadIcon, idea: LightbulbIcon, awareness: MegaphoneIcon, review: MagnifyingGlassIcon };
+const icons = { connection: LordiconConversation, conversation: LordiconConversation, growth: LordiconGrowth, bridge: BridgeIcon, book: LordiconBook, path: PathIcon, home: LordiconHome, care: LordiconHeart, shield: ShieldCheckIcon, document: FileTextIcon, mail: EnvelopeOpenIcon, inclusion: LordiconConversation, accessibility: PersonArmsSpreadIcon, idea: LightbulbIcon, awareness: MegaphoneIcon, review: MagnifyingGlassIcon };
 
 // Text-derived fallbacks keep every reading box relevant, including policy copy.
 export function motifForContent(text: string): EdgeDoodleMotif {

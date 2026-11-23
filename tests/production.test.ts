@@ -539,7 +539,7 @@ test("editorial hierarchy, photo variety and native policy disclosures are prese
   }
 });
 
-test("Phosphor corner illustrations stay decorative, complete and matched to their subject", () => {
+test("corner illustrations stay decorative, complete and matched to their subject", () => {
   const about = page("about");
   const doc = about.window.document;
   const expected = { why: "connection", mission: "path", vision: "bridge", goal: "growth" };
@@ -568,4 +568,27 @@ test("Phosphor corner illustrations stay decorative, complete and matched to the
   const home = page("");
   assert.equal(home.window.document.querySelectorAll(".edge-doodle").length, 0, "corner illustrations stay on internal pages");
   home.window.close();
+});
+
+
+test("the Lordicon experiment uses the five verified free doodles with credit and unique references", () => {
+  const dom = page("about");
+  const doc = dom.window.document;
+  const lordicons = [...doc.querySelectorAll('svg[data-icon-provider="lordicon"]')];
+  assert.ok(lordicons.length > 0);
+  const freeIds = new Set(["20-heart", "63-home", "112-book-bookmark", "1827-growing-plant", "981-avatars-chatting"]);
+  for (const svg of lordicons) {
+    assert.ok(freeIds.has(svg.getAttribute("data-lordicon-id")!));
+    assert.equal(svg.querySelectorAll("script,foreignObject,animate,animateTransform,iframe").length, 0);
+    for (const el of svg.querySelectorAll("[clip-path],[mask],[filter],[href]")) {
+      for (const attr of ["clip-path", "mask", "filter", "href"]) {
+        const ref = el.getAttribute(attr)?.match(/#([^\)]+)/)?.[1];
+        if (ref) assert.ok([...svg.querySelectorAll("[id]")].some(target => target.id === ref), `${attr}: reference stays within this icon`);
+      }
+    }
+  }
+  const allIds = [...doc.querySelectorAll("[id]")].map(el => el.id);
+  assert.equal(new Set(allIds).size, allIds.length, "repeated doodles have isolated masks and clip paths");
+  assert.ok(doc.querySelector('footer a[href="https://lordicon.com/"]')?.textContent?.includes("Lordicon"));
+  dom.window.close();
 });

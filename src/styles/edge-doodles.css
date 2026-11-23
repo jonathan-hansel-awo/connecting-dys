@@ -1,4 +1,4 @@
-/* Transparent Phosphor corner illustrations have a dedicated row: prose never
+/* Transparent corner illustrations have a dedicated row: prose never
    flows behind an icon, including when headings wrap or reading size changes. */
 .copy-panel.has-edge-doodle { position: relative; }
 .edge-doodle {
@@ -15,7 +15,7 @@
   transform: rotate(7deg);
 }
 .edge-doodle > svg { display: block; width: 100%; height: 100%; }
-.edge-doodle > svg [opacity] { fill: var(--doodle-wash, #c27926); opacity: .32; }
+.edge-doodle > svg:not([data-icon-provider="lordicon"]) [opacity] { fill: var(--doodle-wash, #c27926); opacity: .32; }
 .panel-amber .edge-doodle, .panel-coral .edge-doodle { --doodle-wash: #147b79; }
 .edge-doodle-growth, .edge-doodle-home, .edge-doodle-care { transform: rotate(-7deg); }
 html[data-theme="dark"] .edge-doodle { color: #91ded8; --doodle-wash: #f4be71; }
@@ -31,3 +31,12 @@ html[data-theme="dark"] :is(.panel-amber, .panel-coral) .edge-doodle { color: #f
 html[data-spacious="true"] .edge-doodle,
 html[data-texture="off"] .edge-doodle { display: none; }
 @media (forced-colors: active), print { .edge-doodle { display: none; } }
+
+/* Lordicon's hand-drawn primary lines and accent strokes follow the reading
+   palette. Keep fills marked "none" transparent, including the internal masks. */
+.edge-doodle svg[data-icon-provider="lordicon"] .primary { stroke: currentColor; }
+.edge-doodle svg[data-icon-provider="lordicon"] .primary[fill]:not([fill="none"]) { fill: currentColor; }
+.edge-doodle svg[data-icon-provider="lordicon"] .secondary[stroke] { stroke: var(--doodle-wash, #c27926); }
+.edge-doodle svg[data-icon-provider="lordicon"] .secondary[fill]:not([fill="none"]) { fill: var(--doodle-wash, #c27926); }
+.edge-doodle:has(svg[data-icon-provider="lordicon"]) { width: clamp(4rem, 7vw, 5rem); height: clamp(4rem, 7vw, 5rem); transform: none; }
+.policy-disclosure > summary > .edge-doodle:has(svg[data-icon-provider="lordicon"]) { width: 3rem; height: 3rem; }

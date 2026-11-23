@@ -41,6 +41,7 @@ export function SiteFooter() {
         <Link href="/safeguarding">Safeguarding</Link>
         <CookieInformation />
         <Link href="/accessibility">Accessibility & reading</Link>
+        <a href="https://lordicon.com/">Doodle icons by Lordicon.com</a>
       </div>
     </footer>
   );
