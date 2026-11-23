@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useSyncExternalStore, type FormEvent } from "react";
+import { useState, useSyncExternalStore, type ReactNode, type FormEvent } from "react";
 import { membershipCopy } from "@/content/membership-copy";
 import { brand } from "@/content/site";
 import { membershipEmail, type InterestKind } from "@/lib/membership-email";
 
 const subscribe = () => () => {};
-export function MembershipInterestForm({ kind }: { kind: InterestKind }) {
+export function MembershipInterestForm({ kind, decoration }: { kind: InterestKind; decoration?: ReactNode }) {
   const young = kind === "young-people";
   const copy = membershipCopy[kind];
   const [age, setAge] = useState("");
@@ -23,7 +23,8 @@ export function MembershipInterestForm({ kind }: { kind: InterestKind }) {
     window.location.href = message.href;
   }
 
-  return <section id={kind} className={`membership-option copy-panel panel-${young ? "blue" : "amber"}`} aria-labelledby={id("title")}>
+  return <section id={kind} className={`membership-option copy-panel panel-${young ? "blue" : "amber"} has-edge-doodle`} aria-labelledby={id("title")}>
+    {decoration}
     <p className="eyebrow">{young ? "Ages 13–17" : "Ages 18–24"}</p>
     <h2 id={id("title")}>{copy.title}</h2>
     <p>{copy.welcome}</p><p>{copy.intro}</p><p>Fields marked * are required.</p>

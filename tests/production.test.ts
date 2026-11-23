@@ -539,7 +539,7 @@ test("editorial hierarchy, photo variety and native policy disclosures are prese
   }
 });
 
-test("editorial edge motifs stay decorative, selective and matched to their subject", () => {
+test("Phosphor corner illustrations stay decorative, complete and matched to their subject", () => {
   const about = page("about");
   const doc = about.window.document;
   const expected = { why: "connection", mission: "path", vision: "bridge", goal: "growth" };
@@ -552,11 +552,20 @@ test("editorial edge motifs stay decorative, selective and matched to their subj
     assert.equal(doodle.querySelector("svg")?.getAttribute("focusable"), "false");
     assert.equal(doodle.parentElement?.firstElementChild, doodle, "the dedicated decoration row precedes all prose");
   }
-  assert.ok(doc.querySelectorAll(".edge-doodle").length < doc.querySelectorAll("main .copy-panel").length);
+  assert.ok(doc.querySelector(".edge-doodle svg [opacity]"), "duotone illustrations include their secondary colour layer");
   about.window.close();
-  for (const route of ["", "privacy", "safeguarding"]) {
+  for (const route of ["about", "our-story", "founders-message", "our-approach", "what-we-do", "values", "support", "get-involved", "contact", "membership", "accessibility", "dyspraxia", "dyscalculia", "dysgraphia", "dyslexia", "policies", "privacy", "safeguarding", "data-retention"]) {
     const dom = page(route);
-    assert.equal(dom.window.document.querySelectorAll(".edge-doodle").length, 0, `${route}: accents stay within selected editorial pages`);
+    for (const panel of dom.window.document.querySelectorAll("main .copy-panel")) {
+      assert.equal(panel.querySelectorAll(":scope > .edge-doodle, :scope > summary > .edge-doodle").length, 1, `${route}: every content box has one corner illustration`);
+    }
+    for (const doodle of dom.window.document.querySelectorAll(".edge-doodle")) {
+      assert.equal(doodle.getAttribute("aria-hidden"), "true", route);
+      assert.equal(doodle.querySelectorAll("a,button,text,title,[tabindex]").length, 0, route);
+    }
     dom.window.close();
   }
+  const home = page("");
+  assert.equal(home.window.document.querySelectorAll(".edge-doodle").length, 0, "corner illustrations stay on internal pages");
+  home.window.close();
 });

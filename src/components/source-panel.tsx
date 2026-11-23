@@ -1,5 +1,5 @@
 import { Children, createElement, isValidElement, type ReactNode } from "react";
-import { EdgeDoodle, editorialDoodles } from "@/components/edge-doodle";
+import { EdgeDoodle, editorialDoodles, motifForContent } from "@/components/edge-doodle";
 import supplied from "@/content/supplied-copy.json";
 
 export type SourceBlock = { type: string; text?: string; items?: string[] };
@@ -33,6 +33,12 @@ function paragraphGroups(blocks: SourceBlock[]) {
   return groups.length ? groups : [[]];
 }
 
+function contentText(node: ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (isValidElement<{ children?: ReactNode }>(node)) return contentText(node.props.children);
+  return Children.toArray(node).map(child => isValidElement<{ children?: ReactNode }>(child) ? contentText(child.props.children) : String(child)).join(" ");
+}
+
 export function ParagraphPanels({ children, tone = "blue" }: { children: ReactNode; tone?: string }) {
   const groups: ReactNode[][] = [];
   let current: ReactNode[] = [];
@@ -43,7 +49,7 @@ export function ParagraphPanels({ children, tone = "blue" }: { children: ReactNo
     current.push(child);
   }
   if (current.length) groups.push(current);
-  return <>{groups.map((group, i) => <div className={`copy-panel panel-${toneAt(tone, i)}`} key={i}>{group}</div>)}</>;
+  return <>{groups.map((group, i) => <div className={`copy-panel panel-${toneAt(tone, i)} has-edge-doodle`} key={i}><EdgeDoodle motif={motifForContent(contentText(group))} />{group}</div>)}</>;
 }
 
 const emphasisBySource: Record<string, Record<number, string>> = {
@@ -59,24 +65,24 @@ export function SourcePanel({ source, level = 2, tone = "blue", id, children, ar
   const headingId = id || `source-${source}`;
   const Container = collapsible ? "details" : "section";
   return <Container className={`source-section ${collapsible ? "policy-disclosure" : "editorial-source"}`} data-source-id={source} aria-labelledby={headingId} open={collapsible && initiallyOpen ? true : undefined}>
-    {collapsible && <summary>{createElement(`h${level}`, { id: headingId }, section.title)}<span className="disclosure-indicator" aria-hidden="true" /></summary>}
+    {collapsible && <summary><EdgeDoodle motif={motifForContent(section.title)} />{createElement(`h${level}`, { id: headingId }, section.title)}<span className="disclosure-indicator" aria-hidden="true" /></summary>}
     {paragraphGroups(section.blocks).map((group, i) => {
       const emphasis = !collapsible ? emphasisBySource[source]?.[i] : undefined;
-      const motif = !collapsible ? editorialDoodles[source]?.[i] : undefined;
-      const panel = <div className={`copy-panel panel-${toneAt(tone, i)} ${emphasis ? `source-${emphasis}` : ""} ${motif ? "has-edge-doodle" : ""}`} data-copy-emphasis={emphasis} key={i}>
-        {motif && <EdgeDoodle motif={motif} />}
+      const motif = editorialDoodles[source]?.[i] ?? motifForContent(group.map(block => block.text || block.items?.join(" ") || "").join(" ") + " " + section.title);
+      const panel = <div className={`copy-panel panel-${toneAt(tone, i)} ${emphasis ? `source-${emphasis}` : ""} has-edge-doodle`} data-copy-emphasis={emphasis} key={i}>
+        <EdgeDoodle motif={motif} />
         {i === 0 && !collapsible && createElement(`h${level}`, { id: headingId }, section.title)}
         <SourceBlocks blocks={group} headingLevel={level + 1} emphasis={emphasis} />
       </div>;
       const content = i === 0 && artwork ? <div className="illustrated-source-header">{panel}<div className="editorial-art">{artwork}</div></div> : panel;
       return <div className="source-beat" key={i}>{content}{interlude?.after === i && <div className="editorial-interlude">{interlude.content}</div>}</div>;
     })}
-    {section.table && <div className={`copy-panel panel-${tone}`}><div className="retention-scroll" role="region" aria-label={section.title} tabIndex={0}>
+    {section.table && <div className={`copy-panel panel-${tone} has-edge-doodle`}><EdgeDoodle motif="document" /><div className="retention-scroll" role="region" aria-label={section.title} tabIndex={0}>
       <table className="retention-table"><thead><tr>{section.table[0].map(cell => <th scope="col" key={cell}>{cell}</th>)}</tr></thead>
         <tbody>{section.table.slice(1).map(row => <tr key={row[0]}><th scope="row">{row[0]}</th>{row.slice(1).map((cell, i) => <td key={i}>{cell}</td>)}</tr>)}</tbody>
       </table>
     </div></div>}
-    {children && <div className="copy-panel panel-cream">{children}</div>}
+    {children && <div className="copy-panel panel-cream has-edge-doodle"><EdgeDoodle motif={motifForContent(contentText(children))} />{children}</div>}
   </Container>;
 }
 

@@ -1,3 +1,4 @@
+import { EdgeDoodle } from "@/components/edge-doodle";
 import { CommunityPhoto } from "@/components/community-photo";
 import { BackgroundDoodles } from "@/components/background-doodles";
 import Link from "next/link";
@@ -30,6 +31,6 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
     {slug === "what-we-do" && <SourcePanels sources={["work-1", "work-2", "work-3", "work-4", "work-5", "work-6", "work-7", "work-8", "goal-young"]} />}
     {slug === "our-approach" && <SourcePanels sources={["how", "commitment", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"]} />}
     {slug === "values" && <SourcePanels sources={["value-B", "value-R", "value-I", "value-D", "value-G", "value-E"]} />}
-    <nav className="article-links copy-panel panel-cream" aria-label="Keep exploring"><Link href="/membership">Register Your Interest</Link><Link href="/contact">Work With Us</Link><Link href="/values">Our Values</Link></nav>
+    <nav className="article-links copy-panel panel-cream has-edge-doodle" aria-label="Keep exploring"><EdgeDoodle motif="path" /><Link href="/membership">Register Your Interest</Link><Link href="/contact">Work With Us</Link><Link href="/values">Our Values</Link></nav>
   <BackgroundDoodles /></main>;
 }
