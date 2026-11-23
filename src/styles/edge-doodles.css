@@ -1,0 +1,25 @@
+/* Decorative edge badges occupy their own flow row above the copy. Their
+   negative top margin only crosses the border into the existing section gap. */
+.copy-panel.has-edge-doodle { position: relative; }
+.edge-doodle {
+  display: block;
+  width: 4.25rem;
+  height: 3.75rem;
+  max-width: 100%;
+  margin-inline: auto .15rem;
+  margin-block: calc(-1 * clamp(1.25rem, 4vw, 2.75rem) - .7rem) .65rem;
+  color: var(--panel-accent, var(--reading-accent, var(--brand-teal)));
+  background-color: color-mix(in srgb, var(--panel-tint, var(--panel-blue)) var(--panel-mix, 22%), var(--reading-background));
+  background-image: var(--surface-grain-image);
+  background-size: var(--surface-grain-size);
+  border-radius: 45% 40% 44% 48%;
+  pointer-events: none;
+  user-select: none;
+}
+.edge-doodle > svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.edge-doodle .doodle-accent { stroke: var(--panel-ink, var(--reading-ink, var(--brand-navy))); opacity: .6; }
+.edge-doodle-growth, .edge-doodle-home { margin-inline: .15rem auto; }
+/* Decorations never compete with simplified reading or forced colours. */
+html[data-spacious="true"] .edge-doodle,
+html[data-texture="off"] .edge-doodle { display: none; }
+@media (forced-colors: active), print { .edge-doodle { display: none; } }

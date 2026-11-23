@@ -1,4 +1,5 @@
 import { Children, createElement, isValidElement, type ReactNode } from "react";
+import { EdgeDoodle, editorialDoodles } from "@/components/edge-doodle";
 import supplied from "@/content/supplied-copy.json";
 
 export type SourceBlock = { type: string; text?: string; items?: string[] };
@@ -61,7 +62,9 @@ export function SourcePanel({ source, level = 2, tone = "blue", id, children, ar
     {collapsible && <summary>{createElement(`h${level}`, { id: headingId }, section.title)}<span className="disclosure-indicator" aria-hidden="true" /></summary>}
     {paragraphGroups(section.blocks).map((group, i) => {
       const emphasis = !collapsible ? emphasisBySource[source]?.[i] : undefined;
-      const panel = <div className={`copy-panel panel-${toneAt(tone, i)} ${emphasis ? `source-${emphasis}` : ""}`} data-copy-emphasis={emphasis} key={i}>
+      const motif = !collapsible ? editorialDoodles[source]?.[i] : undefined;
+      const panel = <div className={`copy-panel panel-${toneAt(tone, i)} ${emphasis ? `source-${emphasis}` : ""} ${motif ? "has-edge-doodle" : ""}`} data-copy-emphasis={emphasis} key={i}>
+        {motif && <EdgeDoodle motif={motif} />}
         {i === 0 && !collapsible && createElement(`h${level}`, { id: headingId }, section.title)}
         <SourceBlocks blocks={group} headingLevel={level + 1} emphasis={emphasis} />
       </div>;

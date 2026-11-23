@@ -538,3 +538,25 @@ test("editorial hierarchy, photo variety and native policy disclosures are prese
     dom.window.close();
   }
 });
+
+test("editorial edge motifs stay decorative, selective and matched to their subject", () => {
+  const about = page("about");
+  const doc = about.window.document;
+  const expected = { why: "connection", mission: "path", vision: "bridge", goal: "growth" };
+  for (const [source, motif] of Object.entries(expected)) {
+    const doodle = doc.querySelector(`[data-source-id="${source}"] .edge-doodle`)!;
+    assert.ok(doodle, source);
+    assert.equal(doodle.getAttribute("data-edge-motif"), motif);
+    assert.equal(doodle.getAttribute("aria-hidden"), "true");
+    assert.equal(doodle.querySelectorAll("a,button,text,title,[tabindex]").length, 0);
+    assert.equal(doodle.querySelector("svg")?.getAttribute("focusable"), "false");
+    assert.equal(doodle.parentElement?.firstElementChild, doodle, "the dedicated decoration row precedes all prose");
+  }
+  assert.ok(doc.querySelectorAll(".edge-doodle").length < doc.querySelectorAll("main .copy-panel").length);
+  about.window.close();
+  for (const route of ["", "privacy", "safeguarding"]) {
+    const dom = page(route);
+    assert.equal(dom.window.document.querySelectorAll(".edge-doodle").length, 0, `${route}: accents stay within selected editorial pages`);
+    dom.window.close();
+  }
+});
