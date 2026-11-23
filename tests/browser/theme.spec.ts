@@ -32,8 +32,8 @@ test("dark mode lives only in Reading settings, persists and restores light colo
   await expect(page.getByRole("button", { name: "Slate blue", exact: true })).toHaveAttribute("aria-pressed", "true");
   await page.keyboard.press("Escape");
   await page.screenshot({ path: info.outputPath("dark-home.png") });
-  await page.locator(".hero-actions .button").click();
-  await expect(page).toHaveURL(/\/support$/);
+  await page.locator(".hero .hero-actions .button").click();
+  await expect(page).toHaveURL(/\/membership$/);
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -63,14 +63,14 @@ test("dark materials retain contrast across four backgrounds, textures and spaci
     }
   }
   await page.keyboard.press("Escape");
-  for (const selector of [".hero", "#recognition", "#explore", "#community", ".support", ".about-home", ".invitation"]) {
+  for (const selector of [".hero", ".home-principles", "#recognition", ".home-building", ".home-approach", ".invitation"]) {
     await page.locator(selector).scrollIntoViewIfNeeded();
     expect((await audit(page)).violations, selector).toEqual([]);
     await page.screenshot({ path: info.outputPath(`dark-${selector.replace(/[^a-z0-9-]/gi, "")}.png`) });
   }
   await page.getByRole("button", { name: "Reading settings", exact: true }).click();
   await page.getByRole("checkbox", { name: "Background texture", exact: true }).uncheck();
-  await expect(page.locator(".support-surface")).toHaveCSS("box-shadow", "none");
+  await expect(page.locator(".home-building .copy-panel").first()).toHaveCSS("box-shadow", "none");
   for (const font of ["Open Sans", "Arial", "Verdana", "Atkinson Hyperlegible", "OpenDyslexic"]) {
     await page.getByRole("combobox", { name: "Font family", exact: true }).selectOption(font);
     await page.evaluate(() => document.fonts.ready);
@@ -89,7 +89,7 @@ test("dark materials retain contrast across four backgrounds, textures and spaci
   await setDarkMode(page, true);
   await page.emulateMedia({ forcedColors: "active" });
   await expect(page.locator("body")).toHaveCSS("background-image", "none");
-  await expect(page.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
+  await expect(page.locator(".hero .hero-actions .button")).toHaveCSS("box-shadow", "none");
 });
 
 test("theme controls remain usable with Chromium forced darkening, blocked storage and no JavaScript", async ({ page, browser }, info) => {
@@ -109,7 +109,7 @@ test("theme controls remain usable with Chromium forced darkening, blocked stora
     await expect(tab.getByRole("button", { name: "Dark mode", exact: true })).toHaveCount(0);
     await expect(tab.locator("html")).toHaveCSS("color-scheme", "light only");
     await tab.locator(".invitation .button").click();
-    await expect(tab).toHaveURL(/\/contact$/);
+    await expect(tab).toHaveURL(/\/membership$/);
   } finally { await native.close(); }
   await cdp.send("Emulation.setAutoDarkModeOverride", { enabled: false });
   await page.addInitScript(() => Object.defineProperty(window,"localStorage",{get(){throw new Error("Storage denied");}}));
@@ -124,7 +124,7 @@ test("all dark public routes pass rendered accessibility", async ({ page }, info
   test.skip(info.project.name !== "desktop", "Shared routes audited once; homepage/preferences covered in every viewport.");
   await ready(page);
   await setDarkMode(page, true);
-  for (const route of ["/", "/about", "/what-we-do", "/our-approach", "/values", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
+  for (const route of ["/", "/about", "/our-story", "/founders-message", "/paths-to-belonging", "/what-we-do", "/our-approach", "/values", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
     await page.goto(route);
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
     expect((await audit(page)).violations, route).toEqual([]);

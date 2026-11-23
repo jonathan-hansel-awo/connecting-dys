@@ -43,16 +43,19 @@ export function ParagraphPanels({ children, tone = "blue" }: { children: ReactNo
   return <>{groups.map((group, i) => <div className={`copy-panel panel-${toneAt(tone, i)}`} key={i}>{group}</div>)}</>;
 }
 
-export function SourcePanel({ source, level = 2, tone = "blue", id, children }: {
-  source: string; level?: 1 | 2 | 3; tone?: string; id?: string; children?: ReactNode;
+export function SourcePanel({ source, level = 2, tone = "blue", id, children, artwork }: {
+  source: string; level?: 1 | 2 | 3; tone?: string; id?: string; children?: ReactNode; artwork?: ReactNode;
 }) {
   const section = sourceCopy[source];
   const headingId = id || `source-${source}`;
   return <section className="source-section" data-source-id={source} aria-labelledby={headingId}>
-    {paragraphGroups(section.blocks).map((group, i) => <div className={`copy-panel panel-${toneAt(tone, i)}`} key={i}>
-      {i === 0 && createElement(`h${level}`, { id: headingId }, section.title)}
-      <SourceBlocks blocks={group} headingLevel={level + 1} />
-    </div>)}
+    {paragraphGroups(section.blocks).map((group, i) => {
+      const panel = <div className={`copy-panel panel-${toneAt(tone, i)}`} key={i}>
+        {i === 0 && createElement(`h${level}`, { id: headingId }, section.title)}
+        <SourceBlocks blocks={group} headingLevel={level + 1} />
+      </div>;
+      return i === 0 && artwork ? <div className="illustrated-source-header" key={i}>{panel}<div className="editorial-art">{artwork}</div></div> : panel;
+    })}
     {section.table && <div className={`copy-panel panel-${tone}`}><div className="retention-scroll" role="region" aria-label={section.title} tabIndex={0}>
       <table className="retention-table"><thead><tr>{section.table[0].map(cell => <th scope="col" key={cell}>{cell}</th>)}</tr></thead>
         <tbody>{section.table.slice(1).map(row => <tr key={row[0]}><th scope="row">{row[0]}</th>{row.slice(1).map((cell, i) => <td key={i}>{cell}</td>)}</tr>)}</tbody>

@@ -8,6 +8,7 @@ export function createFinishMotion(desktop: boolean, tall: boolean) {
     [".support-surface", ".support-links", "support-arrival"],
     [".about-frame-edge", ".about-logo-frame", "about-frame"],
   ]) {
+    if (!document.querySelector(target) || !document.querySelector(trigger)) continue;
     gsap.fromTo(target, { opacity: 0.35 }, {
       opacity: 1, ease: "none",
       scrollTrigger: {

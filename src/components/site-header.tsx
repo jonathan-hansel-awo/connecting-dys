@@ -1,17 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ReadingSettings } from "./reading-settings";
-import { MobileNavigation } from "./mobile-navigation";
+import { SiteNavigation } from "./site-navigation";
 import { brand } from "@/content/site";
 
-const links = [
-  ["/about", "About us"],
-  ["/our-story", "Our story"],
-  ["/what-we-do", "What we do"],
-  ["/#explore", "Explore DYS"],
-  ["/support", "Find support"],
-  ["/contact", "Get in touch"],
-];
 export function SiteHeader() {
   return (
     <>
@@ -30,16 +22,7 @@ export function SiteHeader() {
             Connecting <b>Dys</b>
           </span>
         </Link>
-        <nav className="desktop-nav" aria-label="Main navigation">
-          {links.map(([href, label]) => (
-            <Link key={href} href={href}>
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <div className="header-controls">
-          <MobileNavigation links={links} />
-        </div>
+        <SiteNavigation />
       </header>
       <div className="reading-toolbar wrap" aria-label="Reading preferences">
         <ReadingSettings />

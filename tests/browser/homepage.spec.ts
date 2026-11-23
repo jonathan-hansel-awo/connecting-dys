@@ -1,7 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const scenes = [".hero", "#recognition", "#explore", "#community", ".support", ".about-home", ".invitation", ".site-footer"];
+const scenes = [".hero", ".home-principles", "#recognition", ".home-building", ".home-approach", ".invitation", ".site-footer"];
 const fonts = ["Open Sans", "Arial", "Verdana", "Atkinson Hyperlegible", "OpenDyslexic"];
 const backgrounds = ["Cream", "White", "Soft blue", "Soft peach"];
 const tags = ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"];
@@ -20,12 +20,7 @@ async function staticArtwork(page: Page) {
   await expect(page.locator(".pin-spacer")).toHaveCount(0);
   await expect(page.locator("html")).not.toHaveClass(/\blenis\b/);
   await expect(page.locator(".recognition-photo")).toHaveCSS("transform", "none");
-  const words = page.locator(".word-drift").first();
-  await expect(words).toHaveCSS("animation-name", "none");
-  const before = await words.evaluate((el) => getComputedStyle(el).transform);
-  await page.evaluate(() => window.scrollTo(0, document.querySelector("#community")!.getBoundingClientRect().top + scrollY));
-  await settled(page);
-  await expect(words).toHaveCSS("transform", before);
+
 }
 
 test("chapter screenshots, overflow, console and rendered accessibility", async ({ page }, info) => {
@@ -69,7 +64,7 @@ test("all fonts/backgrounds, maximum spacing, persistence, reset and modal focus
       await noPageOverflow(page);
       await expect.poll(() => dialog.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1);
       if ((page.viewportSize()?.width || 0) <= 1000) {
-        const gap = await page.evaluate(() => document.querySelector(".recognition-copy")!.getBoundingClientRect().top - document.querySelector(".recognition-art")!.getBoundingClientRect().bottom);
+        const gap = await page.evaluate(() => document.querySelector(".recognition-copy")!.getBoundingClientRect().top - document.querySelector(".recognition-figure")!.getBoundingClientRect().bottom);
         expect(gap).toBeGreaterThan(0);
       }
     }
@@ -96,39 +91,16 @@ test("all fonts/backgrounds, maximum spacing, persistence, reset and modal focus
   await expect(page.locator("html")).toHaveAttribute("data-spacious", "false");
 });
 
-test("native skip/recognition anchors, menu and route history", async ({ page }) => {
-  await page.goto("/");
-  await settled(page);
+test("skip link, story navigation and browser history remain usable", async ({ page }) => {
+  await page.goto("/"); await settled(page);
   await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Skip to main content" })).toBeFocused();
-  await page.keyboard.press("Enter");
-  await expect(page.locator("main")).toBeFocused();
-  await page.getByRole("link", { name: "Find your own way through" }).click();
-  await expect(page).toHaveURL(/#recognition$/);
-  await settled(page);
-  const visibleAnchor = await page.evaluate(() => document.querySelector("#recognition")!.getBoundingClientRect().top >= document.querySelector(".site-header")!.getBoundingClientRect().bottom - 1);
-  expect(visibleAnchor).toBe(true);
-  const summary = page.locator(".mobile-nav summary");
-  if (await summary.isVisible()) {
-    await summary.click();
-    await expect(page.locator(".mobile-nav")).toHaveAttribute("open", "");
-    await summary.press("Escape");
-    await expect(summary).toBeFocused();
-    await expect(page.locator(".mobile-nav")).not.toHaveAttribute("open");
-  }
-  await page.locator('.difference-row[href="/dyslexia"]').click();
-  await expect(page).toHaveURL(/\/dyslexia$/);
-  await expect(page.getByRole("heading", { name: "Dyslexia", exact: true, level: 1 })).toBeVisible();
-  // Wait for the route commit/title, not only streamed/retained headings.
-  await expect(page).toHaveTitle("Dyslexia | Connecting Dys");
-  await page.goBack();
-  await expect(page).toHaveURL(/\/#recognition$/);
-  await expect(page.locator("#explore")).toBeVisible();
-  await page.goForward();
-  await expect(page.getByRole("heading", { name: "Dyslexia", exact: true, level: 1 })).toBeVisible();
-  await page.goBack();
-  await expect(page).toHaveURL(/\/#recognition$/);
-  await expect(page.locator("#explore")).toBeVisible();
+  await page.keyboard.press("Enter"); await expect(page.locator("main")).toBeFocused();
+  await page.getByRole("link", { name: "Read our story", exact: true }).click();
+  await expect(page).toHaveURL(/\/our-story$/);
+  await expect(page.locator("main h1")).toHaveText("Our Story");
+  await page.goBack(); await expect(page.locator(".home-principles")).toBeVisible();
+  await page.goForward(); await expect(page).toHaveTitle("Our Story | Connecting Dys");
   await page.getByRole("link", { name: "Connecting Dys — home", exact: true }).click();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
 });
@@ -152,7 +124,7 @@ test("site and OS reduced motion tear down animation; no-JS content remains usab
     await native.goto("/");
     for (const selector of scenes) await expect(native.locator(selector)).toBeVisible();
     await expect(native.locator(".pin-spacer")).toHaveCount(0);
-    await native.locator('.difference-row[href="/dysgraphia"]').click();
+    await native.getByRole('navigation', { name: 'Learning differences', exact: true }).getByRole('link', { name: 'Dysgraphia', exact: true }).click();
     await expect(native.locator("h1")).toHaveText("Dysgraphia");
   } finally {
     await context.close();
@@ -161,7 +133,7 @@ test("site and OS reduced motion tear down animation; no-JS content remains usab
 
 test("all public routes return content and pass rendered axe", async ({ page }, info) => {
   test.skip(info.project.name !== "desktop", "Shared routes audited once at desktop; homepage reflow covered per viewport.");
-  for (const route of ["/", "/about", "/what-we-do", "/our-approach", "/values", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
+  for (const route of ["/", "/about", "/our-story", "/founders-message", "/paths-to-belonging", "/what-we-do", "/our-approach", "/values", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
     await expect(page.locator("main h1")).toHaveCount(1);
@@ -177,7 +149,7 @@ test("texture toggles every surface, persists with reading choices and resets", 
   await trigger.click();
   const texture = page.getByRole("checkbox", { name: "Background texture", exact: true });
   await expect(texture).toBeChecked();
-  const surfaces = "body,.hero,#recognition,#explore,#community,.support,.about-home,.invitation,.site-footer,.reading-dialog,[data-paths-section]";
+  const surfaces = "body,.hero,#recognition,.invitation,.site-footer,.reading-dialog";
   for (const enabled of [true, false]) {
     await texture.setChecked(enabled);
     await settled(page);
@@ -189,7 +161,7 @@ test("texture toggles every surface, persists with reading choices and resets", 
         const state = await page.evaluate((selector) => ({
           backgrounds: [...document.querySelectorAll(selector)].map((el) => getComputedStyle(el).backgroundImage),
           body: getComputedStyle(document.body).backgroundColor,
-          connection: getComputedStyle(document.querySelector("#community")!).backgroundColor,
+          connection: getComputedStyle(document.querySelector("#recognition")!).backgroundColor,
           textShadow: getComputedStyle(document.querySelector("h1")!).textShadow,
         }), surfaces);
         for (const [index, image] of state.backgrounds.entries()) expect(image.includes("fine-paper.svg"), `${surfaces.split(",")[index]} grain`).toBe(enabled);
@@ -220,7 +192,6 @@ test("forced colours flattens texture/relief and tears down motion; no-JS stays 
   await settled(page);
   await staticArtwork(page);
   await expect(page.locator("body")).toHaveCSS("background-image", "none");
-  await expect(page.locator(".hero-orbit")).toHaveCSS("box-shadow", "none");
   await expect(page.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
   await page.emulateMedia({ forcedColors: "none" });
   await expect(page.locator("body")).toHaveCSS("background-image", /fine-paper\.svg/);

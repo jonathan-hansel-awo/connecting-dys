@@ -1,5 +1,9 @@
 import { BackgroundDoodles } from "@/components/background-doodles";
 import Link from "next/link";
+import Image from "next/image";
+import { BridgeArtwork } from "@/components/bridge-artwork";
+import { CommunityArtwork } from "@/components/story-art";
+import { brand } from "@/content/site";
 import { organisationPages, type OrganisationSlug } from "@/content/organisation";
 import { SourcePanel, SourcePanels } from "@/components/source-panel";
 
@@ -7,20 +11,20 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
   const page = organisationPages[slug];
   return <main id="main-content" tabIndex={-1} className="organisation-page wrap">
     <Link href="/" className="breadcrumb">Back to home</Link>
-    <nav className="organisation-nav" aria-label="About Connecting Dys">
-      {Object.entries(organisationPages).map(([key, item]) => <Link key={key} href={`/${key}`} aria-current={slug === key ? "page" : undefined}>{item.label}</Link>)}
-    </nav>
-    {slug === "about" ? <header className="copy-panel panel-blue"><h1>About Us</h1></header> : <SourcePanel source={page.source} level={1} tone="blue" />}
+    {slug === "about" ? <header className="editorial-heading"><div><p className="eyebrow">Connecting DYS CIC</p><h1>About Us</h1><p>Why we exist, and the community we are building.</p></div><figure className="editorial-brand"><Image src={brand.logo} alt="Connecting Dys — A home for every DYS mind. The approved embracing-figures logo." width={1536} height={1024} sizes="(max-width: 760px) 90vw, 42vw" /></figure></header> : <SourcePanel source={page.source} level={1} tone="blue" artwork={
+      slug === "our-story" ? <figure className="editorial-photo"><Image src="/images/community-reading.webp" alt="Five people sharing a table with books." width={960} height={640} sizes="(max-width: 760px) 90vw, 42vw" /><figcaption>Photo provided by Connecting Dys. Background edited for privacy.</figcaption></figure> :
+      slug === "values" ? <BridgeArtwork /> :
+      slug === "founders-message" ? <figure className="founder-embrace"><Image src={brand.symbol} alt="Two embracing figures inside a heart, the Connecting Dys symbol." width={400} height={400} /><figcaption>Lived experience at the heart of Connecting Dys.</figcaption></figure> : <CommunityArtwork />
+    } />}
     {slug === "about" && <>
       <SourcePanels sources={["why"]} />
       <div id="mission-and-vision" className="copy-panels">
         <SourcePanel source="mission" tone="amber" />
-        <SourcePanel source="vision" tone="blue" />
+        <SourcePanel source="vision" tone="blue" artwork={<BridgeArtwork />} />
         <SourcePanel source="goal" tone="teal" />
       </div>
       <SourcePanels sources={["about-work"]} />
     </>}
-    {slug === "our-story" && <SourcePanels sources={["about-intro", "founder", "different", "purpose"]} />}
     {slug === "what-we-do" && <SourcePanels sources={["work-1", "work-2", "work-3", "work-4", "work-5", "work-6", "work-7", "work-8", "goal-young"]} />}
     {slug === "our-approach" && <SourcePanels sources={["how", "commitment", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"]} />}
     {slug === "values" && <SourcePanels sources={["value-B", "value-R", "value-I", "value-D", "value-G", "value-E"]} />}

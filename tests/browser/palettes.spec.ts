@@ -15,17 +15,13 @@ test("chapter palettes stay distinct across reading backgrounds and themes", asy
         const colour = (selector: string) => getComputedStyle(document.querySelector(selector)!).backgroundColor;
         return {
           reading: colour("body"),
-          lightSheets: [".hero", "#explore", ".support", ".invitation"].map(colour),
-          scenes: ["#recognition", ".about-home", ".site-footer"].map(colour),
-          community: colour("#community"),
-          chapter: colour(".connection-chapter"),
+          lightSheets: [".hero", ".invitation"].map(colour),
+          scenes: ["#recognition", ".site-footer"].map(colour),
           lip: colour(".recognition-sheet"),
         };
       });
       expect(colours.lightSheets.every(c => c === colours.reading)).toBe(true);
       expect(colours.scenes.every(c => c !== colours.reading)).toBe(true);
-      expect(colours.community).not.toBe(colours.reading);
-      expect(colours.chapter).toBe(colours.community);
       expect(colours.lip).toBe(colours.scenes[0]);
       const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
       expect(result.violations, `${dark ? "dark" : "light"} ${name}`).toEqual([]);

@@ -11,7 +11,7 @@ const gameChunks = fs.readdirSync(".next/static/chunks").filter((name) => name.e
 const gameChunk = (url: string) => gameChunks.some((chunk) => new URL(url).pathname.endsWith(`/${chunk}`));
 const control = (page: Page, name: string) => page.getByRole("button", { name, exact: true });
 async function play(page: Page) {
-  await page.goto("/");
+  await page.goto("/paths-to-belonging");
   await expect(control(page, "Restart chapter")).toBeEnabled();
   await page.locator("[data-paths-game]").scrollIntoViewIfNeeded();
 }
@@ -49,7 +49,7 @@ test("inline game keeps initial page position; keyboard completes all chapters a
   const errors: string[] = [];
   page.on("request", (request) => { if (gameChunk(request.url())) requests.push(request.url()); });
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/paths-to-belonging");
   await expect(control(page, "Restart chapter")).toBeEnabled();
   expect(await page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
   await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).not.toBeFocused();
@@ -260,7 +260,7 @@ test("no JavaScript leaves explanation, footer and contact routes available", as
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport, baseURL: info.project.use.baseURL });
   try {
     const page = await context.newPage();
-    await page.goto("/");
+    await page.goto("/paths-to-belonging");
     await expect(page.getByRole("heading", { name: "Paths to Belonging", exact: true })).toBeVisible();
     await expect(page.getByText(/The puzzle controls need JavaScript/)).toBeVisible();
     await expect(page.locator(".paths-world")).toBeVisible();
@@ -275,7 +275,7 @@ test("no JavaScript leaves explanation, footer and contact routes available", as
 
 test("failed game script leaves the section fallback and footer navigation usable", async ({ page }) => {
   await page.route("**/_next/static/chunks/*.js", (route) => gameChunk(route.request().url()) ? route.abort() : route.continue());
-  await page.goto("/");
+  await page.goto("/paths-to-belonging");
   await expect(page.getByRole("heading", { name: "The little journey isn't available right now", exact: true })).toBeVisible();
   expect(await page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
   await page.getByRole("link", { name: "Continue exploring", exact: true }).click();
@@ -291,7 +291,7 @@ test("a slow game script preserves the visible board and does not steal focus or
     if (gameChunk(route.request().url())) await held;
     await route.continue();
   });
-  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.goto("/paths-to-belonging", { waitUntil: "domcontentloaded" });
   try {
     await expect(page.locator(".paths-world")).toBeVisible();
     await expect(page.locator("#paths-piece-willow-bend")).toBeDisabled();

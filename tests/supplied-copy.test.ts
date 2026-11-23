@@ -8,9 +8,9 @@ import { backgrounds } from "../src/lib/preferences.ts";
 const fingerprints: Record<string, string> = JSON.parse(fs.readFileSync("tests/fixtures/supplied-copy-sha256.json", "utf8"));
 const policySources = JSON.parse(fs.readFileSync("src/content/policy-source-keys.json", "utf8"));
 const routeSources: Record<string, string[]> = {
-  index: ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who"],
   about: ["why", "mission", "vision", "goal", "about-work"],
-  "our-story": ["story", "about-intro", "founder", "different", "purpose"],
+  "our-story": ["story"],
+  "founders-message": ["founder"],
   "what-we-do": ["work-intro", ...Array.from({ length: 8 }, (_, i) => `work-${i + 1}`), "goal-young"],
   "our-approach": ["approach-intro", "how", "commitment", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"],
   values: ["values-summary", ...[..."BRIDGE"].map(letter => `value-${letter}`)],
@@ -46,7 +46,7 @@ function originalSourceText(panel: Element) {
 }
 
 
-test("all supplied editorial sections are reproduced completely on the intended pages", () => {
+test("full-length editorial and policy copy stays intact on its dedicated pages", () => {
   const seen = new Set<string>();
   for (const [route, sources] of Object.entries(routeSources)) {
     const dom = new JSDOM(fs.readFileSync(`.next/server/app/${route}.html`, "utf8"));
@@ -63,14 +63,11 @@ test("all supplied editorial sections are reproduced completely on the intended 
       seen.add(source);
     }
     assert.ok(doc.querySelector("main .copy-panel"), `${route}: missing reading panels`);
-    if (route === "index") {
-      assert.match(normalize([...doc.querySelectorAll(".invitation h2, .invitation p")].map(node => node.textContent).join(" ")), /Join us in creating something meaningful\. We are developing a lasting community built on trust, collaborative design, and collective ownership\./);
-      assert.ok(doc.querySelector("footer")!.textContent!.includes("Connecting DYS A community where every DYS mind feels at home."));
-    }
     dom.window.close();
   }
-  // These two source labels are editorial placement instructions; their body wording is checked above.
-  assert.deepEqual(Object.keys(fingerprints).filter(key => !seen.has(key)), ["home-invitation", "home-footer"]);
+  // Marie requested shorter home summaries and removal of the repeated About introduction.
+  const summarised = ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who", "home-invitation", "home-footer", "about-intro", "different", "purpose"];
+  assert.deepEqual(Object.keys(fingerprints).filter(key => !seen.has(key)).sort(), summarised.sort());
 });
 
 function declarations(body: string) {

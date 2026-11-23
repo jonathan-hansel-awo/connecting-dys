@@ -13,6 +13,8 @@ const routes = [
   "",
   "about",
   "our-story",
+  "founders-message",
+  "paths-to-belonging",
   "what-we-do",
   "our-approach",
   "values",
@@ -55,7 +57,7 @@ test("approved logo is byte-for-byte unchanged", () => {
 });
 
 test("inline journey exposes its first board before hydration and keeps the footer available", () => {
-  const dom = page();
+  const dom = page("paths-to-belonging");
   const section = dom.window.document.querySelector("[data-paths-section]")!;
   assert.ok(section.textContent?.includes("Three short chapters"));
   assert.ok(section.querySelector("noscript")?.textContent?.includes("need JavaScript"));
@@ -66,46 +68,53 @@ test("inline journey exposes its first board before hydration and keeps the foot
   dom.window.close();
 });
 
-test("homepage scene contracts preserve order, decorative scope and direct navigation", () => {
-  const dom = page();
-  const doc = dom.window.document;
-  const sections = [...doc.querySelectorAll("main > section")];
-  assert.deepEqual(
-    sections.map((section) => section.getAttribute("aria-labelledby")),
-    ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title"],
-  );
-  for (const selector of [".recognition-media .recognition-photo", ".connection-chapters", "#community [data-paths-section]"]) {
-    assert.equal(doc.querySelectorAll(selector).length, 1, selector);
-  }
-  assert.equal(doc.querySelectorAll(".word-cloud, .word-drift, .word-cloud-toggle, .connection-visual").length, 0, "the animated word section is removed");
-  assert.equal(doc.querySelectorAll("[data-paths-section]").length, 1, "only one game is rendered");
-  assert.ok(doc.querySelector("#community[data-has-interactive-journey] .connection-layout > [data-paths-section]"));
-  assert.equal(doc.querySelector("main > [data-paths-section]"), null, "the game is no longer above the footer");
-  assert.equal(doc.querySelectorAll(".art-landscape").length, 0);
-  assert.equal(doc.querySelectorAll(".connection-chapters > article").length, 3);
-  assert.equal(doc.querySelectorAll(".connection-chapter .chapter-path[pathLength='1']").length, 3);
-  assert.equal(doc.querySelectorAll(".connection-trail[aria-hidden='true']").length, 3);
-  assert.deepEqual(
-    [...doc.querySelectorAll(".difference-row")].map((a) => a.getAttribute("href")),
-    ["/dyspraxia", "/dyscalculia", "/dysgraphia", "/dyslexia"],
-  );
+test("homepage stays brief, illustrated and free of detailed topic/story duplication", () => {
+  const dom = page(); const doc = dom.window.document;
+  assert.deepEqual([...doc.querySelectorAll("main > section")].map(s => s.getAttribute("aria-labelledby")),
+    ["hero-title", "stand-title", "recognition-title", "support-title", "approach-title", "invitation-title"]);
+  assert.equal(doc.querySelectorAll("main .difference-row, main [data-paths-section], main [data-source-id], main .about-home").length, 0);
+  assert.equal(doc.querySelectorAll(".hero-copy .copy-panel").length, 0, "the welcome is an open banner");
+  assert.equal(doc.querySelectorAll(".hero-actions a").length, 4);
+  assert.equal(doc.querySelectorAll(".hero-dys-embrace img, .recognition-photo, .home-approach .bridge-artwork").length, 3);
+  assert.equal(doc.querySelectorAll(".principle-list li").length, 4);
+  const words = doc.querySelector("main")!.textContent!.trim().split(/\s+/).length;
+  assert.ok(words < 400, `homepage has ${words} words`);
   assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Background edited for privacy"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
   assert.equal(doc.querySelectorAll('.reading-toolbar .settings-trigger[aria-haspopup="dialog"]').length, 1);
-  assert.equal(doc.querySelectorAll('.reading-toolbar .theme-trigger').length, 0);
   assert.equal(doc.querySelectorAll('dialog input[type="checkbox"]').length, 3);
-  assert.equal(doc.querySelectorAll('.hero-orbit, .hero-path-art, .hero-path-nodes, .hero .status-dot').length, 0, "old curves and dots cannot cross the supplied hero artwork");
-  const sheet = doc.querySelector('#recognition > [data-recognition-sheet][aria-hidden="true"]');
-  assert.ok(sheet, "paint lip belongs to the real recognition anchor");
-  assert.equal(sheet.querySelectorAll("a,button,input,[tabindex],img").length, 0);
-  assert.equal(doc.querySelectorAll("[data-welcome-scene] .hero-dys-embrace img").length, 1);
-  assert.equal(doc.querySelectorAll(".hero-dys-embrace svg, #explore .heart-petal").length, 0, "the supplied PNG artwork replaces the recreations");
-  assert.equal(doc.querySelectorAll("#explore .dys-hearts img").length, 1);
-  assert.equal(doc.querySelectorAll("#explore .dys-heart-links a").length, 4, "accessible topic links sit beside the original illustration");
-  assert.equal(doc.querySelectorAll("#explore .discovery-waypoint[aria-hidden='true']").length, 4);
-  assert.equal(doc.querySelectorAll("#explore .discovery-path[pathLength='1']").length, 4);
-  assert.equal(doc.querySelectorAll("#explore .difference-art-drift").length, 4);
   assert.equal(doc.querySelectorAll(".hero-recess-shape").length, 2);
+  dom.window.close();
+});
+
+test("story and founder message stand alone; all four topic pages have local explanations", () => {
+  for (const [route, source] of [["our-story", "story"], ["founders-message", "founder"]]) {
+    const dom = page(route);
+    assert.deepEqual([...dom.window.document.querySelectorAll("main [data-source-id]")].map(s => s.getAttribute("data-source-id")), [source]);
+    assert.ok(dom.window.document.querySelector("main .editorial-art img"));
+    dom.window.close();
+  }
+  for (const route of ["dyspraxia", "dyscalculia", "dysgraphia", "dyslexia"]) {
+    const dom = page(route); const doc = dom.window.document;
+    assert.ok(doc.querySelector(".topic-art svg"));
+    assert.ok(doc.querySelector("#difference-about"));
+    assert.equal(doc.querySelectorAll(".difference-experiences li").length, 3);
+    assert.equal(doc.querySelectorAll('main a[href*="base44"]').length, 0);
+    dom.window.close();
+  }
+});
+
+test("desktop and mobile navigation expose the same grouped destinations without JavaScript", () => {
+  const dom = page(); const doc = dom.window.document;
+  const desktop = doc.querySelector('nav[aria-label="Main navigation"]')!;
+  const mobile = doc.querySelector('nav[aria-label="Mobile navigation"]')!;
+  for (const nav of [desktop, mobile]) {
+    assert.deepEqual([...nav.querySelectorAll("summary")].map(n => n.textContent), ["About", "Explore DYS", "Information", "Get involved"]);
+    assert.ok(nav.querySelector('a[href="/founders-message"]'));
+    assert.ok(nav.querySelector('a[href="/our-story"]'));
+    assert.equal(nav.querySelectorAll('.nav-group:nth-of-type(2) a').length, 4);
+  }
+  assert.deepEqual([...desktop.querySelectorAll("a")].map(a => a.getAttribute("href")), [...mobile.querySelectorAll("a")].map(a => a.getAttribute("href")));
   dom.window.close();
 });
 

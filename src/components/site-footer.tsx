@@ -17,12 +17,13 @@ export function SiteFooter() {
         <nav aria-label="Footer navigation">
           <Link href="/about">About us</Link>
           <Link href="/our-story">Our story</Link>
+          <Link href="/founders-message">Founder’s message</Link>
           <Link href="/what-we-do">What we do</Link>
           <Link href="/our-approach">Our approach</Link>
           <Link href="/values">Our values</Link>
           <Link href="/support">Support & resources</Link>
           <Link href="/get-involved">Get involved</Link>
-          <Link href="/membership">Membership interest</Link>
+          <Link href="/membership">Register your interest</Link>
           <Link href="/contact">Contact</Link>
         </nav>
         <nav aria-label="Learning differences">

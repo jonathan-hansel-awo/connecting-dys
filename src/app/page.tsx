@@ -1,81 +1,70 @@
-import { BackgroundDoodles } from "@/components/background-doodles";
 import Image from "next/image";
 import Link from "next/link";
-import { brand, connectionChapters, differences } from "@/content/site";
-import { DifferenceArtwork } from "@/components/story-art";
+import { Heart, Handshake, Users, Fingerprint } from "lucide-react";
+import { BackgroundDoodles } from "@/components/background-doodles";
 import { HeroDysEmbrace } from "@/components/hero-dys-embrace";
-import { DysConnections } from "@/components/dys-connections";
 import { HomeStoryMotion } from "@/components/home-story-motion";
-import { ConnectionTrail } from "@/components/connection-trail";
-import { DiscoveryTrail } from "@/components/discovery-trail";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
+import { BridgeArtwork } from "@/components/bridge-artwork";
 import { FinalePath } from "@/components/finale-path";
-import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
-import { SourcePanel } from "@/components/source-panel";
+
+const principles = [
+  { icon: Users, text: "Community over isolation" },
+  { icon: Heart, text: "Lived experience over assumptions" },
+  { icon: Handshake, text: "Inclusion over exclusion" },
+  { icon: Fingerprint, text: "Strengths over stigma" },
+];
 
 export default function HomePage() {
-  return <main id="main-content" tabIndex={-1} data-home-story>
+  return <main id="main-content" tabIndex={-1} data-home-story className="calm-home">
     <HomeStoryMotion />
     <section className="hero wrap surface-paper" aria-labelledby="hero-title" data-welcome-scene>
       <div className="section-backdrop" aria-hidden="true" />
-      <div className="hero-copy source-section">
-        <div className="copy-panel panel-blue">
+      <div className="hero-copy">
+        <p className="eyebrow">Connecting DYS CIC</p>
         <h1 id="hero-title">A home for<br />every <span className="dys-word">DYS</span> mind.</h1>
-        </div>
-        <SourcePanel source="home-intro" tone="amber" />
-        <div className="hero-actions copy-panel panel-cream"><Link href="/membership" className="button">Join Our Community</Link><Link href="/get-involved" className="text-link">Work With Us</Link></div>
+        <p className="hero-intro">Building community and connection for teenagers, young adults and families affected by dyspraxia, dyscalculia, dysgraphia and dyslexia.</p>
+        <div className="hero-actions"><Link href="/membership" className="button">Join Our Community</Link><Link href="/get-involved" className="text-link">Work With Us</Link></div>
       </div>
-      <div className="hero-composition">
-        <HeroTransitionArt />
-        <div className="hero-note note-top surface-raised">Your mind is at home here.</div>
-        <div className="logo-stage"><HeroDysEmbrace /><div className="hero-lockup"><span className="hero-wordmark">Connecting Dys</span><span className="hero-tagline">{brand.tagline}</span></div></div>
-      </div>
-      <div className="hero-bottom copy-panel panel-cream"><a href="#recognition">Who We Are</a><span>Connecting DYS CIC exists so no one has to navigate their DYS journey alone.</span></div>
+      <div className="hero-composition"><HeroTransitionArt /><div className="hero-note note-top surface-raised">Your mind is at home here.</div><div className="logo-stage"><HeroDysEmbrace /><div className="hero-lockup"><span className="hero-wordmark">Connecting Dys</span></div></div></div>
+    </section>
+
+    <section className="home-principles wrap" aria-labelledby="stand-title">
+      <div className="section-backdrop" aria-hidden="true" />
+      <h2 id="stand-title">What we stand for</h2>
+      <p className="section-intro">A community where DYS differences are recognised, understood and valued.</p>
+      <ul className="principle-list">{principles.map(({ icon: Icon, text }) => <li key={text}><Icon size={36} strokeWidth={1.5} aria-hidden="true" /><h3>{text}</h3></li>)}</ul>
+      <Link href="/values" className="text-link">Our BRIDGE values</Link>
     </section>
 
     <section id="recognition" className="recognition surface-scene surface-panel" aria-labelledby="recognition-title">
       <div className="recognition-sheet" data-recognition-sheet aria-hidden="true" />
       <div className="wrap recognition-grid">
-        <div className="recognition-art"><figure className="recognition-figure"><div className="recognition-media surface-inset"><Image src="/images/community-reading.webp" alt="Five people sitting together around a table with books." fill sizes="(max-width: 1000px) 90vw, 45vw" className="recognition-photo" /></div><figcaption>Photo provided by Connecting Dys. Background edited for privacy.</figcaption></figure></div>
-        <div className="recognition-copy"><SourcePanel source="home-stand" id="recognition-title" tone="blue"><Link href="/values" className="text-link">Learn About Our Values</Link></SourcePanel></div>
+        <figure className="recognition-figure"><div className="recognition-media surface-inset"><Image src="/images/community-reading.webp" alt="Five people sitting together around a table with books." fill sizes="(max-width: 1000px) 90vw, 45vw" className="recognition-photo" /></div><figcaption>Photo provided by Connecting Dys. Background edited for privacy.</figcaption></figure>
+        <div className="recognition-copy"><p className="eyebrow">Connection starts with people</p><h2 id="recognition-title">Real people.<br />Real community.</h2><p>A space to connect with people who understand. Built on lived experience, shared understanding and a sense of belonging.</p><Link href="/our-story" className="text-link">Read our story</Link></div>
       </div>
     </section>
 
-    <section id="explore" className="discovery wrap surface-quiet" aria-labelledby="explore-title">
+    <section className="home-building wrap" aria-labelledby="support-title">
       <div className="section-backdrop" aria-hidden="true" />
-      <SourcePanel source="home-conditions" id="explore-title" tone="amber" />
-      <div className="difference-list">{differences.map((d, index) => <Link href={`/${d.slug}`} className={`difference-row copy-panel panel-${d.theme === "amber" ? "amber" : d.theme === "coral" ? "coral" : "blue"} theme-${d.theme}`} key={d.slug}>
-        <DiscoveryTrail /><span className="row-number" aria-hidden="true">0{index + 1}</span><DifferenceArtwork index={d.artIndex} /><div className="difference-name"><h3>{d.name}</h3></div><p>{d.description}</p>
-      </Link>)}</div>
-      <DysConnections placement="home" />
-    </section>
-
-    <section id="community" className="connection surface-soft surface-panel" aria-labelledby="community-title" data-has-interactive-journey>
-      <div className="wrap">
-        <div className="connection-heading"><SourcePanel source="home-approach" id="community-title" tone="teal" /></div>
-        <div className="connection-layout"><PathsToBelongingSection embedded /><div className="connection-chapters">{connectionChapters.map((chapter, index) => <article className="connection-chapter copy-panel panel-blue" key={chapter.number}>
-          <div className="chapter-wash" aria-hidden="true" /><ConnectionTrail index={index} /><span className="chapter-number">{chapter.number}</span><h3>{chapter.title}</h3><p>{chapter.text}</p>
-        </article>)}</div></div>
-        <div className="community-note copy-panel panel-cream"><p>We are not delivering full services yet.</p><Link className="text-link" href="/what-we-do">See What We are Building</Link></div>
+      <header><p className="eyebrow">Growing together</p><h2 id="support-title">What we do</h2><p>We are in our early stages, building the foundations for lasting, community-led support.</p></header>
+      <div className="building-columns">
+        <div className="copy-panel panel-blue"><h3>Right now</h3><ul><li>Bringing young people and families together</li><li>Listening to lived experiences</li><li>Raising awareness of all DYS conditions</li></ul></div>
+        <div className="copy-panel panel-amber"><h3>As we grow</h3><ul><li>Peer support spaces</li><li>Family and carer gatherings</li><li>Co-designed workshops and listening events</li></ul><p className="small">These are being developed, rather than full services available today.</p></div>
       </div>
+      <Link href="/what-we-do" className="text-link">See what we’re building</Link>
     </section>
 
-    <section className="support wrap surface-quiet" aria-labelledby="support-title">
+    <section className="home-approach wrap" aria-labelledby="approach-title">
       <div className="section-backdrop" aria-hidden="true" />
-      <SourcePanel source="home-work" id="support-title" tone="amber" />
-      <nav className="support-links copy-panel panel-blue" aria-label="Explore Connecting Dys"><Link href="/what-we-do">See What We are Building</Link><Link href="/support">Peer Support Spaces</Link><Link href="/get-involved">Get Involved</Link></nav>
-    </section>
-
-    <section className="about-home surface-scene surface-panel" aria-labelledby="about-title">
-      <div className="wrap about-layout"><div className="about-statement"><figure className="approved-logo"><div className="about-logo-frame"><div className="about-frame-edge" aria-hidden="true" /><Image className="approved-logo-image" src={brand.logo} alt="Connecting Dys — A home for every DYS mind. The original embracing-figures logo." width={1536} height={1024} sizes="(max-width: 1000px) 90vw, 45vw" /></div><figcaption>The embrace at the heart of Connecting Dys.</figcaption></figure></div>
-        <div className="about-copy"><SourcePanel source="home-who" id="about-title" tone="cream"><div className="about-caption"><Link href="/about">About Us</Link> · <Link href="/about#mission-and-vision">Our Mission &amp; Vision</Link> · <Link href="/values">Our Values</Link></div></SourcePanel></div>
-      </div>
+      <BridgeArtwork />
+      <div><p className="eyebrow">Our approach</p><h2 id="approach-title">Community first.</h2><p>Co-designed. Grounded in lived experience.</p><p>We listen, collaborate and build together, with you at the centre.</p><Link href="/our-approach" className="text-link">Discover our approach</Link></div>
     </section>
 
     <section className="invitation wrap surface-paper" aria-labelledby="invitation-title">
       <div className="section-backdrop" aria-hidden="true" /><div className="invitation-decoration" aria-hidden="true"><FinalePath /></div>
-      <div className="copy-panel panel-teal" ><h2 id="invitation-title">Join us in creating something meaningful.</h2><p>We are developing a lasting community built on trust, collaborative design, and collective ownership.</p><div className="hero-actions"><Link href="/membership" className="button">Register Your Interest</Link><Link href="/contact" className="text-link">Join Our Mailing List</Link><Link href="/get-involved" className="text-link">Get Involved</Link></div></div>
-      <a href="#main-content" className="back-top">Back to the beginning ↑</a>
+      <h2 id="invitation-title">Your mind is at home here.</h2><p>Help shape the community we’re building.</p><div className="hero-actions"><Link href="/membership" className="button">Register Your Interest</Link><Link href="/contact" className="text-link">Get in touch</Link></div>
     </section>
-  <BackgroundDoodles /></main>;
+    <BackgroundDoodles />
+  </main>;
 }

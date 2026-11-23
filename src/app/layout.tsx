@@ -20,6 +20,7 @@ import "../styles/policies.css";
 import "../styles/home-visuals.css";
 import "../styles/content-panels.css";
 import "../styles/background-doodles.css";
+import "../styles/editorial-layout.css";
 
 const openSans = localFont({
   src: [
