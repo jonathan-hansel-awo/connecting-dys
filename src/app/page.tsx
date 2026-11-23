@@ -1,3 +1,4 @@
+import { BackgroundDoodles } from "@/components/background-doodles";
 import Image from "next/image";
 import Link from "next/link";
 import { brand, connectionChapters, differences } from "@/content/site";
@@ -76,5 +77,5 @@ export default function HomePage() {
       <a href="#main-content" className="back-top">Back to the beginning ↑</a>
     </section>
     <PathsToBelongingSection />
-  </main>;
+  <BackgroundDoodles /></main>;
 }

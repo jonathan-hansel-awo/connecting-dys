@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { PREFERENCES_EVENT } from "@/lib/preferences";
 import { placeDoodles } from "@/lib/doodle-layout";
@@ -26,10 +26,12 @@ const protectedSelector = [
 
 export function BackgroundDoodles() {
   const pathname = usePathname();
+  const anchor = useRef<HTMLSpanElement>(null);
   useEffect(() => {
-    // Cached routes may remain hidden in the DOM; decorate only the visible page.
-    const main = Array.from(document.querySelectorAll<HTMLElement>("main"))
-      .find(element => element.getBoundingClientRect().width > 0);
+    // Bind to this page even while streaming/cache activation temporarily hides
+    // it. ResizeObserver then lays out the words when the surface becomes visible.
+    // A root-layout query could run before any visible main and never retry.
+    const main = anchor.current?.closest("main");
     if (!main || !pathname) return;
     const surfaces = main.matches("[data-home-story]")
       ? Array.from(main.querySelectorAll<HTMLElement>(":scope > section")) : [main];
@@ -119,5 +121,5 @@ export function BackgroundDoodles() {
       records.forEach(({ surface, layer }) => { layer.remove(); surface.removeAttribute("data-doodle-surface"); });
     };
   }, [pathname]);
-  return null;
+  return <span ref={anchor} hidden aria-hidden="true" data-doodle-anchor />;
 }

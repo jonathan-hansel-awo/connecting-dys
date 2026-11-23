@@ -125,6 +125,7 @@ test("production routes have complete semantic content without JavaScript", () =
     const dom = page(route);
     const doc = dom.window.document;
     assert.equal(doc.querySelectorAll("main").length, 1, route);
+    assert.equal(doc.querySelectorAll("main [data-doodle-anchor]").length, 1, `${route}: decoration must mount inside its own streamed page`);
     assert.equal(doc.querySelectorAll("h1").length, 1, route);
     assert.equal(doc.documentElement.lang, "en-GB", route);
     assert.ok(doc.title.includes("Connecting Dys"), route);

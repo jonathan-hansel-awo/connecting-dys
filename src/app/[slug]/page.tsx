@@ -1,3 +1,4 @@
+import { BackgroundDoodles } from "@/components/background-doodles";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -44,5 +45,5 @@ export default async function ReadingPage({ params }: { params: Promise<{ slug: 
       <section className="copy-panel panel-teal" aria-labelledby="reading-options"><h2 id="reading-options">Choose how you read</h2><p>Open Reading settings just below the navigation to choose Open Sans, Arial, Verdana, Atkinson Hyperlegible or OpenDyslexic. You can change text size, line spacing, letter spacing, background colour and texture, or choose dark mode.</p><p>Use Reduce decorative motion to turn off decorative scroll animation. Your device’s reduced-motion setting is always respected. Font preferences are personal; specialist fonts are options.</p><p>Reading preferences are saved in your browser’s local storage when you change them. Read our <Link href="/cookies">cookie information</Link>. To report a barrier, email <a href={`mailto:${brand.email}?subject=Accessibility%20Support`}>{brand.email}</a>.</p></section>
     </>}
     <nav className="article-links copy-panel panel-cream" aria-label="Keep exploring"><Link href="/support">Information &amp; Support</Link><Link href="/membership">Register Your Interest</Link><Link href="/contact">Contact Connecting DYS</Link></nav>
-  </main>;
+  <BackgroundDoodles /></main>;
 }

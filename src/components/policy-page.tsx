@@ -1,3 +1,4 @@
+import { BackgroundDoodles } from "@/components/background-doodles";
 import Link from "next/link";
 import { brand } from "@/content/site";
 import { policies } from "@/content/policies";
@@ -26,5 +27,5 @@ export function PolicyPage({ slug }: { slug: string }) {
       {slug === "safeguarding" && <SourcePanel source="confidentiality" tone="cream" />}
     </>}
     <nav className="article-links copy-panel panel-cream" aria-label="Related information"><Link href="/policies">All policies</Link><Link href="/contact">Contact Connecting Dys</Link><Link href="/data-retention">Data Retention Schedule</Link></nav>
-  </main>;
+  <BackgroundDoodles /></main>;
 }

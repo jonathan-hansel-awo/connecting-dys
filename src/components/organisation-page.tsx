@@ -1,3 +1,4 @@
+import { BackgroundDoodles } from "@/components/background-doodles";
 import Link from "next/link";
 import { organisationPages, type OrganisationSlug } from "@/content/organisation";
 import { SourcePanel, SourcePanels } from "@/components/source-panel";
@@ -23,5 +24,5 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
     {slug === "our-approach" && <SourcePanels sources={["approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"]} />}
     {slug === "values" && <SourcePanels sources={["value-B", "value-R", "value-I", "value-D", "value-G", "value-E"]} />}
     <nav className="article-links copy-panel panel-cream" aria-label="Keep exploring"><Link href="/membership">Register Your Interest</Link><Link href="/contact">Work With Us</Link><Link href="/values">Our Values</Link></nav>
-  </main>;
+  <BackgroundDoodles /></main>;
 }

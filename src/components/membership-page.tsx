@@ -1,3 +1,4 @@
+import { BackgroundDoodles } from "@/components/background-doodles";
 import Link from "next/link";
 import { brand } from "@/content/site";
 import { MembershipInterestForm } from "@/components/membership-interest-form";
@@ -10,5 +11,5 @@ export function MembershipPage() {
     <nav className="membership-type-links" aria-label="Choose your interest form"><a href="#young-people">Ages 13–17</a><a href="#young-adults">Ages 18–24</a></nav>
     <div className="membership-options"><MembershipInterestForm kind="young-people" /><MembershipInterestForm kind="young-adults" /></div>
     <section className="organisation-section copy-panel panel-teal" aria-labelledby="interest-privacy"><h2 id="interest-privacy">Your information, handled with care</h2><p>The form is used to respond to your interest and provide membership information. It does not sign you up to marketing. Read <Link href="/privacy">how we use personal information</Link> and our <Link href="/safeguarding">safeguarding guide</Link> before sending it.</p><p>Parents, carers, prospective volunteers and partners can <Link href="/contact">contact us directly</Link> about getting involved.</p></section>
-  </main>;
+  <BackgroundDoodles /></main>;
 }

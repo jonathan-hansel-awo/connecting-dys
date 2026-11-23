@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { BackgroundDoodles } from "@/components/background-doodles";
 import { CookieNotice } from "@/components/cookie-notice";
 import { preferenceBootstrap } from "@/lib/preferences";
 import "lenis/dist/lenis.css";
@@ -65,7 +64,6 @@ export default function RootLayout({
           <SiteHeader />
           <CookieNotice />
           {children}
-          <BackgroundDoodles />
           <SiteFooter />
         </SmoothScrollProvider>
       </body>

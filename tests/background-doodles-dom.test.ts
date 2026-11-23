@@ -9,13 +9,14 @@ import { doodleIntersects, rotatedDoodleSize } from "../src/lib/doodle-layout.ts
 
 test("actual background decoration protects foreground, responds to preferences and cleans up", async () => {
   const loader = registerTsx({ pathname: "/about" });
-  const dom = new JSDOM('<!doctype html><body><div id="root"></div><main class="reading-page"><section class="copy-panel"><h1>Original content</h1><p>A readable paragraph.</p><button>Get in touch</button></section><figure><img alt="Approved artwork"></figure></main></body>', { url: "https://connecting-dys.example/about" });
+  const dom = new JSDOM('<!doctype html><body><main class="reading-page"><section class="copy-panel"><h1>Original content</h1><p>A readable paragraph.</p><button>Get in touch</button></section><figure><img alt="Approved artwork"></figure><div id="root"></div></main></body>', { url: "https://connecting-dys.example/about" });
   const doc = dom.window.document;
   const frames = new Map<number, FrameRequestCallback>();
   let nextFrame = 0;
   let resizeCallback: () => void = () => {};
   let disconnected = false;
   let crowded = false;
+  let mainVisible = false;
   let width = 1000;
   const globals = {
     window: dom.window, document: doc, IS_REACT_ACT_ENVIRONMENT: true,
@@ -30,24 +31,29 @@ test("actual background decoration protects foreground, responds to preferences 
   function rect(x: number, y: number, w: number, h: number) { return { x, y, left: x, top: y, right: x + w, bottom: y + h, width: w, height: h, toJSON() {} } as DOMRect; }
   const prototype = dom.window.HTMLElement.prototype;
   prototype.getBoundingClientRect = function () {
-    if (this.matches("main")) return rect(100, 120, 800, 2000);
+    if (this.matches("main")) return mainVisible ? rect(100, 120, 800, 2000) : rect(100, 120, 0, 0);
     if (this.matches(".background-doodles")) return rect(0, 120, width, 2000);
     if (this.closest(".copy-panel")) return crowded ? rect(0, 120, width, 2000) : rect(100, 220, 800, 400);
     if (this.closest("figure")) return rect(280, 920, 440, 500);
     return rect(0, 0, 0, 0);
   };
-  Object.defineProperty(prototype, "offsetHeight", { configurable: true, get() { return this.matches(".background-doodle") ? parseFloat(this.style.fontSize) * 1.2 : this.matches("main") ? 2000 : 0; } });
+  Object.defineProperty(prototype, "offsetHeight", { configurable: true, get() { return this.matches(".background-doodle") ? parseFloat(this.style.fontSize) * 1.2 : this.matches("main") && mainVisible ? 2000 : 0; } });
   Object.defineProperty(prototype, "offsetWidth", { configurable: true, get() { return this.matches(".background-doodle") ? this.textContent.length * parseFloat(this.style.fontSize) * .5 : width; } });
   const { BackgroundDoodles } = await import("../src/components/background-doodles.tsx");
   const root = createRoot(doc.getElementById("root")!);
   async function flush() { await act(async () => { const pending = [...frames.values()]; frames.clear(); pending.forEach(callback => callback(0)); }); }
   const preference = async () => { dom.window.dispatchEvent(new dom.window.Event("connecting-dys:preferences")); await flush(); };
   try {
-    assert.equal(renderToStaticMarkup(React.createElement(BackgroundDoodles)), "", "no-JS/first paint has no unmeasured words");
+    const initial = renderToStaticMarkup(React.createElement(BackgroundDoodles));
+    assert.ok(initial.includes("data-doodle-anchor"));
+    assert.ok(!initial.includes("background-doodle"), "no-JS/first paint has no unmeasured words");
     await act(async () => root.render(React.createElement(BackgroundDoodles)));
     await flush();
     const layer = doc.querySelector<HTMLElement>(".background-doodles")!;
-    assert.ok(layer);
+    assert.ok(layer, "the page owns its decorator even before it becomes visible");
+    assert.equal(layer.style.visibility, "hidden");
+    assert.equal(layer.children.length, 0);
+    mainVisible = true; resizeCallback(); await flush();
     assert.equal(layer.getAttribute("aria-hidden"), "true");
     assert.equal(layer.inert, true);
     assert.equal(layer.querySelectorAll("a,button,input,select,[tabindex]").length, 0);
