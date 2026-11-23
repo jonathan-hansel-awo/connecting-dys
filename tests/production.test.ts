@@ -39,7 +39,7 @@ function page(route = "") {
   );
 }
 
-test("approved logo is byte-for-byte unchanged", () => {
+test("previous logo sources remain intact and the selected word-heart identity is used consistently", () => {
   const hash = createHash("sha256")
     .update(fs.readFileSync("public/brand/connecting_dys_logo.png"))
     .digest("hex");
@@ -54,10 +54,19 @@ test("approved logo is byte-for-byte unchanged", () => {
     "a0126d9aa517efc994eb72af77d2eea45d580e1ba85fb2d8d0fdcc7d64875e6f",
     "approved header/hero symbol adaptation is unchanged",
   );
+  const dom = page();
+  const doc = dom.window.document;
+  const logo = doc.querySelector(".brand-link img")!;
+  const hero = doc.querySelector(".hero-dys-embrace img")!;
+  assert.equal(new URL(logo.getAttribute("src")!, "https://example.com").searchParams.get("url"), "/images/dys-embrace-transparent.png");
+  assert.equal(new URL(hero.getAttribute("src")!, "https://example.com").searchParams.get("url"), "/images/dys-embrace-transparent.png");
+  assert.ok(doc.querySelector('link[rel="icon"]')?.getAttribute("href")?.includes("word-heart-favicon"));
+  dom.window.close();
+
 });
 
 test("inline journey exposes its first board before hydration and keeps the footer available", () => {
-  const dom = page("paths-to-belonging");
+  const dom = page();
   const section = dom.window.document.querySelector("[data-paths-section]")!;
   assert.ok(section.textContent?.includes("Three short chapters"));
   assert.ok(section.querySelector("noscript")?.textContent?.includes("need JavaScript"));
@@ -71,13 +80,16 @@ test("inline journey exposes its first board before hydration and keeps the foot
 test("homepage stays brief, illustrated and free of detailed topic/story duplication", () => {
   const dom = page(); const doc = dom.window.document;
   assert.deepEqual([...doc.querySelectorAll("main > section")].map(s => s.getAttribute("aria-labelledby")),
-    ["hero-title", "stand-title", "recognition-title", "support-title", "approach-title", "invitation-title"]);
-  assert.equal(doc.querySelectorAll("main .difference-row, main [data-paths-section], main [data-source-id], main .about-home").length, 0);
+    ["hero-title", "paths-title", "stand-title", "recognition-title", "support-title", "approach-title", "invitation-title"]);
+  assert.equal(doc.querySelectorAll("main .difference-row, main [data-source-id], main .about-home").length, 0);
   assert.equal(doc.querySelectorAll(".hero-copy .copy-panel").length, 0, "the welcome is an open banner");
   assert.equal(doc.querySelectorAll(".hero-actions a").length, 4);
   assert.equal(doc.querySelectorAll(".hero-dys-embrace img, .recognition-photo, .home-approach .bridge-artwork").length, 3);
   assert.equal(doc.querySelectorAll(".principle-list li").length, 4);
-  const words = doc.querySelector("main")!.textContent!.trim().split(/\s+/).length;
+  assert.equal(doc.querySelectorAll("main > [data-paths-section]").length, 1);
+  const copy = doc.querySelector("main")!.cloneNode(true) as Element;
+  copy.querySelector("[data-paths-section]")!.remove();
+  const words = copy.textContent!.trim().split(/\s+/).length;
   assert.ok(words < 400, `homepage has ${words} words`);
   assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Background edited for privacy"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);

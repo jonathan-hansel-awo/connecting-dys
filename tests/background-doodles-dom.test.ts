@@ -9,7 +9,7 @@ import { doodleIntersects, rotatedDoodleSize } from "../src/lib/doodle-layout.ts
 
 test("actual background decoration protects foreground, responds to preferences and cleans up", async () => {
   const loader = registerTsx({ pathname: "/about" });
-  const dom = new JSDOM('<!doctype html><body><main class="reading-page"><section class="copy-panel"><h1>Original content</h1><p>A readable paragraph.</p><button>Get in touch</button></section><figure><img alt="Approved artwork"></figure><div id="root"></div></main></body>', { url: "https://connecting-dys.example/about" });
+  const dom = new JSDOM('<!doctype html><body><main class="reading-page"><section class="copy-panel"><h1>Original content</h1><p>A readable paragraph.</p><button>Get in touch</button></section><figure><img alt="Approved artwork"></figure><ul class="plain-list"><li>Readable list outside a panel</li></ul><section class="home-approach"><div><p>First paragraph</p><p>Second paragraph</p></div></section><div id="root"></div></main></body>', { url: "https://connecting-dys.example/about" });
   const doc = dom.window.document;
   const frames = new Map<number, FrameRequestCallback>();
   let nextFrame = 0;
@@ -34,6 +34,8 @@ test("actual background decoration protects foreground, responds to preferences 
     if (this.matches("main")) return mainVisible ? rect(100, 120, 800, 2000) : rect(100, 120, 0, 0);
     if (this.matches(".background-doodles")) return rect(0, 120, width, 2000);
     if (this.closest(".copy-panel")) return crowded ? rect(0, 120, width, 2000) : rect(100, 220, 800, 400);
+    if (this.matches(".plain-list, .plain-list li")) return rect(100, 720, 800, 160);
+    if (this.matches(".home-approach > div, .home-approach p")) return rect(100, 1520, 800, 250);
     if (this.closest("figure")) return rect(280, 920, 440, 500);
     return rect(0, 0, 0, 0);
   };
@@ -59,11 +61,11 @@ test("actual background decoration protects foreground, responds to preferences 
     assert.equal(layer.querySelectorAll("a,button,input,select,[tabindex]").length, 0);
     assert.ok(layer.querySelectorAll("span:not([hidden])").length > 0);
     assert.equal(layer.style.visibility, "visible");
-    const foreground = [{ x: 100, y: 100, width: 800, height: 400 }, { x: 280, y: 800, width: 440, height: 500 }];
+    const foreground = [{ x: 100, y: 100, width: 800, height: 400 }, { x: 280, y: 800, width: 440, height: 500 }, { x: 100, y: 600, width: 800, height: 160 }, { x: 100, y: 1400, width: 800, height: 250 }];
     for (const word of layer.querySelectorAll<HTMLElement>("span:not([hidden])")) {
       const size = rotatedDoodleSize({ width: word.offsetWidth, height: word.offsetHeight, angle: parseFloat(word.style.getPropertyValue("--doodle-angle")) });
       const box = { x: parseFloat(word.style.left) - size.width / 2, y: parseFloat(word.style.top) - size.height / 2, ...size };
-      assert.ok(foreground.every(obstacle => !doodleIntersects(box, obstacle, 12)));
+      assert.ok(foreground.every(obstacle => !doodleIntersects(box, obstacle, 24)));
     }
     let clicks = 0;
     const button = doc.querySelector("button")!;

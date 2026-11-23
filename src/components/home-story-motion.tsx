@@ -104,7 +104,7 @@ export function HomeStoryMotion() {
     // fits after font loading, orientation and responsive layout changes.
     let geometry = "";
     const resized = () => {
-      const targets = [".hero", ".recognition-grid", ".site-header"];
+      const targets = [".hero", "[data-paths-section]", ".recognition-grid", ".site-header"];
       const next = [innerWidth, innerHeight, ...targets.flatMap((selector) => {
         const el = document.querySelector<HTMLElement>(selector);
         return [el?.offsetWidth || 0, el?.offsetHeight || 0];
@@ -114,7 +114,7 @@ export function HomeStoryMotion() {
     };
     resized();
     const observer = new ResizeObserver(resized);
-    for (const selector of [".hero", ".recognition-grid", ".site-header"]) {
+    for (const selector of [".hero", "[data-paths-section]", ".recognition-grid", ".site-header"]) {
       const element = document.querySelector(selector);
       if (element) observer.observe(element);
     }

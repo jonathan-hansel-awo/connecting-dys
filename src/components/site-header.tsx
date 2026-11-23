@@ -17,7 +17,7 @@ export function SiteHeader() {
           className="brand-link"
           aria-label="Connecting Dys — home"
         >
-          <Image src={brand.symbol} alt="" width={48} height={48} />
+          <Image src={brand.symbol} alt="" width={64} height={64} />
           <span>
             Connecting <b>Dys</b>
           </span>

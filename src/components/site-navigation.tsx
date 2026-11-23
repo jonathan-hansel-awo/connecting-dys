@@ -10,7 +10,7 @@ const groups = [
   { label: "About", links: [["/our-story", "Our story"], ["/about", "About us"], ["/founders-message", "Founder’s message"], ["/what-we-do", "What we do"], ["/our-approach", "Our approach"], ["/values", "Our BRIDGE values"]] },
   { label: "Explore DYS", links: differences.map(d => [`/${d.slug}`, d.name]) },
   { label: "Information", links: [["/support", "Information & support"], ["/policies", "Our policies"], ["/accessibility", "Accessibility & reading"]] },
-  { label: "Get involved", links: [["/membership", "Register your interest"], ["/get-involved", "Work with us"], ["/paths-to-belonging", "Paths to Belonging"]] },
+  { label: "Get involved", links: [["/membership", "Register your interest"], ["/get-involved", "Work with us"], ["/#paths-to-belonging", "Paths to Belonging"]] },
 ];
 
 // Native disclosures keep every destination usable before JavaScript loads.

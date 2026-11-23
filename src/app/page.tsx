@@ -6,6 +6,7 @@ import { HeroDysEmbrace } from "@/components/hero-dys-embrace";
 import { HomeStoryMotion } from "@/components/home-story-motion";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
 import { BridgeArtwork } from "@/components/bridge-artwork";
+import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
 import { FinalePath } from "@/components/finale-path";
 
 const principles = [
@@ -28,6 +29,8 @@ export default function HomePage() {
       </div>
       <div className="hero-composition"><HeroTransitionArt /><div className="hero-note note-top surface-raised">Your mind is at home here.</div><div className="logo-stage"><HeroDysEmbrace /><div className="hero-lockup"><span className="hero-wordmark">Connecting Dys</span></div></div></div>
     </section>
+
+    <PathsToBelongingSection />
 
     <section className="home-principles wrap" aria-labelledby="stand-title">
       <div className="section-backdrop" aria-hidden="true" />

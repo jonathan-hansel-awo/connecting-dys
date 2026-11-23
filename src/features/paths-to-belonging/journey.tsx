@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useReducer, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties } from "react";
 import { Heart, House, Sprout, UsersRound, RotateCw } from "lucide-react";
@@ -49,7 +50,9 @@ export default function PathsJourney() {
     <h3 ref={heading} tabIndex={-1}>{state.endingId ? "There's more than one way to belong." : "Thank you for exploring."}</h3>
     <p role="status">{state.endingId ? `Your connected composition: ${chapter.endings.find(({ id }) => id === state.endingId)!.name}.` : "You can try another arrangement or keep scrolling whenever you like."}</p>
     {state.endingId && <EndingComposition chapter={chapter} board={state.board} endingId={state.endingId} />}
+    <p className="paths-invitation">There’s a place for you beyond the puzzle, too. Help shape the community we’re building.</p>
     <div className="paths-actions">
+      <Link href="/membership" className="button">Register your interest</Link>
       <button type="button" className="button" disabled={!ready} onClick={() => act({ type: "replay" }, true)}>Replay journey</button>
     </div>
   </div>;

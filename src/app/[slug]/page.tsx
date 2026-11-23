@@ -7,6 +7,7 @@ import { organisationPages, type OrganisationSlug } from "@/content/organisation
 import { brand, differences } from "@/content/site";
 import { policies } from "@/content/policies";
 import { PolicyPage } from "@/components/policy-page";
+import { CommunityImage } from "@/components/community-image";
 import { DifferencePage } from "@/components/difference-page";
 import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
 import { MembershipPage } from "@/components/membership-page";
@@ -36,7 +37,7 @@ export default async function ReadingPage({ params }: { params: Promise<{ slug: 
   if (Object.hasOwn(organisationPages, slug)) return <OrganisationPage slug={slug as OrganisationSlug} />;
   return <main id="main-content" tabIndex={-1} className="reading-page wrap">
     <Link href="/" className="breadcrumb">Back to home</Link>
-    <header className="copy-panel panel-blue"><h1>{titles[slug]}</h1></header>
+    <header className={slug === "get-involved" || slug === "support" ? "editorial-heading" : "copy-panel panel-blue"}><h1>{titles[slug]}</h1>{(slug === "get-involved" || slug === "support") && <CommunityImage />}</header>
     {slug === "support" && <><SourcePanels sources={["support-peer", "support-family", "support-workshops", "support-forums"]} /><DysConnections /></>}
     {slug === "get-involved" && <><section className="copy-panel panel-amber" aria-labelledby="get-involved-title"><h2 id="get-involved-title">Join us in creating something meaningful.</h2><p>We are developing a lasting community built on trust, collaborative design, and collective ownership.</p><Link href="/membership" className="button">Register Your Interest</Link></section><SourcePanels sources={["who-join", "approach-intend"]} /></>}
     {slug === "contact" && <section className="source-section" aria-labelledby="email-title"><ParagraphPanels tone="amber"><h2 id="email-title">Email Connecting DYS</h2><p><a className="contact-email" href={`mailto:${brand.email}`}>{brand.email}</a></p><p>We are based in Nottingham, but our community is open to every DYS mind nationwide.</p><p>You can write to us, send an audio explanation or ask someone you trust to help. Please avoid including sensitive personal information in an initial enquiry.</p><p>This mailbox is not an emergency service. If someone is in immediate danger, call 999.</p><p><Link href="/membership">Interest form</Link> · <Link href="/complaints">Complaints Policy</Link> · <Link href="/safeguarding">Safeguarding</Link> · <Link href="/privacy">Privacy Notice</Link></p></ParagraphPanels></section>}

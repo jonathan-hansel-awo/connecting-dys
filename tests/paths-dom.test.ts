@@ -13,7 +13,7 @@ import type { Board } from "../src/features/paths-to-belonging/types.ts";
 test("actual optional journey components: DOM interaction and focus", async (suite) => {
   const loader = registerTsx();
   const dom = new JSDOM("<!doctype html><html lang='en-GB'><title>Game test</title><body><main id='root'></main><footer id='site-footer' tabindex='-1'>Contact</footer></body></html>", { url: "https://connecting-dys.example", runScripts: "outside-only" });
-  const globals = { window: dom.window, document: dom.window.document, HTMLElement: dom.window.HTMLElement, IS_REACT_ACT_ENVIRONMENT: true };
+  const globals = { window: dom.window, self: dom.window, document: dom.window.document, HTMLElement: dom.window.HTMLElement, IS_REACT_ACT_ENVIRONMENT: true };
   const original = new Map(Object.keys(globals).map((key) => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
   for (const [key, value] of Object.entries(globals)) Object.defineProperty(globalThis, key, { configurable: true, value });
   const { PathsToBelongingSection, JourneyBoundary } = await import("../src/features/paths-to-belonging/section.tsx");
@@ -73,6 +73,8 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       }
       assert.match(doc.querySelector('[role="status"]')!.textContent!, /An arch above a home/);
       assert.equal(doc.querySelector("[data-ending]")?.getAttribute("data-ending"), "home-arch");
+      assert.equal(doc.querySelector(".paths-actions a")?.getAttribute("href"), "/membership");
+      assert.match(doc.querySelector(".paths-actions a")!.textContent!, /Register your interest/);
       await click(button("Replay journey"));
       assert.equal(doc.activeElement?.textContent, "Find a Way");
       assert.equal(doc.querySelector("[data-ending]"), null, "replay removes the previous ending");
@@ -108,6 +110,7 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       }
       assert.equal(doc.activeElement?.textContent, "Thank you for exploring.");
       assert.equal(doc.querySelector("[data-ending]"), null, "skipping never invents an ending picture");
+      assert.equal(doc.querySelector(".paths-actions a")?.getAttribute("href"), "/membership", "an optional signup remains available after skipping");
       await reset();
     });
     await suite.test("ending art preserves the actual graph and offers three distinct compositions", () => {

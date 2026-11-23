@@ -5,19 +5,20 @@ import { usePathname } from "next/navigation";
 import { PREFERENCES_EVENT } from "@/lib/preferences";
 import { placeDoodles } from "@/lib/doodle-layout";
 
-// Colour variants follow the supplied word collage. This is a separate, static
-// decoration; the existing animated word artwork remains unchanged.
+// Calm solid colours and the visitor's chosen reading font keep these
+// recognisable as background decoration rather than competing content.
 const collage = [
-  ["Dyscalculia", "olive"], ["Dyspraxia", "mint-blue"], ["Dyslexia", "ink"],
-  ["Dysgraphia", "teal-yellow"], ["Dysgraphia", "amber"], ["Dysgraphia", "ink"],
-  ["Dyspraxia", "mauve"], ["Dyscalculia", "ink"], ["Dyspraxia", "ink"],
-  ["Dyscalculia", "coral"], ["Dyslexia", "green-purple"], ["Dyslexia", "amber"],
+  ["Dyspraxia", "teal"], ["Dyscalculia", "amber"],
+  ["Dysgraphia", "coral"], ["Dyslexia", "ink"],
 ] as const;
 
 // Protect complete cards and illustration/motion regions, not just their ink.
 // Ancestor rectangles also protect transparent parts of the supplied artwork.
 const protectedSelector = [
-  ".copy-panel", "header", "nav", "form", "figure", "table", "details",
+  ".copy-panel", ".source-section", "header", "nav", "form", "figure", "table", "details",
+  ".hero-copy", ".recognition-copy", ".principle-list", ".building-columns",
+  ".home-approach > div:not(.section-backdrop)", ".difference-experiences", ".editorial-scene",
+  "ul", "ol", "li", "blockquote", "figcaption", "[data-paths-section]",
   ".hero-composition", ".connection-layout", ".recognition-art", ".about-statement",
   ".dys-hearts", ".invitation-decoration", "[data-paths-game]", ".word-cloud",
   "h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "button", "input", "select",
@@ -60,15 +61,15 @@ export function BackgroundDoodles() {
         if (height < 60 || viewportWidth < 240) continue;
         layer.style.left = `${-surfaceRect.left}px`;
         layer.style.width = `${viewportWidth}px`;
-        const count = Math.min(48, Math.max(8, Math.ceil(height / 400) * 2));
+        const count = Math.min(32, Math.max(8, Math.ceil(height / 300) * 3));
         const words = Array.from({ length: count }, (_, i) => {
           const [word, colour] = collage[(i + index * 3) % collage.length];
           const span = document.createElement("span");
           span.className = `background-doodle doodle-${colour}`;
           span.textContent = word;
           // Flat words can fit narrow inter-card gaps on small screens.
-          const angle = (viewportWidth < 600 ? [0, -8, 12, 0, -18, 9] : [-32, 18, -16, 42, 0, -48])[(i + index) % 6];
-          span.style.fontSize = `${viewportWidth < 600 ? 13 + i % 2 : 17 + i % 5}px`;
+          const angle = (viewportWidth < 600 ? [0, -5, 6, 0, -7, 5] : [-12, 8, -6, 12, 0, -8])[(i + index) % 6];
+          span.style.fontSize = `${viewportWidth < 600 ? 15 + i % 2 : 19 + i % 4}px`;
           span.style.setProperty("--doodle-angle", `${angle}deg`);
           return { span, angle };
         });
@@ -80,9 +81,9 @@ export function BackgroundDoodles() {
           .filter(rect => rect.width > 0 && rect.height > 0)
           .map(rect => ({ x: rect.left - origin.left, y: rect.top - origin.top, width: rect.width, height: rect.height }));
         // Keep overflow outside ancestor boxes protected as well.
-        const sizes = words.map(({ span, angle }) => ({ width: span.offsetWidth, height: span.offsetHeight, angle }));
+        const sizes = words.map(({ span, angle }) => ({ width: span.offsetWidth + 2, height: span.offsetHeight + 2, angle }));
         const seed = [...pathname].reduce((value, char) => Math.imul(value, 31) + char.charCodeAt(0) | 0, index + 733);
-        const placements = placeDoodles(viewportWidth, height, obstacles, sizes, seed, viewportWidth < 600 ? 4 : 12);
+        const placements = placeDoodles(viewportWidth, height, obstacles, sizes, seed, viewportWidth < 600 ? 20 : 24);
         const byIndex = new Map(placements.map(placement => [placement.index, placement]));
         words.forEach(({ span }, i) => {
           const placement = byIndex.get(i);
@@ -107,6 +108,7 @@ export function BackgroundDoodles() {
     records.forEach(({ surface }) => mutations.observe(surface, { childList: true, subtree: true }));
     window.addEventListener("resize", schedule);
     window.addEventListener(PREFERENCES_EVENT, schedule);
+    document.addEventListener("load", schedule, true);
     document.fonts?.addEventListener("loadingdone", schedule);
     document.fonts?.ready.then(() => { if (active) schedule(); });
     schedule();
@@ -117,6 +119,7 @@ export function BackgroundDoodles() {
       mutations.disconnect();
       window.removeEventListener("resize", schedule);
       window.removeEventListener(PREFERENCES_EVENT, schedule);
+      document.removeEventListener("load", schedule, true);
       document.fonts?.removeEventListener("loadingdone", schedule);
       records.forEach(({ surface, layer }) => { layer.remove(); surface.removeAttribute("data-doodle-surface"); });
     };

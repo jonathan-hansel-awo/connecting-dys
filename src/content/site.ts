@@ -1,8 +1,8 @@
 export const brand = {
   name: "Connecting Dys",
   tagline: "A home for every DYS mind.",
-  logo: "/brand/connecting_dys_logo.png",
-  symbol: "/brand/connecting-dys-embrace.png",
+  logo: "/images/dys-embrace-transparent.png",
+  symbol: "/images/dys-embrace-transparent.png",
   email: "connectingdys@gmail.com",
 };
 export const differences = [

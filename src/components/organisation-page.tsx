@@ -2,7 +2,7 @@ import { BackgroundDoodles } from "@/components/background-doodles";
 import Link from "next/link";
 import Image from "next/image";
 import { BridgeArtwork } from "@/components/bridge-artwork";
-import { CommunityArtwork } from "@/components/story-art";
+import { CommunityImage } from "@/components/community-image";
 import { brand } from "@/content/site";
 import { organisationPages, type OrganisationSlug } from "@/content/organisation";
 import { SourcePanel, SourcePanels } from "@/components/source-panel";
@@ -11,10 +11,10 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
   const page = organisationPages[slug];
   return <main id="main-content" tabIndex={-1} className="organisation-page wrap">
     <Link href="/" className="breadcrumb">Back to home</Link>
-    {slug === "about" ? <header className="editorial-heading"><div><p className="eyebrow">Connecting DYS CIC</p><h1>About Us</h1><p>Why we exist, and the community we are building.</p></div><figure className="editorial-brand"><Image src={brand.logo} alt="Connecting Dys — A home for every DYS mind. The approved embracing-figures logo." width={1536} height={1024} sizes="(max-width: 760px) 90vw, 42vw" /></figure></header> : <SourcePanel source={page.source} level={1} tone="blue" artwork={
+    {slug === "about" ? <header className="editorial-heading"><div><p className="eyebrow">Connecting DYS CIC</p><h1>About Us</h1><p>Why we exist, and the community we are building.</p></div><figure className="editorial-brand"><Image src={brand.logo} alt="Connecting Dys — A home for every DYS mind. The word-heart logo surrounding two embracing figures." width={1330} height={1182} sizes="(max-width: 760px) 90vw, 42vw" /></figure></header> : <SourcePanel source={page.source} level={1} tone="blue" artwork={
       slug === "our-story" ? <figure className="editorial-photo"><Image src="/images/community-reading.webp" alt="Five people sharing a table with books." width={960} height={640} sizes="(max-width: 760px) 90vw, 42vw" /><figcaption>Photo provided by Connecting Dys. Background edited for privacy.</figcaption></figure> :
       slug === "values" ? <BridgeArtwork /> :
-      slug === "founders-message" ? <figure className="founder-embrace"><Image src={brand.symbol} alt="Two embracing figures inside a heart, the Connecting Dys symbol." width={400} height={400} /><figcaption>Lived experience at the heart of Connecting Dys.</figcaption></figure> : <CommunityArtwork />
+      slug === "founders-message" ? <figure className="founder-embrace"><Image src={brand.symbol} alt="The Connecting Dys logo, with DYS names forming a heart around embracing figures." width={1330} height={1182} /><figcaption>Lived experience at the heart of Connecting Dys.</figcaption></figure> : <CommunityImage />
     } />}
     {slug === "about" && <>
       <SourcePanels sources={["why"]} />
