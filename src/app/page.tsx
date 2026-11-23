@@ -45,7 +45,7 @@ export default function HomePage() {
       <div className="section-backdrop" aria-hidden="true" />
       <SourcePanel source="home-conditions" id="explore-title" tone="amber" />
       <div className="difference-list">{differences.map((d, index) => <Link href={`/${d.slug}`} className={`difference-row copy-panel panel-${d.theme === "amber" ? "amber" : d.theme === "coral" ? "coral" : "blue"} theme-${d.theme}`} key={d.slug}>
-        <DiscoveryTrail /><span className="row-number" aria-hidden="true">0{index + 1}</span><DifferenceArtwork index={index} /><div className="difference-name"><h3>{d.name}</h3></div><p>{d.description}</p>
+        <DiscoveryTrail /><span className="row-number" aria-hidden="true">0{index + 1}</span><DifferenceArtwork index={d.artIndex} /><div className="difference-name"><h3>{d.name}</h3></div><p>{d.description}</p>
       </Link>)}</div>
       <DysConnections placement="home" />
     </section>

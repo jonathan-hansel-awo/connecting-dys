@@ -7,16 +7,9 @@ export const brand = {
 };
 export const differences = [
   {
-    slug: "dyslexia",
-    name: "Dyslexia",
-    theme: "teal",
-    cue: "Words & language",
-    description:
-      "differences in reading, writing, and processing language",
-  },
-  {
     slug: "dyspraxia",
     name: "Dyspraxia",
+    artIndex: 1,
     theme: "coral",
     cue: "Movement & coordination",
     description:
@@ -25,6 +18,7 @@ export const differences = [
   {
     slug: "dyscalculia",
     name: "Dyscalculia",
+    artIndex: 2,
     theme: "amber",
     cue: "Numbers & quantities",
     description:
@@ -33,10 +27,20 @@ export const differences = [
   {
     slug: "dysgraphia",
     name: "Dysgraphia",
+    artIndex: 3,
     theme: "blue",
     cue: "Writing & expression",
     description:
       "differences in handwriting and written expression",
+  },
+  {
+    slug: "dyslexia",
+    name: "Dyslexia",
+    artIndex: 0,
+    theme: "teal",
+    cue: "Words & language",
+    description:
+      "differences in reading, writing, and processing language",
   },
 ] as const;
 export const connectionChapters = [

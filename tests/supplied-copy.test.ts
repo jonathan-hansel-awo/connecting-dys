@@ -9,11 +9,12 @@ const fingerprints: Record<string, string> = JSON.parse(fs.readFileSync("tests/f
 const policySources = JSON.parse(fs.readFileSync("src/content/policy-source-keys.json", "utf8"));
 const routeSources: Record<string, string[]> = {
   index: ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who"],
-  about: ["about-intro", "why", "mission", "vision", "goal", "about-work", "how", "different", "commitment", "who-join", "purpose"],
-  "our-story": ["story", "founder"],
+  about: ["why", "mission", "vision", "goal", "about-work"],
+  "our-story": ["story", "about-intro", "founder", "different", "purpose"],
   "what-we-do": ["work-intro", ...Array.from({ length: 8 }, (_, i) => `work-${i + 1}`), "goal-young"],
-  "our-approach": ["approach-intro", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"],
+  "our-approach": ["approach-intro", "how", "commitment", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"],
   values: ["values-summary", ...[..."BRIDGE"].map(letter => `value-${letter}`)],
+  "get-involved": ["who-join", "approach-intend"],
   support: ["support-peer", "support-family", "support-workshops", "support-forums"],
   accessibility: ["accessibility"], confidentiality: ["confidentiality"],
   cookies: ["cookies-original"], disclaimer: ["disclaimer"], "data-retention": ["data-retention"],
@@ -21,6 +22,29 @@ const routeSources: Record<string, string[]> = {
   privacy: ["privacy-notice", ...policySources["privacy-policy"]],
 };
 const normalize = (text: string) => text.replace(/\s+/g, " ").trim();
+const conditionName = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b/gi;
+const conditionGroup = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b(?:(?:,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+)(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b){1,3}/gi;
+
+function originalSourceText(panel: Element) {
+  const nodes = [...panel.querySelectorAll("h1,h2,h3,h4,h5,h6,p,li,th,td")];
+  for (const list of panel.querySelectorAll("ul")) {
+    const entries = [...list.children].filter(node => /^(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b/.test(node.textContent || ""));
+    const dyslexia = entries.find(node => /^Dyslexia\b/.test(node.textContent || ""));
+    if (entries.length > 1 && dyslexia) {
+      const firstIndex = Math.min(...entries.map(node => nodes.indexOf(node)));
+      nodes.splice(nodes.indexOf(dyslexia), 1); nodes.splice(firstIndex, 0, dyslexia);
+    }
+  }
+  // Normalise only Marie’s authorised change in condition order. The stored
+  // source fingerprints still protect every other word and punctuation mark.
+  return normalize(nodes.map(node => node.textContent).join(" ")).replace(conditionGroup, group => {
+    const names = group.match(conditionName)!;
+    const restored = [...names.filter(name => name.toLowerCase() === "dyslexia"), ...names.filter(name => name.toLowerCase() !== "dyslexia")];
+    let index = 0;
+    return group.replace(conditionName, () => restored[index++]);
+  });
+}
+
 
 test("all supplied editorial sections are reproduced completely on the intended pages", () => {
   const seen = new Set<string>();
@@ -30,7 +54,7 @@ test("all supplied editorial sections are reproduced completely on the intended 
     for (const source of sources) {
       const panel = doc.querySelector(`[data-source-id="${source}"]`);
       assert.ok(panel, `${route}: missing ${source}`);
-      const text = normalize([...panel.querySelectorAll("h1,h2,h3,h4,h5,h6,p,li,th,td")].map(node => node.textContent).join(" "));
+      const text = originalSourceText(panel);
       assert.equal(createHash("sha256").update(text).digest("hex"), fingerprints[source], `${route}: original wording changed or omitted in ${source}`);
       assert.equal(panel.querySelectorAll("details").length, 0, "original wording is fully visible");
       for (const box of panel.querySelectorAll(".copy-panel")) {

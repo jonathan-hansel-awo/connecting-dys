@@ -87,7 +87,7 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   assert.equal(doc.querySelectorAll(".connection-trail[aria-hidden='true']").length, 3);
   assert.deepEqual(
     [...doc.querySelectorAll(".difference-row")].map((a) => a.getAttribute("href")),
-    ["/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"],
+    ["/dyspraxia", "/dyscalculia", "/dysgraphia", "/dyslexia"],
   );
   assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Background edited for privacy"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
@@ -465,5 +465,36 @@ test("dark mode restores before paint, validates old storage and preserves the l
       assert.deepEqual(JSON.parse(dom.window.localStorage.getItem("connecting-dys-reading-settings")!), JSON.parse(JSON.stringify(saved)), "pre-paint restore never rewrites saved choices");
       dom.window.close();
     }
+  }
+});
+
+
+test("About Us contains only the five requested content sections", () => {
+  const dom = page("about");
+  const main = dom.window.document.querySelector("main")!;
+  assert.deepEqual([...main.querySelectorAll("[data-source-id]")].map(section => section.getAttribute("data-source-id")), ["why", "mission", "vision", "goal", "about-work"]);
+  assert.equal(main.querySelector("h1")!.textContent, "About Us");
+  dom.window.close();
+});
+
+test("dyslexia follows the other conditions in website prose, lists, menus and descriptions", () => {
+  const group = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b(?:(?:,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+)(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b){1,3}/gi;
+  const name = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b/gi;
+  for (const route of routes) {
+    const dom = page(route); const doc = dom.window.document;
+    for (const node of doc.querySelectorAll("main p,main li,img[alt],meta[name='description']")) {
+      const text = node.getAttribute("alt") || node.getAttribute("content") || node.textContent || "";
+      for (const match of text.matchAll(group)) {
+        const names = match[0].match(name)!.map(value => value.toLowerCase());
+        if (names.includes("dyslexia")) assert.equal(names.at(-1), "dyslexia", `${route}: ${match[0]}`);
+      }
+    }
+    const links = [...doc.querySelectorAll('nav[aria-label="Learning differences"] a')];
+    assert.equal(links.at(-1)!.getAttribute("href"), "/dyslexia", route);
+    for (const list of doc.querySelectorAll("main ul")) {
+      const entries = [...list.children].filter(node => /^(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b/.test(node.textContent || ""));
+      if (entries.length > 1 && entries.some(node => /^Dyslexia\b/.test(node.textContent || ""))) assert.match(entries.at(-1)!.textContent || "", /^Dyslexia\b/, route);
+    }
+    dom.window.close();
   }
 });
