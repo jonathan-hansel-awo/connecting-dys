@@ -21,14 +21,16 @@ export class JourneyBoundary extends Component<{ children?: ReactNode }, { faile
   }
 }
 
-export function PathsToBelongingSection() {
-  return <section id="paths-to-belonging" className="paths-section surface-paper" aria-labelledby="paths-title" data-paths-section>
-    <div className="wrap">
-      <div className="paths-intro copy-panel panel-blue">
+export function PathsToBelongingSection({ embedded = false }: { embedded?: boolean } = {}) {
+  return <section id="paths-to-belonging" className={`paths-section ${embedded ? "paths-embedded" : "surface-paper"}`} aria-labelledby="paths-title" data-paths-section>
+    <div className={embedded ? "paths-inner" : "wrap"}>
+      <div className="paths-intro source-section">
+        <div className="copy-panel panel-blue">
         <p className="eyebrow">A little journey, if you like</p>
         <h2 id="paths-title">Paths to Belonging</h2>
         <p>Discover a way, make connections and create a little network of your own. Three short chapters, at your pace. No timer or score.</p>
-        <p>Pause here to play, or keep scrolling. You can skip a chapter whenever you like.</p>
+        </div><div className="copy-panel panel-amber"><p>Pause here to play, or keep scrolling. You can skip a chapter whenever you like.</p>
+</div>
         <noscript><p>The puzzle controls need JavaScript. You can still explore the picture and use every contact and support link.</p></noscript>
       </div>
       <JourneyBoundary><Journey /></JourneyBoundary>

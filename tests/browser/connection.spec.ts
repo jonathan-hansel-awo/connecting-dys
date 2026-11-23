@@ -53,24 +53,13 @@ test("Phase 04 three chapter paths visibly develop with stationary reading conte
   expect(errors).toEqual([]);
 });
 
-test("word cloud movement can be paused without pinning or hiding its control", async ({ page }) => {
+test("the community game replaces the word animation without being pinned", async ({ page }) => {
   await ready(page);
-  await expect(page.locator("#community .pin-spacer")).toHaveCount(0);
-  const cloud = page.locator(".word-cloud");
-  const button = page.getByRole("button", { name: "Pause word movement", exact: true });
-  await button.scrollIntoViewIfNeeded();
-  await expect(page.locator(".word-drift").first()).toHaveCSS("animation-play-state", "running");
-  await button.click();
-  await expect(cloud).toHaveAttribute("data-paused", "true");
-  const word = page.locator(".word-drift").first();
-  const before = await word.evaluate(el => getComputedStyle(el).transform);
-  await page.waitForTimeout(150);
-  await expect(word).toHaveCSS("transform", before);
-  await page.getByRole("button", { name: "Resume word movement", exact: true }).press("Space");
-  await expect(cloud).toHaveAttribute("data-paused", "false");
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(word).toHaveCSS("animation-name", "none");
-  await expect(page.locator(".word-cloud-toggle")).toBeHidden();
+  await expect(page.locator(".word-cloud,.word-drift,.word-cloud-toggle")).toHaveCount(0);
+  await expect(page.locator("#community [data-paths-section]")).toHaveCount(1);
+  await expect(page.locator("main > [data-paths-section]")).toHaveCount(0);
+  await expect(page.locator("#community")).toHaveCSS("position", "relative");
+  await expect(page.locator(".pin-spacer [data-paths-game]")).toHaveCount(0);
 });
 
 test("Phase 04 textures retain colour, persist across routes and flatten accessibly", async ({ page }, info) => {

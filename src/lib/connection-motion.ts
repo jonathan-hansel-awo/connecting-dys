@@ -3,22 +3,11 @@ import gsap from "gsap";
 // Called inside HomeStoryMotion's matchMedia context: every pin, tween and
 // inline style belongs to that context and is reverted with the scene.
 export function createConnectionMotion(desktop: boolean, tall: boolean) {
-  const visual = document.querySelector<HTMLElement>(".connection-visual");
   const chapters = document.querySelector<HTMLElement>(".connection-chapters");
   const beats = gsap.utils.toArray<HTMLElement>(".connection-chapter");
-  if (!visual || !chapters || beats.length !== 3 || !tall) return;
-  // The word cloud and its pause control scroll together. Only the chapter
-  // rails use scroll choreography; moving artwork is never held off-control.
-  const progress = visual.querySelector(".connection-progress span");
-  const scene = gsap.timeline({ scrollTrigger: {
-    id: desktop ? "connection-desktop" : "connection-compact",
-    trigger: desktop ? chapters : visual,
-    start: desktop ? "top 75%" : "top 85%",
-    endTrigger: desktop ? chapters : beats[0],
-    end: desktop ? "bottom 65%" : "top 25%",
-    scrub: desktop ? 0.35 : true, invalidateOnRefresh: true,
-  } });
-  scene.fromTo(progress, { scaleX: 0 }, { scaleX: 1, ease: "none" }, 0);
+  if (!chapters || beats.length !== 3 || !tall) return;
+  // Only decorative chapter rails animate. The community game stays in native
+  // reading flow and is never a transform, progress or pin target.
   beats.forEach((beat, index) => {
     const beatTimeline = gsap.timeline({ scrollTrigger: {
       id: `connection-beat-${index}`, trigger: beat,

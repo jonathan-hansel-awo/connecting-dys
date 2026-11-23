@@ -177,7 +177,7 @@ test("texture toggles every surface, persists with reading choices and resets", 
   await trigger.click();
   const texture = page.getByRole("checkbox", { name: "Background texture", exact: true });
   await expect(texture).toBeChecked();
-  const surfaces = "body,.hero,#recognition,#explore,#community,.support,.about-home,.invitation,.site-footer,.reading-dialog,.connection-visual";
+  const surfaces = "body,.hero,#recognition,#explore,#community,.support,.about-home,.invitation,.site-footer,.reading-dialog,[data-paths-section]";
   for (const enabled of [true, false]) {
     await texture.setChecked(enabled);
     await settled(page);

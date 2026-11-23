@@ -9,7 +9,8 @@ const fingerprints: Record<string, string> = JSON.parse(fs.readFileSync("tests/f
 const policySources = JSON.parse(fs.readFileSync("src/content/policy-source-keys.json", "utf8"));
 const routeSources: Record<string, string[]> = {
   index: ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who"],
-  about: ["about-intro", "why", "story", "founder", "mission", "vision", "goal", "about-work", "how", "different", "commitment", "who-join", "purpose"],
+  about: ["about-intro", "why", "mission", "vision", "goal", "about-work", "how", "different", "commitment", "who-join", "purpose"],
+  "our-story": ["story", "founder"],
   "what-we-do": ["work-intro", ...Array.from({ length: 8 }, (_, i) => `work-${i + 1}`), "goal-young"],
   "our-approach": ["approach-intro", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"],
   values: ["values-summary", ...[..."BRIDGE"].map(letter => `value-${letter}`)],
@@ -32,6 +33,9 @@ test("all supplied editorial sections are reproduced completely on the intended 
       const text = normalize([...panel.querySelectorAll("h1,h2,h3,h4,h5,h6,p,li,th,td")].map(node => node.textContent).join(" "));
       assert.equal(createHash("sha256").update(text).digest("hex"), fingerprints[source], `${route}: original wording changed or omitted in ${source}`);
       assert.equal(panel.querySelectorAll("details").length, 0, "original wording is fully visible");
+      for (const box of panel.querySelectorAll(".copy-panel")) {
+        assert.ok(box.querySelectorAll(":scope > p").length <= 1, `${route}/${source}: paragraphs must use separate boxes`);
+      }
       seen.add(source);
     }
     assert.ok(doc.querySelector("main .copy-panel"), `${route}: missing reading panels`);

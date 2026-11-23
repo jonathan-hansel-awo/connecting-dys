@@ -4,7 +4,6 @@ import Link from "next/link";
 import { brand, connectionChapters, differences } from "@/content/site";
 import { DifferenceArtwork } from "@/components/story-art";
 import { HeroDysEmbrace } from "@/components/hero-dys-embrace";
-import { AnimatedDysWords } from "@/components/animated-dys-words";
 import { DysConnections } from "@/components/dys-connections";
 import { HomeStoryMotion } from "@/components/home-story-motion";
 import { ConnectionTrail } from "@/components/connection-trail";
@@ -12,17 +11,19 @@ import { DiscoveryTrail } from "@/components/discovery-trail";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
 import { FinalePath } from "@/components/finale-path";
 import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
-import { SourceBlocks, SourcePanel, sourceCopy } from "@/components/source-panel";
+import { SourcePanel } from "@/components/source-panel";
 
 export default function HomePage() {
   return <main id="main-content" tabIndex={-1} data-home-story>
     <HomeStoryMotion />
     <section className="hero wrap surface-paper" aria-labelledby="hero-title" data-welcome-scene>
       <div className="section-backdrop" aria-hidden="true" />
-      <div className="hero-copy copy-panel panel-blue">
+      <div className="hero-copy source-section">
+        <div className="copy-panel panel-blue">
         <h1 id="hero-title">A home for<br />every <span className="dys-word">DYS</span> mind.</h1>
-        <div data-source-id="home-intro"><p className="eyebrow">{sourceCopy["home-intro"].title}</p><SourceBlocks blocks={sourceCopy["home-intro"].blocks} /></div>
-        <div className="hero-actions"><Link href="/membership" className="button">Join Our Community</Link><Link href="/get-involved" className="text-link">Work With Us</Link></div>
+        </div>
+        <SourcePanel source="home-intro" tone="amber" />
+        <div className="hero-actions copy-panel panel-cream"><Link href="/membership" className="button">Join Our Community</Link><Link href="/get-involved" className="text-link">Work With Us</Link></div>
       </div>
       <div className="hero-composition">
         <HeroTransitionArt />
@@ -49,10 +50,10 @@ export default function HomePage() {
       <DysConnections placement="home" />
     </section>
 
-    <section id="community" className="connection surface-soft surface-panel" aria-labelledby="community-title">
+    <section id="community" className="connection surface-soft surface-panel" aria-labelledby="community-title" data-has-interactive-journey>
       <div className="wrap">
         <div className="connection-heading"><SourcePanel source="home-approach" id="community-title" tone="teal" /></div>
-        <div className="connection-layout"><AnimatedDysWords /><div className="connection-chapters">{connectionChapters.map((chapter, index) => <article className="connection-chapter copy-panel panel-blue" key={chapter.number}>
+        <div className="connection-layout"><PathsToBelongingSection embedded /><div className="connection-chapters">{connectionChapters.map((chapter, index) => <article className="connection-chapter copy-panel panel-blue" key={chapter.number}>
           <div className="chapter-wash" aria-hidden="true" /><ConnectionTrail index={index} /><span className="chapter-number">{chapter.number}</span><h3>{chapter.title}</h3><p>{chapter.text}</p>
         </article>)}</div></div>
         <div className="community-note copy-panel panel-cream"><p>We are not delivering full services yet.</p><Link className="text-link" href="/what-we-do">See What We are Building</Link></div>
@@ -76,6 +77,5 @@ export default function HomePage() {
       <div className="copy-panel panel-teal" ><h2 id="invitation-title">Join us in creating something meaningful.</h2><p>We are developing a lasting community built on trust, collaborative design, and collective ownership.</p><div className="hero-actions"><Link href="/membership" className="button">Register Your Interest</Link><Link href="/contact" className="text-link">Join Our Mailing List</Link><Link href="/get-involved" className="text-link">Get Involved</Link></div></div>
       <a href="#main-content" className="back-top">Back to the beginning ↑</a>
     </section>
-    <PathsToBelongingSection />
   <BackgroundDoodles /></main>;
 }

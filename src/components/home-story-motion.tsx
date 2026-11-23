@@ -140,7 +140,7 @@ export function HomeStoryMotion() {
     // fits after font loading, orientation and responsive layout changes.
     let geometry = "";
     const resized = () => {
-      const targets = [".connection-visual", ".connection-chapters", ".site-header"];
+      const targets = ["[data-paths-section]", ".connection-chapters", ".site-header"];
       const next = [innerWidth, innerHeight, ...targets.flatMap((selector) => {
         const el = document.querySelector<HTMLElement>(selector);
         return [el?.offsetWidth || 0, el?.offsetHeight || 0];
@@ -150,7 +150,7 @@ export function HomeStoryMotion() {
     };
     resized();
     const observer = new ResizeObserver(resized);
-    for (const selector of [".connection-visual", ".connection-chapters", ".site-header"]) {
+    for (const selector of ["[data-paths-section]", ".connection-chapters", ".site-header"]) {
       const element = document.querySelector(selector);
       if (element) observer.observe(element);
     }

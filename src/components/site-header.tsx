@@ -5,7 +5,8 @@ import { MobileNavigation } from "./mobile-navigation";
 import { brand } from "@/content/site";
 
 const links = [
-  ["/about", "Our story"],
+  ["/about", "About us"],
+  ["/our-story", "Our story"],
   ["/what-we-do", "What we do"],
   ["/#explore", "Explore DYS"],
   ["/support", "Find support"],

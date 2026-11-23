@@ -12,6 +12,7 @@ const built = path.join(root, ".next/server/app");
 const routes = [
   "",
   "about",
+  "our-story",
   "what-we-do",
   "our-approach",
   "values",
@@ -71,17 +72,16 @@ test("homepage scene contracts preserve order, decorative scope and direct navig
   const sections = [...doc.querySelectorAll("main > section")];
   assert.deepEqual(
     sections.map((section) => section.getAttribute("aria-labelledby")),
-    ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title", "paths-title"],
+    ["hero-title", "recognition-title", "explore-title", "community-title", "support-title", "about-title", "invitation-title"],
   );
-  for (const selector of [".recognition-media .recognition-photo", ".connection-visual .word-cloud-art", ".connection-chapters", ".connection-progress span"]) {
+  for (const selector of [".recognition-media .recognition-photo", ".connection-chapters", "#community [data-paths-section]"]) {
     assert.equal(doc.querySelectorAll(selector).length, 1, selector);
   }
-  const artwork = doc.querySelector('.connection-visual[aria-hidden="true"]');
-  assert.ok(artwork, "moving word artwork is decorative");
-  assert.equal(artwork.querySelectorAll("a,button,input,select,[tabindex]").length, 0);
-  assert.equal(artwork.querySelectorAll(".word-drift").length, 12);
-  assert.equal(doc.querySelectorAll(".art-landscape").length, 0, "the illustrated people are replaced");
-  assert.ok(doc.querySelector('.word-cloud-toggle[aria-controls="dys-word-art"]'));
+  assert.equal(doc.querySelectorAll(".word-cloud, .word-drift, .word-cloud-toggle, .connection-visual").length, 0, "the animated word section is removed");
+  assert.equal(doc.querySelectorAll("[data-paths-section]").length, 1, "only one game is rendered");
+  assert.ok(doc.querySelector("#community[data-has-interactive-journey] .connection-layout > [data-paths-section]"));
+  assert.equal(doc.querySelector("main > [data-paths-section]"), null, "the game is no longer above the footer");
+  assert.equal(doc.querySelectorAll(".art-landscape").length, 0);
   assert.equal(doc.querySelectorAll(".connection-chapters > article").length, 3);
   assert.equal(doc.querySelectorAll(".connection-chapter .chapter-path[pathLength='1']").length, 3);
   assert.equal(doc.querySelectorAll(".connection-trail[aria-hidden='true']").length, 3);
@@ -116,7 +116,8 @@ test("mission and vision retain the latest supplied statements and are directly 
   assert.ok(content.textContent?.includes("To reduce isolation among DYS individuals and families by building inclusive, community-led spaces rooted in lived experience, connection, and shared understanding."));
   assert.ok(content.textContent?.includes("A society where DYS individuals and families are connected, confident, and supported by communities that understand them not in isolation, but together."));
   assert.equal(content.querySelectorAll("details").length, 0, "the complete statements are visible without opening disclosures");
-  assert.equal(content.querySelectorAll(".copy-panel").length, 3);
+  assert.equal(content.querySelectorAll(".source-section").length, 3);
+  assert.equal(content.querySelectorAll(".copy-panel").length, 6, "each mission, vision and goal paragraph has its own panel");
   dom.window.close();
 });
 

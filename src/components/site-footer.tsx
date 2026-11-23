@@ -15,7 +15,8 @@ export function SiteFooter() {
           <p className="small">A UK Community Interest Company.</p>
         </div>
         <nav aria-label="Footer navigation">
-          <Link href="/about">Our story</Link>
+          <Link href="/about">About us</Link>
+          <Link href="/our-story">Our story</Link>
           <Link href="/what-we-do">What we do</Link>
           <Link href="/our-approach">Our approach</Link>
           <Link href="/values">Our values</Link>

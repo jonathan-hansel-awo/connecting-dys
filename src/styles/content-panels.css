@@ -127,3 +127,20 @@ html[data-spacious="true"] .connection-chapters .copy-panel { padding-inline: 1.
 }
 
 html[data-texture="off"] .copy-panel { box-shadow: none; }
+
+/* Individual paragraphs are separate surfaces, with headings and list context
+   retained in the same reading group. No source wording is split or shortened. */
+.source-section { display: grid; gap: 1.1rem; min-width: 0; max-width: 100%; margin-block: 1.5rem; }
+.source-section > .copy-panel { margin: 0; }
+.copy-panels > .source-section { margin: 0; }
+.organisation-nav + .source-section { margin-top: 1.5rem; }
+.connection-layout { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+.connection-chapters { display: grid; gap: 1.1rem; }
+.connection-chapters > .connection-chapter { min-height: 0; padding-block: 1.5rem; margin: 0; }
+.paths-embedded { position: relative; z-index: auto; padding-block: 0 1.5rem; border-top: 0; min-width: 0; }
+.paths-embedded > .paths-inner { width: 100%; min-width: 0; }
+.paths-embedded .paths-intro { max-width: none; }
+.paths-embedded .paths-game { padding: clamp(1rem, 3vw, 2rem); border: 1px solid var(--rule); border-radius: 1.5rem; background: var(--reading-background); }
+.hero-copy.source-section > .source-section { margin: 0; }
+.hero-copy .copy-panel h1 { font-size: clamp(2.7rem, 5.5vw, 5.5rem); }
+.hero-copy.source-section > .hero-actions { margin: 0; }
