@@ -31,7 +31,7 @@
   html[data-theme="dark"] .note-top { background-color: #ead29f; color: var(--brand-navy); }
   /* The approved bitmap files are never inverted/recoloured. Their original
      navy strokes retain contrast on a small, softly framed cream mount. */
-  html[data-theme="dark"] .brand-link img { background-color: var(--brand-cream); border-radius: 50%; padding: 4px; }
+
   html[data-theme="dark"] .logo-stage > img { background-color: var(--brand-cream); border-radius: 2rem; padding: .7rem; box-shadow: var(--surface-raised); }
   html[data-theme="dark"] .hero-orbit { border-color: var(--rule); }
   html[data-theme="dark"] .hero-path-guide,

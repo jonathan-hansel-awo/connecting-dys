@@ -519,3 +519,22 @@ test("dyslexia follows the other conditions in website prose, lists, menus and d
     dom.window.close();
   }
 });
+
+
+test("editorial hierarchy, photo variety and native policy disclosures are preserved in the output", () => {
+  const story = page("our-story");
+  const doc = story.window.document;
+  assert.equal(doc.querySelector("h2.editorial-question")!.textContent, "What happens next?");
+  assert.ok(doc.querySelectorAll(".editorial-statement").length >= 3);
+  const photos = [...doc.querySelectorAll(".community-photo img")].map(img => new URL(img.getAttribute("src")!, "https://example.com").searchParams.get("url"));
+  assert.deepEqual(photos, ["/images/shared-reading.webp", "/images/exploring-books.webp"]);
+  story.window.close();
+  for (const route of ["privacy", "safeguarding", "complaints", "equality", "cookies", "confidentiality"]) {
+    const dom = page(route);
+    const panels = [...dom.window.document.querySelectorAll("details.policy-disclosure")];
+    assert.ok(panels.length > 0, route);
+    assert.ok(panels.every(panel => panel.querySelector(":scope > summary h2")), route);
+    assert.ok(panels.every(panel => !panel.hasAttribute("open")), `${route}: compact on first paint`);
+    dom.window.close();
+  }
+});

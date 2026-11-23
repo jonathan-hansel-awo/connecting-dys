@@ -56,7 +56,8 @@ test("full-length editorial and policy copy stays intact on its dedicated pages"
       assert.ok(panel, `${route}: missing ${source}`);
       const text = originalSourceText(panel);
       assert.equal(createHash("sha256").update(text).digest("hex"), fingerprints[source], `${route}: original wording changed or omitted in ${source}`);
-      assert.equal(panel.querySelectorAll("details").length, 0, "original wording is fully visible");
+      if (panel.matches("details")) assert.ok(panel.querySelector(":scope > summary h2"), "collapsible policy has an accessible section title");
+      assert.equal(panel.querySelectorAll("details").length, 0, "source text is not buried in nested disclosures");
       for (const box of panel.querySelectorAll(".copy-panel")) {
         assert.ok(box.querySelectorAll(":scope > p").length <= 1, `${route}/${source}: paragraphs must use separate boxes`);
       }

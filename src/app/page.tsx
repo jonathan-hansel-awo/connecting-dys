@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, Handshake, Users, Fingerprint } from "lucide-react";
 import { BackgroundDoodles } from "@/components/background-doodles";
+import { HeroMarginCurves } from "@/components/hero-margin-curves";
 import { HeroDysEmbrace } from "@/components/hero-dys-embrace";
 import { HomeStoryMotion } from "@/components/home-story-motion";
 import { HeroTransitionArt } from "@/components/hero-transition-art";
@@ -21,6 +22,7 @@ export default function HomePage() {
     <HomeStoryMotion />
     <section className="hero wrap surface-paper" aria-labelledby="hero-title" data-welcome-scene>
       <div className="section-backdrop" aria-hidden="true" />
+      <HeroMarginCurves />
       <div className="hero-copy">
         <p className="eyebrow">Connecting DYS CIC</p>
         <h1 id="hero-title">A home for<br />every <span className="dys-word">DYS</span> mind.</h1>

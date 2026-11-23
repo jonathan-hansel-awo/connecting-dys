@@ -7,11 +7,13 @@ export const sourceCopy: Record<string, SourceSection> = supplied;
 export const panelTones = ["blue", "amber", "teal", "cream", "coral"];
 const toneAt = (tone: string, index: number) => panelTones[(Math.max(0, panelTones.indexOf(tone)) + index) % panelTones.length];
 
-export function SourceBlocks({ blocks, headingLevel = 3 }: { blocks: SourceBlock[]; headingLevel?: number }) {
+export function SourceBlocks({ blocks, headingLevel = 3, emphasis }: { blocks: SourceBlock[]; headingLevel?: number; emphasis?: string }) {
   return <>{blocks.map((block, i) => {
     if (block.type === "heading") return createElement(`h${Math.min(headingLevel, 6)}`, { key: i }, block.text);
     if (block.type === "list") return <ul key={i}>{block.items?.map((item, j) => <li key={j}>{item}</li>)}</ul>;
-    return <p key={i}>{block.text}</p>;
+    if (emphasis === "question") return createElement(`h${Math.min(headingLevel, 6)}`, { className: "editorial-question", key: i }, block.text);
+    const label = block.text?.match(/^(Commitment|Evidence):\s*/);
+    return <p className={emphasis ? `editorial-${emphasis}` : undefined} key={i}>{label ? <><strong className="copy-label">{label[1]}:</strong>{" "}{block.text!.slice(label[0].length)}</> : block.text}</p>;
   })}</>;
 }
 
@@ -43,18 +45,28 @@ export function ParagraphPanels({ children, tone = "blue" }: { children: ReactNo
   return <>{groups.map((group, i) => <div className={`copy-panel panel-${toneAt(tone, i)}`} key={i}>{group}</div>)}</>;
 }
 
-export function SourcePanel({ source, level = 2, tone = "blue", id, children, artwork }: {
-  source: string; level?: 1 | 2 | 3; tone?: string; id?: string; children?: ReactNode; artwork?: ReactNode;
+const emphasisBySource: Record<string, Record<number, string>> = {
+  story: { 0: "lead", 2: "statement", 5: "question", 7: "statement", 9: "statement", 10: "lead", 13: "refrain", 14: "refrain", 15: "refrain", 16: "refrain", 18: "refrain", 19: "refrain", 20: "refrain", 21: "refrain", 22: "statement" },
+  founder: { 3: "statement", 6: "statement", 8: "lead" },
+  "approach-community": { 0: "statement" },
+};
+
+export function SourcePanel({ source, level = 2, tone = "blue", id, children, artwork, collapsible = false, initiallyOpen = false, interlude }: {
+  source: string; level?: 1 | 2 | 3; tone?: string; id?: string; children?: ReactNode; artwork?: ReactNode; collapsible?: boolean; initiallyOpen?: boolean; interlude?: { after: number; content: ReactNode };
 }) {
   const section = sourceCopy[source];
   const headingId = id || `source-${source}`;
-  return <section className="source-section" data-source-id={source} aria-labelledby={headingId}>
+  const Container = collapsible ? "details" : "section";
+  return <Container className={`source-section ${collapsible ? "policy-disclosure" : "editorial-source"}`} data-source-id={source} aria-labelledby={headingId} open={collapsible && initiallyOpen ? true : undefined}>
+    {collapsible && <summary>{createElement(`h${level}`, { id: headingId }, section.title)}<span className="disclosure-indicator" aria-hidden="true" /></summary>}
     {paragraphGroups(section.blocks).map((group, i) => {
-      const panel = <div className={`copy-panel panel-${toneAt(tone, i)}`} key={i}>
-        {i === 0 && createElement(`h${level}`, { id: headingId }, section.title)}
-        <SourceBlocks blocks={group} headingLevel={level + 1} />
+      const emphasis = !collapsible ? emphasisBySource[source]?.[i] : undefined;
+      const panel = <div className={`copy-panel panel-${toneAt(tone, i)} ${emphasis ? `source-${emphasis}` : ""}`} data-copy-emphasis={emphasis} key={i}>
+        {i === 0 && !collapsible && createElement(`h${level}`, { id: headingId }, section.title)}
+        <SourceBlocks blocks={group} headingLevel={level + 1} emphasis={emphasis} />
       </div>;
-      return i === 0 && artwork ? <div className="illustrated-source-header" key={i}>{panel}<div className="editorial-art">{artwork}</div></div> : panel;
+      const content = i === 0 && artwork ? <div className="illustrated-source-header">{panel}<div className="editorial-art">{artwork}</div></div> : panel;
+      return <div className="source-beat" key={i}>{content}{interlude?.after === i && <div className="editorial-interlude">{interlude.content}</div>}</div>;
     })}
     {section.table && <div className={`copy-panel panel-${tone}`}><div className="retention-scroll" role="region" aria-label={section.title} tabIndex={0}>
       <table className="retention-table"><thead><tr>{section.table[0].map(cell => <th scope="col" key={cell}>{cell}</th>)}</tr></thead>
@@ -62,9 +74,9 @@ export function SourcePanel({ source, level = 2, tone = "blue", id, children, ar
       </table>
     </div></div>}
     {children && <div className="copy-panel panel-cream">{children}</div>}
-  </section>;
+  </Container>;
 }
 
-export function SourcePanels({ sources }: { sources: string[] }) {
-  return <div className="copy-panels">{sources.map((source, i) => <SourcePanel key={source} source={source} tone={panelTones[i % panelTones.length]} />)}</div>;
+export function SourcePanels({ sources, collapsible = false }: { sources: string[]; collapsible?: boolean }) {
+  return <div className="copy-panels">{sources.map((source, i) => <SourcePanel key={source} source={source} tone={panelTones[i % panelTones.length]} collapsible={collapsible} initiallyOpen={false} />)}</div>;
 }

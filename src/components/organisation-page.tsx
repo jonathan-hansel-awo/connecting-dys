@@ -1,3 +1,4 @@
+import { CommunityPhoto } from "@/components/community-photo";
 import { BackgroundDoodles } from "@/components/background-doodles";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,10 +13,11 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
   return <main id="main-content" tabIndex={-1} className="organisation-page wrap">
     <Link href="/" className="breadcrumb">Back to home</Link>
     {slug === "about" ? <header className="editorial-heading"><div><p className="eyebrow">Connecting DYS CIC</p><h1>About Us</h1><p>Why we exist, and the community we are building.</p></div><figure className="editorial-brand"><Image src={brand.logo} alt="Connecting Dys — A home for every DYS mind. The word-heart logo surrounding two embracing figures." width={1330} height={1182} sizes="(max-width: 760px) 90vw, 42vw" /></figure></header> : <SourcePanel source={page.source} level={1} tone="blue" artwork={
-      slug === "our-story" ? <figure className="editorial-photo"><Image src="/images/community-reading.webp" alt="Five people sharing a table with books." width={960} height={640} sizes="(max-width: 760px) 90vw, 42vw" /><figcaption>Photo provided by Connecting Dys. Background edited for privacy.</figcaption></figure> :
+      slug === "our-story" ? <CommunityPhoto /> :
+      slug === "what-we-do" ? <CommunityPhoto scene="reading" /> :
       slug === "values" ? <BridgeArtwork /> :
       slug === "founders-message" ? <figure className="founder-embrace"><Image src={brand.symbol} alt="The Connecting Dys logo, with DYS names forming a heart around embracing figures." width={1330} height={1182} /><figcaption>Lived experience at the heart of Connecting Dys.</figcaption></figure> : <CommunityImage />
-    } />}
+    } interlude={slug === "our-story" ? { after: 8, content: <CommunityPhoto scene="books" /> } : undefined} />}
     {slug === "about" && <>
       <SourcePanels sources={["why"]} />
       <div id="mission-and-vision" className="copy-panels">

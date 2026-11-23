@@ -49,3 +49,18 @@
 @media (max-width: 700px) { .policy-index, .membership-options { grid-template-columns: 1fr; } .membership-option { padding: 1.3rem; } }
 html[data-spacious="true"] .policy-index, html[data-spacious="true"] .membership-options { grid-template-columns: 1fr; }
 @media print { .privacy-toolbar, .cookie-information, .cookie-notice, .policy-contents { display: none !important; } }
+/* Native disclosures keep policy titles scannable and work without scripts. */
+.policy-disclosure { display: block; border: 1px solid var(--rule); border-radius: 1.25rem; padding: 0; overflow: visible; background: var(--surface-soft); }
+.policy-disclosure > summary { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem 1.5rem; cursor: pointer; list-style: none; min-height: 64px; }
+.policy-disclosure > summary::-webkit-details-marker { display: none; }
+.policy-disclosure > summary h2 { font-family: var(--reading-heading-font); font-size: clamp(1.25rem, 2.7vw, 1.8rem); line-height: 1.35; margin: 0; overflow-wrap: anywhere; }
+.disclosure-indicator { width: .65rem; height: .65rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); flex-shrink: 0; margin-right: .25rem; }
+.policy-disclosure[open] > summary .disclosure-indicator { transform: rotate(225deg); }
+.policy-disclosure[open] > summary { border-bottom: 1px solid var(--rule); }
+.policy-disclosure > .source-beat { margin: 1rem; }
+.policy-disclosure > .source-beat .copy-panel { border-width: 1px; border-radius: .75rem; padding: 1.25rem; box-shadow: none; }
+.policy-controls { gap: .75rem; flex-wrap: wrap; margin-block: 1.5rem; }
+.policy-controls button { min-height: 44px; padding: .6rem 1rem; border: 1px solid var(--rule); border-radius: .65rem; background: var(--reading-background); color: var(--reading-ink, var(--brand-navy)); }
+.policy-disclosure > .copy-panel { margin: 1rem; }
+.policy-contents > summary { cursor: pointer; font-family: var(--reading-heading-font); font-size: 1.15rem; font-weight: 600; min-height: 44px; }
+.policy-implementation { padding-inline: 1rem; }

@@ -111,12 +111,35 @@ html[data-spacious="true"] .nav-shell nav a { font-size: .9rem; white-space: nor
 /* Illustration pixels retain their own colour and grounding in light/dark mode. */
 .editorial-scene { background: #fcf7ed; border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--rule); }
 .editorial-scene img { display: block; width: 100%; height: auto; }
-.site-header .brand-link img { width: 64px; height: 64px; background: #fff; border-radius: 50%; padding: 3px; object-fit: contain; }
-html[data-theme="dark"] .site-header .brand-link img { background: #fff; padding: 3px; }
-.editorial-brand, .founder-embrace { background: #fff; border-radius: 1.5rem; padding: .75rem; }
-.founder-embrace figcaption { color: #20354d; }
+.site-header .brand-link img { width: 64px; height: 64px; background: transparent; border-radius: 0; padding: 0; object-fit: contain; }
+html[data-theme="dark"] .site-header .brand-link img { background: transparent; padding: 0; }
+.editorial-brand, .founder-embrace { background: transparent; padding: .75rem; }
+
 .calm-home > [data-paths-section] { position: relative; z-index: var(--sheet-order, 2); background-color: var(--reading-background); }
 .calm-home > [data-paths-section] .paths-intro { max-width: 52rem; }
 .paths-invitation { max-width: 48ch; }
 @media (max-width: 700px) { .site-header .brand-link img { width: 54px; height: 54px; } }
 @media (forced-colors: active) { .editorial-scene { border-color: CanvasText; } }
+/* Typography hierarchy follows the chosen reading font in both themes. */
+.source-beat { min-width: 0; }
+.source-beat > .copy-panel, .source-beat .illustrated-source-header > .copy-panel { margin: 0; }
+.copy-panel .editorial-lead { font-family: var(--reading-heading-font); font-size: clamp(1.2rem, 2.2vw, 1.55rem); font-weight: 600; line-height: 1.5; }
+.copy-panel .editorial-question { font-family: var(--reading-heading-font); font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.25; margin: 0; color: var(--panel-accent); }
+.copy-panel .editorial-statement { font-family: var(--reading-heading-font); font-size: clamp(1.35rem, 2.8vw, 2rem); font-weight: 600; line-height: 1.45; }
+.copy-panel.source-refrain { background: transparent; border: 0; border-left: 3px solid var(--reading-accent, var(--brand-teal)); border-radius: 0; box-shadow: none; padding-block: .75rem; }
+.copy-panel .editorial-refrain { font-size: 1.2rem; font-weight: 600; }
+.copy-label { display: block; font-family: var(--reading-heading-font); font-size: 1.1rem; margin-bottom: .5rem; color: var(--panel-accent); }
+.editorial-interlude { padding-block: 2rem; }
+.community-photo { margin: 0; width: min(100%, 26rem); margin-inline: auto; }
+.community-photo img { display: block; width: 100%; height: auto; border-radius: 2rem 2rem .75rem .75rem; border: 1px solid var(--rule); }
+.community-photo figcaption { margin-top: .7rem; font-size: .85rem; color: var(--reading-muted, var(--brand-navy)); }
+.site-header .brand-link img, .hero-dys-embrace img, .editorial-brand img, .founder-embrace img { filter: saturate(1.15) drop-shadow(0 2px 2px rgb(0 0 0 / .12)); }
+html[data-theme="dark"] :is(.site-header .brand-link img, .hero-dys-embrace img, .editorial-brand img, .founder-embrace img) { filter: brightness(1.22) saturate(1.15) drop-shadow(0 0 2px rgb(252 247 237 / .14)); }
+.hero-margin-curves { position: absolute; inset: 1rem 0; pointer-events: none; z-index: 0; }
+.margin-curve { position: absolute; width: 18px; height: 100%; fill: none; overflow: hidden; }
+.margin-curve path { stroke: var(--reading-accent, var(--brand-teal)); stroke-width: 1.5; opacity: .55; }
+.margin-curve .curve-secondary { stroke: var(--brand-coral); opacity: .5; stroke-width: 1; }
+.curve-left { left: -24px; } .curve-right { right: -24px; }
+@media (max-width: 760px) { .margin-curve { width: 10px; } .curve-left { left: -14px; } .curve-right { right: -14px; } }
+html[data-spacious="true"] .hero-margin-curves { display: none; }
+@media (forced-colors: active), print { .hero-margin-curves { display: none; } .site-header .brand-link img { filter: none; } }
