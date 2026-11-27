@@ -8,7 +8,7 @@ export function membershipEmail(kind: InterestKind, data: FormData, recipient: s
   const young = kind === "young-people";
   const ownContact = !young || ["16", "17"].includes(value("age"));
   const lines = [
-    "Connecting Dys CIC — Membership interest",
+    "Connecting DYS — Membership interest",
     young ? "Young people (ages 13–17)" : "Young adults (ages 18–24)",
     "", "About me",
     `Full name: ${value("fullName")}`,

@@ -171,6 +171,7 @@ html[data-spacious="true"] .hero-margin-curves { display: none; }
   .grouped-nav > a, .nav-group > summary { padding-inline: .5rem; }
 }
 @media (max-width: 760px) {
+  .calm-home .hero { grid-template-columns: minmax(0, 1fr); }
   .about-page > .editorial-heading { gap: .5rem; }
   .about-page .editorial-brand { width: min(70vw, 17rem); }
   .calm-home .hero-composition { grid-row: 1; margin-block: 0; padding-block: 0; }
