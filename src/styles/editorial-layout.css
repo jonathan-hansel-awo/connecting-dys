@@ -146,6 +146,7 @@ html[data-spacious="true"] .hero-margin-curves { display: none; }
 
 /* Keep the About introduction close to the reading toolbar. */
 .about-page { padding-top: .75rem; }
+.about-page > .breadcrumb { margin-bottom: .5rem; }
 .about-page > .editorial-heading { padding-block: .5rem 1.5rem; align-items: start; }
 .about-page .editorial-brand { width: min(100%, 22rem); justify-self: center; padding: 0; }
 
@@ -163,7 +164,7 @@ html[data-spacious="true"] .hero-margin-curves { display: none; }
 .footer-brand img { filter: none; background: transparent; object-fit: contain; }
 .footer-brand { display: inline-flex; align-items: center; gap: .75rem; }
 .footer-brand img { flex: 0 0 auto; width: 80px; height: 72px; }
-.footer-brand span { font-size: inherit; line-height: 1.15; }
+.footer-brand span { color: inherit; font-size: inherit; line-height: 1.15; }
 .footer-registration { max-width: 44ch; line-height: 1.65; }
 @media (min-width: 1101px) {
   .site-header { gap: .75rem; }
