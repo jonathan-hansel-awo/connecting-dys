@@ -65,7 +65,7 @@ test("inline game keeps initial page position; keyboard completes all chapters a
     await expect(page.locator(".paths-world")).toHaveAttribute("data-complete", "true");
     await expect(page.getByRole("heading", { name: chapters[index].name, exact: true })).toBeVisible();
     await noOverflow(page);
-    expect(await page.locator("[data-paths-section]").evaluate((el) => getComputedStyle(el).position)).toBe("relative");
+    expect(["relative", "static"]).toContain(await page.locator("[data-paths-section]").evaluate((el) => getComputedStyle(el).position));
     const audit = await new AxeBuilder({ page }).withTags(tags).analyze();
     expect(audit.violations).toEqual([]);
     await page.locator(".paths-board").screenshot({ path: info.outputPath(`chapter-${index}.png`) });

@@ -98,7 +98,7 @@ test("skip link, story navigation and browser history remain usable", async ({ p
   await page.keyboard.press("Enter"); await expect(page.locator("main")).toBeFocused();
   await page.getByRole("link", { name: "Read our story", exact: true }).click();
   await expect(page).toHaveURL(/\/our-story$/);
-  await expect(page.locator("main h1")).toHaveText("Our Story");
+  await expect(page.locator("main:visible h1")).toHaveText("Our Story");
   await page.goBack(); await expect(page.locator(".home-principles")).toBeVisible();
   await page.goForward(); await expect(page).toHaveTitle("Our Story | Connecting DYS");
   await page.getByRole("link", { name: "Connecting DYS — home", exact: true }).click();
@@ -136,7 +136,7 @@ test("all public routes return content and pass rendered axe", async ({ page }, 
   for (const route of ["/", "/about", "/our-story", "/founders-message", "/paths-to-belonging", "/what-we-do", "/our-approach", "/values", "/support", "/contact", "/get-involved", "/accessibility", "/dyslexia", "/dyspraxia", "/dyscalculia", "/dysgraphia"]) {
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
-    await expect(page.locator("main h1")).toHaveCount(1);
+    await expect(page.locator("main:visible h1")).toHaveCount(1);
     await settled(page);
     const audit = await new AxeBuilder({ page }).withTags(tags).analyze();
     expect(audit.violations, route).toEqual([]);
@@ -192,7 +192,7 @@ test("forced colours flattens texture/relief and tears down motion; no-JS stays 
   await settled(page);
   await staticArtwork(page);
   await expect(page.locator("body")).toHaveCSS("background-image", "none");
-  await expect(page.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
+  await expect(page.locator(".hero .hero-actions .button")).toHaveCSS("box-shadow", "none");
   await page.emulateMedia({ forcedColors: "none" });
   await expect(page.locator("body")).toHaveCSS("background-image", /fine-paper\.svg/);
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport, baseURL: info.project.use.baseURL });
@@ -200,7 +200,7 @@ test("forced colours flattens texture/relief and tears down motion; no-JS stays 
     const native = await context.newPage();
     await native.goto("/");
     await expect(native.locator("body")).toHaveCSS("background-image", "none");
-    await expect(native.locator(".hero-actions .button")).toHaveCSS("box-shadow", "none");
+    await expect(native.locator(".hero .hero-actions .button")).toHaveCSS("box-shadow", "none");
     await expect(native.locator("h1")).toBeVisible();
   } finally { await context.close(); }
 });

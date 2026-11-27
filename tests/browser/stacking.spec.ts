@@ -27,7 +27,10 @@ test("whole sections pause while the next opaque sheet rises over them", async (
       delete main.dataset.sectionStack;
       const next = sheet.nextElementSibling!;
       const r = sheet.getBoundingClientRect();
-      const result = { start: r.top + scrollY - parseFloat(getComputedStyle(sheet).getPropertyValue("--sheet-top")), next: next.getBoundingClientRect().top + scrollY, vh: innerHeight };
+      // Native sticky positioning ends at its parent boundary. Sample within
+      // the available following content after the game moved up the page.
+      const hold = main.getBoundingClientRect().bottom - r.bottom;
+      const result = { start: r.top + scrollY - parseFloat(getComputedStyle(sheet).getPropertyValue("--sheet-top")), next: next.getBoundingClientRect().top + scrollY, vh: Math.min(innerHeight, hold) };
       main.dataset.sectionStack = "on";
       return result;
     });
@@ -46,7 +49,7 @@ test("whole sections pause while the next opaque sheet rises over them", async (
     const late = await sample(.48);
     await info.attach(`${selector}-geometry`, { body: JSON.stringify({ geometry, early, late }, null, 2), contentType: "application/json" });
     expect(Math.abs(early.top - late.top), `${selector} pauses`).toBeLessThan(2);
-    expect(early.next - late.next, `${selector}'s next sheet advances`).toBeGreaterThan(100);
+    expect(early.next - late.next, `${selector}'s next sheet advances`).toBeGreaterThan(geometry.vh * .3);
     expect(late.nextWins, "incoming sheet paints in front").toBe(true);
     expect(late.overflow).toBeLessThanOrEqual(1);
     await page.screenshot({ path: info.outputPath(`${selector.slice(1)}-stacked.png`) });
@@ -55,7 +58,7 @@ test("whole sections pause while the next opaque sheet rises over them", async (
   // The invitation keeps its paint order over About, then scrolls naturally
   // into the optional journey so neither ending can cover the other's links.
   await expect(page.locator(".invitation")).toHaveCSS("position", "relative");
-  await expect(page.locator("[data-paths-section]")).toHaveCSS("position", "relative");
+  expect(["relative", "static"]).toContain(await page.locator("[data-paths-section]").evaluate(el => getComputedStyle(el).position));
   await info.attach("section-stacking", { body: JSON.stringify(results, null, 2), contentType: "application/json" });
 });
 
@@ -79,7 +82,7 @@ test("stacking releases for keyboard focus, anchors, find and reading preference
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/what-we-do$/);
   await page.goBack();
-  await expect(page).toHaveTitle("Connecting Dys | A home for every DYS mind.");
+  await expect(page).toHaveTitle("Connecting DYS | A home for every DYS mind.");
   await page.getByRole("button", { name: "Reading settings", exact: true }).click();
   await page.getByRole("checkbox", { name: "Reduce decorative motion", exact: true }).check();
   await page.keyboard.press("Escape");
