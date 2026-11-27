@@ -90,12 +90,12 @@ test("homepage stays brief, illustrated and free of detailed topic/story duplica
   const copy = doc.querySelector("main")!.cloneNode(true) as Element;
   copy.querySelector("[data-paths-section]")!.remove();
   const words = copy.textContent!.trim().split(/\s+/).length;
-  assert.ok(words < 400, `homepage has ${words} words`);
+  assert.ok(words < 650, `homepage has ${words} words`);
   assert.ok(doc.querySelector(".recognition-figure figcaption")?.textContent?.includes("Background edited for privacy"));
   assert.equal(doc.querySelectorAll("header .settings-trigger").length, 0);
   assert.equal(doc.querySelectorAll('.reading-toolbar .settings-trigger[aria-haspopup="dialog"]').length, 1);
   assert.equal(doc.querySelectorAll('dialog input[type="checkbox"]').length, 3);
-  assert.equal(doc.querySelectorAll(".hero-recess-shape").length, 2);
+  assert.equal(doc.querySelectorAll(".hero-recess-shape").length, 0);
   dom.window.close();
 });
 
@@ -108,9 +108,9 @@ test("story and founder message stand alone; all four topic pages have local exp
   }
   for (const route of ["dyspraxia", "dyscalculia", "dysgraphia", "dyslexia"]) {
     const dom = page(route); const doc = dom.window.document;
-    assert.ok(doc.querySelector(".topic-art svg"));
+    assert.ok(doc.querySelector(".topic-art img"));
     assert.ok(doc.querySelector("#difference-about"));
-    assert.equal(doc.querySelectorAll(".difference-experiences li").length, 3);
+    assert.equal(doc.querySelectorAll(".condition-sign-grid li").length, route === "dyscalculia" ? 3 : 4);
     assert.equal(doc.querySelectorAll('main a[href*="base44"]').length, 0);
     dom.window.close();
   }
@@ -534,7 +534,9 @@ test("editorial hierarchy, photo variety and native policy disclosures are prese
   assert.equal(doc.querySelector("h2.editorial-question")!.textContent, "What happens next?");
   assert.ok(doc.querySelectorAll(".editorial-statement").length >= 3);
   const photos = [...doc.querySelectorAll(".community-photo img")].map(img => new URL(img.getAttribute("src")!, "https://example.com").searchParams.get("url"));
-  assert.deepEqual(photos, ["/images/shared-reading.webp", "/images/exploring-books.webp"]);
+  assert.deepEqual(photos, ["/images/shared-reading-cutout.png"]);
+  assert.ok(doc.querySelector('.editorial-interlude img[src*="community-library"]'));
+  assert.equal(doc.querySelectorAll('img[src*="exploring-books"]').length, 0);
   story.window.close();
   for (const route of ["privacy", "safeguarding", "complaints", "equality", "cookies", "confidentiality"]) {
     const dom = page(route);
@@ -630,4 +632,35 @@ test("motion defaults apply before paint and an explicit saved opt-in is preserv
     assert.equal(dom.window.document.documentElement.dataset.reduceMotion, expected);
     dom.window.close();
   }
+});
+
+test("condition copy is complete and verbatim from the approved reference", () => {
+  const reference = JSON.parse(fs.readFileSync(path.join(root, "tests/fixtures/legacy-condition-copy.json"), "utf8"));
+  for (const [slug, detail] of Object.entries(reference) as [string, { introduction: string; aboutHeading: string; about: string; signs: string[]; education: string; social: string; work: string; strengths: string[]; challenges: string[]; prevalence: string }][]) {
+    const dom = page(slug), doc = dom.window.document;
+    assert.equal(doc.querySelector(".topic-heading p")!.textContent, detail.introduction);
+    assert.equal(doc.querySelector("#difference-about")!.textContent, detail.aboutHeading);
+    assert.equal(doc.querySelector("#difference-about")!.nextElementSibling!.textContent, detail.about);
+    assert.deepEqual([...doc.querySelectorAll(".condition-sign-grid li")].map(el => el.textContent), detail.signs);
+    assert.deepEqual([...doc.querySelectorAll(".condition-impact-list p")].map(el => el.textContent), [detail.education, detail.social, detail.work]);
+    assert.deepEqual([...doc.querySelectorAll("#strengths-title + ul li")].map(el => el.textContent), detail.strengths);
+    assert.deepEqual([...doc.querySelectorAll("#challenges-title + ul li")].map(el => el.textContent), detail.challenges);
+    assert.equal(doc.querySelector(".condition-prevalence p")!.textContent, detail.prevalence);
+    dom.window.close();
+  }
+});
+test("interest forms start collapsed in native disclosures and welcome uses a decorative background", () => {
+  const interest = page("get-involved");
+  const disclosures = [...interest.window.document.querySelectorAll("details.membership-disclosure")];
+  assert.equal(disclosures.length, 2);
+  assert.ok(disclosures.every(el => !el.hasAttribute("open") && el.querySelector("summary") && el.querySelector("form")));
+  interest.window.close();
+  const home = page();
+  assert.equal(home.window.document.querySelector("#hero-title")!.textContent, "Welcome toConnecting DYS");
+  assert.equal(home.window.document.querySelectorAll(".hero-note,.hero-wordmark").length, 0);
+  assert.equal(home.window.document.querySelector("[data-hero-backdrop]")!.getAttribute("aria-hidden"), "true");
+  assert.equal(home.window.document.querySelectorAll(".home-building .home-nested-panel .nested-panel").length, 2);
+  assert.equal(home.window.document.querySelectorAll(".home-building .building-columns li").length, 10);
+  assert.equal(home.window.document.querySelectorAll(".home-approach .nested-panel ul li").length, 5);
+  home.window.close();
 });

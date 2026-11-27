@@ -15,11 +15,11 @@ const collage = [
 // Protect complete cards and illustration/motion regions, not just their ink.
 // Ancestor rectangles also protect transparent parts of the supplied artwork.
 const protectedSelector = [
-  ".copy-panel", ".source-section", "header", "nav", "form", "figure", "table", "details",
+  ".copy-panel", "nav", "form", "figure", "table", "details",
   ".hero-copy", ".recognition-copy", ".principle-list", ".building-columns",
-  ".home-approach > div:not(.section-backdrop)", ".difference-experiences", ".editorial-scene",
+  ".difference-experiences", ".editorial-scene",
   "ul", "ol", "li", "blockquote", "figcaption", "[data-paths-section]",
-  ".hero-composition", ".connection-layout", ".recognition-art", ".about-statement",
+  ".connection-layout", ".recognition-art", ".about-statement",
   ".dys-hearts", ".invitation-decoration", "[data-paths-game]", ".word-cloud",
   "h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "button", "input", "select",
   "textarea", "label", "summary", "legend", "img", "svg", "canvas", "video", "iframe",
@@ -61,7 +61,7 @@ export function BackgroundDoodles() {
         if (height < 60 || viewportWidth < 240) continue;
         layer.style.left = `${-surfaceRect.left}px`;
         layer.style.width = `${viewportWidth}px`;
-        const count = Math.min(32, Math.max(8, Math.ceil(height / 300) * 3));
+        const count = Math.min(48, Math.max(12, Math.ceil(height / 240) * 4));
         const words = Array.from({ length: count }, (_, i) => {
           const [word, colour] = collage[(i + index * 3) % collage.length];
           const span = document.createElement("span");
@@ -76,14 +76,14 @@ export function BackgroundDoodles() {
         layer.replaceChildren(...words.map(word => word.span));
         const origin = layer.getBoundingClientRect();
         const obstacles = Array.from(surface.querySelectorAll<HTMLElement>(protectedSelector))
-          .filter(element => !element.closest(".background-doodles"))
+          .filter(element => !element.closest(".background-doodles, [data-hero-backdrop]"))
           .map(element => element.getBoundingClientRect())
           .filter(rect => rect.width > 0 && rect.height > 0)
           .map(rect => ({ x: rect.left - origin.left, y: rect.top - origin.top, width: rect.width, height: rect.height }));
         // Keep overflow outside ancestor boxes protected as well.
         const sizes = words.map(({ span, angle }) => ({ width: span.offsetWidth + 2, height: span.offsetHeight + 2, angle }));
         const seed = [...pathname].reduce((value, char) => Math.imul(value, 31) + char.charCodeAt(0) | 0, index + 733);
-        const placements = placeDoodles(viewportWidth, height, obstacles, sizes, seed, viewportWidth < 600 ? 20 : 24);
+        const placements = placeDoodles(viewportWidth, height, obstacles, sizes, seed, viewportWidth < 600 ? 20 : 24, true);
         const byIndex = new Map(placements.map(placement => [placement.index, placement]));
         words.forEach(({ span }, i) => {
           const placement = byIndex.get(i);

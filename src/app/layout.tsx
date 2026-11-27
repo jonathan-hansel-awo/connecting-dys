@@ -23,6 +23,7 @@ import "../styles/background-doodles.css";
 import "../styles/editorial-layout.css";
 import "../styles/edge-doodles.css";
 import "../styles/principles.css";
+import "../styles/marie-layout.css";
 
 const openSans = localFont({
   src: [

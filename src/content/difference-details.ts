@@ -1,33 +1,104 @@
-// Shortened from the public individual DYS pages reviewed on 23 November 2026:
+// Verbatim main content of Marie's approved legacy condition pages, reviewed 27 November 2026.
 // https://dys-connect-hub.base44.app/{Dyspraxia,Dyscalculia,Dysgraphia,Dyslexia}
-// Keep these as introductions, without diagnostic checklists or prevalence claims.
 export const differenceDetails = {
-  dyspraxia: {
-    introduction: "Also known as Developmental Coordination Disorder (DCD).",
-    about: "Dyspraxia can affect movement, coordination, planning and the sequencing of everyday tasks.",
-    experiences: ["Fine motor tasks, such as handwriting or fastening buttons", "Planning and completing multi-step tasks", "Balance, coordination and the effort involved in everyday activities"],
-    education: "A learner may understand the subject but find recording an answer, organising work or taking part in physical activities more demanding.",
-    everyday: "Tasks involving coordination, time management or several steps can take more effort. Fast-paced activities may feel overwhelming.",
+  "dyspraxia": {
+    "introduction": "Also known as Developmental Coordination Disorder (DCD)",
+    "aboutHeading": "What it is",
+    "about": "Dyspraxia is a neurological condition affecting motor coordination, planning, organisation, and sequencing. It can also impact speech, time management, and emotional regulation.",
+    "signs": [
+      "Poor balance and coordination",
+      "Difficulty with fine motor tasks (handwriting, fastening buttons)",
+      "Challenges with planning and completing multi-step tasks",
+      "Fatigue from tasks others find automatic"
+    ],
+    "education": "Writing speed, physical education, and organisation can be challenging. Learners may know the answer but struggle to record it.",
+    "social": "Participation in sports or fast-paced activities may feel overwhelming, sometimes leading to withdrawal or anxiety.",
+    "work": "Tasks requiring coordination, time management, or multitasking can be exhausting without appropriate support.",
+    "strengths": [
+      "Strategic and creative thinking",
+      "High adaptability",
+      "Strong verbal reasoning in supportive environments"
+    ],
+    "challenges": [
+      "Physical coordination and stamina",
+      "Organisation and time management",
+      "Navigating environments designed for speed and precision"
+    ],
+    "prevalence": "Dyspraxia is estimated to affect around 5% of children, with many continuing to experience impacts into adulthood."
   },
-  dyscalculia: {
-    introduction: "A learning difference involving numbers, quantities and number sense.",
-    about: "Dyscalculia affects how a person processes and understands numbers, quantities and mathematical concepts.",
-    experiences: ["Understanding quantities and number relationships", "Working with arithmetic and calculations", "Telling the time, estimating or managing money"],
-    education: "Maths-based subjects may need a different teaching approach. Working with numbers under pressure can be particularly demanding.",
-    everyday: "Budgeting, planning a journey or working with schedules and measurements can involve extra effort.",
+  "dyscalculia": {
+    "introduction": "A specific learning difference affecting numerical understanding, mathematical reasoning, and number sense.",
+    "aboutHeading": "About",
+    "about": "Dyscalculia affects how the brain processes and understands numbers, quantities, and mathematical concepts. It impacts numerical reasoning and number sense.",
+    "signs": [
+      "Difficulty understanding quantities and number relationships",
+      "Challenges with basic arithmetic",
+      "Difficulty telling time, managing money, or estimating distance"
+    ],
+    "education": "Maths-based subjects can feel inaccessible without tailored teaching approaches. Anxiety around numbers is common.",
+    "social": "Everyday tasks such as budgeting, travelling, or planning events can feel stressful or overwhelming.",
+    "work": "Jobs involving scheduling, finance, measurements, or data can be challenging without reasonable adjustments or tools.",
+    "strengths": [
+      "Contextual and narrative thinking",
+      "Logical reasoning outside abstract number systems",
+      "Problem-solving when numbers are embedded in real-world contexts"
+    ],
+    "challenges": [
+      "Numerical confidence",
+      "Time and money management",
+      "Speed-based calculations"
+    ],
+    "prevalence": "Dyscalculia is estimated to affect around 6% of the population."
   },
-  dysgraphia: {
-    introduction: "A learning difference involving handwriting and written expression.",
-    about: "Dysgraphia can affect the physical act of writing and the organisation of thoughts on paper. It can occur alongside other DYS experiences.",
-    experiences: ["Handwriting that is difficult to read or inconsistent", "Writing slowly or finding writing physically tiring", "Organising ideas in written form"],
-    education: "Taking notes, writing assignments or completing written exams may be demanding even when someone understands the subject well.",
-    everyday: "Handwritten tasks and producing written information quickly can take more effort. Written output does not tell the whole story of someone’s understanding.",
+  "dysgraphia": {
+    "introduction": "Affects handwriting, written expression, and the physical act of writing.",
+    "aboutHeading": "About",
+    "about": "Dysgraphia impacts the ability to write clearly and efficiently. It can co-occur with other DYS conditions and affects both the physical act of writing and the organization of thoughts on paper.",
+    "signs": [
+      "Illegible or inconsistent handwriting",
+      "Slow writing speed",
+      "Difficulty organising thoughts on paper",
+      "Physical discomfort when writing"
+    ],
+    "education": "Learners may struggle with notetaking, exams, and written assignments despite strong understanding of the subject.",
+    "social": "Handwritten tasks in group settings may cause anxiety or avoidance.",
+    "work": "Roles requiring handwritten documentation or rapid written output can be difficult without assistive technology.",
+    "strengths": [
+      "Strong verbal communication",
+      "Conceptual understanding",
+      "Creative and oral expression"
+    ],
+    "challenges": [
+      "Written output speed",
+      "Fine motor fatigue",
+      "Written organisation"
+    ],
+    "prevalence": "Dysgraphia prevalence is not consistently recorded in the UK but is recognised as commonly co-occurring with other specific learning differences."
   },
-  dyslexia: {
-    introduction: "A learning difference involving reading, spelling and language processing.",
-    about: "Dyslexia affects how a person processes written and spoken language. Experiences can include differences in reading fluency, spelling and working with written information.",
-    experiences: ["Reading accurately or fluently", "Spelling and decoding unfamiliar words", "Reading or producing written information under time pressure"],
-    education: "Text-heavy subjects, timed tests and written assignments can take more effort. A text-based task may not reflect the full extent of someone’s understanding.",
-    everyday: "Reading aloud, filling in forms, writing emails or working through reports can be demanding and may affect confidence or participation.",
-  },
+  "dyslexia": {
+    "introduction": "A specific learning difference that primarily affects reading, spelling, and written language processing.",
+    "aboutHeading": "What it is",
+    "about": "Dyslexia is a neurological condition that exists across one's lifespan. It affects how the brain processes written and spoken language.",
+    "signs": [
+      "Difficulty with reading accuracy and fluency",
+      "Challenges with spelling and phonological awareness",
+      "Slow reading speed and difficulty decoding unfamiliar words",
+      "Word retrieval and short-term memory difficulties"
+    ],
+    "education": "Learners may struggle with reading-heavy subjects, timed tests, and written assignments. Progress can be slowed by teaching methods that rely heavily on text without alternatives.",
+    "social": "People may avoid situations involving reading aloud, form-filling, or written communication, which can affect confidence and participation.",
+    "work": "Text-intensive tasks such as emails, reports, and documentation can take longer. Without reasonable adjustments, strengths may be overlooked.",
+    "strengths": [
+      "Creative and visual thinking",
+      "Big-picture reasoning",
+      "Strong problem-solving skills",
+      "Verbal communication strengths"
+    ],
+    "challenges": [
+      "Literacy under pressure",
+      "Standardised assessment environments",
+      "Misinterpretation of ability due to speed rather than understanding"
+    ],
+    "prevalence": "Dyslexia is estimated to affect around 10% of the UK population, with approximately 4% experiencing severe difficulties."
+  }
 } as const;

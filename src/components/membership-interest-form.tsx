@@ -23,7 +23,7 @@ export function MembershipInterestForm({ kind, decoration }: { kind: InterestKin
     window.location.href = message.href;
   }
 
-  return <section id={kind} className={`membership-option copy-panel panel-${young ? "blue" : "amber"} has-edge-doodle`} aria-labelledby={id("title")}>
+  return <section id={`${kind}-form`} className={`membership-option copy-panel panel-${young ? "blue" : "amber"} has-edge-doodle`} aria-labelledby={id("title")}>
     {decoration}
     <p className="eyebrow">{young ? "Ages 13–17" : "Ages 18–24"}</p>
     <h2 id={id("title")}>{copy.title}</h2>

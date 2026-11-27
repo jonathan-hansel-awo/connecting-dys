@@ -1,19 +1,20 @@
-import { EdgeDoodle } from "@/components/edge-doodle";
 import Link from "next/link";
 import { BackgroundDoodles } from "@/components/background-doodles";
-import { DifferenceArtwork } from "@/components/story-art";
+import { ConditionArtwork } from "@/components/condition-artwork";
 import { differences } from "@/content/site";
 import { differenceDetails } from "@/content/difference-details";
 
 type Difference = (typeof differences)[number];
 export function DifferencePage({ difference }: { difference: Difference }) {
   const detail = differenceDetails[difference.slug];
+  const artIndex = differences.findIndex(item => item.slug === difference.slug);
   return <main id="main-content" tabIndex={-1} className={`reading-page wrap difference-page theme-${difference.theme}`}>
-    <header className="editorial-heading topic-heading"><div><p className="eyebrow">Understanding DYS · {difference.cue}</p><h1>{difference.name}</h1><p>{detail.introduction}</p></div><div className="topic-art"><DifferenceArtwork index={difference.artIndex} /></div></header>
-    <section className="copy-panel panel-blue has-edge-doodle" aria-labelledby="difference-about"><EdgeDoodle motif="awareness" /><h2 id="difference-about">What is {difference.name.toLowerCase()}?</h2><p>{detail.about}</p><p>Everyone’s experience is different. These examples are an introduction, rather than a checklist or a diagnosis.</p></section>
-    <section className="difference-experiences" aria-labelledby="experience-title"><h2 id="experience-title">What it can feel like</h2><ul>{detail.experiences.map(item => <li key={item}>{item}</li>)}</ul></section>
-    <section aria-labelledby="everyday-title"><h2 id="everyday-title">In everyday life</h2><div className="building-columns"><article className="copy-panel panel-amber has-edge-doodle"><EdgeDoodle motif="book" /><h3>Learning and education</h3><p>{detail.education}</p></article><article className="copy-panel panel-teal has-edge-doodle"><EdgeDoodle motif="connection" /><h3>Life, work and connection</h3><p>{detail.everyday}</p></article></div></section>
-    <section className="topic-invitation copy-panel panel-cream has-edge-doodle" aria-labelledby="topic-community"><EdgeDoodle motif="home" /><h2 id="topic-community">Your mind is at home here.</h2><p>Connecting DYS is building a community rooted in lived experience and shared understanding. You are welcome whether you have a diagnosis, are waiting for one or are unsure where you fit.</p><Link className="button" href="/get-involved#register-interest">Register Your Interest</Link></section>
+    <header className="editorial-heading topic-heading"><div><h1>{difference.name}</h1><p>{detail.introduction}</p></div><div className="topic-art"><ConditionArtwork index={artIndex} /></div></header>
+    <section className="copy-panel panel-blue" aria-labelledby="difference-about"><h2 id="difference-about">{detail.aboutHeading}</h2><p>{detail.about}</p></section>
+    <section className="condition-signs" aria-labelledby="signs-title"><h2 id="signs-title">Key Signs</h2><ul className="condition-sign-grid">{detail.signs.map(item => <li className="copy-panel panel-cream" key={item}>{item}</li>)}</ul></section>
+    <section className="condition-impact" aria-labelledby="impact-title"><h2 id="impact-title">Everyday Impact</h2><div className="condition-impact-list"><article className="copy-panel panel-blue"><h3>Education</h3><p>{detail.education}</p></article><article className="copy-panel panel-amber"><h3>Social and Community Life</h3><p>{detail.social}</p></article><article className="copy-panel panel-blue"><h3>Work</h3><p>{detail.work}</p></article></div></section>
+    <div className="condition-comparison"><section className="copy-panel panel-teal" aria-labelledby="strengths-title"><h2 id="strengths-title">Strengths</h2><ul>{detail.strengths.map(item => <li key={item}>{item}</li>)}</ul></section><section className="copy-panel panel-cream" aria-labelledby="challenges-title"><h2 id="challenges-title">Challenges</h2><ul>{detail.challenges.map(item => <li key={item}>{item}</li>)}</ul></section></div>
+    <section className="condition-prevalence copy-panel panel-amber" aria-labelledby="prevalence-title"><h2 id="prevalence-title">Prevalence</h2><p>{detail.prevalence}</p></section>
     <nav className="article-links" aria-label="Other DYS pages">{differences.filter(d => d.slug !== difference.slug).map(d => <Link key={d.slug} href={`/${d.slug}`}>{d.name}</Link>)}</nav>
     <BackgroundDoodles />
   </main>;
