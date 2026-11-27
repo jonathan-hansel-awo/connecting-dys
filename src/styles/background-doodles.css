@@ -37,3 +37,5 @@ html[data-theme="dark"] { --doodle-ink: #c0cfd4; --doodle-amber: #eab85c; --dood
 html[data-spacious="true"] .background-doodles,
 html[data-texture="off"] .background-doodles { display: none; }
 @media (forced-colors: active), print { .background-doodles { display: none; } }
+
+.background-doodle.doodle-interior { opacity: calc(var(--doodle-opacity) * .65); }

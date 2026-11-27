@@ -88,6 +88,7 @@ export function BackgroundDoodles() {
         words.forEach(({ span }, i) => {
           const placement = byIndex.get(i);
           if (!placement) { span.hidden = true; return; }
+          span.classList.toggle("doodle-interior", placement.centerX > viewportWidth * .2 && placement.centerX < viewportWidth * .8);
           span.style.left = `${placement.centerX}px`;
           span.style.top = `${placement.centerY}px`;
         });
