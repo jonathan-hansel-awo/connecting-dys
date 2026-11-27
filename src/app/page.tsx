@@ -24,7 +24,7 @@ export default function HomePage() {
       <div className="section-backdrop" aria-hidden="true" />
       <HeroMarginCurves />
       <div className="hero-copy">
-        <p className="eyebrow">Connecting DYS</p>
+        {/* <p className="eyebrow">Connecting DYS</p> */}
         <h1 id="hero-title">A home for<br />every <span className="dys-word">DYS</span> mind.</h1>
         <p className="hero-intro">Building community and connection for teenagers, young adults and families affected by dyspraxia, dyscalculia, dysgraphia and dyslexia.</p>
         <div className="hero-actions"><Link href="/get-involved#register-interest" className="button">Join Our Community</Link></div>

@@ -35,7 +35,7 @@ export const defaults: Preferences = {
   lineHeight: 1.65,
   letterSpacing: 0.01,
   background: "#FCF7ED",
-  reduceMotion: false,
+  reduceMotion: true,
   texture: true,
   textureStyle: "paper",
   darkMode: false,

@@ -69,13 +69,10 @@ export default function PathsJourney() {
         <h3 ref={heading} tabIndex={-1}>{chapter.name}</h3>
       </div>
     </div>
-    <p id="paths-objective">{chapter.objective}</p>
-    <p id="paths-instructions">Tap or click a curved path or junction to turn it clockwise. With a keyboard, use Tab to choose a path and Enter or Space to turn it.</p>
     <details className="paths-help">
       <summary>How to play</summary>
-      <p>Join the openings on neighbouring pieces. Lines must meet edge to edge. A solid line and double outline mark the network linked to the little home; other paths are dashed. The place list below describes the connections in words.</p>
-      <p>When a path joins two places, both glow amber. Breaking that connection removes the glow.</p>
-      <p>Unused branches are fine. Hint points to one useful piece without moving it. You can undo any turn, restart, skip or leave. Each chapter waits for you to choose Continue.</p>
+      <p id="paths-instructions">Tap or click a curved path or junction to turn it clockwise. With a keyboard, use Tab to choose a path and Enter or Space to turn it.</p>
+      <p id="paths-objective">{chapter.objective}</p>
     </details>
     <div className="paths-play-layout">
       <div className="paths-board-region" role="group" aria-label={`${chapter.name} path board`} aria-describedby="paths-objective paths-instructions">
