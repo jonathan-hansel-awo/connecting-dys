@@ -121,10 +121,14 @@ test("desktop and mobile navigation expose the same grouped destinations without
   const desktop = doc.querySelector('nav[aria-label="Main navigation"]')!;
   const mobile = doc.querySelector('nav[aria-label="Mobile navigation"]')!;
   for (const nav of [desktop, mobile]) {
-    assert.deepEqual([...nav.querySelectorAll("summary")].map(n => n.textContent), ["About", "Explore DYS", "Information", "Get involved"]);
+    assert.deepEqual([...nav.querySelectorAll("summary")].map(n => n.textContent), ["About", "Contact us"]);
     assert.ok(nav.querySelector('a[href="/founders-message"]'));
     assert.ok(nav.querySelector('a[href="/our-story"]'));
-    assert.equal(nav.querySelectorAll('.nav-group:nth-of-type(2) a').length, 4);
+    for (const slug of ["dyspraxia", "dyscalculia", "dysgraphia", "dyslexia"]) {
+      assert.ok(nav.querySelector(`:scope > a[href="/${slug}"]`), `${slug} has a direct menu link`);
+    }
+    assert.ok(nav.querySelector('.nav-group:first-of-type a[href="/policies"]'));
+    assert.ok(nav.querySelector('.nav-group:last-of-type a[href="/contact"]'));
   }
   assert.deepEqual([...desktop.querySelectorAll("a")].map(a => a.getAttribute("href")), [...mobile.querySelectorAll("a")].map(a => a.getAttribute("href")));
   dom.window.close();
@@ -137,8 +141,10 @@ test("mission and vision retain the latest supplied statements and are directly 
   assert.ok(content.textContent?.includes("To reduce isolation among DYS individuals and families by building inclusive, community-led spaces rooted in lived experience, connection, and shared understanding."));
   assert.ok(content.textContent?.includes("A society where DYS individuals and families are connected, confident, and supported by communities that understand them not in isolation, but together."));
   assert.equal(content.querySelectorAll("details").length, 0, "the complete statements are visible without opening disclosures");
-  assert.equal(content.querySelectorAll(".source-section").length, 3);
-  assert.equal(content.querySelectorAll(".copy-panel").length, 6, "each mission, vision and goal paragraph has its own panel");
+  assert.equal(content.querySelectorAll(".source-section").length, 4);
+  assert.equal(content.querySelectorAll(".copy-panel").length, 6, "each approved mission, vision, goal and purpose paragraph has its own panel");
+  assert.equal(content.querySelector('[data-source-id="mission"]')!.querySelectorAll("p").length, 1);
+  assert.ok(!content.textContent?.includes("We deliver non-clinical, relational support"));
   dom.window.close();
 });
 
@@ -150,7 +156,7 @@ test("production routes have complete semantic content without JavaScript", () =
     assert.equal(doc.querySelectorAll("main [data-doodle-anchor]").length, 1, `${route}: decoration must mount inside its own streamed page`);
     assert.equal(doc.querySelectorAll("h1").length, 1, route);
     assert.equal(doc.documentElement.lang, "en-GB", route);
-    assert.ok(doc.title.includes("Connecting Dys"), route);
+    assert.ok(doc.title.includes("Connecting DYS"), route);
     assert.ok(doc.querySelector('#main-content[tabindex="-1"]'), route);
     assert.ok(
       doc.body.textContent?.includes("A home for every DYS mind."),
@@ -493,7 +499,7 @@ test("dark mode restores before paint, validates old storage and preserves the l
 test("About Us contains only the five requested content sections", () => {
   const dom = page("about");
   const main = dom.window.document.querySelector("main")!;
-  assert.deepEqual([...main.querySelectorAll("[data-source-id]")].map(section => section.getAttribute("data-source-id")), ["why", "mission", "vision", "goal", "about-work"]);
+  assert.deepEqual([...main.querySelectorAll("[data-source-id]")].map(section => section.getAttribute("data-source-id")), ["why", "mission", "vision", "goal", "purpose"]);
   assert.equal(main.querySelector("h1")!.textContent, "About Us");
   dom.window.close();
 });
@@ -591,4 +597,15 @@ test("the Lordicon experiment uses the five verified free doodles with credit an
   assert.equal(new Set(allIds).size, allIds.length, "repeated doodles have isolated masks and clip paths");
   assert.ok(doc.querySelector('footer a[href="https://lordicon.com/"]')?.textContent?.includes("Lordicon"));
   dom.window.close();
+});
+
+test("company registration stays in the footer and the public brand is uppercase", () => {
+  for (const route of routes) {
+    const dom = page(route); const doc = dom.window.document;
+    assert.ok(!/\bConnecting DYS CIC\b/.test(doc.querySelector("main")!.textContent || ""), route);
+    assert.ok(!/\bConnecting Dys\b/.test(doc.body.textContent || ""), route);
+    assert.match(doc.querySelector(".footer-registration")!.textContent || "", /Connecting DYS CIC • Community Interest CompanyCompany Number: 16833399 • Registered in England and Wales\./);
+    assert.ok(doc.querySelector(".footer-brand img"));
+    dom.window.close();
+  }
 });

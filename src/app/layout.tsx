@@ -41,12 +41,12 @@ const nunitoSans = localFont({
 });
 export const metadata: Metadata = {
   title: {
-    default: "Connecting Dys | A home for every DYS mind.",
-    template: "%s | Connecting Dys",
+    default: "Connecting DYS | A home for every DYS mind.",
+    template: "%s | Connecting DYS",
   },
   icons: { icon: "/brand/word-heart-favicon.png" },
   description:
-    "A home for every DYS mind. Connecting Dys CIC is building a community for teenagers and young adults navigating dyspraxia, dyscalculia, dysgraphia and dyslexia.",
+    "A home for every DYS mind. Connecting DYS is building a community for teenagers and young adults navigating dyspraxia, dyscalculia, dysgraphia and dyslexia.",
 };
 export default function RootLayout({
   children,

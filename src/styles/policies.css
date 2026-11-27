@@ -42,7 +42,7 @@
 .cookie-notice p { max-width: 65ch; margin-bottom: 1rem; }
 .cookie-actions { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; }
 .cookie-actions > a { display: inline-flex; min-height: 44px; align-items: center; color: var(--reading-accent, var(--brand-teal)); text-decoration: underline; }
-.cookie-actions .button { font-size: 1rem; }
+.cookie-actions .button { font-size: 1rem; min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 /* A normal-flow notice avoids covering reading text or keyboard focus on small
    screens. It is placed directly below the site's reading toolbar. */
 .privacy-toolbar { padding-block: 0 1rem; }

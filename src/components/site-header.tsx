@@ -15,11 +15,11 @@ export function SiteHeader() {
         <Link
           href="/#page-start"
           className="brand-link"
-          aria-label="Connecting Dys — home"
+          aria-label="Connecting DYS — home"
         >
           <Image src={brand.symbol} alt="" width={64} height={64} />
           <span>
-            Connecting <b>Dys</b>
+            Connecting <b>DYS</b>
           </span>
         </Link>
         <SiteNavigation />

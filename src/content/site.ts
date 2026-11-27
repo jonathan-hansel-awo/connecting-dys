@@ -1,5 +1,5 @@
 export const brand = {
-  name: "Connecting Dys",
+  name: "Connecting DYS",
   tagline: "A home for every DYS mind.",
   logo: "/images/dys-embrace-transparent.png",
   symbol: "/images/dys-embrace-transparent.png",

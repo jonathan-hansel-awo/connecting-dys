@@ -1,10 +1,21 @@
 import { Children, createElement, isValidElement, type ReactNode } from "react";
 import { EdgeDoodle, editorialDoodles, motifForContent } from "@/components/edge-doodle";
 import supplied from "@/content/supplied-copy.json";
+import { brandCopy } from "@/lib/brand-copy";
 
 export type SourceBlock = { type: string; text?: string; items?: string[] };
 export type SourceSection = { title: string; blocks: SourceBlock[]; table?: string[][] };
-export const sourceCopy: Record<string, SourceSection> = supplied;
+export const sourceCopy: Record<string, SourceSection> = Object.fromEntries(
+  Object.entries(supplied).map(([key, section]) => [key, {
+    ...section,
+    title: key === "purpose" ? "Our Purpose" : brandCopy(section.title),
+    blocks: (key === "mission" ? section.blocks.slice(0, 1) : section.blocks).map((block: SourceBlock) => ({
+      ...block,
+      ...(block.text !== undefined ? { text: brandCopy(block.text) } : {}),
+      ...(block.items ? { items: block.items.map(brandCopy) } : {}),
+    })),
+  }]),
+);
 export const panelTones = ["blue", "amber", "teal", "cream", "coral"];
 const toneAt = (tone: string, index: number) => panelTones[(Math.max(0, panelTones.indexOf(tone)) + index) % panelTones.length];
 

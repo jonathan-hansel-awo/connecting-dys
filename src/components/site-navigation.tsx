@@ -7,10 +7,8 @@ import { ChevronDown } from "lucide-react";
 import { differences } from "@/content/site";
 
 const groups = [
-  { label: "About", links: [["/our-story", "Our story"], ["/about", "About us"], ["/founders-message", "Founder’s message"], ["/what-we-do", "What we do"], ["/our-approach", "Our approach"], ["/values", "Our BRIDGE values"]] },
-  { label: "Explore DYS", links: differences.map(d => [`/${d.slug}`, d.name]) },
-  { label: "Information", links: [["/support", "Information & support"], ["/policies", "Our policies"], ["/accessibility", "Accessibility & reading"]] },
-  { label: "Get involved", links: [["/membership", "Register your interest"], ["/get-involved", "Work with us"], ["/#paths-to-belonging", "Paths to Belonging"]] },
+  { label: "About", links: [["/our-story", "Our story"], ["/about", "About us"], ["/founders-message", "Founder’s message"], ["/what-we-do", "What we do"], ["/our-approach", "Our approach"], ["/values", "Our BRIDGE values"], ["/policies", "Our policies"]] },
+  { label: "Contact us", links: [["/contact", "Contact us"], ["/membership", "Register your interest"], ["/get-involved", "Work with us"], ["/support", "Information & support"], ["/accessibility", "Accessibility & reading"], ["/#paths-to-belonging", "Paths to Belonging"]] },
 ];
 
 // Native disclosures keep every destination usable before JavaScript loads.
@@ -41,7 +39,7 @@ export function SiteNavigation() {
       <summary>{group.label}<ChevronDown size={16} aria-hidden="true" /></summary>
       <div className="nav-dropdown">{group.links.map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}</div>
     </details>)}
-    <Link href="/contact" aria-current={pathname === "/contact" ? "page" : undefined}>Contact</Link>
+    {differences.map(d => <Link key={d.slug} href={`/${d.slug}`} aria-current={pathname === `/${d.slug}` ? "page" : undefined}>{d.name}</Link>)}
   </>;
   return <div ref={root} className="site-navigation" onClick={event => {
     if ((event.target as Element).closest("a")) closeAll();

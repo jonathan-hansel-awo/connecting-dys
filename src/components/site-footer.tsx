@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { brand, differences } from "@/content/site";
 import { CookieInformation } from "@/components/cookie-notice";
 
@@ -9,10 +9,10 @@ export function SiteFooter() {
       <div className="footer-top">
         <div>
           <Link href="/" className="footer-brand">
-            Connecting Dys<span aria-hidden="true"><ArrowUpRight size={28} /></span>
+            <Image src={brand.logo} alt="" width={80} height={72} /><span>Connecting DYS</span>
           </Link>
           <p>{brand.tagline}</p>
-          <p className="small">A UK Community Interest Company.</p>
+          <p className="small footer-registration">Connecting DYS CIC • Community Interest Company<br />Company Number: 16833399 • Registered in England and Wales.</p>
         </div>
         <nav aria-label="Footer navigation">
           <Link href="/about">About us</Link>

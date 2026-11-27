@@ -20,13 +20,13 @@ test("grouped menu supports keyboard, Escape, outside dismissal and real route s
   await expect(about).not.toHaveAttribute("open");
   await expect(about.locator("summary")).toBeFocused();
   await about.locator("summary").click();
-  await page.locator("main h1").click();
-  await expect(about).not.toHaveAttribute("open");
+  await page.locator(".site-header").click({ position: { x: 4, y: 4 } });
+  await expect(page.locator(".site-navigation details[open]")).toHaveCount(0);
   nav = await navFor(page);
   await nav.locator("summary").filter({ hasText: /^About$/ }).click();
   await nav.getByRole("link", { name: "Our story", exact: true }).click();
-  await expect(page.locator("main h1")).toHaveText("Our Story");
-  await expect(page.locator("main [data-source-id]")).toHaveCount(1);
+  await expect(page.locator("main:visible h1")).toHaveText("Our Story");
+  await expect(page.locator("main:visible [data-source-id]")).toHaveCount(1);
   await expect(page.locator(".site-navigation details[open]")).toHaveCount(0);
 });
 
@@ -34,11 +34,10 @@ test("all four DYS pages are reached from the menu and have their own illustrate
   await page.goto("/");
   for (const name of ["Dyspraxia", "Dyscalculia", "Dysgraphia", "Dyslexia"]) {
     const nav = await navFor(page);
-    await nav.locator("summary").filter({ hasText: /^Explore DYS$/ }).click();
     await nav.getByRole("link", { name, exact: true }).click();
-    await expect(page.locator("main h1")).toHaveText(name);
-    await expect(page.locator(".topic-art svg")).toBeVisible();
-    await expect(page.locator(".difference-experiences li")).toHaveCount(3);
+    await expect(page.locator("main:visible h1")).toHaveText(name);
+    await expect(page.locator("main:visible .topic-art svg")).toBeVisible();
+    await expect(page.locator("main:visible .difference-experiences li")).toHaveCount(3);
     await expect(page.locator(".site-navigation details[open]")).toHaveCount(0);
   }
 });
@@ -49,8 +48,33 @@ test("native dropdowns and topic routes also work without JavaScript", async ({ 
     const page = await context.newPage();
     await page.goto("/");
     const nav = await navFor(page);
-    await nav.locator("summary").filter({ hasText: /^Explore DYS$/ }).click();
     await nav.getByRole("link", { name: "Dysgraphia", exact: true }).click();
-    await expect(page.locator("main h1")).toHaveText("Dysgraphia");
+    await expect(page.locator("main:visible h1")).toHaveText("Dysgraphia");
   } finally { await context.close(); }
+});
+
+test("About starts promptly and the mobile hero shows the logo first", async ({ page }, info) => {
+  await page.goto("/about");
+  const heading = page.locator(".about-page > .editorial-heading");
+  const breadcrumb = page.locator(".about-page > .breadcrumb");
+  await expect(heading).toBeVisible();
+  const gap = await heading.evaluate(el => el.getBoundingClientRect().top) - await breadcrumb.evaluate(el => el.getBoundingClientRect().bottom);
+  expect(gap).toBeLessThan(32);
+  await expect(page.locator('[data-source-id="mission"] p')).toHaveCount(1);
+  const sections = await page.locator("main:visible [data-source-id]").evaluateAll(elements => elements.map(el => el.getAttribute("data-source-id")));
+  expect(sections).toEqual(["why", "mission", "vision", "goal", "purpose"]);
+  for (const dark of [false, true]) {
+    await page.getByRole("button", { name: "Reading settings", exact: true }).click();
+    await page.getByRole("checkbox", { name: "Dark mode", exact: true }).setChecked(dark);
+    await page.keyboard.press("Escape");
+    await expect(page.locator(".brand-link")).toHaveCSS("background-color", "rgb(32, 53, 77)");
+    await page.screenshot({ path: info.outputPath(`about-${dark ? "dark" : "light"}.png`), fullPage: true });
+  }
+  await page.goto("/");
+  if ((page.viewportSize()?.width || 0) <= 760) {
+    const logo = await page.locator(".hero-dys-embrace").boundingBox();
+    const title = await page.locator("#hero-title").boundingBox();
+    expect(logo!.y + logo!.height).toBeLessThanOrEqual(title!.y);
+  }
+  await expect(page.locator(".footer-brand")).toHaveCSS("background-color", "rgb(32, 53, 77)");
 });
