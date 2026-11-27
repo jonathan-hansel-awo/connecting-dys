@@ -1,0 +1,24 @@
+name: Read approved reference
+on:
+  push:
+    branches: [codex/marie-content-layout]
+    paths: [.github/workflows/reference-inspection.yml]
+permissions:
+  contents: read
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Read public reference text and layout
+        env:
+          REFERENCE_SCRIPT: "const {chromium}=require('playwright');\n(async()=>{const browser=await chromium.launch();const page=await browser.newPage({viewport:{width:1280,height:900}});for(const route of ['/Dyspraxia','/Dyscalculia','/Dysgraphia','/Dyslexia','/']){await page.goto('https://dys-connect-hub.base44.app'+route,{waitUntil:'networkidle'});await page.waitForTimeout(1500);console.log('REF_START '+route);console.log(await page.locator('body').innerText());console.log('LAYOUT '+JSON.stringify(await page.locator('h1,h2,h3').evaluateAll(es=>es.map(el=>({text:el.textContent,tag:el.tagName,parent:el.parentElement.outerHTML.slice(0,15000)})))));console.log('REF_END '+route);if(route==='/'){console.log('SHOT_START');console.log((await page.screenshot({type:'jpeg',quality:55})).toString('base64'));console.log('SHOT_END');await page.getByText('What We Do',{exact:false}).first().scrollIntoViewIfNeeded().catch(()=>{});console.log('SHOT2_START');console.log((await page.screenshot({type:'jpeg',quality:55})).toString('base64'));console.log('SHOT2_END');}}await browser.close()})().catch(e=>{console.error(e);process.exit(1)});"
+        run: node -e "$REFERENCE_SCRIPT"
