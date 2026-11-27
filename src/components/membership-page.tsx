@@ -1,5 +1,5 @@
 import { EdgeDoodle } from "@/components/edge-doodle";
-import { ParagraphPanels, SourcePanels } from "@/components/source-panel";
+import { ParagraphPanels } from "@/components/source-panel";
 import { BackgroundDoodles } from "@/components/background-doodles";
 import { CommunityImage } from "@/components/community-image";
 import Link from "next/link";
@@ -10,7 +10,7 @@ export function MembershipPage() {
   return <main id="main-content" tabIndex={-1} className="organisation-page membership-page wrap">
     <header className="editorial-heading">
       <div><p className="eyebrow">Connecting DYS</p><h1>Get involved</h1><p>A home for every DYS mind.</p></div>
-      <CommunityImage />
+      <CommunityImage variant="involvement" />
     </header>
     <div id="register-interest">
       <nav className="membership-type-links" aria-label="Choose your interest form"><a href="#young-people">Ages 13–17</a><a href="#young-adults">Ages 18–24</a></nav>

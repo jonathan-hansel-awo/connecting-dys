@@ -1,5 +1,7 @@
 import { EdgeDoodle, motifForContent } from "@/components/edge-doodle";
 import { BackgroundDoodles } from "@/components/background-doodles";
+import { ChevronDown } from "lucide-react";
+import { PolicyArtwork } from "@/components/policy-artwork";
 import { PolicyControls } from "@/components/policy-controls";
 import Link from "next/link";
 import { brand } from "@/content/site";
@@ -10,11 +12,13 @@ export function PolicyPage({ slug }: { slug: string }) {
   const hub = slug === "policies";
   const policy = policies[slug];
   return <main id="main-content" tabIndex={-1} className="reading-page policy-page wrap">
-    {!hub && <Link className="breadcrumb" href="/policies">All policies</Link>}
-    <header className="copy-panel panel-blue has-edge-doodle"><EdgeDoodle motif="shield" /><h1>{hub ? "Our Policies" : policy.title}</h1></header>
+    <header className="editorial-heading"><div><h1>{hub ? "Our Policies" : policy.title}</h1>{!hub && <Link className="text-link" href="/policies">All policies</Link>}</div><PolicyArtwork /></header>
     {hub ? <nav className="policy-index" aria-label="Organisation policies">
-      {Object.entries(policies).map(([key, item], i) => <Link className={`copy-panel panel-${i % 2 ? "amber" : "blue"} has-edge-doodle`} href={`/${key}`} key={key}><EdgeDoodle motif={motifForContent(item.title)} /><h2>{item.title}</h2><p>{item.intro}</p></Link>)}
-      <Link className="copy-panel panel-teal has-edge-doodle" href="/accessibility"><EdgeDoodle motif="accessibility" /><h2>Accessibility Statement</h2><p>Need Support?</p></Link>
+      {Object.entries(policies).map(([key, item], i) => <article className={`copy-panel panel-${i % 2 ? "amber" : "blue"} has-edge-doodle policy-card`} key={key} data-policy-card={key}>
+        <EdgeDoodle motif={motifForContent(item.title)} /><h2><Link href={`/${key}`}>{item.title}</Link></h2>
+        <details className="policy-preview"><summary aria-label={`Read overview of ${item.title}`}>Read overview<ChevronDown size={18} aria-hidden="true" /></summary><p>{item.intro}</p></details>
+      </article>)}
+      <article className="copy-panel panel-teal has-edge-doodle policy-card" data-policy-card="accessibility"><EdgeDoodle motif="accessibility" /><h2><Link href="/accessibility">Accessibility Statement</Link></h2><details className="policy-preview"><summary aria-label="Read overview of Accessibility Statement">Read overview<ChevronDown size={18} aria-hidden="true" /></summary><p>Need Support?</p></details></article>
     </nav> : <>
       <details className="policy-contents copy-panel panel-cream has-edge-doodle"><summary><EdgeDoodle motif="document" />On this page</summary><ul>{policy.sources.map(source => <li key={source}><a href={`#source-${source}`}>{sourceCopy[source].title}</a></li>)}</ul></details>
       {policy.download && <p className="copy-panel panel-cream has-edge-doodle"><EdgeDoodle motif="document" /><a href={policy.download} download className="text-link">Download the original policy (PDF)</a></p>}

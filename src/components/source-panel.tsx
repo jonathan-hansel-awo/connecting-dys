@@ -70,13 +70,14 @@ const emphasisBySource: Record<string, Record<number, string>> = {
   "approach-community": { 0: "statement" },
 };
 
-export function SourcePanel({ source, level = 2, tone = "blue", id, children, artwork, collapsible = false, initiallyOpen = false, interlude }: {
-  source: string; level?: 1 | 2 | 3; tone?: string; id?: string; children?: ReactNode; artwork?: ReactNode; collapsible?: boolean; initiallyOpen?: boolean; interlude?: { after: number; content: ReactNode };
+export function SourcePanel({ source, level = 2, tone = "blue", id, children, artwork, collapsible = false, initiallyOpen = false, interlude, unboxedTitle = false }: {
+  source: string; level?: 1 | 2 | 3; tone?: string; id?: string; children?: ReactNode; artwork?: ReactNode; collapsible?: boolean; initiallyOpen?: boolean; interlude?: { after: number; content: ReactNode }; unboxedTitle?: boolean;
 }) {
   const section = sourceCopy[source];
   const headingId = id || `source-${source}`;
   const Container = collapsible ? "details" : "section";
   return <Container className={`source-section ${collapsible ? "policy-disclosure" : "editorial-source"}`} data-source-id={source} aria-labelledby={headingId} open={collapsible && initiallyOpen ? true : undefined}>
+    {unboxedTitle && !collapsible && <header className="editorial-heading"><div>{createElement(`h${level}`, { id: headingId }, section.title)}</div>{artwork && <div className="editorial-art">{artwork}</div>}</header>}
     {collapsible && <summary><EdgeDoodle motif={motifForContent(section.title)} />{createElement(`h${level}`, { id: headingId }, section.title)}<span className="disclosure-indicator" aria-hidden="true" /></summary>}
     {paragraphGroups(section.blocks).map((group, i) => {
       const paragraph = group.length === 1 && group[0].type === "paragraph" ? group[0].text?.trim() : undefined;
@@ -86,10 +87,10 @@ export function SourcePanel({ source, level = 2, tone = "blue", id, children, ar
       const motif = editorialDoodles[source]?.[i] ?? motifForContent(group.map(block => block.text || block.items?.join(" ") || "").join(" ") + " " + section.title);
       const panel = <div className={`copy-panel panel-${toneAt(tone, i)} ${emphasis ? `source-${emphasis}` : ""} has-edge-doodle`} data-copy-emphasis={emphasis} key={i}>
         <EdgeDoodle motif={motif} />
-        {i === 0 && !collapsible && createElement(`h${level}`, { id: headingId }, section.title)}
+        {i === 0 && !collapsible && !unboxedTitle && createElement(`h${level}`, { id: headingId }, section.title)}
         <SourceBlocks blocks={group} headingLevel={level + 1} emphasis={emphasis} />
       </div>;
-      const content = i === 0 && artwork ? <div className="illustrated-source-header">{panel}<div className="editorial-art">{artwork}</div></div> : panel;
+      const content = i === 0 && artwork && !unboxedTitle ? <div className="illustrated-source-header">{panel}<div className="editorial-art">{artwork}</div></div> : panel;
       return <div className="source-beat" key={i}>{content}{interlude?.after === i && <div className="editorial-interlude">{interlude.content}</div>}</div>;
     })}
     {section.table && <div className={`copy-panel panel-${tone} has-edge-doodle`}><EdgeDoodle motif="document" /><div className="retention-scroll" role="region" aria-label={section.title} tabIndex={0}>

@@ -230,3 +230,8 @@ main.reading-page, main.organisation-page, main.game-page { padding-top: .75rem;
   .footer-top nav.footer-links { grid-column: 1 / -1; }
   .footer-top nav[aria-label="Learning differences"] { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem 1rem; }
 }
+
+/* Page titles and their artwork always sit outside the reading surfaces. */
+.organisation-page > .source-section > .editorial-heading { margin-bottom: 0; }
+.organisation-page > .source-section > .editorial-heading .editorial-art { width: min(100%, 23rem); justify-self: center; }
+.editorial-heading > .bridge-artwork { width: min(100%, 22rem); justify-self: center; }

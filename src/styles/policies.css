@@ -64,3 +64,16 @@ html[data-spacious="true"] .policy-index, html[data-spacious="true"] .membership
 .policy-disclosure > .copy-panel { margin: 1rem; }
 .policy-contents > summary { cursor: pointer; font-family: var(--reading-heading-font); font-size: 1.15rem; font-weight: 600; min-height: 44px; }
 .policy-implementation { padding-inline: 1rem; }
+
+/* A linked title opens the full policy; a separate native disclosure previews it. */
+.policy-page .policy-index { gap: 1.5rem; margin-block: 1rem; align-items: start; }
+.policy-card .policy-preview { clear: both; }
+.policy-preview > summary { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 44px; list-style: none; cursor: pointer; font-size: .9rem; font-weight: 600; color: var(--panel-accent); }
+.policy-preview > summary::-webkit-details-marker { display: none; }
+.policy-preview[open] > summary svg { transform: rotate(180deg); }
+.policy-preview > p { margin-top: .65rem; }
+.policy-card h2 { margin-top: 0; }
+.policy-artwork { width: min(100%, 16rem); justify-self: center; }
+@media (max-width: 760px) {
+  .policy-artwork { width: min(60vw, 13rem); }
+}
