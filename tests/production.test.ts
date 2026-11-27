@@ -129,6 +129,7 @@ test("desktop and mobile navigation expose the same grouped destinations without
     }
     assert.ok(nav.querySelector('.nav-group:first-of-type a[href="/policies"]'));
     assert.ok(nav.querySelector(':scope > a[href="/get-involved"]'));
+    assert.deepEqual([...nav.children].map(el => el.tagName === "DETAILS" ? el.querySelector("summary")!.textContent : el.textContent), ["Home", "About", "Dyspraxia", "Dyscalculia", "Dysgraphia", "Dyslexia", "Get involved"]);
     for (const path of ["/support", "/accessibility", "/paths-to-belonging", "/#paths-to-belonging"]) assert.equal(nav.querySelector(`a[href="${path}"]`), null);
   }
   assert.deepEqual([...desktop.querySelectorAll("a")].map(a => a.getAttribute("href")), [...mobile.querySelectorAll("a")].map(a => a.getAttribute("href")));
@@ -348,7 +349,7 @@ test("texture migrates safely and restores before paint without changing reading
         vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
         const html = dom.window.document.documentElement;
         assert.equal(html.dataset.texture, texture === false ? "off" : "on");
-        assert.equal(html.dataset.textureStyle, "paper", "legacy settings use paper");
+        assert.equal(html.dataset.textureStyle, "plaster", "legacy settings use the default texture");
         assert.equal(html.dataset.reduceMotion, "true");
         assert.equal(html.dataset.spacious, "true");
         assert.equal(html.style.getPropertyValue("--reading-background"), background);
@@ -368,7 +369,7 @@ test("texture styles validate before paint, including Off and hostile stored val
       const bootstrap = [...dom.window.document.scripts].find((s) => s.textContent?.startsWith("try{"))!;
       vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
       const html = dom.window.document.documentElement;
-      assert.equal(html.dataset.textureStyle, ["paper", "linen", "plaster"].includes(textureStyle as string) ? textureStyle : "paper");
+      assert.equal(html.dataset.textureStyle, ["paper", "linen", "plaster"].includes(textureStyle as string) ? textureStyle : "plaster");
       assert.equal(html.dataset.texture, texture ? "on" : "off");
       assert.equal(html.style.getPropertyValue("--reading-background"), "#EBF4FA");
       dom.window.close();
@@ -663,4 +664,22 @@ test("interest forms start collapsed in native disclosures and welcome uses a de
   assert.equal(home.window.document.querySelectorAll(".home-building .building-columns li").length, 10);
   assert.equal(home.window.document.querySelectorAll(".home-approach .nested-panel ul li").length, 5);
   home.window.close();
+});
+
+test("fresh and incomplete preferences use Verdana, 20px, comfortable spacing and plaster before paint", () => {
+  for (const saved of [null, {}, { font: "invalid", size: "20", textureStyle: "invalid" }]) {
+    const dom = page();
+    if (saved !== null) dom.window.localStorage.setItem("connecting-dys-reading-settings", JSON.stringify(saved));
+    const bootstrap = [...dom.window.document.scripts].find(s => s.textContent?.startsWith("try{"))!;
+    vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
+    const html = dom.window.document.documentElement;
+    assert.equal(html.style.getPropertyValue("--reading-font"), "Verdana, Geneva, sans-serif");
+    assert.equal(html.style.getPropertyValue("--reading-heading-font"), "Verdana, Geneva, sans-serif");
+    assert.equal(html.style.getPropertyValue("--reading-size"), "20px");
+    assert.equal(html.style.getPropertyValue("--reading-line-height"), "1.65");
+    assert.equal(html.style.getPropertyValue("--reading-letter-spacing"), "0.01em");
+    assert.equal(html.dataset.textureStyle, "plaster");
+    assert.equal(html.dataset.spacious, "false");
+    dom.window.close();
+  }
 });

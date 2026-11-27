@@ -38,8 +38,8 @@ export function SiteNavigation() {
       <summary>{group.label}<ChevronDown size={16} aria-hidden="true" /></summary>
       <div className="nav-dropdown">{group.links.map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}</div>
     </details>)}
-    <Link href="/get-involved" aria-current={pathname === "/get-involved" ? "page" : undefined}>Get involved</Link>
     {differences.map(d => <Link key={d.slug} href={`/${d.slug}`} aria-current={pathname === `/${d.slug}` ? "page" : undefined}>{d.name}</Link>)}
+    <Link href="/get-involved" aria-current={pathname === "/get-involved" ? "page" : undefined}>Get involved</Link>
   </>;
   return <div ref={root} className="site-navigation" onClick={event => {
     if ((event.target as Element).closest("a")) closeAll();
