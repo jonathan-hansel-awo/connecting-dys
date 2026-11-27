@@ -115,6 +115,6 @@ test("stacking has static alternatives for short screens, OS motion and no JavaS
     await tab.goto("/");
     await expect(tab.locator(".hero")).toHaveCSS("position", "relative");
     await tab.locator(".invitation .button").click();
-    await expect(tab).toHaveURL(/\/membership$/);
+    await expect(tab).toHaveURL(/\/get-involved#register-interest$/);
   } finally { await native.close(); }
 });

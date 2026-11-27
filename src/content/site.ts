@@ -3,7 +3,7 @@ export const brand = {
   tagline: "A home for every DYS mind.",
   logo: "/images/dys-embrace-transparent.png",
   symbol: "/images/dys-embrace-transparent.png",
-  email: "connectingdys@gmail.com",
+  email: "info@conectingdys.org.uk",
 };
 export const differences = [
   {

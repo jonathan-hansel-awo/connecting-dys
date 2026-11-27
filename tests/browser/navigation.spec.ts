@@ -56,9 +56,9 @@ test("native dropdowns and topic routes also work without JavaScript", async ({ 
 test("About starts promptly and the mobile hero shows the logo first", async ({ page }, info) => {
   await page.goto("/about");
   const heading = page.locator(".about-page > .editorial-heading");
-  const breadcrumb = page.locator(".about-page > .breadcrumb");
+  await expect(page.getByRole("link", { name: "Back to home", exact: true })).toHaveCount(0);
   await expect(heading).toBeVisible();
-  const gap = await heading.evaluate(el => el.getBoundingClientRect().top) - await breadcrumb.evaluate(el => el.getBoundingClientRect().bottom);
+  const gap = await heading.evaluate(el => el.getBoundingClientRect().top) - await page.locator(".about-page").evaluate(el => el.getBoundingClientRect().top);
   expect(gap).toBeLessThan(32);
   await expect(page.locator('[data-source-id="mission"] p')).toHaveCount(1);
   const sections = await page.locator("main:visible [data-source-id]").evaluateAll(elements => elements.map(el => el.getAttribute("data-source-id")));
@@ -120,4 +120,48 @@ test("reading panels share the icon band and emphasise standalone thoughts", asy
     const heading = await page.locator(".editorial-heading h1").boundingBox();
     expect(logo!.y).toBeLessThan(heading!.y);
   }
+});
+
+test("Get involved combines the illustration, forms and contact details", async ({ page }, info) => {
+  await page.goto("/get-involved");
+  await expect(page.locator("main:visible h1")).toHaveText("Get involved");
+  await expect(page.locator(".membership-page .community-scene img")).toBeVisible();
+  await expect(page.locator("main:visible form")).toHaveCount(2);
+  for (const form of await page.locator("main:visible form").all()) {
+    await expect(form).toHaveAttribute("action", "mailto:info@conectingdys.org.uk");
+  }
+  for (const name of ["How to express interest", "This is an expression of interest.", "Join us in creating something meaningful.", "Who Can Join"]) {
+    await expect(page.getByRole("heading", { name, exact: true })).toHaveCount(0);
+  }
+  const contact = page.locator("main:visible #contact");
+  await expect(contact.getByRole("link", { name: "info@conectingdys.org.uk", exact: true })).toHaveAttribute("href", "mailto:info@conectingdys.org.uk");
+  await expect(contact).toContainText("We are based in Nottingham, but our community is open to every DYS mind nationwide.");
+  await expect(contact.locator(":scope > p")).toHaveCount(2);
+  const useful = page.getByRole("navigation", { name: "Useful links", exact: true });
+  await expect(useful.getByRole("link")).toHaveCount(3);
+  for (const path of ["/support", "/accessibility", "/paths-to-belonging"]) {
+    await expect(page.locator(`.site-navigation a[href="${path}"]`)).toHaveCount(0);
+    await expect(useful.locator(`a[href="${path}"]`)).toHaveCount(1);
+  }
+  const positions = await page.getByRole("navigation", { name: "Footer navigation", exact: true }).locator("a").evaluateAll(elements => elements.map(el => ({ x: el.getBoundingClientRect().left, y: el.getBoundingClientRect().top })));
+  expect(positions).toHaveLength(10);
+  expect(positions[5].x).toBeGreaterThan(positions[0].x);
+  expect(Math.abs(positions[5].y - positions[0].y)).toBeLessThanOrEqual(1);
+  for (let i = 0; i < 5; i++) {
+    expect(Math.abs(positions[i].x - positions[0].x)).toBeLessThanOrEqual(1);
+    expect(Math.abs(positions[i + 5].x - positions[5].x)).toBeLessThanOrEqual(1);
+  }
+  for (const [legacy, destination] of [["/contact", "/get-involved#contact"], ["/membership", "/get-involved#register-interest"]]) {
+    await page.goto(legacy);
+    await expect(page).toHaveURL(new RegExp(destination + "$"));
+    await expect(page.locator("main:visible h1")).toHaveText("Get involved");
+  }
+  for (const route of ["/our-story", "/dysgraphia", "/about"]) {
+    await page.goto(route);
+    await expect(page.getByRole("link", { name: "Back to home", exact: true })).toHaveCount(0);
+    const gap = await page.locator("main:visible h1").evaluate(el => el.getBoundingClientRect().top - document.querySelector("main")!.getBoundingClientRect().top);
+    expect(gap).toBeLessThan(100);
+  }
+  await page.goto("/get-involved");
+  await page.screenshot({ path: info.outputPath("get-involved-combined.png"), fullPage: true });
 });

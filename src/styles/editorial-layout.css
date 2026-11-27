@@ -205,3 +205,28 @@ html[data-spacious="true"] .calm-home .hero-copy { grid-row: 2; }
 .copy-panel .editorial-refrain { font-size: clamp(1.25rem, 2.2vw, 1.55rem); }
 .copy-panel .editorial-question { font-size: clamp(1.6rem, 3.5vw, 2.5rem); }
 html[data-spacious="true"] .about-page .editorial-brand { margin-block-start: 0; width: min(100%, 15rem); }
+
+/* Internal pages start directly below the reading toolbar. */
+main.reading-page, main.organisation-page, main.game-page { padding-top: .75rem; }
+.organisation-page > .source-section:first-child { margin-top: 0; }
+.editorial-heading { padding-block: .25rem .75rem; align-items: start; }
+.illustrated-source-header { align-items: start; }
+.about-page .editorial-brand { margin-block-start: 0; }
+.membership-page .editorial-scene { width: min(100%, 25rem); justify-self: center; }
+.membership-page #register-interest, .membership-page #contact { scroll-margin-top: 7rem; }
+.footer-top nav.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  column-gap: clamp(1rem, 3vw, 3rem);
+  align-items: start;
+}
+@media (min-width: 1001px) {
+  .footer-top { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr) minmax(0, .7fr); }
+}
+
+@media (max-width: 1000px) {
+  .footer-top nav.footer-links { grid-column: 1 / -1; }
+  .footer-top nav[aria-label="Learning differences"] { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem 1rem; }
+}

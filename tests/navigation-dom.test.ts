@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import { JSDOM } from "jsdom";
 import { registerTsx } from "./helpers/register-tsx.mjs";
 
-test("actual dropdown navigation closes siblings, restores Escape focus and dismisses outside", async () => {
+test("actual dropdown navigation restores Escape focus and dismisses outside", async () => {
   const loader = registerTsx({ pathname: "/our-story" });
   const dom = new JSDOM('<!doctype html><body><div id="root"></div><button id="outside">Outside</button></body>', { url: "https://connecting-contact.example/our-story", pretendToBeVisual: true });
   const doc = dom.window.document;
@@ -18,18 +18,16 @@ test("actual dropdown navigation closes siblings, restores Escape focus and dism
   try {
     await act(async () => root.render(React.createElement(SiteNavigation)));
     for (const nav of doc.querySelectorAll("nav")) {
-      const [about, contact] = [...nav.querySelectorAll<HTMLDetailsElement>(".nav-group")];
+      const [about] = [...nav.querySelectorAll<HTMLDetailsElement>(".nav-group")];
       assert.equal(nav.querySelector('a[href="/our-story"]')?.getAttribute("aria-current"), "page");
       await flush(() => { about.open = true; });
       assert.equal(about.open, true);
-      await flush(() => { contact.open = true; });
-      assert.equal(about.open, false, "opening a group dismisses its sibling");
-      assert.equal(contact.open, true);
-      const link = contact.querySelector<HTMLAnchorElement>('a[href="/contact"]')!;
+      assert.ok(nav.querySelector(':scope > a[href="/get-involved"]'));
+      const link = about.querySelector<HTMLAnchorElement>('a[href="/founders-message"]')!;
       link.focus();
       await flush(() => link.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
-      assert.equal(contact.open, false);
-      assert.equal(doc.activeElement, contact.querySelector("summary"));
+      assert.equal(about.open, false);
+      assert.equal(doc.activeElement, about.querySelector("summary"));
       await flush(() => { about.open = true; });
       await flush(() => doc.getElementById("outside")!.dispatchEvent(new dom.window.Event("pointerdown", { bubbles: true })));
       assert.equal(about.open, false);

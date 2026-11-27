@@ -19,14 +19,14 @@ const routes = [
   "our-approach",
   "values",
   "support",
-  "contact",
+  
   "get-involved",
   "accessibility",
   "dyslexia",
   "dyspraxia",
   "dyscalculia",
   "dysgraphia",
-  "membership", "policies", "privacy", "cookies", "safeguarding", "complaints",
+   "policies", "privacy", "cookies", "safeguarding", "complaints",
   "equality", "confidentiality", "disclaimer", "data-retention",
 ];
 function page(route = "") {
@@ -121,14 +121,15 @@ test("desktop and mobile navigation expose the same grouped destinations without
   const desktop = doc.querySelector('nav[aria-label="Main navigation"]')!;
   const mobile = doc.querySelector('nav[aria-label="Mobile navigation"]')!;
   for (const nav of [desktop, mobile]) {
-    assert.deepEqual([...nav.querySelectorAll("summary")].map(n => n.textContent), ["About", "Contact us"]);
+    assert.deepEqual([...nav.querySelectorAll("summary")].map(n => n.textContent), ["About"]);
     assert.ok(nav.querySelector('a[href="/founders-message"]'));
     assert.ok(nav.querySelector('a[href="/our-story"]'));
     for (const slug of ["dyspraxia", "dyscalculia", "dysgraphia", "dyslexia"]) {
       assert.ok(nav.querySelector(`:scope > a[href="/${slug}"]`), `${slug} has a direct menu link`);
     }
     assert.ok(nav.querySelector('.nav-group:first-of-type a[href="/policies"]'));
-    assert.ok(nav.querySelector('.nav-group:last-of-type a[href="/contact"]'));
+    assert.ok(nav.querySelector(':scope > a[href="/get-involved"]'));
+    for (const path of ["/support", "/accessibility", "/paths-to-belonging", "/#paths-to-belonging"]) assert.equal(nav.querySelector(`a[href="${path}"]`), null);
   }
   assert.deepEqual([...desktop.querySelectorAll("a")].map(a => a.getAttribute("href")), [...mobile.querySelectorAll("a")].map(a => a.getAttribute("href")));
   dom.window.close();
@@ -231,17 +232,17 @@ test("new content removes personal attribution and provides on-page membership i
     assert.ok(dom.window.document.querySelector('a[href="/cookies"]'), route);
     dom.window.close();
   }
-  const membership = page("membership");
+  const membership = page("get-involved");
   assert.equal(membership.window.document.querySelectorAll('main a[download]').length, 0);
   assert.equal(membership.window.document.querySelectorAll("main form").length, 2);
   assert.doesNotMatch(membership.window.document.querySelector("main")!.textContent!, /download|nothing is submitted/i);
   for (const form of membership.window.document.querySelectorAll("main form")) {
-    assert.equal(form.getAttribute("action"), "mailto:connectingdys@gmail.com");
+    assert.equal(form.getAttribute("action"), "mailto:info@conectingdys.org.uk");
     assert.equal(form.getAttribute("method"), "post", "no-JS fallback must never put personal data in a page URL");
     assert.ok(form.querySelector('input[name="acknowledgement"][required]'));
     assert.ok(form.querySelector('button[type="submit"][disabled]'), "no-JS users have the direct email link");
   }
-  assert.match(membership.window.document.querySelector("main")!.textContent!, /does not enrol you/);
+  assert.match(membership.window.document.querySelector("main")!.textContent!, /expression of interest only/);
   assert.match(membership.window.document.querySelector("main")!.textContent!, /If you are aged 13–15:/);
   assert.match(membership.window.document.querySelector("main")!.textContent!, /If you are aged 16–17:/);
   membership.window.close();
@@ -560,7 +561,7 @@ test("corner illustrations stay decorative, complete and matched to their subjec
   }
   assert.ok(doc.querySelector(".edge-doodle svg [opacity]"), "duotone illustrations include their secondary colour layer");
   about.window.close();
-  for (const route of ["about", "our-story", "founders-message", "our-approach", "what-we-do", "values", "support", "get-involved", "contact", "membership", "accessibility", "dyspraxia", "dyscalculia", "dysgraphia", "dyslexia", "policies", "privacy", "safeguarding", "data-retention"]) {
+  for (const route of ["about", "our-story", "founders-message", "our-approach", "what-we-do", "values", "support", "get-involved",   "accessibility", "dyspraxia", "dyscalculia", "dysgraphia", "dyslexia", "policies", "privacy", "safeguarding", "data-retention"]) {
     const dom = page(route);
     for (const panel of dom.window.document.querySelectorAll("main .copy-panel")) {
       assert.equal(panel.querySelectorAll(":scope > .edge-doodle, :scope > summary > .edge-doodle").length, 1, `${route}: every content box has one corner illustration`);

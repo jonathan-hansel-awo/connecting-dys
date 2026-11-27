@@ -48,7 +48,7 @@ test("actual membership forms validate age-specific details and prepare email ha
     assert.ok(href, "fallback offers the same email draft");
     const url = new URL(href);
     assert.equal(url.protocol, "mailto:");
-    assert.equal(url.pathname, "connectingdys@gmail.com");
+    assert.equal(url.pathname, "info@conectingdys.org.uk");
     assert.deepEqual([...url.searchParams.keys()], ["subject", "body"], "answers cannot inject email headers");
     return url;
   }
