@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import { JSDOM } from "jsdom";
 import { backgrounds } from "../src/lib/preferences.ts";
 
@@ -60,24 +61,28 @@ test("full-length editorial and policy copy stays intact on its dedicated pages"
       const raw = supplied[source];
       const expected = doc.createElement("section");
       const heading = doc.createElement("h2");
-      heading.textContent = source === "purpose" ? "Our Purpose" : brandCopy(raw.title);
+      heading.textContent = raw.title;
       expected.append(heading);
-      const blocks = source === "mission" ? raw.blocks.slice(0, 1) : raw.blocks;
+      const blocks = raw.blocks;
       for (const block of blocks) {
         if (block.type === "list") {
           const list = doc.createElement("ul");
           for (const item of block.items) {
-            const li = doc.createElement("li"); li.textContent = brandCopy(item); list.append(li);
+            const li = doc.createElement("li"); li.textContent = item; list.append(li);
           }
           expected.append(list);
         } else {
           const node = doc.createElement(block.type === "heading" ? "h3" : "p");
-          node.textContent = brandCopy(block.text); expected.append(node);
+          node.textContent = block.text; expected.append(node);
         }
       }
       if (raw.table) for (const row of raw.table) for (const cell of row) {
         const node = doc.createElement("td"); node.textContent = cell; expected.append(node);
       }
+      assert.equal(createHash("sha256").update(originalSourceText(expected)).digest("hex"), fingerprints[source], `original source changed: ${source}`);
+      for (const node of expected.querySelectorAll("h2,h3,p,li")) node.textContent = brandCopy(node.textContent || "");
+      if (source === "purpose") heading.textContent = "Our Purpose";
+      if (source === "mission") expected.querySelectorAll("p")[1]?.remove();
       assert.equal(text, originalSourceText(expected), `${route}: only approved copy edits are permitted in ${source}`);
       if (panel.matches("details")) assert.ok(panel.querySelector(":scope > summary h2"), "collapsible policy has an accessible section title");
       assert.equal(panel.querySelectorAll("details").length, 0, "source text is not buried in nested disclosures");
