@@ -1,0 +1,64 @@
+/* Reference layouts retain the current reading palette and natural reflow. */
+.calm-home .welcome-hero { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; position: relative; isolation: isolate; min-height: clamp(29rem, 64vh, 39rem); padding-block: clamp(3rem, 8vw, 6rem); }
+.calm-home .welcome-hero .hero-copy { position: relative; grid-row: auto; z-index: 1; width: 100%; max-width: 52rem; margin-inline: auto; text-align: center; }
+.calm-home .welcome-hero h1 { max-width: none; font-size: clamp(2.2rem, 6vw, 5.5rem); }
+.calm-home .welcome-hero .hero-intro { max-width: 54ch; margin-inline: auto; }
+.calm-home .welcome-hero .hero-actions { justify-content: center; }
+.calm-home .welcome-hero .hero-composition { position: absolute; inset: 0; grid-row: auto; width: 100%; height: 100%; margin: 0; padding: 0; pointer-events: none; z-index: 0; }
+.calm-home .welcome-hero .logo-stage { position: absolute; inset: 0; display: grid; place-items: center; padding: 0; background: none; border: 0; box-shadow: none; }
+.calm-home .welcome-hero .hero-dys-embrace { width: min(85%, 36rem); margin: 0; opacity: .18; }
+.calm-home .welcome-hero .hero-dys-embrace img { width: 100%; height: auto; filter: none; }
+html[data-theme="dark"] .calm-home .welcome-hero .hero-dys-embrace { opacity: .14; }
+.home-building > header { max-width: none; text-align: center; }
+.calm-home .home-approach { display: block; }
+.calm-home .home-approach > h2 { text-align: center; }
+.home-nested-panel { margin-block: 1.5rem; }
+.home-nested-panel > .nested-intro { max-width: 65ch; margin: 0 auto 1.5rem; text-align: center; font-size: 1.1rem; }
+.home-nested-panel .nested-panel { background: var(--reading-background); color: var(--panel-ink); border: 1px solid var(--rule); box-shadow: none; }
+.home-nested-panel .building-columns { gap: 1.25rem; }
+.home-nested-panel .building-columns > .copy-panel { margin: 0; }
+.home-nested-panel .copy-panel h3 { margin-top: 0; }
+.home-nested-panel .nested-closing { max-width: 65ch; margin: 1.5rem auto 0; text-align: center; font-weight: 600; }
+.home-nested-panel .nested-closing p { max-width: none; margin: .3rem 0; }
+.approach-opening { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem; }
+.approach-opening .bridge-artwork { max-width: 20rem; }
+.approach-pillars { display: grid; gap: .75rem; }
+.approach-pillars .nested-panel { margin: 0; max-width: none; padding: 1rem 1.2rem; border-radius: 1rem; font-size: 1.2rem; font-weight: 800; }
+.community-photo-cutout img { border: 0; border-radius: 0; background: transparent; }
+.condition-artwork { position: relative; overflow: hidden; width: min(100%, 20rem); aspect-ratio: 1; border-radius: 2rem; background: #fcf7ed; }
+.condition-artwork img { position: absolute; left: 0; top: 0; width: 200%; height: 200%; max-width: none; }
+.condition-artwork[data-condition-art="1"] img, .condition-artwork[data-condition-art="3"] img { left: -100%; }
+.condition-artwork[data-condition-art="2"] img, .condition-artwork[data-condition-art="3"] img { top: -100%; }
+.condition-sign-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; gap: 1rem; margin: 0; padding: 0; }
+.condition-sign-grid > .copy-panel { margin: 0; padding: 1.2rem 1.5rem; }
+.condition-impact-list { display: grid; gap: 1rem; }
+.condition-impact-list > .copy-panel { margin: 0; }
+.condition-impact-list h3 { margin-top: 0; }
+.condition-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: stretch; margin-block: 2.5rem; }
+.condition-comparison > .copy-panel { margin: 0; }
+.condition-prevalence { text-align: center; }
+.condition-prevalence :is(h2,p) { margin-inline: auto; }
+.membership-options { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+.membership-disclosure { min-width: 0; max-width: 100%; border: 2px solid var(--rule); border-radius: 1.5rem; background: var(--reading-background); scroll-margin-top: 7rem; }
+.membership-disclosure > summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; cursor: pointer; min-height: 72px; }
+.membership-disclosure > summary::-webkit-details-marker { display: none; }
+.membership-disclosure > summary > span:first-child { display: grid; gap: .4rem; min-width: 0; overflow-wrap: anywhere; }
+.membership-disclosure > summary strong { font-family: var(--reading-heading-font); font-size: 1.35rem; }
+.membership-disclosure > summary > span > span { font-size: .95rem; }
+.membership-disclosure > .membership-option { margin: 0; border-radius: 0 0 1.3rem 1.3rem; border: 0; border-top: 1px solid var(--rule); box-shadow: none; }
+.membership-disclosure[open] > summary .disclosure-indicator { transform: rotate(180deg); }
+@media (max-width: 760px) {
+  .calm-home .welcome-hero { min-height: 29rem; padding-block: 3rem; }
+  .calm-home .welcome-hero .hero-copy, .calm-home .welcome-hero .hero-composition { grid-row: auto; }
+  .home-nested-panel .building-columns, .approach-opening, .condition-comparison, .condition-sign-grid { grid-template-columns: minmax(0, 1fr); }
+  .approach-opening .bridge-artwork { max-width: 14rem; }
+  .membership-disclosure > summary { padding: 1rem; }
+}
+html[data-spacious="true"] :is(.approach-opening,.condition-comparison,.condition-sign-grid) { grid-template-columns: minmax(0, 1fr); }
+html[data-spacious="true"] .calm-home .welcome-hero .hero-copy { grid-row: auto; }
+html[data-spacious="true"] .calm-home .welcome-hero .hero-composition { grid-row: auto; }
+html[data-spacious="true"] .welcome-hero .hero-dys-embrace { opacity: .08; }
+@media (forced-colors: active) {
+  .welcome-hero .hero-composition { display: none; }
+  .home-nested-panel .nested-panel, .membership-disclosure { background: Canvas; color: CanvasText; border-color: CanvasText; }
+}

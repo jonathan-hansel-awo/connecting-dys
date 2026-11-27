@@ -17,7 +17,7 @@ export function doodleIntersects(a: DoodleRect, b: DoodleRect, gap = 0) {
 
 // A stable seed gives a scattered composition without hydration differences or
 // jumping decorations. A crowded page gets fewer doodles, never less clearance.
-export function placeDoodles(width: number, height: number, obstacles: DoodleRect[], words: DoodleSize[], seed: number, clearance = 8): DoodlePlacement[] {
+export function placeDoodles(width: number, height: number, obstacles: DoodleRect[], words: DoodleSize[], seed: number, clearance = 8, preferInterior = false): DoodlePlacement[] {
   if (width <= 0 || height <= 0) return [];
   let state = seed >>> 0;
   const random = () => { state = (Math.imul(state, 1664525) + 1013904223) >>> 0; return state / 4294967296; };
@@ -27,7 +27,8 @@ export function placeDoodles(width: number, height: number, obstacles: DoodleRec
     const edge = 6;
     if (size.width + edge * 2 > width || size.height + edge * 2 > height) continue;
     for (let attempt = 0; attempt < 180; attempt++) {
-      const x = edge + random() * (width - size.width - edge * 2);
+      const inset = preferInterior && attempt < 120 && size.width < width * .6 ? width * .2 : edge;
+      const x = inset + random() * (width - size.width - inset * 2);
       const y = edge + random() * (height - size.height - edge * 2);
       const candidate = { x, y, ...size };
       if (obstacles.some(rect => doodleIntersects(candidate, rect, clearance))) continue;

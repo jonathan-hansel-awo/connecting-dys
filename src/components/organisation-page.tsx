@@ -17,7 +17,7 @@ export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
       slug === "what-we-do" ? <CommunityPhoto scene="reading" /> :
       slug === "values" ? <BridgeArtwork /> :
       slug === "founders-message" ? <figure className="founder-embrace"><Image src={brand.symbol} alt="The Connecting DYS logo, with DYS names forming a heart around embracing figures." width={1330} height={1182} /><figcaption>Lived experience at the heart of Connecting DYS.</figcaption></figure> : <CommunityImage />
-    } interlude={slug === "our-story" ? { after: 8, content: <CommunityPhoto scene="books" /> } : undefined} />}
+    } interlude={slug === "our-story" ? { after: 8, content: <CommunityImage variant="involvement" /> } : undefined} />}
     {slug === "about" && <>
       <SourcePanels sources={["why"]} />
       <div id="mission-and-vision" className="copy-panels">

@@ -36,8 +36,8 @@ test("all four DYS pages are reached from the menu and have their own illustrate
     const nav = await navFor(page);
     await nav.getByRole("link", { name, exact: true }).click();
     await expect(page.locator("main:visible h1")).toHaveText(name);
-    await expect(page.locator("main:visible .topic-art svg")).toBeVisible();
-    await expect(page.locator("main:visible .difference-experiences li")).toHaveCount(3);
+    await expect(page.locator("main:visible .topic-art img")).toBeVisible();
+    await expect(page.locator("main:visible .condition-sign-grid li")).toHaveCount(name === "Dyscalculia" ? 3 : 4);
     await expect(page.locator(".site-navigation details[open]")).toHaveCount(0);
   }
 });
@@ -53,7 +53,7 @@ test("native dropdowns and topic routes also work without JavaScript", async ({ 
   } finally { await context.close(); }
 });
 
-test("About starts promptly and the mobile hero shows the logo first", async ({ page }, info) => {
+test("About starts promptly and the welcome logo sits behind the title", async ({ page }, info) => {
   await page.goto("/about");
   const heading = page.locator(".about-page > .editorial-heading");
   await expect(page.getByRole("link", { name: "Back to home", exact: true })).toHaveCount(0);
@@ -71,11 +71,15 @@ test("About starts promptly and the mobile hero shows the logo first", async ({ 
     await page.screenshot({ path: info.outputPath(`about-${dark ? "dark" : "light"}.png`), fullPage: true });
   }
   await page.goto("/");
-  if ((page.viewportSize()?.width || 0) <= 760) {
-    const logo = await page.locator(".hero-dys-embrace").boundingBox();
-    const title = await page.locator("#hero-title").boundingBox();
-    expect(logo!.y + logo!.height).toBeLessThanOrEqual(title!.y);
-  }
+  await expect(page.locator("#hero-title")).toHaveText("Welcome toConnecting DYS");
+  await expect(page.locator("[data-hero-backdrop]")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator(".hero-note, .hero-wordmark")).toHaveCount(0);
+  const logo = await page.locator(".hero-dys-embrace").boundingBox();
+  const title = await page.locator("#hero-title").boundingBox();
+  expect(logo!.x).toBeLessThan(title!.x + title!.width);
+  expect(logo!.x + logo!.width).toBeGreaterThan(title!.x);
+  expect(logo!.y).toBeLessThan(title!.y + title!.height);
+  expect(logo!.y + logo!.height).toBeGreaterThan(title!.y);
   await expect(page.locator(".footer-brand")).toHaveCSS("background-color", "rgb(32, 53, 77)");
 });
 

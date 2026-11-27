@@ -4,7 +4,6 @@ import { BackgroundDoodles } from "@/components/background-doodles";
 import { HeroMarginCurves } from "@/components/hero-margin-curves";
 import { HeroDysEmbrace } from "@/components/hero-dys-embrace";
 import { HomeStoryMotion } from "@/components/home-story-motion";
-import { HeroTransitionArt } from "@/components/hero-transition-art";
 import { BridgeArtwork } from "@/components/bridge-artwork";
 import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
 import { FinalePath } from "@/components/finale-path";
@@ -19,16 +18,15 @@ const principles = [
 export default function HomePage() {
   return <main id="main-content" tabIndex={-1} data-home-story className="calm-home">
     <HomeStoryMotion />
-    <section className="hero wrap surface-paper" aria-labelledby="hero-title" data-welcome-scene>
+    <section className="hero welcome-hero wrap surface-paper" aria-labelledby="hero-title" data-welcome-scene>
       <div className="section-backdrop" aria-hidden="true" />
       <HeroMarginCurves />
+      <div className="hero-composition" data-hero-backdrop aria-hidden="true"><div className="logo-stage"><HeroDysEmbrace /></div></div>
       <div className="hero-copy">
-        {/* <p className="eyebrow">Connecting DYS</p> */}
-        <h1 id="hero-title">A home for<br />every <span className="dys-word">DYS</span> mind.</h1>
+        <h1 id="hero-title">Welcome to<br />Connecting <span className="dys-word">DYS</span></h1>
         <p className="hero-intro">Building community and connection for teenagers, young adults and families affected by dyspraxia, dyscalculia, dysgraphia and dyslexia.</p>
         <div className="hero-actions"><Link href="/get-involved#register-interest" className="button">Join Our Community</Link></div>
       </div>
-      <div className="hero-composition"><HeroTransitionArt /><div className="hero-note note-top surface-raised">Your mind is at home here.</div><div className="logo-stage"><HeroDysEmbrace /><div className="hero-lockup"><span className="hero-wordmark">Connecting DYS</span></div></div></div>
     </section>
 
     <PathsToBelongingSection />
@@ -51,18 +49,28 @@ export default function HomePage() {
 
     <section className="home-building wrap" aria-labelledby="support-title">
       <div className="section-backdrop" aria-hidden="true" />
-      <header><p className="eyebrow">Growing together</p><h2 id="support-title">What we do</h2><p>We are in our early stages, building the foundations for lasting, community-led support.</p></header>
-      <div className="building-columns">
-        <div className="copy-panel panel-blue"><h3>Right now</h3><ul><li>Bringing young people and families together</li><li>Listening to lived experiences</li><li>Raising awareness of all DYS conditions</li></ul></div>
-        <div className="copy-panel panel-amber"><h3>As we grow</h3><ul><li>Peer support spaces</li><li>Family and carer gatherings</li><li>Co-designed workshops and listening events</li></ul><p className="small">These are being developed, rather than full services available today.</p></div>
+      <header><h2 id="support-title">What We Do</h2></header>
+      <div className="home-nested-panel copy-panel panel-blue">
+        <p className="nested-intro">Connecting DYS is in its early stages. Right now, we are building the foundations for long term, community led support.</p>
+        <div className="building-columns">
+          <div className="nested-panel copy-panel panel-cream"><h3>We are currently:</h3><ul><li>Bringing DYS young people and families together</li><li>Listening to lived experiences</li><li>Identifying gaps in support</li><li>Raising awareness of all DYS conditions</li><li>Building the community that will shape our future services</li></ul></div>
+          <div className="nested-panel copy-panel panel-cream"><h3>As we grow, we will introduce:</h3><ul><li>Peer Support Spaces</li><li>Family &amp; Carer Gatherings</li><li>Co Designed Workshops</li><li>Awareness &amp; Advocacy Projects</li><li>Open Forums &amp; Listening Events</li></ul></div>
+        </div>
+        <p className="nested-closing">We are building slowly, safely and sustainably with you at the centre.</p>
       </div>
-      <Link href="/what-we-do" className="text-link">See what we’re building</Link>
+      <Link href="/what-we-do" className="text-link">See What We&apos;re Building</Link>
     </section>
 
     <section className="home-approach wrap" aria-labelledby="approach-title">
       <div className="section-backdrop" aria-hidden="true" />
-      <BridgeArtwork />
-      <div><p className="eyebrow">Our approach</p><h2 id="approach-title">Community first.</h2><p>Co-designed. Grounded in lived experience.</p><p>We listen, collaborate and build together, with you at the centre.</p><Link href="/our-approach" className="text-link">Discover our approach</Link></div>
+      <h2 id="approach-title">Our Approach</h2>
+      <div className="home-nested-panel copy-panel panel-teal">
+        <div className="approach-opening"><div className="approach-pillars"><p className="nested-panel">Community first.</p><p className="nested-panel">Co designed.</p><p className="nested-panel">Grounded in lived experience.</p></div><BridgeArtwork /></div>
+        <p className="nested-intro">We don&apos;t impose ready made solutions. We listen, collaborate and build together.</p>
+        <div className="nested-panel copy-panel panel-cream"><h3>Our approach is rooted in:</h3><ul><li>Belonging before services</li><li>Lived experience shaping every decision</li><li>Inclusive, non clinical social support</li><li>Sustainable community infrastructure</li><li>Shared ownership and collective leadership</li></ul></div>
+        <div className="nested-closing"><p>Because connection matters.</p><p>Understanding matters.</p><p>Community matters.</p></div>
+      </div>
+      <Link href="/our-approach" className="text-link">Discover our approach</Link>
     </section>
 
     <section className="invitation wrap surface-paper" aria-labelledby="invitation-title">

@@ -13,8 +13,10 @@ export function MembershipPage() {
       <CommunityImage variant="involvement" />
     </header>
     <div id="register-interest">
-      <nav className="membership-type-links" aria-label="Choose your interest form"><a href="#young-people">Ages 13–17</a><a href="#young-adults">Ages 18–24</a></nav>
-      <div className="membership-options"><MembershipInterestForm kind="young-people" decoration={<EdgeDoodle motif="inclusion" />} /><MembershipInterestForm kind="young-adults" decoration={<EdgeDoodle motif="connection" />} /></div>
+      <div className="membership-options">
+        <details className="membership-disclosure" id="young-people"><summary><span><strong>Ages 13–17</strong><span>Young People&apos;s Membership Interest Form</span></span><span className="disclosure-indicator" aria-hidden="true" /></summary><MembershipInterestForm kind="young-people" decoration={<EdgeDoodle motif="inclusion" />} /></details>
+        <details className="membership-disclosure" id="young-adults"><summary><span><strong>Ages 18–24</strong><span>Young Adults&apos; Membership Interest Form</span></span><span className="disclosure-indicator" aria-hidden="true" /></summary><MembershipInterestForm kind="young-adults" decoration={<EdgeDoodle motif="connection" />} /></details>
+      </div>
     </div>
     <section className="organisation-section source-section" aria-labelledby="interest-privacy"><ParagraphPanels tone="teal"><h2 id="interest-privacy">Your information, handled with care</h2><p>The form is used to respond to your interest and provide membership information. It does not sign you up to marketing. Read <Link href="/privacy">how we use personal information</Link> and our <Link href="/safeguarding">safeguarding guide</Link> before sending it.</p><p>Parents, carers, prospective volunteers and partners can <a href="#contact">contact us directly</a> about getting involved.</p></ParagraphPanels></section>
     <section id="contact" className="copy-panel panel-amber has-edge-doodle" aria-labelledby="contact-title">
