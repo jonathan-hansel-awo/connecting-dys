@@ -192,7 +192,9 @@ test("hints, undo, restart and skip preserve feedback and allow scrolling to the
   await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).toBeFocused();
   await expect(control(page, "Undo")).toBeDisabled();
   await page.getByText("How to play", { exact: true }).click();
-  await expect(page.getByText(/Join the openings on neighbouring pieces/)).toBeVisible();
+  await expect(page.locator(".paths-help")).toHaveAttribute("open", "");
+  await expect(page.locator("#paths-instructions")).toBeVisible();
+  await expect(page.locator("#paths-objective")).toBeVisible();
   for (const chapter of chapters) {
     await control(page, "Skip chapter").click();
     await expect(page.getByRole("heading", { name: chapter.name, exact: true })).toBeFocused();
