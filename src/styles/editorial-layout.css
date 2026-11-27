@@ -188,3 +188,8 @@ html[data-spacious="true"] .calm-home .hero-copy { grid-row: 2; }
   .site-header .brand-link, .footer-brand { background: Canvas; color: LinkText; border: 1px solid CanvasText; }
   .site-header .brand-link b { color: LinkText; }
 }
+
+@media (max-width: 700px) {
+  html[data-spacious="true"] .site-header { padding-inline: .6rem; gap: .4rem; }
+  html[data-spacious="true"] .site-header .brand-link { padding: .25rem; }
+}

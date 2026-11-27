@@ -12,9 +12,16 @@ async function settled(page: Page) {
   await page.waitForTimeout(200);
 }
 async function noPageOverflow(page: Page) {
-  await expect.poll(() => page.evaluate(() =>
-    document.documentElement.scrollWidth - document.documentElement.clientWidth,
-  )).toBeLessThanOrEqual(1);
+  try {
+    await expect.poll(() => page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    )).toBeLessThanOrEqual(1);
+  } catch (error) {
+    const overflow = await page.evaluate(() => [...document.querySelectorAll("body *")]
+      .filter(el => el.getBoundingClientRect().right > document.documentElement.clientWidth + 1)
+      .slice(0, 15).map(el => ({ tag: el.tagName, class: el.className, right: el.getBoundingClientRect().right })));
+    throw new Error(`${String(error)}\nOverflowing elements: ${JSON.stringify(overflow)}`);
+  }
 }
 async function staticArtwork(page: Page) {
   await expect(page.locator(".pin-spacer")).toHaveCount(0);

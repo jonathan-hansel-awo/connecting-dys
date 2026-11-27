@@ -20,7 +20,7 @@ test("grouped menu supports keyboard, Escape, outside dismissal and real route s
   await expect(about).not.toHaveAttribute("open");
   await expect(about.locator("summary")).toBeFocused();
   await about.locator("summary").click();
-  await page.locator("main:visible h1").click();
+  await page.locator(".site-header").click({ position: { x: 4, y: 4 } });
   await expect(page.locator(".site-navigation details[open]")).toHaveCount(0);
   nav = await navFor(page);
   await nav.locator("summary").filter({ hasText: /^About$/ }).click();
