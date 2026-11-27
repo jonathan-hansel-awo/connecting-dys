@@ -109,6 +109,9 @@ test("inline game keeps initial page position; keyboard completes all chapters a
 test("paper effects respond live to OS/site motion, texture and forced-colour preferences", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference", forcedColors: "none" });
   await play(page);
+  await control(page, "Reading settings").click();
+  await page.getByRole("checkbox", { name: "Reduce decorative motion", exact: true }).uncheck();
+  await page.keyboard.press("Escape");
   const scenery = page.locator("[data-paper-landscape]");
   await expect(scenery).toHaveCSS("animation-name", "paths-world-arrive");
   const piece = page.locator("#paths-piece-willow-bend");

@@ -203,3 +203,19 @@ html[data-spacious="true"] .paths-play-layout { grid-template-columns: minmax(0,
   .paths-house-window, .paths-house-door, .paths-house-roof, .paths-heart-cutout, .paths-garden-soil, .paths-leaf { fill: Canvas; stroke: CanvasText; }
   .paths-section .is-linked .paths-house-window { fill: Canvas; stroke: CanvasText; }
 }
+
+/* Centre the desktop journey and puzzle, retaining the compact mobile flow. */
+@media (min-width: 761px) {
+  .paths-section > .wrap { max-width: 64rem; }
+  .paths-section .paths-intro, .paths-section .paths-game { margin-inline: auto; max-width: 52rem; }
+  .paths-section .paths-intro .copy-panel { text-align: center; }
+  .paths-section .paths-intro p { margin-inline: auto; }
+  .paths-section .paths-play-layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .paths-section .paths-board-region { width: min(100%, 32rem); margin-inline: auto; }
+  .paths-section .paths-world { margin-inline: auto; }
+  .paths-section .paths-place-list { width: min(100%, 40rem); margin-inline: auto; }
+  .paths-section .paths-place-list ul { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+  .paths-section .paths-progress, .paths-section .paths-chapter-heading, .paths-section .paths-controls, .paths-section .paths-actions { justify-content: center; }
+  .paths-section .paths-chapter-heading, .paths-section .paths-feedback, .paths-section .paths-forward, .paths-section .paths-message { text-align: center; }
+  .paths-section .paths-help, .paths-section .paths-feedback p, .paths-section .paths-ending { margin-inline: auto; }
+}

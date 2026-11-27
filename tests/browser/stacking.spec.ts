@@ -3,6 +3,7 @@ import { test, expect, type Page } from "@playwright/test";
 async function ready(page: Page) {
   await page.goto("/");
   await page.getByRole("button", { name: "Reading settings", exact: true }).click();
+  await page.getByRole("checkbox", { name: "Reduce decorative motion", exact: true }).uncheck();
   await page.keyboard.press("Escape");
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(400);
@@ -91,6 +92,7 @@ test("stacking releases for keyboard focus, anchors, find and reading preference
   await expect(page.locator(".home-building")).toHaveCSS("position", "relative");
   await page.getByRole("button", { name: "Reading settings", exact: true }).click();
   await page.getByRole("button", { name: "Reset preferences", exact: true }).click();
+  await page.getByRole("checkbox", { name: "Reduce decorative motion", exact: true }).uncheck();
   await page.keyboard.press("Escape");
   await page.waitForTimeout(400);
   await page.mouse.wheel(0, 1);
