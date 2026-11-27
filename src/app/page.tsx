@@ -27,7 +27,7 @@ export default function HomePage() {
         <p className="eyebrow">Connecting DYS</p>
         <h1 id="hero-title">A home for<br />every <span className="dys-word">DYS</span> mind.</h1>
         <p className="hero-intro">Building community and connection for teenagers, young adults and families affected by dyspraxia, dyscalculia, dysgraphia and dyslexia.</p>
-        <div className="hero-actions"><Link href="/get-involved#register-interest" className="button">Join Our Community</Link><Link href="/get-involved" className="text-link">Work With Us</Link></div>
+        <div className="hero-actions"><Link href="/get-involved#register-interest" className="button">Join Our Community</Link></div>
       </div>
       <div className="hero-composition"><HeroTransitionArt /><div className="hero-note note-top surface-raised">Your mind is at home here.</div><div className="logo-stage"><HeroDysEmbrace /><div className="hero-lockup"><span className="hero-wordmark">Connecting DYS</span></div></div></div>
     </section>

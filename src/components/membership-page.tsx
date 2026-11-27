@@ -17,7 +17,6 @@ export function MembershipPage() {
       <div className="membership-options"><MembershipInterestForm kind="young-people" decoration={<EdgeDoodle motif="inclusion" />} /><MembershipInterestForm kind="young-adults" decoration={<EdgeDoodle motif="connection" />} /></div>
     </div>
     <section className="organisation-section source-section" aria-labelledby="interest-privacy"><ParagraphPanels tone="teal"><h2 id="interest-privacy">Your information, handled with care</h2><p>The form is used to respond to your interest and provide membership information. It does not sign you up to marketing. Read <Link href="/privacy">how we use personal information</Link> and our <Link href="/safeguarding">safeguarding guide</Link> before sending it.</p><p>Parents, carers, prospective volunteers and partners can <a href="#contact">contact us directly</a> about getting involved.</p></ParagraphPanels></section>
-    <SourcePanels sources={["approach-intend"]} />
     <section id="contact" className="copy-panel panel-amber has-edge-doodle" aria-labelledby="contact-title">
       <EdgeDoodle motif="mail" /><h2 id="contact-title">Contact us</h2>
       <p><a className="contact-email" href={`mailto:${brand.email}`}>{brand.email}</a></p>
