@@ -33,7 +33,7 @@ test("dark mode lives only in Reading settings, persists and restores light colo
   await page.keyboard.press("Escape");
   await page.screenshot({ path: info.outputPath("dark-home.png") });
   await page.locator(".hero .hero-actions .button").click();
-  await expect(page).toHaveURL(/\/membership$/);
+  await expect(page).toHaveURL(/\/get-involved#register-interest$/);
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -109,7 +109,7 @@ test("theme controls remain usable with Chromium forced darkening, blocked stora
     await expect(tab.getByRole("button", { name: "Dark mode", exact: true })).toHaveCount(0);
     await expect(tab.locator("html")).toHaveCSS("color-scheme", "light only");
     await tab.locator(".invitation .button").click();
-    await expect(tab).toHaveURL(/\/membership$/);
+    await expect(tab).toHaveURL(/\/get-involved#register-interest$/);
   } finally { await native.close(); }
   await cdp.send("Emulation.setAutoDarkModeOverride", { enabled: false });
   await page.addInitScript(() => Object.defineProperty(window,"localStorage",{get(){throw new Error("Storage denied");}}));

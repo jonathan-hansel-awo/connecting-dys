@@ -52,7 +52,7 @@ export default function PathsJourney() {
     {state.endingId && <EndingComposition chapter={chapter} board={state.board} endingId={state.endingId} />}
     <p className="paths-invitation">There’s a place for you beyond the puzzle, too. Help shape the community we’re building.</p>
     <div className="paths-actions">
-      <Link href="/membership" className="button">Register your interest</Link>
+      <Link href="/get-involved#register-interest" className="button">Register your interest</Link>
       <button type="button" className="button" disabled={!ready} onClick={() => act({ type: "replay" }, true)}>Replay journey</button>
     </div>
   </div>;

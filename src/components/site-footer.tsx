@@ -14,7 +14,7 @@ export function SiteFooter() {
           <p>{brand.tagline}</p>
           <p className="small footer-registration">Connecting DYS CIC • Community Interest Company<br />Company Number: 16833399 • Registered in England and Wales.</p>
         </div>
-        <nav aria-label="Footer navigation">
+        <nav className="footer-links" aria-label="Footer navigation">
           <Link href="/about">About us</Link>
           <Link href="/our-story">Our story</Link>
           <Link href="/founders-message">Founder’s message</Link>
@@ -23,8 +23,8 @@ export function SiteFooter() {
           <Link href="/values">Our values</Link>
           <Link href="/support">Support & resources</Link>
           <Link href="/get-involved">Get involved</Link>
-          <Link href="/membership">Register your interest</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/get-involved#register-interest">Register your interest</Link>
+          <Link href="/get-involved#contact">Contact</Link>
         </nav>
         <nav aria-label="Learning differences">
           {differences.map((d) => (

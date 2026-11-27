@@ -76,7 +76,7 @@ test("inline game keeps initial page position; keyboard completes all chapters a
   await expect(page.getByRole("heading", { name: "There's more than one way to belong.", exact: true })).toBeFocused();
   await expect(page.getByRole("status")).toContainText("An arch above a home");
   await expect(page.locator('[data-ending="home-arch"]')).toBeVisible();
-  await expect(page.locator(".paths-message").getByRole("link", { name: "Register your interest", exact: true })).toHaveAttribute("href", "/membership");
+  await expect(page.locator(".paths-message").getByRole("link", { name: "Register your interest", exact: true })).toHaveAttribute("href", "/get-involved#register-interest");
   await page.locator(".paths-ending").screenshot({ path: info.outputPath("home-arch-ending.png") });
   const endingHeading = page.getByRole("heading", { name: "There's more than one way to belong.", exact: true });
   for (const font of ["Open Sans", "Arial", "Verdana", "Atkinson Hyperlegible", "OpenDyslexic"]) {
@@ -269,8 +269,8 @@ test("no JavaScript leaves explanation, footer and contact routes available", as
     await expect(page.locator("#paths-piece-willow-bend")).toBeDisabled();
     await page.locator("#site-footer").scrollIntoViewIfNeeded();
     await page.getByRole("navigation", { name: "Footer navigation", exact: true }).getByRole("link", { name: "Contact", exact: true }).click();
-    await expect(page.locator("main h1")).toBeVisible();
-    await expect(page).toHaveURL(/\/contact$/);
+    await expect(page.locator("main:visible h1")).toBeVisible();
+    await expect(page).toHaveURL(/\/get-involved#contact$/);
   } finally { await context.close(); }
 });
 
@@ -282,7 +282,7 @@ test("failed game script leaves the section fallback and footer navigation usabl
   await page.getByRole("link", { name: "Continue exploring", exact: true }).click();
   await expect(page.locator("#site-footer")).toBeFocused();
   await page.getByRole("navigation", { name: "Footer navigation", exact: true }).getByRole("link", { name: "Contact", exact: true }).click();
-  await expect(page).toHaveURL(/\/contact$/);
+  await expect(page).toHaveURL(/\/get-involved#contact$/);
 });
 
 test("a slow game script preserves the visible board and does not steal focus or scroll", async ({ page }) => {

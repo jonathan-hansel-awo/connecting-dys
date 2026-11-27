@@ -14,7 +14,7 @@ const routeSources: Record<string, string[]> = {
   "what-we-do": ["work-intro", ...Array.from({ length: 8 }, (_, i) => `work-${i + 1}`)],
   "our-approach": ["approach-intro", "how", "commitment", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"],
   values: ["values-summary", ...[..."BRIDGE"].map(letter => `value-${letter}`)],
-  "get-involved": ["who-join", "approach-intend"],
+  "get-involved": ["approach-intend"],
   support: ["support-peer", "support-family", "support-workshops", "support-forums"],
   accessibility: ["accessibility"], confidentiality: ["confidentiality"],
   cookies: ["cookies-original"], disclaimer: ["disclaimer"], "data-retention": ["data-retention"],
@@ -22,7 +22,7 @@ const routeSources: Record<string, string[]> = {
   privacy: ["privacy-notice", ...policySources["privacy-policy"]],
 };
 const supplied = JSON.parse(fs.readFileSync("src/content/supplied-copy.json", "utf8"));
-const brandCopy = (text: string) => text.replace(/\bDys\b/g, "DYS").replace(/\bConnecting DYS CIC\b/g, "Connecting DYS");
+const brandCopy = (text: string) => text.replaceAll("connectingdys@gmail.com", "info@conectingdys.org.uk").replace(/\bDys\b/g, "DYS").replace(/\bConnecting DYS CIC\b/g, "Connecting DYS");
 const normalize = (text: string) => text.replace(/\s+/g, " ").trim();
 const conditionName = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b/gi;
 const conditionGroup = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b(?:(?:,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+)(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b){1,3}/gi;
@@ -95,7 +95,7 @@ test("full-length editorial and policy copy stays intact on its dedicated pages"
     dom.window.close();
   }
   // Marie requested shorter home summaries and removal of the repeated About introduction.
-  const summarised = ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who", "home-invitation", "home-footer", "about-intro", "different", "about-work", "goal-young"];
+  const summarised = ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who", "home-invitation", "home-footer", "about-intro", "different", "about-work", "goal-young", "who-join"];
   assert.deepEqual(Object.keys(fingerprints).filter(key => !seen.has(key)).sort(), summarised.sort());
 });
 

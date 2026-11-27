@@ -10,7 +10,7 @@ export function PolicyPage({ slug }: { slug: string }) {
   const hub = slug === "policies";
   const policy = policies[slug];
   return <main id="main-content" tabIndex={-1} className="reading-page policy-page wrap">
-    <Link className="breadcrumb" href={hub ? "/" : "/policies"}>{hub ? "Back to home" : "All policies"}</Link>
+    {!hub && <Link className="breadcrumb" href="/policies">All policies</Link>}
     <header className="copy-panel panel-blue has-edge-doodle"><EdgeDoodle motif="shield" /><h1>{hub ? "Our Policies" : policy.title}</h1></header>
     {hub ? <nav className="policy-index" aria-label="Organisation policies">
       {Object.entries(policies).map(([key, item], i) => <Link className={`copy-panel panel-${i % 2 ? "amber" : "blue"} has-edge-doodle`} href={`/${key}`} key={key}><EdgeDoodle motif={motifForContent(item.title)} /><h2>{item.title}</h2><p>{item.intro}</p></Link>)}
@@ -29,6 +29,6 @@ export function PolicyPage({ slug }: { slug: string }) {
       <SourcePanels sources={policy.sources} collapsible />
       {slug === "safeguarding" && <SourcePanel source="confidentiality" tone="cream" collapsible />}
     </>}
-    <nav className="article-links copy-panel panel-cream has-edge-doodle" aria-label="Related information"><EdgeDoodle motif="path" /><Link href="/policies">All policies</Link><Link href="/contact">Contact Connecting DYS</Link><Link href="/data-retention">Data Retention Schedule</Link></nav>
+    <nav className="article-links copy-panel panel-cream has-edge-doodle" aria-label="Related information"><EdgeDoodle motif="path" /><Link href="/policies">All policies</Link><Link href="/get-involved#contact">Contact Connecting DYS</Link><Link href="/data-retention">Data Retention Schedule</Link></nav>
   <BackgroundDoodles /></main>;
 }

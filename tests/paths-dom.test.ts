@@ -73,7 +73,7 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       }
       assert.match(doc.querySelector('[role="status"]')!.textContent!, /An arch above a home/);
       assert.equal(doc.querySelector("[data-ending]")?.getAttribute("data-ending"), "home-arch");
-      assert.equal(doc.querySelector(".paths-actions a")?.getAttribute("href"), "/membership");
+      assert.equal(doc.querySelector(".paths-actions a")?.getAttribute("href"), "/get-involved#register-interest");
       assert.match(doc.querySelector(".paths-actions a")!.textContent!, /Register your interest/);
       await click(button("Replay journey"));
       assert.equal(doc.activeElement?.textContent, "Find a Way");
@@ -110,7 +110,7 @@ test("actual optional journey components: DOM interaction and focus", async (sui
       }
       assert.equal(doc.activeElement?.textContent, "Thank you for exploring.");
       assert.equal(doc.querySelector("[data-ending]"), null, "skipping never invents an ending picture");
-      assert.equal(doc.querySelector(".paths-actions a")?.getAttribute("href"), "/membership", "an optional signup remains available after skipping");
+      assert.equal(doc.querySelector(".paths-actions a")?.getAttribute("href"), "/get-involved#register-interest", "an optional signup remains available after skipping");
       await reset();
     });
     await suite.test("ending art preserves the actual graph and offers three distinct compositions", () => {
