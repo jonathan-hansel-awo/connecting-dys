@@ -14,7 +14,7 @@ const routeSources: Record<string, string[]> = {
   "what-we-do": ["work-intro", ...Array.from({ length: 8 }, (_, i) => `work-${i + 1}`)],
   "our-approach": ["approach-intro", "how", "commitment", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"],
   values: ["values-summary", ...[..."BRIDGE"].map(letter => `value-${letter}`)],
-  "get-involved": ["approach-intend"],
+  "get-involved": [],
   support: ["support-peer", "support-family", "support-workshops", "support-forums"],
   accessibility: ["accessibility"], confidentiality: ["confidentiality"],
   cookies: ["cookies-original"], disclaimer: ["disclaimer"], "data-retention": ["data-retention"],

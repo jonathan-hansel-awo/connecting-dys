@@ -16,7 +16,7 @@
 .editorial-art { min-width: 0; }
 .editorial-art > svg { display: block; width: 100%; height: auto; max-height: 25rem; }
 .editorial-heading { padding-block: 2rem 3rem; }
-.editorial-heading h1 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); line-height: 1.12; margin-bottom: 1.4rem; }
+.editorial-heading h1, .game-page .editorial-heading h1 { margin-top: 0; font-size: clamp(2.4rem, 5.5vw, 4.4rem); line-height: 1.12; margin-bottom: 1.4rem; }
 .editorial-heading .eyebrow { margin-bottom: 1rem; }
 .editorial-heading p { max-width: 48ch; }
 .editorial-photo { margin: 0; }
@@ -230,3 +230,8 @@ main.reading-page, main.organisation-page, main.game-page { padding-top: .75rem;
   .footer-top nav.footer-links { grid-column: 1 / -1; }
   .footer-top nav[aria-label="Learning differences"] { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem 1rem; }
 }
+
+/* Page titles and their artwork always sit outside the reading surfaces. */
+.organisation-page > .source-section > .editorial-heading { margin-bottom: 0; }
+.organisation-page > .source-section > .editorial-heading .editorial-art { width: min(100%, 23rem); justify-self: center; }
+.editorial-heading > .bridge-artwork { width: min(100%, 22rem); justify-self: center; }

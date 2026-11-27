@@ -165,3 +165,68 @@ test("Get involved combines the illustration, forms and contact details", async 
   await page.goto("/get-involved");
   await page.screenshot({ path: info.outputPath("get-involved-combined.png"), fullPage: true });
 });
+
+test("policy cards offer native previews separately from their title links", async ({ page }, info) => {
+  await page.goto("/policies");
+  await expect(page.locator("main:visible h1")).toHaveText("Our Policies");
+  expect(await page.locator("main:visible h1").evaluate(el => !!el.closest(".copy-panel"))).toBe(false);
+  await expect(page.locator(".policy-artwork img")).toBeVisible();
+  const cards = page.locator(".policy-card");
+  await expect(cards).toHaveCount(9);
+  for (const card of await cards.all()) {
+    const disclosure = card.locator(".policy-preview");
+    await expect(disclosure).not.toHaveAttribute("open");
+    await expect(disclosure.locator("p")).not.toBeVisible();
+    await expect(card.locator("h2 > a")).toHaveCount(1);
+  }
+  const first = cards.first();
+  const preview = first.locator(".policy-preview");
+  await preview.locator("summary").press("Enter");
+  await expect(preview).toHaveAttribute("open", "");
+  await expect(preview.locator("p")).toBeVisible();
+  await preview.locator("summary").press("Enter");
+  await expect(preview).not.toHaveAttribute("open");
+  await page.screenshot({ path: info.outputPath("policy-grid-collapsed.png"), fullPage: true });
+  await first.locator("h2 > a").click();
+  await expect(page).toHaveURL(/\/safeguarding$/);
+  expect(await page.locator("main:visible h1").evaluate(el => !!el.closest(".copy-panel"))).toBe(false);
+  await expect(page.locator("details.policy-disclosure").first()).not.toHaveAttribute("open");
+  await page.getByRole("button", { name: "Reading settings", exact: true }).click();
+  await page.getByRole("checkbox", { name: "Dark mode", exact: true }).check();
+  await page.keyboard.press("Escape");
+  await page.goto("/policies");
+  const darkPreview = page.locator(".policy-preview").first();
+  await darkPreview.locator("summary").click();
+  await expect(darkPreview.locator("p")).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+  await page.screenshot({ path: info.outputPath("policy-grid-dark-expanded.png"), fullPage: true });
+});
+
+test("policy previews and links work without JavaScript", async ({ browser }, info) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, baseURL: info.project.use.baseURL, viewport: info.project.use.viewport });
+  try {
+    const page = await context.newPage();
+    await page.goto("/policies");
+    const card = page.locator('[data-policy-card="privacy"]');
+    await card.locator("summary").click();
+    await expect(card.locator(".policy-preview p")).toBeVisible();
+    await card.locator("h2 > a").click();
+    await expect(page).toHaveURL(/\/privacy$/);
+    await expect(page.locator("main h1")).toHaveText("Privacy Notice & Data Protection Policy");
+  } finally { await context.close(); }
+});
+
+test("organisation titles and varied artwork stay outside reading boxes", async ({ page }) => {
+  await page.goto("/about");
+  const titleStyle = await page.locator("main:visible h1").evaluate(el => { const style = getComputedStyle(el); return { size: style.fontSize, family: style.fontFamily, weight: style.fontWeight, lineHeight: style.lineHeight }; });
+  for (const route of ["/our-story", "/founders-message", "/what-we-do", "/our-approach", "/values", "/get-involved", "/accessibility", "/paths-to-belonging", "/policies", "/privacy"]) {
+    await page.goto(route);
+    const title = page.locator("main:visible h1");
+    expect(await title.evaluate(el => !!el.closest(".copy-panel")), route).toBe(false);
+    expect(await title.evaluate(el => !!el.closest(".editorial-heading")), route).toBe(true);
+    expect(await title.evaluate(el => { const style = getComputedStyle(el); return { size: style.fontSize, family: style.fontFamily, weight: style.fontWeight, lineHeight: style.lineHeight }; }), route).toEqual(titleStyle);
+    expect(await title.evaluate(el => el.getBoundingClientRect().top - document.querySelector("main")!.getBoundingClientRect().top), route).toBeLessThan(100);
+  }
+  await page.goto("/get-involved");
+  await expect(page.locator(".community-scene img")).toHaveAttribute("alt", /planting, carrying a planter/);
+});

@@ -12,7 +12,7 @@ import { SourcePanel, SourcePanels } from "@/components/source-panel";
 export function OrganisationPage({ slug }: { slug: OrganisationSlug }) {
   const page = organisationPages[slug];
   return <main id="main-content" tabIndex={-1} className={`organisation-page wrap${slug === "about" ? " about-page" : ""}`}>
-    {slug === "about" ? <header className="editorial-heading"><div><p className="eyebrow">Connecting DYS</p><h1>About Us</h1><p>Why we exist, and the community we are building.</p></div><figure className="editorial-brand"><Image src={brand.logo} alt="Connecting DYS — A home for every DYS mind. The word-heart logo surrounding two embracing figures." width={1330} height={1182} sizes="(max-width: 760px) 90vw, 42vw" /></figure></header> : <SourcePanel source={page.source} level={1} tone="blue" artwork={
+    {slug === "about" ? <header className="editorial-heading"><div><p className="eyebrow">Connecting DYS</p><h1>About Us</h1><p>Why we exist, and the community we are building.</p></div><figure className="editorial-brand"><Image src={brand.logo} alt="Connecting DYS — A home for every DYS mind. The word-heart logo surrounding two embracing figures." width={1330} height={1182} sizes="(max-width: 760px) 90vw, 42vw" /></figure></header> : <SourcePanel source={page.source} level={1} unboxedTitle tone="blue" artwork={
       slug === "our-story" ? <CommunityPhoto /> :
       slug === "what-we-do" ? <CommunityPhoto scene="reading" /> :
       slug === "values" ? <BridgeArtwork /> :

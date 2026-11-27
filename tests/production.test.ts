@@ -83,7 +83,7 @@ test("homepage stays brief, illustrated and free of detailed topic/story duplica
     ["hero-title", "paths-title", "stand-title", "recognition-title", "support-title", "approach-title", "invitation-title"]);
   assert.equal(doc.querySelectorAll("main .difference-row, main [data-source-id], main .about-home").length, 0);
   assert.equal(doc.querySelectorAll(".hero-copy .copy-panel").length, 0, "the welcome is an open banner");
-  assert.equal(doc.querySelectorAll(".hero-actions a").length, 4);
+  assert.equal(doc.querySelectorAll(".hero-actions a").length, 3);
   assert.equal(doc.querySelectorAll(".hero-dys-embrace img, .recognition-photo, .home-approach .bridge-artwork").length, 3);
   assert.equal(doc.querySelectorAll(".principle-list li").length, 4);
   assert.equal(doc.querySelectorAll("main > [data-paths-section]").length, 1);
@@ -607,6 +607,16 @@ test("company registration stays in the footer and the public brand is uppercase
     assert.ok(!/\bConnecting Dys\b/.test(doc.body.textContent || ""), route);
     assert.match(doc.querySelector(".footer-registration")!.textContent || "", /Connecting DYS CIC • Community Interest CompanyCompany Number: 16833399 • Registered in England and Wales\./);
     assert.ok(doc.querySelector(".footer-brand img"));
+    dom.window.close();
+  }
+});
+
+test("every internal page title uses the open editorial heading", () => {
+  for (const route of routes.filter(Boolean)) {
+    const dom = page(route);
+    const title = dom.window.document.querySelector("main h1")!;
+    assert.equal(title.closest(".copy-panel"), null, route);
+    assert.ok(title.closest(".editorial-heading"), route);
     dom.window.close();
   }
 });
