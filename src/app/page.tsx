@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Handshake, Users, Fingerprint } from "lucide-react";
 import { BackgroundDoodles } from "@/components/background-doodles";
 import { HeroMarginCurves } from "@/components/hero-margin-curves";
 import { HeroDysEmbrace } from "@/components/hero-dys-embrace";
@@ -11,10 +10,10 @@ import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
 import { FinalePath } from "@/components/finale-path";
 
 const principles = [
-  { icon: Users, text: "Community over isolation" },
-  { icon: Heart, text: "Lived experience over assumptions" },
-  { icon: Handshake, text: "Inclusion over exclusion" },
-  { icon: Fingerprint, text: "Strengths over stigma" },
+  { tone: "blue", text: "Community over isolation" },
+  { tone: "coral", text: "Lived experience over assumptions" },
+  { tone: "teal", text: "Inclusion over exclusion" },
+  { tone: "amber", text: "Strengths over stigma" },
 ];
 
 export default function HomePage() {
@@ -38,7 +37,7 @@ export default function HomePage() {
       <div className="section-backdrop" aria-hidden="true" />
       <h2 id="stand-title">What we stand for</h2>
       <p className="section-intro">A community where DYS differences are recognised, understood and valued.</p>
-      <ul className="principle-list">{principles.map(({ icon: Icon, text }) => <li key={text}><Icon size={36} strokeWidth={1.5} aria-hidden="true" /><h3>{text}</h3></li>)}</ul>
+      <ul className="principle-list">{principles.map(({ tone, text }, index) => <li key={text} className={`principle-card copy-panel panel-${tone}`}><span className="principle-art" data-principle-art={index} aria-hidden="true"><Image src="/images/principles-atlas.png" alt="" width={1024} height={1024} sizes="360px" className="principle-atlas" /></span><h3>{text}</h3></li>)}</ul>
       <Link href="/values" className="text-link">Our BRIDGE values</Link>
     </section>
 

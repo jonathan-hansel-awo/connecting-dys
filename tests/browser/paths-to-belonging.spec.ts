@@ -109,6 +109,9 @@ test("inline game keeps initial page position; keyboard completes all chapters a
 test("paper effects respond live to OS/site motion, texture and forced-colour preferences", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference", forcedColors: "none" });
   await play(page);
+  await control(page, "Reading settings").click();
+  await page.getByRole("checkbox", { name: "Reduce decorative motion", exact: true }).uncheck();
+  await page.keyboard.press("Escape");
   const scenery = page.locator("[data-paper-landscape]");
   await expect(scenery).toHaveCSS("animation-name", "paths-world-arrive");
   const piece = page.locator("#paths-piece-willow-bend");
@@ -189,7 +192,9 @@ test("hints, undo, restart and skip preserve feedback and allow scrolling to the
   await expect(page.getByRole("heading", { name: "Find a Way", exact: true })).toBeFocused();
   await expect(control(page, "Undo")).toBeDisabled();
   await page.getByText("How to play", { exact: true }).click();
-  await expect(page.getByText(/Join the openings on neighbouring pieces/)).toBeVisible();
+  await expect(page.locator(".paths-help")).toHaveAttribute("open", "");
+  await expect(page.locator("#paths-instructions")).toBeVisible();
+  await expect(page.locator("#paths-objective")).toBeVisible();
   for (const chapter of chapters) {
     await control(page, "Skip chapter").click();
     await expect(page.getByRole("heading", { name: chapter.name, exact: true })).toBeFocused();

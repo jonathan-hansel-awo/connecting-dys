@@ -228,5 +228,5 @@ test("organisation titles and varied artwork stay outside reading boxes", async 
     expect(await title.evaluate(el => el.getBoundingClientRect().top - document.querySelector("main")!.getBoundingClientRect().top), route).toBeLessThan(100);
   }
   await page.goto("/get-involved");
-  await expect(page.locator(".community-scene img")).toHaveAttribute("alt", /planting, carrying a planter/);
+  await expect(page.locator(".community-scene img")).toHaveAttribute("alt", /sharing stories, listening and welcoming/);
 });

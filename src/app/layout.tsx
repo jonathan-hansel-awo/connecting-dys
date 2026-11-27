@@ -22,6 +22,7 @@ import "../styles/content-panels.css";
 import "../styles/background-doodles.css";
 import "../styles/editorial-layout.css";
 import "../styles/edge-doodles.css";
+import "../styles/principles.css";
 
 const openSans = localFont({
   src: [

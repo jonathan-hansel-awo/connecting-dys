@@ -69,7 +69,7 @@ function preferenceRuntime(
     background: config.backgrounds.some((b) => b.value === p.background)
       ? (p.background as string)
       : config.defaults.background,
-    reduceMotion: p.reduceMotion === true,
+    reduceMotion: typeof p.reduceMotion === "boolean" ? p.reduceMotion : config.defaults.reduceMotion,
     // Older saved objects have no texture field. Only a real boolean opts out.
     texture: typeof p.texture === "boolean" ? p.texture : config.defaults.texture,
     textureStyle: config.textures.some((t) => t.value === p.textureStyle)
