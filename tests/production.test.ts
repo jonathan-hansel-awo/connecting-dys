@@ -310,7 +310,7 @@ test("malformed, hostile and unavailable storage cannot break first paint", () =
       vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext()),
     );
     assert.equal(dom.window.document.documentElement.dataset.js, "true");
-    assert.notEqual(
+    assert.equal(
       dom.window.document.documentElement.dataset.reduceMotion,
       "true",
     );
@@ -617,6 +617,17 @@ test("every internal page title uses the open editorial heading", () => {
     const title = dom.window.document.querySelector("main h1")!;
     assert.equal(title.closest(".copy-panel"), null, route);
     assert.ok(title.closest(".editorial-heading"), route);
+    dom.window.close();
+  }
+});
+
+test("motion defaults apply before paint and an explicit saved opt-in is preserved", () => {
+  for (const [saved, expected] of [[null, "true"], [{}, "true"], [{ reduceMotion: false }, "false"], [{ reduceMotion: true }, "true"] ] as const) {
+    const dom = page();
+    dom.window.localStorage.setItem("connecting-dys-reading-settings", JSON.stringify(saved));
+    const bootstrap = [...dom.window.document.scripts].find(s => s.textContent?.startsWith("try{"))!;
+    vm.runInContext(bootstrap.textContent!, dom.getInternalVMContext());
+    assert.equal(dom.window.document.documentElement.dataset.reduceMotion, expected);
     dom.window.close();
   }
 });
