@@ -8,6 +8,7 @@ import { organisationPages, type OrganisationSlug } from "@/content/organisation
 import { brand, differences } from "@/content/site";
 import { policies } from "@/content/policies";
 import { PolicyPage } from "@/components/policy-page";
+import { BridgeArtwork } from "@/components/bridge-artwork";
 import { CommunityImage } from "@/components/community-image";
 import { DifferencePage } from "@/components/difference-page";
 import { PathsToBelongingSection } from "@/features/paths-to-belonging/section";
@@ -35,11 +36,11 @@ export default async function ReadingPage({ params }: { params: Promise<{ slug: 
   if (slug === "contact") redirect("/get-involved#contact");
   if (slug === "policies" || Object.hasOwn(policies, slug)) return <PolicyPage slug={slug} />;
   if (difference) return <DifferencePage difference={difference} />;
-  if (slug === "paths-to-belonging") return <main id="main-content" tabIndex={-1} className="game-page"><div className="wrap"><h1>A little path to connection</h1></div><PathsToBelongingSection /><BackgroundDoodles /></main>;
+  if (slug === "paths-to-belonging") return <main id="main-content" tabIndex={-1} className="game-page"><div className="wrap"><header className="editorial-heading"><div><h1>A little path to connection</h1></div></header></div><PathsToBelongingSection /><BackgroundDoodles /></main>;
   if (slug === "get-involved") return <MembershipPage />;
   if (Object.hasOwn(organisationPages, slug)) return <OrganisationPage slug={slug as OrganisationSlug} />;
   return <main id="main-content" tabIndex={-1} className="reading-page wrap">
-    <header className="editorial-heading"><div><h1>{titles[slug]}</h1></div>{slug === "support" && <CommunityImage />}</header>
+    <header className="editorial-heading"><div><h1>{titles[slug]}</h1></div>{slug === "support" ? <CommunityImage /> : slug === "accessibility" ? <BridgeArtwork /> : null}</header>
     {slug === "support" && <><SourcePanels sources={["support-peer", "support-family", "support-workshops", "support-forums"]} /><DysConnections /></>}
     {slug === "accessibility" && <>
       <SourcePanel source="accessibility" tone="amber" />
