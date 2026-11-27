@@ -217,11 +217,14 @@ test("policy previews and links work without JavaScript", async ({ browser }, in
 });
 
 test("organisation titles and varied artwork stay outside reading boxes", async ({ page }) => {
-  for (const route of ["/our-story", "/founders-message", "/what-we-do", "/our-approach", "/values", "/get-involved", "/accessibility", "/paths-to-belonging"]) {
+  await page.goto("/about");
+  const titleStyle = await page.locator("main:visible h1").evaluate(el => { const style = getComputedStyle(el); return { size: style.fontSize, family: style.fontFamily, weight: style.fontWeight, lineHeight: style.lineHeight }; });
+  for (const route of ["/our-story", "/founders-message", "/what-we-do", "/our-approach", "/values", "/get-involved", "/accessibility", "/paths-to-belonging", "/policies", "/privacy"]) {
     await page.goto(route);
     const title = page.locator("main:visible h1");
     expect(await title.evaluate(el => !!el.closest(".copy-panel")), route).toBe(false);
     expect(await title.evaluate(el => !!el.closest(".editorial-heading")), route).toBe(true);
+    expect(await title.evaluate(el => { const style = getComputedStyle(el); return { size: style.fontSize, family: style.fontFamily, weight: style.fontWeight, lineHeight: style.lineHeight }; }), route).toEqual(titleStyle);
     expect(await title.evaluate(el => el.getBoundingClientRect().top - document.querySelector("main")!.getBoundingClientRect().top), route).toBeLessThan(100);
   }
   await page.goto("/get-involved");
