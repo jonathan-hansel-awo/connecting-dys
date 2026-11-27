@@ -37,6 +37,11 @@ test("chapter screenshots, overflow, console and rendered accessibility", async 
   await page.goto("/");
   // Wait for actual hydration before using controls.
   await page.getByRole("button", { name: "Reading settings", exact: true }).click();
+  await expect(page.getByRole("combobox", { name: "Font family", exact: true })).toHaveValue("Verdana");
+  await expect(page.getByRole("slider")).toHaveValue("20");
+  await expect(page.getByRole("combobox", { name: "Line spacing", exact: true })).toHaveValue("1.65");
+  await expect(page.getByRole("combobox", { name: "Letter spacing", exact: true })).toHaveValue("0.01");
+  await expect(page.getByRole("combobox", { name: "Texture style", exact: true })).toHaveValue("plaster");
   await page.keyboard.press("Escape");
   for (const [index, selector] of scenes.entries()) {
     const scene = page.locator(selector);
@@ -94,7 +99,7 @@ test("all fonts/backgrounds, maximum spacing, persistence, reset and modal focus
   await page.getByRole("button", { name: "Reset preferences" }).click();
   await page.keyboard.press("Escape");
   await settled(page);
-  await expect(page.locator("html")).toHaveCSS("font-size", "18px");
+  await expect(page.locator("html")).toHaveCSS("font-size", "20px");
   await expect(page.locator("html")).toHaveAttribute("data-spacious", "false");
 });
 
@@ -171,7 +176,7 @@ test("texture toggles every surface, persists with reading choices and resets", 
           connection: getComputedStyle(document.querySelector("#recognition")!).backgroundColor,
           textShadow: getComputedStyle(document.querySelector("h1")!).textShadow,
         }), surfaces);
-        for (const [index, image] of state.backgrounds.entries()) expect(image.includes("fine-paper.svg"), `${surfaces.split(",")[index]} grain`).toBe(enabled);
+        for (const [index, image] of state.backgrounds.entries()) expect(image.includes("plaster.svg"), `${surfaces.split(",")[index]} grain`).toBe(enabled);
         expect(state.connection).not.toBe(state.body);
         expect(state.textShadow).toBe("none");
       }
@@ -201,7 +206,7 @@ test("forced colours flattens texture/relief and tears down motion; no-JS stays 
   await expect(page.locator("body")).toHaveCSS("background-image", "none");
   await expect(page.locator(".hero .hero-actions .button")).toHaveCSS("box-shadow", "none");
   await page.emulateMedia({ forcedColors: "none" });
-  await expect(page.locator("body")).toHaveCSS("background-image", /fine-paper\.svg/);
+  await expect(page.locator("body")).toHaveCSS("background-image", /plaster\.svg/);
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: info.project.use.viewport, baseURL: info.project.use.baseURL });
   try {
     const native = await context.newPage();

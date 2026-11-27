@@ -30,14 +30,14 @@ export type Preferences = {
   darkMode: boolean;
 };
 export const defaults: Preferences = {
-  font: "Open Sans",
-  size: 18,
+  font: "Verdana",
+  size: 20,
   lineHeight: 1.65,
   letterSpacing: 0.01,
   background: "#FCF7ED",
   reduceMotion: true,
   texture: true,
-  textureStyle: "paper",
+  textureStyle: "plaster",
   darkMode: false,
 };
 // This self-contained function also runs before paint. Keep dependencies in config.
@@ -63,7 +63,7 @@ function preferenceRuntime(
       typeof p.font === "string" && Object.hasOwn(config.fonts, p.font)
         ? (p.font as Preferences["font"])
         : config.defaults.font,
-    size: finite(p.size, 18, 16, 26),
+    size: finite(p.size, config.defaults.size, 16, 26),
     lineHeight: finite(p.lineHeight, 1.65, 1.5, 2),
     letterSpacing: finite(p.letterSpacing, 0.01, 0, 0.12),
     background: config.backgrounds.some((b) => b.value === p.background)
