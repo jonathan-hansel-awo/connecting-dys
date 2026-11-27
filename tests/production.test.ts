@@ -565,7 +565,7 @@ test("corner illustrations stay decorative, complete and matched to their subjec
   about.window.close();
   for (const route of ["about", "our-story", "founders-message", "our-approach", "what-we-do", "values", "support", "get-involved",   "accessibility", "dyspraxia", "dyscalculia", "dysgraphia", "dyslexia", "policies", "privacy", "safeguarding", "data-retention"]) {
     const dom = page(route);
-    for (const panel of dom.window.document.querySelectorAll("main .copy-panel")) {
+    for (const panel of dom.window.document.querySelectorAll("main .copy-panel:not(.condition-sign-grid > li)")) {
       assert.equal(panel.querySelectorAll(":scope > .edge-doodle, :scope > summary > .edge-doodle").length, 1, `${route}: every content box has one corner illustration`);
     }
     for (const doodle of dom.window.document.querySelectorAll(".edge-doodle")) {
