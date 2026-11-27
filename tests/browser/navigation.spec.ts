@@ -58,7 +58,7 @@ test("About starts promptly and the mobile hero shows the logo first", async ({ 
   const heading = page.locator(".about-page > .editorial-heading");
   await expect(page.getByRole("link", { name: "Back to home", exact: true })).toHaveCount(0);
   await expect(heading).toBeVisible();
-  const gap = await heading.evaluate(el => el.getBoundingClientRect().top) - await page.locator(".reading-toolbar").evaluate(el => el.getBoundingClientRect().bottom);
+  const gap = await heading.evaluate(el => el.getBoundingClientRect().top) - await page.locator(".about-page").evaluate(el => el.getBoundingClientRect().top);
   expect(gap).toBeLessThan(32);
   await expect(page.locator('[data-source-id="mission"] p')).toHaveCount(1);
   const sections = await page.locator("main:visible [data-source-id]").evaluateAll(elements => elements.map(el => el.getAttribute("data-source-id")));
