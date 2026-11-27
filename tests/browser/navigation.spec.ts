@@ -78,3 +78,46 @@ test("About starts promptly and the mobile hero shows the logo first", async ({ 
   }
   await expect(page.locator(".footer-brand")).toHaveCSS("background-color", "rgb(32, 53, 77)");
 });
+
+test("reading panels share the icon band and emphasise standalone thoughts", async ({ page }, info) => {
+  await page.goto("/about");
+  await page.getByRole("button", { name: "Reading settings", exact: true }).click();
+  await page.keyboard.press("Escape");
+  await page.evaluate(() => document.fonts.ready);
+  for (const dark of [false, true]) {
+    await page.getByRole("button", { name: "Reading settings", exact: true }).click();
+    await page.getByRole("checkbox", { name: "Dark mode", exact: true }).setChecked(dark);
+    await page.keyboard.press("Escape");
+    const panels = await page.locator("main:visible .copy-panel.has-edge-doodle").evaluateAll(elements => elements.flatMap(panel => {
+      const icon = panel.querySelector(":scope > .edge-doodle");
+      const text = panel.querySelector(":scope > h1, :scope > h2, :scope > h3, :scope > p");
+      if (!icon || !text || !icon.getBoundingClientRect().width) return [];
+      const image = icon.getBoundingClientRect();
+      const range = document.createRange(); range.selectNodeContents(text);
+      const collision = [...range.getClientRects()].some(rect =>
+        rect.width > 0 && rect.height > 0 &&
+        rect.left < image.right && rect.right > image.left &&
+        rect.top < image.bottom && rect.bottom > image.top);
+      return [{ topGap: text.getBoundingClientRect().top - image.top, collision }];
+    }));
+    expect(panels.length).toBeGreaterThan(5);
+    for (const panel of panels) {
+      expect(Math.abs(panel.topGap)).toBeLessThanOrEqual(4);
+      expect(panel.collision).toBe(false);
+    }
+    const emphasis = await page.locator('[data-source-id="why"] .editorial-quote').evaluate(el => ({
+      weight: Number(getComputedStyle(el).fontWeight),
+      size: parseFloat(getComputedStyle(el).fontSize),
+      body: parseFloat(getComputedStyle(document.querySelector('[data-source-id="why"] p')!).fontSize),
+    }));
+    expect(emphasis.weight).toBeGreaterThanOrEqual(700);
+    expect(emphasis.size).toBeGreaterThan(emphasis.body);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+    await page.screenshot({ path: info.outputPath(`compact-about-${dark ? "dark" : "light"}.png`), fullPage: true });
+  }
+  if ((page.viewportSize()?.width || 0) > 760) {
+    const logo = await page.locator(".editorial-brand").boundingBox();
+    const heading = await page.locator(".editorial-heading h1").boundingBox();
+    expect(logo!.y).toBeLessThan(heading!.y);
+  }
+});

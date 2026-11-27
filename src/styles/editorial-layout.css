@@ -147,8 +147,9 @@ html[data-spacious="true"] .hero-margin-curves { display: none; }
 /* Keep the About introduction close to the reading toolbar. */
 .about-page { padding-top: .75rem; }
 .about-page > .breadcrumb { margin-bottom: .5rem; }
-.about-page > .editorial-heading { padding-block: .5rem 1.5rem; align-items: start; }
-.about-page .editorial-brand { width: min(100%, 22rem); justify-self: center; padding: 0; }
+.about-page > .editorial-heading { padding-block: .25rem .75rem; align-items: start; }
+.about-page .editorial-brand { width: min(100%, 16rem); justify-self: center; padding: 0; margin-block-start: -2.5rem; }
+.about-page > .editorial-heading + .copy-panels { margin-block-start: .75rem; }
 
 /* The approved identity keeps its navy mount in every reading theme. */
 .site-header .brand-link, .footer-brand {
@@ -174,7 +175,7 @@ html[data-spacious="true"] .hero-margin-curves { display: none; }
 @media (max-width: 760px) {
   .calm-home .hero { grid-template-columns: minmax(0, 1fr); }
   .about-page > .editorial-heading { gap: .5rem; }
-  .about-page .editorial-brand { width: min(70vw, 17rem); }
+  .about-page .editorial-brand { width: min(65vw, 14rem); margin-block-start: 0; }
   .calm-home .hero-composition { grid-row: 1; margin-block: 0; padding-block: 0; }
   .calm-home .hero-copy { grid-row: 2; }
   .calm-home .hero-composition .logo-stage { padding-block: .5rem; }
@@ -193,3 +194,14 @@ html[data-spacious="true"] .calm-home .hero-copy { grid-row: 2; }
   html[data-spacious="true"] .site-header { padding-inline: .6rem; gap: .4rem; }
   html[data-spacious="true"] .site-header .brand-link { padding: .25rem; }
 }
+
+/* Short standalone thoughts retain the selected reading font, with emphasis. */
+.copy-panel :is(.editorial-statement, .editorial-quote, .editorial-question, .editorial-refrain) {
+  font-family: var(--reading-font);
+  font-weight: 800;
+  line-height: var(--reading-line-height);
+}
+.copy-panel :is(.editorial-statement, .editorial-quote) { font-size: clamp(1.3rem, 2.4vw, 1.75rem); }
+.copy-panel .editorial-refrain { font-size: clamp(1.25rem, 2.2vw, 1.55rem); }
+.copy-panel .editorial-question { font-size: clamp(1.6rem, 3.5vw, 2.5rem); }
+html[data-spacious="true"] .about-page .editorial-brand { margin-block-start: 0; width: min(100%, 15rem); }
