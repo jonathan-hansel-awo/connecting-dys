@@ -50,11 +50,11 @@ export function MembershipInterestForm({ kind, decoration }: { kind: InterestKin
         <label><input type="radio" name="informationPreference" value="I would like someone to contact me first" required />I would like someone to contact me first</label>
       </fieldset>
       <h3>{young ? "5. Before You Submit" : "Before You Submit"}</h3><label className="interest-confirmation"><input name="acknowledgement" type="checkbox" required /><span>{copy.acknowledgement} *</span></label>
-      <p id={id("email-help")}>This opens a draft in your email app. Review it and press Send there to email Connecting Dys.</p>
+      <p id={id("email-help")}>This opens a draft in your email app. Review it and press Send there to email Connecting DYS.</p>
       <button type="submit" className="button" aria-describedby={id("email-help")} disabled={!ready}>Open email with my answers</button>
       <noscript><p>To prepare your answers in an email, please enable JavaScript or <a href={`mailto:${brand.email}?subject=Membership%20interest`}>email us to express interest</a>.</p></noscript>
       <div role="status">{draft && <p>Your message is ready. Please review it and press Send in your email app.</p>}</div>
       {draft && <details className="more-detail"><summary>Email app didn’t open?</summary><p><a href={draft.href}>Try opening your email draft again</a>, or copy the message below into an email to <a href={`mailto:${brand.email}`}>{brand.email}</a>.</p><label htmlFor={id("message")}>Your message</label><textarea id={id("message")} readOnly rows={12} value={draft.body} /></details>}
-    </form><p>{copy.thanks}</p><p>{young ? "A home for every DYS mind." : "Connecting DYS CIC – A home for every DYS mind."}</p>
+    </form><p>{copy.thanks}</p><p>{young ? "A home for every DYS mind." : "Connecting DYS – A home for every DYS mind."}</p>
   </section>;
 }

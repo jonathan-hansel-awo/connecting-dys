@@ -100,8 +100,8 @@ test("skip link, story navigation and browser history remain usable", async ({ p
   await expect(page).toHaveURL(/\/our-story$/);
   await expect(page.locator("main h1")).toHaveText("Our Story");
   await page.goBack(); await expect(page.locator(".home-principles")).toBeVisible();
-  await page.goForward(); await expect(page).toHaveTitle("Our Story | Connecting Dys");
-  await page.getByRole("link", { name: "Connecting Dys — home", exact: true }).click();
+  await page.goForward(); await expect(page).toHaveTitle("Our Story | Connecting DYS");
+  await page.getByRole("link", { name: "Connecting DYS — home", exact: true }).click();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
 });
 

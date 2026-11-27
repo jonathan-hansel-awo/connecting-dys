@@ -143,3 +143,46 @@ html[data-theme="dark"] :is(.site-header .brand-link img, .hero-dys-embrace img,
 @media (max-width: 760px) { .margin-curve { width: 10px; } .curve-left { left: -14px; } .curve-right { right: -14px; } }
 html[data-spacious="true"] .hero-margin-curves { display: none; }
 @media (forced-colors: active), print { .hero-margin-curves { display: none; } .site-header .brand-link img { filter: none; } }
+
+/* Keep the About introduction close to the reading toolbar. */
+.about-page { padding-top: .75rem; }
+.about-page > .editorial-heading { padding-block: .5rem 1.5rem; align-items: start; }
+.about-page .editorial-brand { width: min(100%, 22rem); justify-self: center; padding: 0; }
+
+/* The approved identity keeps its navy mount in every reading theme. */
+.site-header .brand-link, .footer-brand {
+  width: fit-content;
+  max-width: 100%;
+  padding: .35rem .65rem;
+  border-radius: .8rem;
+  background: var(--brand-navy);
+  color: var(--brand-cream);
+}
+.site-header .brand-link b { color: var(--brand-cream); }
+.site-header .brand-link img, html[data-theme="dark"] .site-header .brand-link img,
+.footer-brand img { filter: none; background: transparent; object-fit: contain; }
+.footer-brand { display: inline-flex; align-items: center; gap: .75rem; }
+.footer-brand img { flex: 0 0 auto; width: 80px; height: 72px; }
+.footer-brand span { font-size: inherit; line-height: 1.15; }
+.footer-registration { max-width: 44ch; line-height: 1.65; }
+@media (min-width: 1101px) {
+  .site-header { gap: .75rem; }
+  .grouped-nav { gap: .1rem; }
+  .grouped-nav > a, .nav-group > summary { padding-inline: .5rem; }
+}
+@media (max-width: 760px) {
+  .about-page > .editorial-heading { gap: .5rem; }
+  .about-page .editorial-brand { width: min(70vw, 17rem); }
+  .calm-home .hero-composition { grid-row: 1; margin-block: 0; padding-block: 0; }
+  .calm-home .hero-copy { grid-row: 2; }
+  .calm-home .hero-composition .logo-stage { padding-block: .5rem; }
+  .calm-home .hero-dys-embrace { width: min(68vw, 19rem); }
+  .calm-home .hero-note { display: none; }
+  .footer-brand { font-size: 1.6rem; }
+}
+html[data-spacious="true"] .calm-home .hero-composition { grid-row: 1; }
+html[data-spacious="true"] .calm-home .hero-copy { grid-row: 2; }
+@media (forced-colors: active) {
+  .site-header .brand-link, .footer-brand { background: Canvas; color: LinkText; border: 1px solid CanvasText; }
+  .site-header .brand-link b { color: LinkText; }
+}

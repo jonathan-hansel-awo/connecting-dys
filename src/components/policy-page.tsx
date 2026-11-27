@@ -20,7 +20,7 @@ export function PolicyPage({ slug }: { slug: string }) {
       {policy.download && <p className="copy-panel panel-cream has-edge-doodle"><EdgeDoodle motif="document" /><a href={policy.download} download className="text-link">Download the original policy (PDF)</a></p>}
       {(slug === "privacy" || slug === "cookies") && <details className="policy-disclosure source-section" aria-labelledby="website-implementation"><summary><EdgeDoodle motif="document" /><h2 id="website-implementation">Using this website today</h2><span className="disclosure-indicator" aria-hidden="true" /></summary><div className="policy-implementation"><ParagraphPanels tone="teal">
         <p>The organisation’s supplied policy is reproduced below. This website currently has no analytics, advertising trackers, embedded social feeds or online membership database. The policy’s references to these features do not mean they are enabled here.</p>
-        <p>The interest forms prepare a draft in your own email app. Review the draft and press Send there to email Connecting Dys.</p>
+        <p>The interest forms prepare a draft in your own email app. Review the draft and press Send there to email Connecting DYS.</p>
         <p>Reading preferences are stored on this device under <code>connecting-dys-reading-settings</code> until reset or cleared. The entry <code>connecting-dys-privacy-notice</code> remembers acknowledgement of the notice for up to six months. Neither entry is used for tracking. There are no optional tracking categories to accept, reject or withdraw consent for on this website.</p>
         <p>Use “Cookie information” in the footer to reopen the notice. Reset reading choices in Reading settings, or clear site data in your browser. External websites and email providers have their own privacy information.</p>
         {slug === "privacy" && <p>This website is hosted on Vercel. Page delivery involves technical information such as IP address, requested pages and browser information. Contact <a href={`mailto:${brand.email}`}>{brand.email}</a> with questions about your information.</p>}
@@ -29,6 +29,6 @@ export function PolicyPage({ slug }: { slug: string }) {
       <SourcePanels sources={policy.sources} collapsible />
       {slug === "safeguarding" && <SourcePanel source="confidentiality" tone="cream" collapsible />}
     </>}
-    <nav className="article-links copy-panel panel-cream has-edge-doodle" aria-label="Related information"><EdgeDoodle motif="path" /><Link href="/policies">All policies</Link><Link href="/contact">Contact Connecting Dys</Link><Link href="/data-retention">Data Retention Schedule</Link></nav>
+    <nav className="article-links copy-panel panel-cream has-edge-doodle" aria-label="Related information"><EdgeDoodle motif="path" /><Link href="/policies">All policies</Link><Link href="/contact">Contact Connecting DYS</Link><Link href="/data-retention">Data Retention Schedule</Link></nav>
   <BackgroundDoodles /></main>;
 }

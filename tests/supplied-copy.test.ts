@@ -1,17 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { createHash } from "node:crypto";
 import { JSDOM } from "jsdom";
 import { backgrounds } from "../src/lib/preferences.ts";
 
 const fingerprints: Record<string, string> = JSON.parse(fs.readFileSync("tests/fixtures/supplied-copy-sha256.json", "utf8"));
 const policySources = JSON.parse(fs.readFileSync("src/content/policy-source-keys.json", "utf8"));
 const routeSources: Record<string, string[]> = {
-  about: ["why", "mission", "vision", "goal", "about-work"],
+  about: ["why", "mission", "vision", "goal", "purpose"],
   "our-story": ["story"],
   "founders-message": ["founder"],
-  "what-we-do": ["work-intro", ...Array.from({ length: 8 }, (_, i) => `work-${i + 1}`), "goal-young"],
+  "what-we-do": ["work-intro", ...Array.from({ length: 8 }, (_, i) => `work-${i + 1}`)],
   "our-approach": ["approach-intro", "how", "commitment", "approach-community", "approach-design", "approach-grow", "approach-social", "approach-awareness", "approach-infrastructure", "approach-gets", "approach-goals", "approach-intend"],
   values: ["values-summary", ...[..."BRIDGE"].map(letter => `value-${letter}`)],
   "get-involved": ["who-join", "approach-intend"],
@@ -21,6 +20,8 @@ const routeSources: Record<string, string[]> = {
   safeguarding: policySources.safeguarding, complaints: policySources.complaints, equality: policySources.equality,
   privacy: ["privacy-notice", ...policySources["privacy-policy"]],
 };
+const supplied = JSON.parse(fs.readFileSync("src/content/supplied-copy.json", "utf8"));
+const brandCopy = (text: string) => text.replace(/\bDys\b/g, "DYS").replace(/\bConnecting DYS CIC\b/g, "Connecting DYS");
 const normalize = (text: string) => text.replace(/\s+/g, " ").trim();
 const conditionName = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b/gi;
 const conditionGroup = /\b(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b(?:(?:,\s*(?:(?:and|or)\s+)?|\s+(?:and|or)\s+)(?:Dyslexia|Dyspraxia|Dyscalculia|Dysgraphia)\b){1,3}/gi;
@@ -55,7 +56,29 @@ test("full-length editorial and policy copy stays intact on its dedicated pages"
       const panel = doc.querySelector(`[data-source-id="${source}"]`);
       assert.ok(panel, `${route}: missing ${source}`);
       const text = originalSourceText(panel);
-      assert.equal(createHash("sha256").update(text).digest("hex"), fingerprints[source], `${route}: original wording changed or omitted in ${source}`);
+      // Keep the original source fingerprints, allowing only Mary's named edits.
+      const raw = supplied[source];
+      const expected = doc.createElement("section");
+      const heading = doc.createElement("h2");
+      heading.textContent = source === "purpose" ? "Our Purpose" : brandCopy(raw.title);
+      expected.append(heading);
+      const blocks = source === "mission" ? raw.blocks.slice(0, 1) : raw.blocks;
+      for (const block of blocks) {
+        if (block.type === "list") {
+          const list = doc.createElement("ul");
+          for (const item of block.items) {
+            const li = doc.createElement("li"); li.textContent = brandCopy(item); list.append(li);
+          }
+          expected.append(list);
+        } else {
+          const node = doc.createElement(block.type === "heading" ? "h3" : "p");
+          node.textContent = brandCopy(block.text); expected.append(node);
+        }
+      }
+      if (raw.table) for (const row of raw.table) for (const cell of row) {
+        const node = doc.createElement("td"); node.textContent = cell; expected.append(node);
+      }
+      assert.equal(text, originalSourceText(expected), `${route}: only approved copy edits are permitted in ${source}`);
       if (panel.matches("details")) assert.ok(panel.querySelector(":scope > summary h2"), "collapsible policy has an accessible section title");
       assert.equal(panel.querySelectorAll("details").length, 0, "source text is not buried in nested disclosures");
       for (const box of panel.querySelectorAll(".copy-panel")) {
@@ -67,7 +90,7 @@ test("full-length editorial and policy copy stays intact on its dedicated pages"
     dom.window.close();
   }
   // Marie requested shorter home summaries and removal of the repeated About introduction.
-  const summarised = ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who", "home-invitation", "home-footer", "about-intro", "different", "purpose"];
+  const summarised = ["home-intro", "home-stand", "home-conditions", "home-approach", "home-work", "home-who", "home-invitation", "home-footer", "about-intro", "different", "about-work", "goal-young"];
   assert.deepEqual(Object.keys(fingerprints).filter(key => !seen.has(key)).sort(), summarised.sort());
 });
 

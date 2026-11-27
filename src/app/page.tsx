@@ -24,12 +24,12 @@ export default function HomePage() {
       <div className="section-backdrop" aria-hidden="true" />
       <HeroMarginCurves />
       <div className="hero-copy">
-        <p className="eyebrow">Connecting DYS CIC</p>
+        <p className="eyebrow">Connecting DYS</p>
         <h1 id="hero-title">A home for<br />every <span className="dys-word">DYS</span> mind.</h1>
         <p className="hero-intro">Building community and connection for teenagers, young adults and families affected by dyspraxia, dyscalculia, dysgraphia and dyslexia.</p>
         <div className="hero-actions"><Link href="/membership" className="button">Join Our Community</Link><Link href="/get-involved" className="text-link">Work With Us</Link></div>
       </div>
-      <div className="hero-composition"><HeroTransitionArt /><div className="hero-note note-top surface-raised">Your mind is at home here.</div><div className="logo-stage"><HeroDysEmbrace /><div className="hero-lockup"><span className="hero-wordmark">Connecting Dys</span></div></div></div>
+      <div className="hero-composition"><HeroTransitionArt /><div className="hero-note note-top surface-raised">Your mind is at home here.</div><div className="logo-stage"><HeroDysEmbrace /><div className="hero-lockup"><span className="hero-wordmark">Connecting DYS</span></div></div></div>
     </section>
 
     <PathsToBelongingSection />
@@ -45,7 +45,7 @@ export default function HomePage() {
     <section id="recognition" className="recognition surface-scene surface-panel" aria-labelledby="recognition-title">
       <div className="recognition-sheet" data-recognition-sheet aria-hidden="true" />
       <div className="wrap recognition-grid">
-        <figure className="recognition-figure"><div className="recognition-media surface-inset"><Image src="/images/community-reading.webp" alt="Five people sitting together around a table with books." fill sizes="(max-width: 1000px) 90vw, 45vw" className="recognition-photo" /></div><figcaption>Photo provided by Connecting Dys. Background edited for privacy.</figcaption></figure>
+        <figure className="recognition-figure"><div className="recognition-media surface-inset"><Image src="/images/community-reading.webp" alt="Five people sitting together around a table with books." fill sizes="(max-width: 1000px) 90vw, 45vw" className="recognition-photo" /></div><figcaption>Photo provided by Connecting DYS. Background edited for privacy.</figcaption></figure>
         <div className="recognition-copy"><p className="eyebrow">Connection starts with people</p><h2 id="recognition-title">Real people.<br />Real community.</h2><p>A space to connect with people who understand. Built on lived experience, shared understanding and a sense of belonging.</p><Link href="/our-story" className="text-link">Read our story</Link></div>
       </div>
     </section>
