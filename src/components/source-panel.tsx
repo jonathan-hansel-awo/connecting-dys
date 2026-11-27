@@ -64,6 +64,7 @@ export function ParagraphPanels({ children, tone = "blue" }: { children: ReactNo
 }
 
 const emphasisBySource: Record<string, Record<number, string>> = {
+  why: { 2: "quote", 5: "refrain" },
   story: { 0: "lead", 2: "statement", 5: "question", 7: "statement", 9: "statement", 10: "lead", 13: "refrain", 14: "refrain", 15: "refrain", 16: "refrain", 18: "refrain", 19: "refrain", 20: "refrain", 21: "refrain", 22: "statement" },
   founder: { 3: "statement", 6: "statement", 8: "lead" },
   "approach-community": { 0: "statement" },
@@ -78,7 +79,10 @@ export function SourcePanel({ source, level = 2, tone = "blue", id, children, ar
   return <Container className={`source-section ${collapsible ? "policy-disclosure" : "editorial-source"}`} data-source-id={source} aria-labelledby={headingId} open={collapsible && initiallyOpen ? true : undefined}>
     {collapsible && <summary><EdgeDoodle motif={motifForContent(section.title)} />{createElement(`h${level}`, { id: headingId }, section.title)}<span className="disclosure-indicator" aria-hidden="true" /></summary>}
     {paragraphGroups(section.blocks).map((group, i) => {
-      const emphasis = !collapsible ? emphasisBySource[source]?.[i] : undefined;
+      const paragraph = group.length === 1 && group[0].type === "paragraph" ? group[0].text?.trim() : undefined;
+      const standalone = i > 0 && paragraph && paragraph.length <= 160 && paragraph.split(/\s+/).length <= 20 && !paragraph.endsWith(":");
+      const fallback = standalone && paragraph ? (paragraph.endsWith("?") ? "question" : /^[“"‘]/.test(paragraph) ? "quote" : "statement") : undefined;
+      const emphasis = !collapsible ? emphasisBySource[source]?.[i] ?? fallback : undefined;
       const motif = editorialDoodles[source]?.[i] ?? motifForContent(group.map(block => block.text || block.items?.join(" ") || "").join(" ") + " " + section.title);
       const panel = <div className={`copy-panel panel-${toneAt(tone, i)} ${emphasis ? `source-${emphasis}` : ""} has-edge-doodle`} data-copy-emphasis={emphasis} key={i}>
         <EdgeDoodle motif={motif} />
